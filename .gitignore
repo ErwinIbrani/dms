@@ -1,0 +1,54 @@
+# Mac DS_Store Files
+.DS_Store
+
+# composer itself is not needed
+composer.phar
+
+# composer vendor dir
+/vendor
+
+application/cache/*
+!application/cache/index.html
+
+application/logs/*
+!application/logs/index.html
+
+!application/*/.htaccess
+
+composer.lock
+
+user_guide_src/build/*
+user_guide_src/cilexer/build/*
+user_guide_src/cilexer/dist/*
+user_guide_src/cilexer/pycilexer.egg-info/*
+/vendor/
+
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+/tests/tests/
+/tests/results/
+/application/config/database.php
+user_guide/*
+#vagrant folder
+/.vagrant
+tests/_output/*
+tests/_support/_generated
+# phpunit itself is not needed
+phpunit.phar
+# local phpunit config
+/phpunit.xml
+# windows thumbnail cache
+Thumbs.db
+# zend studio for eclipse project files
+.buildpath
+.project
+.settings
