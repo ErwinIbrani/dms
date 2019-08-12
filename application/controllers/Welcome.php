@@ -3,7 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
-	/**
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->database();
+        $this->load->library(['ion_auth', 'form_validation']);
+        $this->lang->load('auth');
+
+
+        authentication($this->ion_auth->logged_in());
+    }
+
+    /**
 	 * Index Page for this controller.
 	 *
 	 * Maps to the following URL
@@ -20,9 +31,13 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->helper('url');
+	    $name = '<b>firda</b>';
+		return view('home', array('name' => $name ));
+	}
 
-		$this->load->view('welcome_message');
+    public function blog($id)
+    {
+        echo 'blog' . $id;
 	}
 
 }

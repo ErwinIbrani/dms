@@ -8,5 +8,6 @@ if ( ! function_exists('view')) {
         $blade = new \Jenssegers\Blade\Blade($path, APPPATH . 'cache/view');
 
         echo $blade->make($view, $data)->render();
+        return true;
     }
 }
