@@ -55,6 +55,7 @@ $route['translate-uri_dashes'] = false;
 
 $route['login'] = 'auth/login';
 $route['forgot-password'] = 'auth/forgot_password';
+$route['admin/user-management'] = 'admin/usermanagement';
 /*
 | -------------------------------------------------------------------------
 | Sample REST API Routes
