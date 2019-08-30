@@ -21,11 +21,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Key extends REST_Controller {
 
     protected $methods = [
-            'index_put' => ['level' => 10, 'limit' => 10],
-            'index_delete' => ['level' => 10],
-            'level_post' => ['level' => 10],
-            'regenerate_post' => ['level' => 10],
-        ];
+        'index_put' => ['level' => 10, 'limit' => 10],
+        'index_delete' => ['level' => 10],
+        'level_post' => ['level' => 10],
+        'regenerate_post' => ['level' => 10],
+    ];
 
     /**
      * Insert a key into the database
@@ -86,7 +86,7 @@ class Key extends REST_Controller {
         $this->response([
             'status' => true,
             'message' => 'API key was deleted'
-            ], REST_Controller::HTTP_NO_CONTENT); // NO_CONTENT (204) being the HTTP response code
+        ], REST_Controller::HTTP_NO_CONTENT); // NO_CONTENT (204) being the HTTP response code
     }
 
     /**
@@ -243,8 +243,8 @@ class Key extends REST_Controller {
     private function _key_exists($key)
     {
         return $this->rest->db
-            ->where(config_item('rest_key_column'), $key)
-            ->count_all_results(config_item('rest_keys_table')) > 0;
+                ->where(config_item('rest_key_column'), $key)
+                ->count_all_results(config_item('rest_keys_table')) > 0;
     }
 
     private function _insert_key($key, $data)

@@ -1,5 +1,5 @@
 <?php
-class Emigrate extends CI_Controller {
+class Emigration extends CI_Controller {
     
     public function index()
     {

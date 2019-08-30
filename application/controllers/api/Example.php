@@ -22,6 +22,8 @@ require APPPATH . 'libraries/Format.php';
  */
 class Example extends CI_Controller {
 
+    
+
     use REST_Controller {
         REST_Controller::__construct as private __resTraitConstruct;
     }
