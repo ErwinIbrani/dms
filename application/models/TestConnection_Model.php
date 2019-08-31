@@ -32,8 +32,4 @@ class TestConnection_Model extends CI_Model
        return $dbSitac2->get('config');
    }
 
-
-
-
-
 }
