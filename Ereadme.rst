@@ -8,7 +8,7 @@ CREATE TABLE [dbo].[group_vendor] (
   [updated_by] int NULL,
   [created_at] datetime NULL,
   [updated_at] datetime NULL,
-  [status] tinyint DEFAULT ((1)) NOT NULL
+  [is_deleted] tinyint DEFAULT ((1)) NOT NULL
 );
 
 ###################
@@ -28,7 +28,7 @@ CREATE TABLE [dbo].[vendor] (
   [updated_by] int NULL,
   [created_at] datetime NULL,
   [updated_at] datetime NULL,
-  [status] tinyint DEFAULT ((1)) NOT NULL
+  [is_deleted] tinyint DEFAULT ((1)) NOT NULL
 );
 
 ###################
@@ -41,7 +41,7 @@ CREATE TABLE [dbo].[region] (
   [char] varchar(11) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
   [created_at] datetime NULL,
   [updated_at] datetime NULL,
-  [status] tinyint DEFAULT ((1)) NOT NULL
+  [is_deleted] tinyint DEFAULT ((1)) NOT NULL
 );
 
 ###################
@@ -54,7 +54,7 @@ CREATE TABLE [dbo].[province] (
   [code] varchar(11) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
   [created_at] datetime NULL,
   [updated_at] datetime NULL,
-  [status] tinyint DEFAULT ((1)) NOT NULL
+  [is_deleted] tinyint DEFAULT ((1)) NOT NULL
 );
 
 ###################
@@ -68,5 +68,5 @@ CREATE TABLE [dbo].[city] (
   [bsni] varchar(11) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
   [created_at] datetime NULL,
   [updated_at] datetime NULL,
-  [status] tinyint DEFAULT ((1)) NOT NULL
+  [is_deleted] tinyint DEFAULT ((1)) NOT NULL
 );
