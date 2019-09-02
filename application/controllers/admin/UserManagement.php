@@ -15,4 +15,11 @@ class UserManagement extends CI_Controller {
     {
         return view('admin.user.index');
     }
+
+    public function groups() {
+        $this->title = "User Gorups";
+        return view('admin.user.group.index', [
+            'title' => $this->title
+        ]);
+    }
 }
