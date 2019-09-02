@@ -20,12 +20,29 @@
             <nav id="stacked-menu" class="stacked-menu stacked-menu-has-collapsible">
                 <!-- .menu -->
                 <ul class="menu">
+                    <li class="menu-header">SUPERADMIN</li><!-- /.menu-header -->
+                    <!-- .menu-item -->
+                    <li class="menu-item has-child">
+                        <a href="#" class="menu-link">
+                            <span class="menu-icon far fa-user"></span>
+                            <span class="menu-text">User Management</span>
+                        </a> <!-- child menu -->
+                        <ul class="menu">
+                            <li class="menu-item">
+                                <a href="page-teams.html" class="menu-link">Users</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="page-teams.html" class="menu-link">User Gorup</a>
+                            </li>
+                        </ul><!-- /child menu -->
+                    </li><!-- /.menu-item -->
+                    <li class="menu-header">Main</li><!-- /.menu-header -->
                     <!-- .menu-item -->
                     <li class="menu-item">
                         <a href="index.html" class="menu-link"><span class="menu-icon fas fa-home"></span> <span class="menu-text">Dashboard</span></a>
                     </li><!-- /.menu-item -->
                     <!-- .menu-item -->
-                    <li class="menu-item has-active has-child">
+                    <li class="menu-item has-child">
                         <a href="#" class="menu-link"><span class="menu-icon far fa-file"></span> <span class="menu-text">App Pages</span> <span class="badge badge-warning">New</span></a> <!-- child menu -->
                         <ul class="menu"><li class="menu-subhead">App Pages</li>
                             <li class="menu-item">
@@ -218,151 +235,7 @@
                         <a href="landing-page.html" class="menu-link"><span class="menu-icon oi oi-dial"></span> <span class="menu-text">Landing Page</span></a>
                     </li><!-- /.menu-item -->
                     <!-- .menu-header -->
-                    <li class="menu-header">Interfaces </li><!-- /.menu-header -->
-                    <!-- .menu-item -->
-                    <li class="menu-item has-child">
-                        <a href="#" class="menu-link"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Components</span></a> <!-- child menu -->
-                        <ul class="menu"><li class="menu-subhead">Components</li>
-                            <li class="menu-item">
-                                <a href="component-general.html" class="menu-link" tabindex="-1">General</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="component-icons.html" class="menu-link" tabindex="-1">Icons</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="component-rich-media.html" class="menu-link" tabindex="-1">Rich Media</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="component-list-views.html" class="menu-link" tabindex="-1">List Views</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="component-sortable-nestable.html" class="menu-link" tabindex="-1">Sortable &amp; Nestable</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="component-activity.html" class="menu-link" tabindex="-1">Activity</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="component-steps.html" class="menu-link" tabindex="-1">Steps</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="component-tasks.html" class="menu-link" tabindex="-1">Tasks</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="component-metrics.html" class="menu-link" tabindex="-1">Metrics</a>
-                            </li>
-                        </ul><!-- /child menu -->
-                    </li><!-- /.menu-item -->
-                    <!-- .menu-item -->
-                    <li class="menu-item has-child">
-                        <a href="#" class="menu-link"><span class="menu-icon oi oi-pencil"></span> <span class="menu-text">Forms</span></a> <!-- child menu -->
-                        <ul class="menu"><li class="menu-subhead">Forms</li>
-                            <li class="menu-item">
-                                <a href="form-basic.html" class="menu-link" tabindex="-1">Basic Elements</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="form-autocompletes.html" class="menu-link" tabindex="-1">Autocompletes</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="form-pickers.html" class="menu-link" tabindex="-1">Pickers</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="form-editors.html" class="menu-link" tabindex="-1">Editors</a>
-                            </li>
-                        </ul><!-- /child menu -->
-                    </li><!-- /.menu-item -->
-                    <!-- .menu-item -->
-                    <li class="menu-item has-child">
-                        <a href="#" class="menu-link"><span class="menu-icon fas fa-table"></span> <span class="menu-text">Tables</span></a> <!-- child menu -->
-                        <ul class="menu"><li class="menu-subhead">Tables</li>
-                            <li class="menu-item">
-                                <a href="table-basic.html" class="menu-link" tabindex="-1">Basic Table</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="table-datatables.html" class="menu-link" tabindex="-1">Datatables</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="table-responsive-datatables.html" class="menu-link" tabindex="-1">Responsive Datatables</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="table-filters-datatables.html" class="menu-link" tabindex="-1">Filter Columns</a>
-                            </li>
-                        </ul><!-- /child menu -->
-                    </li><!-- /.menu-item -->
-                    <!-- .menu-item -->
-                    <li class="menu-item has-child">
-                        <a href="#" class="menu-link"><span class="menu-icon oi oi-bar-chart"></span> <span class="menu-text">Collections</span></a> <!-- child menu -->
-                        <ul class="menu"><li class="menu-subhead">Collections</li>
-                            <li class="menu-item has-child">
-                                <a href="#" class="menu-link" tabindex="-1">Chart.js</a> <!-- grand child menu -->
-                                <ul class="menu">
-                                    <li class="menu-item">
-                                        <a href="collection-chartjs-line.html" class="menu-link" tabindex="-1">Line</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="collection-chartjs-bar.html" class="menu-link" tabindex="-1">Bar</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="collection-chartjs-radar-scatter.html" class="menu-link" tabindex="-1">Radar &amp; Scatter</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="collection-chartjs-others.html" class="menu-link" tabindex="-1">Others</a>
-                                    </li>
-                                </ul><!-- /grand child menu -->
-                            </li>
-                            <li class="menu-item">
-                                <a href="collection-flot-charts.html" class="menu-link" tabindex="-1">Flot</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="collection-inline-charts.html" class="menu-link" tabindex="-1">Inline charts</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="collection-jqvmap.html" class="menu-link" tabindex="-1">Vector Map</a>
-                            </li>
-                        </ul><!-- /child menu -->
-                    </li><!-- /.menu-item -->
-                    <!-- .menu-item -->
-                    <li class="menu-item has-child">
-                        <a href="#" class="menu-link"><span class="menu-icon oi oi-list-rich"></span> <span class="menu-text">Level Menu</span></a> <!-- child menu -->
-                        <ul class="menu"><li class="menu-subhead">Level Menu</li>
-                            <li class="menu-item">
-                                <a href="#" class="menu-link" tabindex="-1">Menu item</a>
-                            </li>
-                            <li class="menu-item has-child">
-                                <a href="#" class="menu-link" tabindex="-1">Menu item</a> <!-- grand child menu -->
-                                <ul class="menu">
-                                    <li class="menu-item">
-                                        <a href="#" class="menu-link" tabindex="-1">Child item</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="#" class="menu-link" tabindex="-1">Child item</a>
-                                    </li>
-                                    <li class="menu-item has-child">
-                                        <a href="#" class="menu-link" tabindex="-1">Child item</a> <!-- grand child menu -->
-                                        <ul class="menu">
-                                            <li class="menu-item">
-                                                <a href="#" class="menu-link" tabindex="-1">Grand Child item</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a href="#" class="menu-link" tabindex="-1">Grand Child item</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a href="#" class="menu-link" tabindex="-1">Grand Child item</a>
-                                            </li>
-                                            <li class="menu-item">
-                                                <a href="#" class="menu-link" tabindex="-1">Grand Child item</a>
-                                            </li>
-                                        </ul><!-- /grand child menu -->
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="#" class="menu-link" tabindex="-1">Child item</a>
-                                    </li>
-                                </ul><!-- /grand child menu -->
-                            </li>
-                            <li class="menu-item">
-                                <a href="#" class="menu-link" tabindex="-1">Menu item</a>
-                            </li>
-                        </ul><!-- /child menu -->
-                    </li><!-- /.menu-item -->
+
                 </ul><!-- /.menu -->
             </nav><!-- /.stacked-menu -->
 

@@ -35,7 +35,11 @@
     <main class="app-main">
         <!-- .wrapper -->
         <div class="wrapper">
-            @yield('content')
+            <div class=""page>
+                <div class="page-inner">
+                    @yield('content')
+                </div>
+            </div>
         </div><!-- /.wrapper -->
     </main>
 </div>
