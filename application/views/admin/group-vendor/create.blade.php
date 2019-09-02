@@ -20,7 +20,7 @@
 
                         @if(!empty(validation_errors()))
                         <div class="col-lg-12">
-                            <div class="alert alert-danger alert-dismissible fade show">
+                            <div class="alert alert-warning alert-dismissible fade show">
                                 <button type="button" class="close" data-dismiss="alert">×</button>
                                 <strong><?php echo validation_errors(); ?></strong>
                             </div>
