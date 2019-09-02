@@ -2,6 +2,7 @@
 @section('page_title', 'Dashboard')
 
 @section('content')
+
     <!-- .page -->
     <div class="page has-sidebar"><div class="sidebar-backdrop"></div>
         <!-- .page-navs -->

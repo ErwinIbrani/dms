@@ -25,6 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $config['base_url'] = 'https://dms.ibstower.test/';   //https://dms.ibstower.test/
 
+
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -100,7 +101,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = FALSE; //true
 
 /*
 |--------------------------------------------------------------------------
@@ -136,7 +137,7 @@ $config['subclass_prefix'] = 'MY_';
 | Note: This will NOT disable or override the CodeIgniter-specific
 |	autoloading (application/config/autoload.php)
 */
-$config['composer_autoload'] = 'vendor/autoload.php';
+$config['composer_autoload'] = realpath(APPPATH . '../vendor/autoload.php');
 
 /*
 |--------------------------------------------------------------------------
@@ -324,7 +325,8 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = 'FS250719';
+
+$config['encryption_key'] = 'thu23456789#[n,';
 
 /*
 |--------------------------------------------------------------------------

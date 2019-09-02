@@ -51,13 +51,14 @@ $autoload['packages'] = array();
 |
 | Prototype:
 |
-|	$autoload['libraries'] = array('database', 'email', 'session');
+|	$autoload['libraries'] = array('database', 'email', 'sessionsession');
 |
 | You can also supply an alternative library name to be assigned
 | in the controller:
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
+
 $autoload['libraries'] = array('database', 'email','session', 'ion_auth', 'user_agent', 'form_validation', 'encryption');
 
 /*
@@ -79,7 +80,7 @@ $autoload['libraries'] = array('database', 'email','session', 'ion_auth', 'user_
 |	$autoload['drivers'] = array('cache' => 'cch');
 |
 */
-$autoload['drivers'] = array();
+$autoload['drivers'] = array('session');
 
 /*
 | -------------------------------------------------------------------
