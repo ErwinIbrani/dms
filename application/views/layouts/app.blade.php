@@ -24,7 +24,6 @@
         unusedLink.setAttribute('rel', '');
         unusedLink.setAttribute('disabled', true);
     </script><!-- END THEME STYLES -->
-
 </head>
 <body>
 
@@ -35,6 +34,7 @@
     <main class="app-main">
         <!-- .wrapper -->
         <div class="wrapper">
+            @include('layouts.components.flash')
             @yield('content')
         </div><!-- /.wrapper -->
     </main>

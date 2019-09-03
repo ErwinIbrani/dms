@@ -80,7 +80,7 @@ $autoload['libraries'] = array('database', 'email','session', 'ion_auth', 'user_
 |	$autoload['drivers'] = array('cache' => 'cch');
 |
 */
-$autoload['drivers'] = array('session');
+$autoload['drivers'] = array('');
 
 /*
 | -------------------------------------------------------------------
