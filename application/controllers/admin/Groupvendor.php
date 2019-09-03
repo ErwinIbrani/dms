@@ -9,6 +9,7 @@ class Groupvendor extends CI_Controller
         $this->load->model('GroupVendor_Model');
         $this->load->library(['ion_auth', 'form_validation', 'form_validation', 'pagination']);
         $this->lang->load('auth');
+        $this->load->helper('custom');
         authentication($this->ion_auth->logged_in());
 
     }
@@ -89,7 +90,33 @@ class Groupvendor extends CI_Controller
 
     public function edit($id)
     {
+        $model     = $this->GroupVendor_Model->findOne($id)->row();
+        return view('admin/group-vendor/edit', ['model' => $model]);
+    }
 
+    public function update()
+    {
+        $this->form_validation->set_rules('group_name', 'Group Name', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('error', 'Please update correctly');
+            redirect("admin/groupvendor/edit/".$this->input->post('id'), 'refresh');
+        }
+        else {
+            $update = [
+                'group_name'   => $this->input->post('group_name'),
+                'updated_by'   => $this->ion_auth->user()->row()->id,
+            ];
+            $this->GroupVendor_Model->update($this->input->post('id'), $update);
+            $this->session->set_flashdata('success', 'Data Edited');
+            redirect("admin/groupvendor/index", 'refresh');
+        }
+    }
+
+    public function destroy($id)
+    {
+        $this->GroupVendor_Model->delete($id);
+        $this->session->set_flashdata('success', 'Data Deleted');
+        redirect("admin/groupvendor/index", 'refresh');
     }
     
 

@@ -40,12 +40,10 @@
     </main>
 </div>
 
-
 <script src="{{ base_url('assets/vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ base_url('assets/vendor/bootstrap/js/popper.min.js') }}"></script>
 <script src="{{ base_url('assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- END BASE JS -->
-
 <!-- BEGIN PLUGINS JS -->
 <script src="{{ base_url('assets/vendor/pace/pace.min.js') }}"></script>
 <script src="{{ base_url('assets/vendor/stacked-menu/stacked-menu.min.js') }}"></script>
@@ -53,7 +51,6 @@
 <script src="{{ base_url('assets/vendor/tributejs/tribute.min.js') }}"></script>
 <script src="{{ base_url('assets/vendor/chart.js/Chart.min.js') }}"></script>
 @stack('js')
-
 <!-- BEGIN THEME JS -->
 <script src="{{ base_url('assets/js/theme.min.js') }}"></script> <!-- END THEME JS -->
 </body>
