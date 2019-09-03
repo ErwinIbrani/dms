@@ -17,14 +17,29 @@ class UserGroup extends CI_Controller
 	 * Get all list of data.
 	 * @return bool
 	 */
-    public function index() 
+    public function index($page=0)
     {
         $this->title = "User Groups";
 
+
+		$rowPerPage = 10;
+		if($page != 0){
+			$page = ($page-1) * $rowPerPage;
+		}
+
+		$data = $this->UserGroup_Model->getAllList($rowPerPage, $page);
+
+		$config['base_url'] = base_url().'admin/usergroup/index';
+		$config['total_rows'] = $this->UserGroup_Model->getCount();
+		$config['per_page'] = $rowPerPage;
+		// Initialize
+		$this->pagination->initialize($config);
+		$pagination = $this->pagination->create_links();
+
         return view('admin.user.group.index', array(
             'title' => $this->title,
-			'data' => $this->UserGroup_Model->getAllList(),
-			'pagination' => null
+			'data' => $data,
+			'pagination' => $pagination
 		));
     }
 
@@ -82,8 +97,7 @@ class UserGroup extends CI_Controller
 	 */
 	public function delete($id)
 	{
-		$this->UserGroup_Model->find()->where('id', $id);
-		$this->UserGroup_Model->delete();
+		$this->UserGroup_Model->deleteData($id);
 		return redirect("admin/user/groups");
 	}
 }

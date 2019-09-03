@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class UserGroup_Model extends yidas\Model {
+class UserGroup_Model extends CI_Model {
     
     protected $table = 'groups';
 
@@ -14,8 +14,22 @@ class UserGroup_Model extends yidas\Model {
 	 *
 	 * @return mixed
 	 */
-	public function getAllList() {
-		return $this->find(true)->get()->result_array();
+	public function getAllList($rowPerpage,$rowNo) {
+		return  $this->db->select('*')
+			->from($this->table)
+			->limit($rowPerpage, $rowNo)
+			->get()
+			->result();
+	}
+
+	/**
+	 * Get count all data
+	 *
+	 * @return mixed
+	 */
+	public function getCount()
+	{
+		return $this->db->count_all_results($this->table);
 	}
 
 	/**
@@ -25,13 +39,31 @@ class UserGroup_Model extends yidas\Model {
 	 * @return bool
 	 */
     public function storeData(array $data) {
-    	return $this->insert($data);
+    	return $this->db->insert($this->table, $data);
     }
 
+	/**
+	 * Update data
+	 *
+	 * @param array $data
+	 * @param $id
+	 * @return bool
+	 */
     public function updateData(array $data, $id) {
-		$this->find()->where('id', $id);
-    	return $this->update($data);
+    	$this->db->where('id', $id);
+		return	$this->db->update($this->table, $data);
 	}
 
+	/**
+	 * Delete to a specify data.
+	 *
+	 * @param array $data
+	 * @param $id
+	 * @return bool
+	 */
+	public function deleteData($id) {
+		$this->db->where('id', $id);
+		return	$this->db->delete($this->table);
+	}
 
 }

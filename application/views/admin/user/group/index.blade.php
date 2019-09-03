@@ -13,8 +13,7 @@
                     </li>
                 </ol>
             </nav><!-- /.breadcrumb -->
-            <!-- floating action -->
-            <button type="button" class="btn btn-success btn-floated"><span class="fa fa-plus"></span></button> <!-- /floating action -->
+
             <!-- title and toolbar -->
             <div class="d-md-flex align-items-md-start">
                 <h1 class="page-title mr-sm-auto"> {{ $title }} </h1><!-- .btn-toolbar -->
@@ -59,20 +58,20 @@
 							<tbody>
 							@foreach($data as $list)
 								<tr>
-									<td>{{ $list['name'] }}</td>
-									<td>{{ $list['description'] }}</td>
+									<td>{{ $list->name }}</td>
+									<td>{{ $list->description }}</td>
 									<td>
-										<a href="{{ site_url('/admin/usergroup/edit/'. $list['id']) }}"
-										   data-toggle="modal" data-target={{"#userGroupFrom-".$list['id'] }}
+										<a href="{{ site_url('/admin/usergroup/edit/'. $list->id) }}"
+										   data-toggle="modal" data-target={{"#userGroupFrom-".$list->id }}
 										   class="btn btn-sm btn-icon btn-secondary">
 											<i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span>
 										</a>
-										<a href="{{ site_url('/admin/usergroup/delete/'. $list['id']) }}" class="btn btn-sm btn-icon btn-secondary">
+										<a href="{{ site_url('/admin/usergroup/delete/'. $list->id) }}" class="btn btn-sm btn-icon btn-secondary">
 											<i class="fa fa-trash-alt"></i> <span class="sr-only">Delete</span>
 										</a>
 									</td>
 								</tr>
-								<div class="modal modal-alert fade" id="userGroupFrom-{{ $list['id'] }}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="userGroupFromLabel" aria-hidden="true">
+								<div class="modal modal-alert fade" id="userGroupFrom-{{ $list->id }}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="userGroupFromLabel" aria-hidden="true">
 									<!-- .modal-dialog -->
 									<div class="modal-dialog" role="document">
 										<!-- .modal-content -->
@@ -80,28 +79,28 @@
 											<!-- .modal-header -->
 											<div class="modal-header">
 												<h5 id="userGroupFromLabel" class="modal-title">
-													<i class="fa fa-user text-success mr-1"></i> Edit User Group {{ $list['name'] }} </h5>
+													<i class="fa fa-user text-success mr-1"></i> Edit User Group {{ $list->name }} </h5>
 											</div><!-- /.modal-header -->
 											<!-- .modal-body -->
 											<div class="modal-body">
-												{!! form_open('/admin/usergroup/edit/'.$list['id'], array('id'=> 'user-group-form-'.$list['id'])) !!}
+												{!! form_open('/admin/usergroup/edit/'.$list->id, array('id'=> 'user-group-form-'.$list->id)) !!}
 
 												<div class="form-group">
 													<label for="tf1">Group Name</label>
 													<input type="text" class="form-control"
-														   value="{{ $list['name'] }}"
+														   value="{{ $list->name }}"
 														   id="tf1" name="name" placeholder="e.g. Finance, Procurment">
 												</div>
 												<div class="form-group">
 													<label for="tf1">Description</label>
-													<textarea class="form-control" name="description">{{ $list['description'] }}</textarea>
+													<textarea class="form-control" name="description">{{ $list->description }}</textarea>
 												</div>
 
 												{!! form_close() !!}
 											</div><!-- /.modal-body -->
 											<!-- .modal-footer -->
 											<div class="modal-footer">
-												<button type="button" class="btn btn-info" id="submit{{$list['id']}}" onclick="document.getElementById('user-group-form-{{$list['id']}}').submit()">Submit</button>
+												<button type="button" class="btn btn-info" id="submit{{$list->id}}" onclick="document.getElementById('user-group-form-{{$list->id}}').submit()">Submit</button>
 												<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
 											</div><!-- /.modal-footer -->
 										</div><!-- /.modal-content -->
