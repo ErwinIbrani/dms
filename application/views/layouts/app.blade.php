@@ -34,12 +34,8 @@
     <main class="app-main">
         <!-- .wrapper -->
         <div class="wrapper">
-            <div class=""page>
-                <div class="page-inner">
-                    @include('layouts.components.flash')
-                    @yield('content')
-                </div>
-            </div>
+            @include('layouts.components.flash')
+            @yield('content')
         </div><!-- /.wrapper -->
     </main>
 </div>

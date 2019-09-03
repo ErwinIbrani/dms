@@ -32,7 +32,7 @@
                                 <a href="page-teams.html" class="menu-link">Users</a>
                             </li>
                             <li class="menu-item">
-                                <a href="page-teams.html" class="menu-link">User Gorup</a>
+                                <a href="{{ site_url("admin/user/groups") }}" class="menu-link">User Gorup</a>
                             </li>
                         </ul><!-- /child menu -->
                     </li><!-- /.menu-item -->
