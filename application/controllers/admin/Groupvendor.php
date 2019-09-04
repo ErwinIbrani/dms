@@ -6,12 +6,11 @@ class Groupvendor extends CI_Controller
     public function __Construct()
     {
         parent ::__construct();
-        $this->load->model('GroupVendor_Model');
+        $this->load->model(['GroupVendor_Model']);
         $this->load->library(['ion_auth', 'form_validation', 'form_validation', 'pagination']);
         $this->lang->load('auth');
         $this->load->helper('custom');
         authentication($this->ion_auth->logged_in());
-
     }
 
     public function index($rowno=0)
@@ -19,21 +18,21 @@ class Groupvendor extends CI_Controller
         $search_text = "";
         if($this->input->post('submit') != NULL ){
             $search_text = $this->input->post('search');
-            $this->session->set_userdata([ "search" => $search_text]);
+            $this->session->set_userdata(["search" => $search_text]);
         }else{
             if($this->session->userdata('search') != NULL){
                 $search_text = $this->session->userdata('search');
             }
         }
-        $rowperpage = 4;
+        $rowperpage = 5;
         if($rowno != 0){
             $rowno = ($rowno-1) * $rowperpage;
         }
-        $allcount           = $this->GroupVendor_Model->getrecordCount($search_text);
-        $records            = $this->GroupVendor_Model->getDatas($rowno, $rowperpage, $search_text);
-        $config['base_url'] = base_url().'admin/groupvendor/index';
+        $allcount             = $this->GroupVendor_Model->getrecordCount($search_text);
+        $records              = $this->GroupVendor_Model->getDatas($rowno, $rowperpage, $search_text);
+        $config['base_url']   = base_url().'admin/groupvendor/index';
         $config['total_rows'] = $allcount;
-        $config['per_page'] = $rowperpage;
+        $config['per_page']   = $rowperpage;
         // Initialize
         $this->pagination->initialize($config);
         $pagination = $this->pagination->create_links();
@@ -93,7 +92,13 @@ class Groupvendor extends CI_Controller
 
     public function destroy($id)
     {
-        $this->GroupVendor_Model->delete($id);
+        //Soft delete
+        $update = [
+            'is_deleted'   => 0
+        ];
+        $this->GroupVendor_Model->update($id, $update);
+        //hard delete
+       // $this->GroupVendor_Model->delete($id);
         $this->session->set_flashdata('success', 'Data Deleted');
         redirect("admin/groupvendor/index", 'refresh');
     }

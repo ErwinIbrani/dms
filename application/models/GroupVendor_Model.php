@@ -4,26 +4,25 @@ class GroupVendor_Model extends CI_Model
 {
     protected $table       = "group_vendor";
     protected $primaryKey  = 'id';
-    //const SOFT_DELETED     = 'is_deleted';
-    //protected $softDeletedFalseValue = '0';
-    //protected $softDeletedTrueValue = '1';
-   // const CREATED_AT       = 'created_at';
-    //const UPDATED_AT       = 'updated_at';
-
-  /*  public function rules()
-    {
-        $this->lang->load('error_messages', 'en-US');
-        return [
-                [
-                    'field' => 'group_name',
-                    'rules' => 'required|max_length[255]',
-                ],
-          ];
-    }*/
 
     public function getDatas($rowno,$rowperpage,$search="")
     {
-        $this->db->select('*');
+
+        $this->db->select('created.id as created_id, created.username as created_username ,created.email as created_email,
+                           updated.id as updated_id, updated.username as updated_username ,updated.email as updated_email,
+                            group_vendor.id, group_vendor.group_name');
+        $this->db->from($this->table);
+        $this->db->join('users as created','created.id = group_vendor.created_by','Right'); //inner //Right
+        $this->db->join('users as updated','updated.id = group_vendor.updated_by','Left');
+        $this->db->where('group_vendor.is_deleted = 1');
+        if($search != ''){
+            $this->db->like('group_vendor.group_name', $search);
+        }
+        $this->db->limit($rowperpage, $rowno);
+        $query = $this->db->get();
+        return $query->result();
+
+       /* $this->db->select('*');
         $this->db->from($this->table);
         $this->db->where('is_deleted = 1');
         if($search != ''){
@@ -31,16 +30,22 @@ class GroupVendor_Model extends CI_Model
         }
         $this->db->limit($rowperpage, $rowno);
         $query = $this->db->get();
-        return $query->result();
+        return $query->result();*/
     }
+
+
 
     public function getrecordCount($search = '')
     {
+     /*   $this->db->select('count(*) as allcount');
+        $this->db->from($this->table);*/
         $this->db->select('count(*) as allcount');
         $this->db->from($this->table);
-        $this->db->where('is_deleted = 1');
+        $this->db->join('users as created','created.id = group_vendor.created_by','Right'); //inner //Right
+        $this->db->join('users as updated','updated.id = group_vendor.updated_by','Left');
+        $this->db->where('group_vendor.is_deleted = 1');
         if($search != ''){
-            $this->db->like('group_name', $search);
+            $this->db->like('group_vendor.group_name', $search);
         }
         $query = $this->db->get();
         $result = $query->result_array();
@@ -49,8 +54,8 @@ class GroupVendor_Model extends CI_Model
 
     public function save($data){
         $this->db->insert($this->table, $data);
-        //return $this->db->insert_id();
     }
+
     public function findOne($id)
     {
         return $this->db->get_where($this->table, [$this->primaryKey => $id]);
@@ -67,6 +72,7 @@ class GroupVendor_Model extends CI_Model
         $this->db->where($this->primaryKey, $id);
         $this->db->delete($this->table);
     }
+
 
 
 
