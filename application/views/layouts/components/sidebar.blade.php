@@ -29,7 +29,7 @@
                         </a> <!-- child menu -->
                         <ul class="menu">
                             <li class="menu-item">
-                                <a href="page-teams.html" class="menu-link">Users</a>
+                                <a href="{{ site_url("admin/user-management/internal") }}" class="menu-link">Users</a>
                             </li>
                             <li class="menu-item">
                                 <a href="{{ site_url("admin/user/groups") }}" class="menu-link">User Gorup</a>
