@@ -9,6 +9,7 @@
 
     <!-- BEGIN PLUGINS STYLES -->
     <link rel="stylesheet" href="{{ base_url('assets/vendor/open-iconic/css/open-iconic-bootstrap.min.css') }}">
+    @yield('header')
     <link rel="stylesheet" href="{{ base_url('assets/vendor/fontawesome/css/all.css') }}">
     <link rel="stylesheet" href="{{ base_url('assets/vendor/tributejs/tribute.css') }}">
     <!-- END PLUGINS STYLES -->
@@ -41,8 +42,9 @@
 </div>
 
 <script src="{{ base_url('assets/vendor/jquery/jquery.min.js') }}"></script>
-<script src="{{ base_url('assets/vendor/bootstrap/js/popper.min.js') }}"></script>
 <script src="{{ base_url('assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+@yield('footer')
+<script src="{{ base_url('assets/vendor/bootstrap/js/popper.min.js') }}"></script>
 <!-- END BASE JS -->
 <!-- BEGIN PLUGINS JS -->
 <script src="{{ base_url('assets/vendor/pace/pace.min.js') }}"></script>

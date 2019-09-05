@@ -24,7 +24,7 @@ class Groupvendor extends CI_Controller
                 $search_text = $this->session->userdata('search');
             }
         }
-        $rowperpage = 5;
+        $rowperpage = 20;
         if($rowno != 0){
             $rowno = ($rowno-1) * $rowperpage;
         }
@@ -59,6 +59,7 @@ class Groupvendor extends CI_Controller
             $data = [
                 'group_name'   => $this->input->post('group_name'),
                 'created_by'   => $this->ion_auth->user()->row()->id,
+                'created_at'   => date('Y-m-d H:i:s')
             ];
             $this->GroupVendor_Model->save($data);
             $this->session->set_flashdata('success', 'Data Inserted');
@@ -76,13 +77,14 @@ class Groupvendor extends CI_Controller
     {
         $this->form_validation->set_rules('group_name', 'Group Name', 'required');
         if ($this->form_validation->run() == FALSE) {
-            $this->session->set_flashdata('error', 'Please update correctly');
-            redirect("admin/groupvendor/edit/".$this->input->post('id'), 'refresh');
+            $this->session->set_flashdata('warning', 'Please Update Correctly');
+            redirect_back();
         }
         else {
             $update = [
                 'group_name'   => $this->input->post('group_name'),
                 'updated_by'   => $this->ion_auth->user()->row()->id,
+                'updated_at'   => date('Y-m-d H:i:s')
             ];
             $this->GroupVendor_Model->update($this->input->post('id'), $update);
             $this->session->set_flashdata('success', 'Data Edited');
@@ -94,7 +96,7 @@ class Groupvendor extends CI_Controller
     {
         //Soft delete
         $update = [
-            'is_deleted'   => 0
+            'deleted_at'   => date('Y-m-d H:i:s')
         ];
         $this->GroupVendor_Model->update($id, $update);
         //hard delete

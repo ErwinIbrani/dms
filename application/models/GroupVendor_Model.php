@@ -5,6 +5,14 @@ class GroupVendor_Model extends CI_Model
     protected $table       = "group_vendor";
     protected $primaryKey  = 'id';
 
+    public function groupvendor()
+    {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('group_vendor.deleted_at IS NULL', null, false);
+        return $this->db->get();
+    }
+
     public function getDatas($rowno,$rowperpage,$search="")
     {
 
@@ -14,7 +22,7 @@ class GroupVendor_Model extends CI_Model
         $this->db->from($this->table);
         $this->db->join('users as created','created.id = group_vendor.created_by','Right'); //inner //Right
         $this->db->join('users as updated','updated.id = group_vendor.updated_by','Left');
-        $this->db->where('group_vendor.is_deleted = 1');
+        $this->db->where('group_vendor.deleted_at IS NULL', null, false);
         if($search != ''){
             $this->db->like('group_vendor.group_name', $search);
         }
@@ -22,28 +30,15 @@ class GroupVendor_Model extends CI_Model
         $query = $this->db->get();
         return $query->result();
 
-       /* $this->db->select('*');
-        $this->db->from($this->table);
-        $this->db->where('is_deleted = 1');
-        if($search != ''){
-            $this->db->like('group_name', $search);
-        }
-        $this->db->limit($rowperpage, $rowno);
-        $query = $this->db->get();
-        return $query->result();*/
     }
-
-
 
     public function getrecordCount($search = '')
     {
-     /*   $this->db->select('count(*) as allcount');
-        $this->db->from($this->table);*/
         $this->db->select('count(*) as allcount');
         $this->db->from($this->table);
         $this->db->join('users as created','created.id = group_vendor.created_by','Right'); //inner //Right
         $this->db->join('users as updated','updated.id = group_vendor.updated_by','Left');
-        $this->db->where('group_vendor.is_deleted = 1');
+        $this->db->where('group_vendor.deleted_at IS NULL', null, false);
         if($search != ''){
             $this->db->like('group_vendor.group_name', $search);
         }
@@ -72,8 +67,4 @@ class GroupVendor_Model extends CI_Model
         $this->db->where($this->primaryKey, $id);
         $this->db->delete($this->table);
     }
-
-
-
-
 }

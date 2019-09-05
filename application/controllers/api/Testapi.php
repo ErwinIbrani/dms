@@ -30,7 +30,6 @@ class Testapi extends REST_Controller {
     {
         $input = $this->input->post();
         $this->db->insert('items',$input);
-     
         $this->response(['Item created successfully.'], REST_Controller::HTTP_OK);
     } 
      

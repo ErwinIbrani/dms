@@ -1,9 +1,6 @@
 <?php
 
 $config['use_page_numbers'] = TRUE;
-
-//config for bootstrap pagination class integration
-// Bootstrap 4, work very fine.
 $config['full_tag_open'] = '<ul class="pagination justify-content-center">';
 $config['full_tag_close'] = '</ul>';
 $config['attributes'] = ['class' => 'page-link'];
