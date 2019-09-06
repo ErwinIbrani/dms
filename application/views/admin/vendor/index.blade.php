@@ -2,12 +2,16 @@
 @section('page_title', 'Vendor')
 
 @section('content')
+
   <div class="page-inner">
-    <div class="page-section">
+      <div style="text-align: right"><?= $breadcrumb ?></div>
+      <br/>
+   <div class="page-section">
      <div class="card card-fluid">
         <!-- .card-header -->
         <div class="card-header">
             <!-- .nav-tabs -->
+
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
                     <a href="<?= site_url("admin/groupvendor/index"); ?>" class="nav-link show">

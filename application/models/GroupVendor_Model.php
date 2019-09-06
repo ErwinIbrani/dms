@@ -13,6 +13,7 @@ class GroupVendor_Model extends CI_Model
         return $this->db->get();
     }
 
+
     public function getDatas($rowno,$rowperpage,$search="")
     {
 

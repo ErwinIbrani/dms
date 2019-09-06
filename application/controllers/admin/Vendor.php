@@ -6,8 +6,8 @@ class Vendor extends CI_Controller
     public function __Construct()
     {
         parent ::__construct();
-        $this->load->model(['Vendor_Model', 'GroupVendor_Model', 'Region_Model', 'Province_Model', 'City_Model', 'Depdrop_Model']);
-        $this->load->library(['ion_auth', 'form_validation', 'form_validation', 'pagination']);
+        $this->load->model(['Vendor_Model', 'GroupVendor_Model', 'Region_Model', 'Province_Model', 'City_Model', 'User_Model']);
+        $this->load->library(['ion_auth', 'make_bread']);
         $this->lang->load('auth');
         $this->load->helper('custom');
         authentication($this->ion_auth->logged_in());
@@ -15,6 +15,8 @@ class Vendor extends CI_Controller
 
     public function index($rowno=0)
     {
+        $this->make_bread->add('Index');
+        $breadcrumb = $this->make_bread->output();
         $search_text = "";
         if($this->input->post('submit') != NULL ){
             $search_text = $this->input->post('search');
@@ -41,33 +43,29 @@ class Vendor extends CI_Controller
             'pagination' => $pagination,
             'vendors'    => $records,
             'search'     => $search_text,
+            'breadcrumb' => $breadcrumb,
         ]);
       }
 
       public function create()
       {
+          $this->make_bread->add('Index', 'admin/vendor/index', TRUE);
+          $this->make_bread->add('Create');
+          $breadcrumb = $this->make_bread->output();
           $groupvendors = $this->GroupVendor_Model->groupvendor()->result();
-          $regions      = $this->Depdrop_Model->get_region()->result();
+          $regions      = $this->Region_Model->region()->result();
+          $provinces    = $this->Province_Model->province()->result();
+          $cities       = $this->City_Model->city()->result();
 
           return view('admin/vendor/create', [
                       'groupvendors' => $groupvendors,
-                      'regions'      => $regions
+                      'regions'      => $regions,
+                      'provinces'    => $provinces,
+                      'cities'       => $cities,
+                      'breadcrumb'   =>  $breadcrumb
           ]);
       }
 
-    public function get_province()
-    {
-        $region_id = $this->input->post('id',TRUE);
-        $data      = $this->Depdrop_Model->get_province($region_id)->result();
-        echo json_encode($data);
-    }
-
-    public function get_city()
-    {
-        $province_id = $this->input->post('id',TRUE);
-        $data        = $this->Depdrop_Model->get_city($province_id)->result();
-        echo json_encode($data);
-    }
 
     public function store()
     {
@@ -80,16 +78,19 @@ class Vendor extends CI_Controller
         $this->form_validation->set_rules('city_id', 'City Name', 'required');
         $this->form_validation->set_rules('address', 'Address', 'required');
         if ($this->form_validation->run() == FALSE) {
+            $this->make_bread->add('Index', 'admin/vendor/index', TRUE);
+            $this->make_bread->add('Create');
+            $breadcrumb = $this->make_bread->output();
             $groupvendors = $this->GroupVendor_Model->groupvendor()->result();
             $regions      = $this->Region_Model->region()->result();
             $provinces    = $this->Province_Model->province()->result();
             $cities       = $this->City_Model->city()->result();
-
             return view('admin/vendor/create', [
                 'groupvendors' => $groupvendors,
                 'regions'      => $regions,
                 'provinces'    => $provinces,
-                'cities'       => $cities
+                'cities'       => $cities,
+                'breadcrumb'   =>  $breadcrumb
             ]);
         }
         else {
@@ -113,22 +114,24 @@ class Vendor extends CI_Controller
 
     public function edit($id)
     {
+        $this->make_bread->add('Index', 'admin/vendor/index', TRUE);
+        $this->make_bread->add('Update');
+        $breadcrumb   = $this->make_bread->output();
         $model        = $this->Vendor_Model->findOne($id)->row();
         $groupvendors = $this->GroupVendor_Model->groupvendor()->result();
-        $regions      = $this->Depdrop_Model->get_region()->result();
+        $regions      = $this->Region_Model->region()->result();
+        $provinces    = $this->Province_Model->province()->result();
+        $cities       = $this->City_Model->city()->result();
+
 
         return view('admin/vendor/edit', [
             'groupvendors' => $groupvendors,
             'regions'      => $regions,
-            'model'        => $model
+            'provinces'    => $provinces,
+            'cities'       => $cities,
+            'model'        => $model,
+            'breadcrumb'  => $breadcrumb
         ]);
-    }
-
-    public function get_data_edit()
-    {
-        $id   = $this->input->post('id',TRUE);
-        $data = $this->Vendor_Model->findOne($id)->row();
-        echo json_encode($data);
     }
 
     public function update()
@@ -158,15 +161,46 @@ class Vendor extends CI_Controller
                 'updated_by'      => $this->ion_auth->user()->row()->id,
                 'updated_at'      => date('Y-m-d H:i:s')
             ];
-            $this->GroupVendor_Model->update($this->input->post('id'), $update);
+            $this->Vendor_Model->update($this->input->post('id'), $update);
             $this->session->set_flashdata('success', 'Data Edited');
             redirect("admin/vendor/index", 'refresh');
         }
     }
 
+    public function view($id)
+    {
+        $this->make_bread->add('Index', 'admin/vendor/index', TRUE);
+        $this->make_bread->add('View');
+        $breadcrumb   = $this->make_bread->output();
+        $model        = $this->Vendor_Model->findOne($id)->row();
+        $group        = $this->GroupVendor_Model->findOne($model->group_vendor_id)->row();
+        $region       = $this->Region_Model->findOne($model->region_id)->row();
+        $province     = $this->Province_Model->findOne($model->province_id)->row();
+        $city         = $this->City_Model->findOne($model->city_id)->row();
+        $created      = $this->User_Model->findOne($model->created_by)->row_array();
+        $updated     = $this->User_Model->findOne($model->updated_by)->row_array();
+
+        return view('admin/vendor/view', [
+            'model'    => $model,
+            'group'    => $group,
+            'region'   => $region,
+            'province' => $province,
+            'city'     => $city,
+            'created'  => $created,
+            'updated'  => $updated,
+            'breadcrumb' => $breadcrumb
+        ]);
+    }
 
 
-
-
+    public function destroy($id)
+    {
+        $update = [
+            'deleted_at'  => date('Y-m-d H:i:s')
+        ];
+        $this->Vendor_Model->update($id, $update);
+        $this->session->set_flashdata('success', 'Data Deleted');
+        redirect("admin/vendor/index", 'refresh');
+    }
 
 }

@@ -6,6 +6,8 @@
 @endsection
 @section('content')
     <div class="page-inner">
+        <div style="text-align: right"><?= $breadcrumb ?></div>
+        <br/>
         <div class="page-section">
             <div id="base-style" class="card">
                 <!-- .card-body -->
@@ -78,18 +80,32 @@
 
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label>Province Name</label>
-                                    <select class="form-control" id="province" name="province_id">
-                                        <option value="" selected="selected">Select Province</option>
+                                    <label  for="selDefault">Province Name</label>
+                                    <select name="province_id" class="custom-select js-example-basic-single region">
+                                        <option value="" selected="selected">Select Province Name</option>
+                                        <?php
+                                        foreach ($provinces as $data) {
+                                            echo "<option value='$data->id'";
+                                            echo $model->province_id == $data->id ? 'selected': '';
+                                            echo ">$data->name </option>";
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label>City Name</label>
-                                    <select class="form-control" id="city" name="city_id">
-                                        <option>No Selected</option>
+                                    <label  for="selDefault">City Name</label>
+                                    <select name="city_id" class="custom-select js-example-basic-single region">
+                                        <option value="" selected="selected">Select City Name</option>
+                                        <?php
+                                        foreach ($cities as $data) {
+                                            echo "<option value='$data->id'";
+                                            echo $model->city_id == $data->id ? 'selected': '';
+                                            echo ">$data->name </option>";
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
@@ -118,37 +134,6 @@
     </div>
 @endsection
 @section('footer')
-    <script type="text/javascript">
-        $(document).ready(function(){
-
-            $('.region').change(function(){
-                var id        = $(this).val();
-                var selected  = "<?php echo $model->province_id ;?>";
-
-                $.ajax({
-                    url : "<?php echo site_url('admin/vendor/get_province');?>",
-                    method : "POST",
-                    data : {id: id},
-                    async : true,
-                    dataType : 'json',
-                    success: function(data){
-                       $('select[name="province_id"]').empty();
-                        $.each(data, function(key, value) {
-                            if(selected == value.id){
-                                $('select[name="province_id"]').append('<option value="'+ value.id +'" selected>'+ value.name +'</option>').trigger('change');
-                            }else{
-                                $('select[name="province_id"]').append('<option value="'+ value.id +'">'+ value.name +'</option>');
-                            }
-                        });
-
-                    }
-                });
-                return false;
-            });
-
-
-        });
-    </script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/select2/select2.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/select2/select2.min.js"></script>
     <script type="text/javascript">
