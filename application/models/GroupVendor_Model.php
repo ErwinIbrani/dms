@@ -20,7 +20,7 @@ class GroupVendor_Model extends CI_Model
                            updated.id as updated_id, updated.username as updated_username ,updated.email as updated_email,
                             group_vendor.id, group_vendor.group_name');
         $this->db->from($this->table);
-        $this->db->join('users as created','created.id = group_vendor.created_by','Right'); //inner //Right
+        $this->db->join('users as created','created.id = group_vendor.created_by','inner'); //inner //Right
         $this->db->join('users as updated','updated.id = group_vendor.updated_by','Left');
         $this->db->where('group_vendor.deleted_at IS NULL', null, false);
         if($search != ''){
@@ -36,7 +36,7 @@ class GroupVendor_Model extends CI_Model
     {
         $this->db->select('count(*) as allcount');
         $this->db->from($this->table);
-        $this->db->join('users as created','created.id = group_vendor.created_by','Right'); //inner //Right
+        $this->db->join('users as created','created.id = group_vendor.created_by','inner'); //inner //Right
         $this->db->join('users as updated','updated.id = group_vendor.updated_by','Left');
         $this->db->where('group_vendor.deleted_at IS NULL', null, false);
         if($search != ''){

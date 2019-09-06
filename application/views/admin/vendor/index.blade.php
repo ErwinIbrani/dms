@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page_title', 'Group Vendor')
+@section('page_title', 'Vendor')
 
 @section('content')
   <div class="page-inner">
@@ -10,12 +10,12 @@
             <!-- .nav-tabs -->
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a href="<?= site_url("admin/groupvendor/index"); ?>" class="nav-link show active">
-                        Group Vendor
+                    <a href="<?= site_url("admin/groupvendor/index"); ?>" class="nav-link show">
+                       Group Vendor
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= site_url("admin/vendor/index"); ?>" class="nav-link show">
+                    <a href="<?= site_url("admin/vendor/index"); ?>" class="nav-link show active">
                         Vendor
                     </a>
                 </li>
@@ -23,7 +23,7 @@
         </div><!-- /.card-header -->
         <!-- .card-body -->
         <div class="card-body">
-            <form method='post' action="<?= base_url() ?>admin/groupvendor/index">
+            <form method='post' action="<?= base_url() ?>admin/vendor/index">
                 <div class="input-group input-group-alt">
                     <!-- .input-group -->
                     <div class="input-group has-clearable">
@@ -31,7 +31,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><span class="oi oi-magnifying-glass"></span></span>
                         </div>
-                        <input type='text' name='search' value='<?= $search ?>' class='form-control' placeholder='Group Name' autocomplete="off">
+                        <input type='text' name='search' value='<?= $search ?>' class='form-control' placeholder='Group Name or Vendor Name' autocomplete="off">
                     </div><!-- /.input-group -->
                     <!-- .input-group-append -->
                     <div class="input-group-append">
@@ -40,7 +40,7 @@
                   </div>
               </form>
             <br/>
-            <a href="<?= site_url("admin/groupvendor/create"); ?>" class="btn btn-primary">
+            <a href="<?= site_url("admin/vendor/create"); ?>" class="btn btn-primary">
                 Create New
             </a>
             <!-- .table-responsive -->
@@ -50,9 +50,11 @@
                     <thead>
                     <tr>
                         <th> No </th>
-                        <th> Group Name </th>
-                        <th> Created By </th>
-                        <th> Updated By </th>
+                        <th> Group Name</th>
+                        <th> Vendor Name </th>
+                        <th> Email </th>
+                        <th> Phone </th>
+                        <th> Address </th>
                         <th style="width:100px; min-width:100px;"> &nbsp; </th>
                     </tr>
                     </thead>
@@ -60,15 +62,18 @@
                     @php
                     $i = 1;
                     @endphp
-                    @foreach($groups as $key => $group)
+                    @foreach($vendors as $key => $vendor)
                         <tr>
                             <td class="align-middle"> {{ $i++ }} </td>
-                            <td class="align-middle"> {{ $group->group_name }} </td>
-                            <td class="align-middle"> {{ $group->created_email }} </td>
-                            <td class="align-middle"> {{ $group->updated_email }} </td>
+                            <td class="align-middle"> {{ $vendor->group_name }} </td>
+                            <td class="align-middle"> {{ $vendor->vendor_name }} </td>
+                            <td class="align-middle"> {{ $vendor->vendor_email }} </td>
+                            <td class="align-middle"> {{ $vendor->vendor_phone }} </td>
+                            <td class="align-middle"> {{ $vendor->vendor_address }} </td>
                             <td class="align-middle text-right">
-                                <a href="<?= site_url("admin/groupvendor/edit/".$group->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a>
-                                <a href="<?= site_url("admin/groupvendor/destroy/".$group->id.""); ?>" class="btn btn-sm btn-icon btn-secondary" onClick="javascript:return confirm('Delete this row ?');"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
+                                <a href="<?= site_url("admin/vendor/edit/".$vendor->vendor_id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a>
+                                <a href="<?= site_url("admin/vendor/destroy/".$vendor->vendor_id.""); ?>" class="btn btn-sm btn-icon btn-secondary" onClick="javascript:return confirm('Delete this row ?');"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
+                                <a href="<?= site_url("admin/vendor/view/".$vendor->vendor_id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-eye"></i> <span class="sr-only">View</span></a>
                             </td>
                         </tr>
                     @endforeach
@@ -83,4 +88,3 @@
     </div>
   </div>
 @endsection
-
