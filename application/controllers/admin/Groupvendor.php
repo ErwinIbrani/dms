@@ -63,7 +63,7 @@ class Groupvendor extends CI_Controller
             ];
             $this->GroupVendor_Model->save($data);
             $this->session->set_flashdata('success', 'Data Inserted');
-            redirect("admin/groupvendor/create", 'refresh');
+            redirect("admin/groupvendor/index", 'refresh');
          }
     }
 
