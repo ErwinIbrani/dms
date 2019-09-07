@@ -7,7 +7,7 @@ class Vendor extends CI_Controller
     {
         parent ::__construct();
         $this->load->model(['Vendor_Model', 'GroupVendor_Model', 'Region_Model', 'Province_Model', 'City_Model', 'User_Model']);
-        $this->load->library(['ion_auth', 'make_bread']);
+        $this->load->library(['ion_auth']);
         $this->lang->load('auth');
         $this->load->helper('custom');
         authentication($this->ion_auth->logged_in());

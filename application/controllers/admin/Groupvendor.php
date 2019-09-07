@@ -15,6 +15,8 @@ class Groupvendor extends CI_Controller
 
     public function index($rowno=0)
     {
+        $this->make_bread->add('Index');
+        $breadcrumb = $this->make_bread->output();
         $search_text = "";
         if($this->input->post('submit') != NULL ){
             $search_text = $this->input->post('search');
@@ -38,22 +40,29 @@ class Groupvendor extends CI_Controller
         $pagination = $this->pagination->create_links();
 
         return view('admin/group-vendor/index', [
-            'pagination' => $pagination,
-            'groups'    => $records,
-            'search'    => $search_text,
+            'pagination'   => $pagination,
+            'groups'       => $records,
+            'search'       => $search_text,
+            'breadcrumb'   => $breadcrumb,
         ]);
     }
 
     public function create()
     {
-        return view('admin/group-vendor/create');
+        $this->make_bread->add('Index', 'admin/groupvendor/index', TRUE);
+        $this->make_bread->add('Create');
+        $breadcrumb = $this->make_bread->output();
+        return view('admin/group-vendor/create', ['breadcrumb' => $breadcrumb]);
     }
 
     public  function store()
     {
       $this->form_validation->set_rules('group_name', 'Group Name', 'required');
       if ($this->form_validation->run() == FALSE) {
-            return view('admin/group-vendor/create');
+          $this->make_bread->add('Index', 'admin/groupvendor/index', TRUE);
+          $this->make_bread->add('Create');
+          $breadcrumb = $this->make_bread->output();
+          return view('admin/group-vendor/create', ['breadcrumb' => $breadcrumb]);
         }
       else {
             $data = [
@@ -69,8 +78,11 @@ class Groupvendor extends CI_Controller
 
     public function edit($id)
     {
-        $model     = $this->GroupVendor_Model->findOne($id)->row();
-        return view('admin/group-vendor/edit', ['model' => $model]);
+        $this->make_bread->add('Index', 'admin/groupvendor/index', TRUE);
+        $this->make_bread->add('Update');
+        $breadcrumb   = $this->make_bread->output();
+        $model        = $this->GroupVendor_Model->findOne($id)->row();
+        return view('admin/group-vendor/edit', ['model' => $model, 'breadcrumb' => $breadcrumb]);
     }
 
     public function update()

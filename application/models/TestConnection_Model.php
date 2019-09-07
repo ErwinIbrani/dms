@@ -1,6 +1,5 @@
 <?php
 
-
 class TestConnection_Model extends CI_Model
 {
    public function get_dms()

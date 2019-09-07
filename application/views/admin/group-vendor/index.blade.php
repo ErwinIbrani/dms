@@ -3,6 +3,9 @@
 
 @section('content')
   <div class="page-inner">
+      <div class="page-inner">
+          <div style="text-align: right"><?= $breadcrumb ?></div>
+       <br/>
     <div class="page-section">
      <div class="card card-fluid">
         <!-- .card-header -->
