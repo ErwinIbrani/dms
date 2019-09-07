@@ -59,7 +59,12 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 
+<<<<<<< HEAD
 $autoload['libraries'] = array('database', 'email','session', 'ion_auth', 'user_agent', 'form_validation', 'encryption', 'pagination', 'make_bread');
+=======
+$autoload['libraries'] = array('database', 'email',
+	'session', 'ion_auth', 'user_agent', 'form_validation', 'encryption', 'pagination', 'SmartGrid/Smartgrid');
+>>>>>>> 46ef45882a22243f7332b06eb97e516071886a23
 
 /*
 | -------------------------------------------------------------------

@@ -12,6 +12,8 @@
     @yield('header')
     <link rel="stylesheet" href="{{ base_url('assets/vendor/fontawesome/css/all.css') }}">
     <link rel="stylesheet" href="{{ base_url('assets/vendor/tributejs/tribute.css') }}">
+	<link rel="stylesheet" href="{{ base_url('assets/vendor/tributejs/tribute.css') }}">
+	<link rel="stylesheet" href="{{ base_url('assets/vendor/datatables/extensions/buttons/buttons.bootstrap4.min.css') }}">
     <!-- END PLUGINS STYLES -->
 
     <!-- BEGIN THEME STYLES -->
@@ -52,6 +54,14 @@
 <script src="{{ base_url('assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 <script src="{{ base_url('assets/vendor/tributejs/tribute.min.js') }}"></script>
 <script src="{{ base_url('assets/vendor/chart.js/Chart.min.js') }}"></script>
+<script src="{{ base_url('assets/vendor/datatables/jquery.dataTables.min.js') }}></script>
+<script src="{{ base_url('assets/vendor/datatables/extensions/buttons/dataTables.buttons.min.js') }}></script>
+<script src="{{ base_url('assets/vendor/datatables/extensions/buttons/buttons.bootstrap4.min.js') }}></script>
+<script src="{{ base_url('assets/vendor/datatables/extensions/buttons/buttons.html5.min.js') }}></script>
+<script src="{{ base_url('assets/vendor/datatables/extensions/buttons/buttons.print.min.js') }}></script>
+<!-- END PLUGINS JS -->
+<!-- BEGIN PAGE LEVEL JS -->
+<script src="{{ base_url('assets/javascript/pages/dataTables.bootstrap.js') }}></script>
 @stack('js')
 <!-- BEGIN THEME JS -->
 <script src="{{ base_url('assets/js/theme.min.js') }}"></script> <!-- END THEME JS -->

@@ -2,7 +2,7 @@
 @section('page_title', 'User Groups')
 
 @section('content')
-<div class="" page>
+<div class="page">
     <div class="page-inner">
         <header class="page-title-bar">
             <!-- .breadcrumb -->
