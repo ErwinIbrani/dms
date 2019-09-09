@@ -50,7 +50,6 @@ class Vendor_Model extends CI_Model
         $this->db->limit($rowperpage, $rowno);
         $query = $this->db->get();
         return $query->result();
-
     }
 
     public function getrecordCount($search = '')

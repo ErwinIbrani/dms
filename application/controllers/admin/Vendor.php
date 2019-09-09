@@ -44,7 +44,7 @@ class Vendor extends CI_Controller
             'vendors'    => $records,
             'search'     => $search_text,
             'breadcrumb' => $breadcrumb,
-        ]);
+          ]);
       }
 
       public function create()
