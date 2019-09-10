@@ -106,9 +106,20 @@ CREATE TABLE [dbo].[project] (
   [address] TEXT NULL,
   [longitude] TEXT NULL,
   [latitude] TEXT NULL,
-  [status] varchar(2) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
   [status] varchar(3) DEFAULT 1,
   [created_at] datetime NULL,
   [updated_at] datetime NULL,
   [deleted_at] datetime NULL
+);
+
+###################
+Create pic_project:
+###################
+CREATE TABLE [dbo].[pic_project] (
+  [id] int IDENTITY(1,1) NOT NULL,
+  [project_id] int NOT NULL,
+  [layer] int NOT NULL,
+  [username] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [email] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [status] varchar(3) DEFAULT 1
 );

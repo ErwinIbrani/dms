@@ -70,4 +70,12 @@ class InternalUser_Model extends CI_Model {
 		return	$this->db->delete($this->table);
 	}
 
+    public function userInternal()
+    {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where(['type' => 'internal']);
+        return $this->db->get();
+    }
+
 }

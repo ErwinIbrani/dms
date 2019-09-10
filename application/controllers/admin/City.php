@@ -6,7 +6,6 @@ class City extends CI_Controller
     {
         parent ::__construct();
         $this->load->model(['City_Model']);
-        $this->load->library(['ion_auth', 'form_validation', 'form_validation', 'pagination']);
         $this->lang->load('auth');
         $this->load->helper('custom');
         authentication($this->ion_auth->logged_in());
