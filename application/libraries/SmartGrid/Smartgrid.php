@@ -35,8 +35,10 @@ class Smartgrid {
     private $_config_paging_enabled         = true;
     // Grid rows per pages
     private $_config_page_size              = 10;
+
+    private $_config_total_row              = 0;
     // Paging toolbar position
-    private $_config_toolbar_position       = 'both'; // top/bottom/both/none
+    private $_config_toolbar_position       = 'bottom'; // top/bottom/both/none
     // Grid name
     private $_config_grid_name              = '';
     // Grid form method
@@ -276,30 +278,39 @@ class Smartgrid {
         else
         {
             $this->_sql = $data_or_sql;
-            $this->CI->load->database();
+            //$this->CI->load->database();
            // $sql = $this->make_query($this->_sql);
-			$totalRow = $this->CI->db->count_all_results($this->_sql);
-			$query = $this->CI->db->select('*')
-				->from($this->_sql)
-				->limit($this->_config_page_size, $this->_page_row_start)
-				->get();
+			//$totalRow = $this->CI->db->count_all_results($this->_sql);
+//			$query = $this->CI->db->select('*')
+//				->from($this->_sql);
+			//$totalRow = $data_or_sql->get()->result_array();
+
+			try {
+				$query = $this->_sql->limit($this->_config_page_size, $this->_page_row_start)
+					->get();
+			} catch (Exception $exception) {
+				$query;
+			}
 
             //$sql .= ($this->_config_paging_enabled === true) ? " LIMIT {$this->_page_row_start}, {$this->_config_page_size} " : '';
 
             //$query = $this->CI->db->query($sql);
 
+			//var_dump($this->_config_total_row) or die;
             $this->_dataset = $query->result_array();
             $this->_page_row_count = $query->num_rows();
-			$this->_total_rows = $totalRow;
+			$this->_total_rows = $this->_config_total_row === 0 ? 1 : $this->_config_total_row;//count($totalRow);
             //$query2 = $this->CI->db->query("SELECT FOUND_ROWS() as RowCount");
             //$this->_total_rows = $query2->row()->RowCount;
         }
         $this->_total_page = ceil($this->_total_rows / $this->_config_page_size);
-        
+
+		//var_dump($this->_total_page, $this->_page_number) or die;
         // Reset page number if requested page number doesn't exist in result
-        if($this->_total_page < $this->_page_number){
+        //if($this->_total_page < $this->_page_number){
+        if( $this->_total_page < $this->_page_number){
             $this->_page_number = 1;
-            $this->set_data($data_or_sql);
+            //$this->set_data($data_or_sql->get());
         }
     }
     

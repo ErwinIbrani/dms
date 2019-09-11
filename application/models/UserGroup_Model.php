@@ -22,6 +22,11 @@ class UserGroup_Model extends CI_Model {
 			->result();
 	}
 
+	public function getData()
+	{
+		return $this->db->get($this->table);
+	}
+
 	/**
 	 * Get count all data
 	 *

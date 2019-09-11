@@ -18,12 +18,26 @@
 				<!-- title and toolbar -->
 				<div class="d-md-flex align-items-md-start">
 					<h1 class="page-title mr-sm-auto"> User </h1><!-- .btn-toolbar -->
+					<div class="btn-toolbar">
+						<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#userGroupFrom">
+							<span class="ml-1">Add New User</span></button>
+					</div>
 				</div><!-- /title and toolbar -->
 			</header>
 
 			<div class="page-section">
 				<div class="card card-fluid">
-					@include('admin.user.user_nav')
+					<div class="card-header">
+						<ul class="nav nav-tabs card-header-tabs">
+							<li class="nav-item">
+								<a class="nav-link active" href="{{ site_url('admin/user-management/internal') }}">Internal User</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ site_url('admin/user-management/vendor') }}">Vendor Users</a>
+							</li>
+						</ul>
+					</div>
+
 					<div class="card-body">
 						<div class="table-responsive">
 							<!-- .table -->
