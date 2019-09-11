@@ -55,6 +55,21 @@
 						</ul><!-- /child menu -->
 					</li><!-- /.menu-item -->
 
+					<li class="menu-item has-child">
+						<a href="#" class="menu-link">
+							<span class="menu-icon fas fa-handshake"></span>
+							<span class="menu-text">Vendor Management</span>
+						</a> <!-- child menu -->
+						<ul class="menu">
+							<li class="menu-item">
+								<a href="{{ site_url("admin/groupvendor/index") }}" class="menu-link">Group Vendor</a>
+							</li>
+							<li class="menu-item">
+								<a href="{{ site_url("/admin/vendor") }}" class="menu-link">Vendor</a>
+							</li>
+						</ul><!-- /child menu -->
+					</li><!-- /.menu-item -->
+
                     <li class="menu-header">Procurement</li><!-- /.menu-header -->
                     <!-- .menu-item -->
                     <li class="menu-item">
