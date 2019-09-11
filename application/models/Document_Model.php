@@ -1,15 +1,15 @@
 <?php
 
-class Project_Model extends CI_Model
+class Document_Model extends CI_Model
 {
-    protected $table       = 'project';
+    protected $table       = 'document_project';
     protected $primaryKey  = 'id';
 
-    public function project()
+    public function document()
     {
         $this->db->select('*');
         $this->db->from($this->table);
-        $this->db->where('project.deleted_at IS NULL', null, false);
+        $this->db->where('document_project.deleted_at IS NULL', null, false);
         return $this->db->get();
     }
 
@@ -34,6 +34,7 @@ class Project_Model extends CI_Model
         $this->db->select('count(*) as allcount');
         $this->db->from('project');
         $this->db->join('vendor', 'project.vendor_id = vendor.id', 'inner');
+        $this->db->where('project.status = 1');
         if($search != ''){
             $this->db->like('vendor.name', $search);
             $this->db->or_like('project.wbs_id', $search);

@@ -106,7 +106,7 @@ CREATE TABLE [dbo].[project] (
   [address] TEXT NULL,
   [longitude] TEXT NULL,
   [latitude] TEXT NULL,
-  [status] varchar(3) DEFAULT 1,
+  [status] TEXT NULL,
   [created_at] datetime NULL,
   [updated_at] datetime NULL,
   [deleted_at] datetime NULL
@@ -122,4 +122,26 @@ CREATE TABLE [dbo].[pic_project] (
   [username] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
   [email] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
   [status] varchar(3) DEFAULT 1
+);
+
+###################
+Create document_project:
+###################
+CREATE TABLE [dbo].[document_project] (
+  [id] int IDENTITY(1,1) NOT NULL,
+  [project_id] int NOT NULL,
+  [vendor_id] int NOT NULL,
+  [name] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [code] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [type] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [attachment] TEXT NULL,
+  [path] TEXT NULL,
+  [approved_id] int NOT NULL,
+  [attribute] TEXT NULL,
+  [attribute_history] TEXT NULL,
+  [status] TEXT NULL,
+  [approved_at] datetime NULL,
+  [created_at] datetime NULL,
+  [updated_at] datetime NULL,
+  [deleted_at] datetime NULL
 );
