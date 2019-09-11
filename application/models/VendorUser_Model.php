@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class InternalUser_Model extends CI_Model {
+class VendorUser_Model extends CI_Model {
 
 	protected $table = 'users';
 
@@ -12,26 +12,13 @@ class InternalUser_Model extends CI_Model {
 	{
 		$query = $this->db->select('*')
 			->from($this->table)
-			->where('type', 'internal');
+			->where('type', 'vendor');
 
 		if(!is_null($search)){
-			$query = $this->db->like('username', $search);
+			$query->like('username', $search);
 		}
 
 		return $query;
-	}
-
-	/**
-	 * Get all list of data user groups.
-	 *
-	 * @return mixed
-	 */
-	public function getAllList($rowPerpage,$rowNo) {
-		return  $this->db->select('*')
-			->from($this->table)
-			->limit($rowPerpage, $rowNo)
-			->get()
-			->result();
 	}
 
 	/**
@@ -42,10 +29,10 @@ class InternalUser_Model extends CI_Model {
 	public function getCount($search = null)
 	{
 		$query = $this->db->from($this->table)
-			->where('type', 'internal');;
+			->where('type', 'vendor');
 
 		if(!is_null($search)) {
-			$query = $this->db->like('username', $search);
+			$query->like('username', $search);
 		}
 
 		$query = $query->count_all_results();
@@ -59,7 +46,28 @@ class InternalUser_Model extends CI_Model {
 	 * @return bool
 	 */
 	public function storeData(array $data) {
-		return $this->db->insert($this->table, $data);
+
+		$username = $data['name'];
+		$password = $data['password'];
+		$email = $data['email'];
+		$additional_data = array(
+			'type' => $data['type'],
+			'level' => $data['level'],
+		);
+		$group = $data['role'];
+
+		return $this->ion_auth->register($username, $password, $email, $additional_data, $group);
+	}
+
+	/**
+	 * Find user vendor by id.
+	 *
+	 * @param $id
+	 * @return mixed
+	 */
+	public function findById($id)
+	{
+		return $this->db->get_where($this->table, ['id' => $id])->row();
 	}
 
 	/**
@@ -69,9 +77,15 @@ class InternalUser_Model extends CI_Model {
 	 * @param $id
 	 * @return bool
 	 */
-	public function updateData(array $data, $id) {
-		$this->db->where('id', $id);
-		return	$this->db->update($this->table, $data);
+	public function updateData(array $data, $user_id) {
+		$this->ion_auth->remove_from_group(false, $user_id);
+		$this->ion_auth->add_to_group($data['role'], $user_id);
+
+		$data = array(
+			'username' => 'Ben',
+			'password' => '123456789',
+		);
+		$this->ion_auth->update($user_id, $data);
 	}
 
 	/**

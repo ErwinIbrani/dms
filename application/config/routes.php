@@ -56,6 +56,7 @@ $route['translate-uri_dashes'] = false;
 $route['login'] = 'auth/login';
 $route['forgot-password'] = 'auth/forgot_password';
 $route['admin/user-management/internal'] = 'admin/usermanagement';
+$route['admin/user-management/vendor'] = 'admin/usermanagement/vendor';
 $route['admin/user/groups'] = 'admin/usergroup';
 /*
 | -------------------------------------------------------------------------
