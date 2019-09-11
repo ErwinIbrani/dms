@@ -53,6 +53,7 @@ class VendorUser_Model extends CI_Model {
 		$additional_data = array(
 			'type' => $data['type'],
 			'level' => $data['level'],
+			'vendor' => $data['vendor']
 		);
 		$group = $data['role'];
 
@@ -67,7 +68,7 @@ class VendorUser_Model extends CI_Model {
 	 */
 	public function findById($id)
 	{
-		return $this->db->get_where($this->table, ['id' => $id])->row();
+		return $this->db->get_where($this->table, array('id' => $id, 'type' => 'vendor'))->row();
 	}
 
 	/**
@@ -81,10 +82,11 @@ class VendorUser_Model extends CI_Model {
 		$this->ion_auth->remove_from_group(false, $user_id);
 		$this->ion_auth->add_to_group($data['role'], $user_id);
 
-		$data = array(
-			'username' => 'Ben',
-			'password' => '123456789',
-		);
+		if(empty($data['password'])) {
+			unset($data['password']);
+		}
+
+		$data['username'] = $data['name'];
 		$this->ion_auth->update($user_id, $data);
 	}
 
