@@ -58,7 +58,7 @@
                     <li class="menu-header">Procurement</li><!-- /.menu-header -->
                     <!-- .menu-item -->
                     <li class="menu-item">
-                        <a href="{{ site_url('procurement/project') }}" class="menu-link"><span class="menu-icon fas fa-home"></span> <span class="menu-text">Project Assignment</span></a>
+                        <a href="{{ site_url('procurement/project') }}" class="menu-link"><span class="menu-icon fas fa-clipboard-check"></span> <span class="menu-text">Project Assignment</span></a>
                     </li><!-- /.menu-item -->
                     <!-- .menu-item -->
 					<li class="menu-header">Project</li><!-- /.menu-header -->
@@ -66,6 +66,27 @@
 					<li class="menu-item">
 						<a href="{{ site_url('project/pic') }}" class="menu-link"><span class="menu-icon fas fa-user-check"></span> <span class="menu-text">PIC Project</span></a>
 					</li><!-- /.menu-item -->
+
+					<!-- .menu-item -->
+					<li class="menu-item">
+						<a href="{{ site_url('project/pic') }}" class="menu-link"><span class="menu-icon fas fa-file-archive"></span> <span class="menu-text">Projects</span></a>
+					</li><!-- /.menu-item -->
+
+					<li class="menu-item has-child">
+						<a href="#" class="menu-link">
+							<span class="menu-icon fas fa-check-double"></span>
+							<span class="menu-text">Document Approval</span>
+						</a> <!-- child menu -->
+						<ul class="menu">
+							<li class="menu-item">
+								<a href="{{ site_url("admin/user-management/internal") }}" class="menu-link">Approval Required</a>
+							</li>
+							<li class="menu-item">
+								<a href="{{ site_url("admin/user-management/internal") }}" class="menu-link">Approval Rejected</a>
+							</li>
+						</ul><!-- /child menu -->
+					</li><!-- /.menu-item -->
+
 					<li class="menu-header">Vendor</li><!-- /.menu-header -->
 
 					<li class="menu-item has-child">
