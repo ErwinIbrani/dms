@@ -30,16 +30,16 @@ class Pic extends CI_Controller
         }
         $allcount             = $this->Pic_Model->getrecordCount($search_text);
         $records              = $this->Pic_Model->getData($rowno, $rowperpage, $search_text);
-        $config['base_url']   = base_url().'admin/pic/index';
+        $config['base_url']   = base_url().'project/pic/index';
         $config['total_rows'] = $allcount;
         $config['per_page']   = $rowperpage;
 
         $this->pagination->initialize($config);
         $pagination = $this->pagination->create_links();
 
-        return view('admin/pic/index', [
+        return view('project/pic/index', [
             'pagination' => $pagination,
-            'pics'        => $records,
+            'pics'       => $records,
             'search'     => $search_text,
             'breadcrumb' => $breadcrumb,
           ]);
@@ -47,13 +47,13 @@ class Pic extends CI_Controller
 
       public function create()
       {
-          $this->make_bread->add('Index', 'admin/pic/index', TRUE);
+          $this->make_bread->add('Index', 'project/pic/index', TRUE);
           $this->make_bread->add('Create');
           $breadcrumb = $this->make_bread->output();
           $projects   = $this->Project_Model->project()->result();
           $users      = $this->InternalUser_Model->userInternal()->result();
 
-          return view('admin/pic/create', [
+          return view('project/pic/create', [
                       'projects'   =>  $projects,
                       'users'      =>  $users,
                       'breadcrumb' =>  $breadcrumb
@@ -67,13 +67,13 @@ class Pic extends CI_Controller
         $this->form_validation->set_rules('layer', 'Layer', 'required');
         $this->form_validation->set_rules('username', 'Email', 'required');
         if ($this->form_validation->run() == FALSE) {
-            $this->make_bread->add('Index', 'admin/pic/index', TRUE);
+            $this->make_bread->add('Index', 'project/pic/index', TRUE);
             $this->make_bread->add('Create');
             $breadcrumb = $this->make_bread->output();
             $projects   = $this->Project_Model->project()->result();
             $users      = $this->InternalUser_Model->userInternal()->result();
 
-            return view('admin/pic/create', [
+            return view('project/pic/create', [
                 'projects'   =>  $projects,
                 'users'      =>  $users,
                 'breadcrumb' =>  $breadcrumb
@@ -83,7 +83,7 @@ class Pic extends CI_Controller
             $cek = $this->Pic_Model->duplicate($this->input->post('username'), $this->input->post('project_id'));
             if($cek->num_rows() > 0){
                 $this->session->set_flashdata('error', 'Data Duplicate');
-                redirect("admin/pic/create", 'refresh');
+                redirect("project/pic/create", 'refresh');
             }else {
                 $getData = $this->User_Model->findByUsername($this->input->post('username'))->row();
                 $data = [
@@ -94,14 +94,14 @@ class Pic extends CI_Controller
                 ];
                 $this->Pic_Model->save($data);
                 $this->session->set_flashdata('success', 'Data Inserted');
-                redirect("admin/pic/create", 'refresh');
+                redirect("project/pic/create", 'refresh');
             }
         }
     }
 
     public function edit($id)
     {
-        $this->make_bread->add('Index', 'admin/pic/index', TRUE);
+        $this->make_bread->add('Index', 'project/pic/index', TRUE);
         $this->make_bread->add('Edit');
         $breadcrumb = $this->make_bread->output();
         $projects   = $this->Project_Model->project()->result();
@@ -109,7 +109,7 @@ class Pic extends CI_Controller
         $model      = $this->Pic_Model->findOne($id)->row();
 
 
-        return view('admin/pic/edit', [
+        return view('project/pic/edit', [
             'projects'     => $projects,
             'users'        => $users,
             'model'        => $model,
@@ -135,12 +135,12 @@ class Pic extends CI_Controller
                 ];
                 $this->Pic_Model->update($this->input->post('id'), $update);
                 $this->session->set_flashdata('success', 'Data Edited');
-                redirect("admin/pic/index", 'refresh');
+                redirect("project/pic/index", 'refresh');
             }else{
                 $cek = $this->Pic_Model->duplicate($this->input->post('username'), $this->input->post('project_id'));
                 if($cek->num_rows() > 0){
                     $this->session->set_flashdata('error', 'Data Duplicate');
-                    redirect("admin/pic/create", 'refresh');
+                    redirect("project/pic/create", 'refresh');
                 }else {
                     $getData = $this->User_Model->findByUsername($this->input->post('username'))->row();
                     $update  = [
@@ -151,7 +151,7 @@ class Pic extends CI_Controller
                     ];
                     $this->Pic_Model->update( $this->input->post('id'), $update);
                     $this->session->set_flashdata('success', 'Data Inserted');
-                    redirect("admin/pic/create", 'refresh');
+                    redirect("project/pic/create", 'refresh');
                 }
             }
         }
@@ -161,7 +161,7 @@ class Pic extends CI_Controller
     {
         $this->Pic_Model->delete($id);
         $this->session->set_flashdata('success', 'Data Deleted');
-        redirect("admin/pic/index", 'refresh');
+        redirect("project/pic/index", 'refresh');
     }
 
 }

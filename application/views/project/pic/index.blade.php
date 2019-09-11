@@ -22,7 +22,7 @@
         </div><!-- /.card-header -->
         <!-- .card-body -->
         <div class="card-body">
-            <form method='post' action="<?= base_url() ?>admin/pic/index">
+            <form method='post' action="<?= base_url() ?>project/pic/index">
                 <div class="input-group input-group-alt">
                     <!-- .input-group -->
                     <div class="input-group has-clearable">
@@ -39,7 +39,7 @@
                   </div>
               </form>
             <br/>
-            <a href="<?= site_url("admin/pic/create"); ?>" class="btn btn-primary">
+            <a href="<?= site_url("project/pic/create"); ?>" class="btn btn-primary">
                 Create New
             </a>
             <!-- .table-responsive -->
@@ -68,8 +68,8 @@
                             <td class="align-middle"> {{ $pic->username }} </td>
                             <td class="align-middle"> {{ $pic->email }} </td>
                             <td class="align-middle text-right">
-                                <a href="<?= site_url("admin/pic/edit/".$pic->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a>
-                                <a href="<?= site_url("admin/pic/destroy/".$pic->id.""); ?>" class="btn btn-sm btn-icon btn-secondary" onClick="javascript:return confirm('Delete this row ?');"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
+                                <a href="<?= site_url("project/pic/edit/".$pic->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a>
+                                <a href="<?= site_url("project/pic/destroy/".$pic->id.""); ?>" class="btn btn-sm btn-icon btn-secondary" onClick="javascript:return confirm('Delete this row ?');"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
                             </td>
                         </tr>
                     @endforeach

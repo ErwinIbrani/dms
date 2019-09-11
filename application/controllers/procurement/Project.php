@@ -6,7 +6,7 @@ class Project extends CI_Controller
     public function __Construct()
     {
         parent::__construct();
-        $this->load->model(['Tmplanning_Model', 'Project_Model', 'Vendor_Model', 'User_Model']);
+        $this->load->model(['Tmplanning_Model', 'Project_Model', 'Vendor_Model', 'User_Model', 'Pic_Model']);
         $this->lang->load('auth');
         $this->load->helper('custom');
         authentication($this->ion_auth->logged_in());
@@ -132,13 +132,15 @@ class Project extends CI_Controller
         $vendor        = $this->Vendor_Model->findOne($model->vendor_id)->row();
         $user_created  = $this->User_Model->findOne($model->created_by)->row();
         $user_updated  = $this->User_Model->findOne($model->updated_by)->row_array();
+        $pics          = $this->Pic_Model->findByProject($model->id)->result_array();
 
         return view('procurement/project/view', [
             'model'        => $model,
             'vendor'       => $vendor,
             'breadcrumb'   => $breadcrumb,
             'user_ceated'  => $user_created,
-            'user_updated' => $user_updated
+            'user_updated' => $user_updated,
+            'pics'         => $pics
         ]);
     }
 

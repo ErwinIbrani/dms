@@ -17,7 +17,7 @@
                 $data  = [
                     'class' => 'null'
                 ];
-                echo form_open('admin/pic/update',$data);
+                echo form_open('project/pic/update',$data);
                 ?>
                 <!-- .fieldset -->
                     <fieldset>
