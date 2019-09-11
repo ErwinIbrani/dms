@@ -83,4 +83,8 @@ class Pic_Model extends CI_Model
         $this->db->where($this->primaryKey, $id);
         $this->db->delete($this->table);
     }
+    public function findByProject($project_id)
+    {
+        return $this->db->get_where($this->table, ['project_id' => $project_id]);
+    }
 }
