@@ -113,7 +113,6 @@ class Project extends CI_Controller
                     'address'          =>  $getData['td_planning_detail_address'],
                     'longitude'        =>  $getData['td_planning_detail_longitude'],
                     'latitude'         =>  $getData['td_planning_detail_latitude'],
-                    'status'           =>  1,
                     'created_at'       =>  date('Y-m-d H:i:s')
                 ];
                 $this->Project_Model->save($data);
