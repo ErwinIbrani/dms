@@ -176,4 +176,11 @@ class UserManagement extends CI_Controller {
 			return $this->editUserVendor($user->id);
 		}
     }
+
+	public function deleteUserVendor($id)
+	{
+		$this->VendorUser_Model->deleteData($id);
+		$this->session->set_flashdata('success', 'Data Deleted');
+		return redirect("admin/user-management/vendor", 'refresh');
+    }
 }

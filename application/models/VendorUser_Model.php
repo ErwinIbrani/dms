@@ -96,6 +96,7 @@ class VendorUser_Model extends CI_Model {
 	 * @return bool
 	 */
 	public function deleteData($id) {
+		$this->ion_auth->remove_from_group(false, $id);
 		$this->db->where('id', $id);
 		return	$this->db->delete($this->table);
 	}
