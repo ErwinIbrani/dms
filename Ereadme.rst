@@ -146,3 +146,14 @@ CREATE TABLE [dbo].[document_project] (
   [updated_at] datetime NULL,
   [deleted_at] datetime NULL
 );
+
+###################
+Create vendor_project:
+###################
+CREATE TABLE [dbo].[vendor_project] (
+  [id] int IDENTITY(1,1) NOT NULL,
+  [project_id] int NOT NULL,
+  [vendor_id] int NOT NULL,
+  [status] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [created_at] datetime NULL,
+);

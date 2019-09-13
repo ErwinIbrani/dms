@@ -6,10 +6,10 @@ class Project extends CI_Controller
     public function __Construct()
     {
         parent::__construct();
-        $this->load->model(['Tmplanning_Model', 'Project_Model', 'Vendor_Model', 'User_Model', 'Pic_Model']);
+        $this->load->model(['Tmplanning_Model', 'Project_Model', 'Vendor_Model', 'User_Model', 'Pic_Model', 'Document_Model']);
         $this->lang->load('auth');
         $this->load->helper('custom');
-      //  authentication($this->ion_auth->logged_in());
+        authentication($this->ion_auth->logged_in());
     }
 
     public function index($rowno=0)
@@ -161,13 +161,14 @@ class Project extends CI_Controller
 
     public function update()
     {
+
         $this->form_validation->set_rules('vendor_id', 'Vendor Name', 'required');
+        $model = $this->Project_Model->findOne($this->input->post('id'))->row();
         if ($this->form_validation->run() == FALSE) {
             $this->make_bread->add('Index', 'procurement/project/index', TRUE);
             $this->make_bread->add('Change Vendor');
             $breadcrumb = $this->make_bread->output();
             $vendor     = $this->Vendor_Model->vendor()->result();
-            $model      = $this->Project_Model->findOne($this->input->post('id'))->row();
             return view('procurement/project/edit', [
                 'vendors'      => $vendor,
                 'model'        => $model,
@@ -175,15 +176,18 @@ class Project extends CI_Controller
             ]);
         }
         else {
-            $update = [
-                'vendor_id'  => $this->input->post('vendor_id'),
-                'updated_by' => $this->ion_auth->user()->row()->id,
-                'updated_at' => date('Y-m-d H:i:s'),
-                'status'     => 'COM_SITAC'
-            ];
-            $this->Project_Model->update($this->input->post('id'), $update);
-            $this->session->set_flashdata('success', 'Data Edited');
-            redirect("procurement/project/index", 'refresh');
+            $condition = $this->Document_Model->changeVendor($this->input->post('id'), $model->vendor_id, ['status_vendor' => 'change']);
+            if($condition == TRUE){
+                $update = [
+                    'vendor_id'  => $this->input->post('vendor_id'),
+                    'updated_by' => $this->ion_auth->user()->row()->id,
+                    'updated_at' => date('Y-m-d H:i:s'),
+                    'status'     => 'COM_SITAC'
+                ];
+                $this->Project_Model->update($this->input->post('id'), $update);
+                $this->session->set_flashdata('success', 'Data Edited');
+                redirect("procurement/project/index", 'refresh');
+            }
         }
 
     }
