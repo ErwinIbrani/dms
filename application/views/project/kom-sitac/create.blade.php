@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page_title', 'Document')
+@section('page_title', 'COM SITAC')
 
 @section('header')
     <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/select2/select2.css">
@@ -15,13 +15,13 @@
                 <!-- .form -->
             <?php
              $data  = [
-                        'class' => 'null'
+                        'name' => 'form-com-sitac'
                     ];
-             echo form_open('project/document/store',$data);
+             echo form_open_multipart('project/komsitac/store',$data);
             ?>
                     <!-- .fieldset -->
                     <fieldset>
-                        <legend>Document</legend>
+                        <legend>COM SITAC</legend>
 
                         @if(!empty(validation_errors()))
                         <div class="col-lg-12">
@@ -33,21 +33,7 @@
                         @endif
 
                     <div class="row">
-
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label  for="selDefault">Project Name</label>
-                                <select name="project_id" class="custom-select js-example-basic-single">
-                                    <option value="" selected="selected">Select Project Name</option>
-                                    <?php
-                                    foreach ($projects as $project) {
-                                        echo"<option value='$project->id'> $project->wbs_id / $project->iro_number </option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-
+                        <input type="hidden" class="form-control" name="project_id" value="<?= $id_project ?>">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="tf1">Name</label>
@@ -73,7 +59,7 @@
                            <div class="form-group">
                             <label for="tf3">Upload File</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="tf3" multiple=""> <label class="custom-file-label" for="tf3">Choose file</label>
+                                <input type="file" name="path" class="custom-file-input" id="tf3" multiple=""> <label class="custom-file-label" for="tf3">Choose file</label>
                             </div>
                         </div>
                        </div>

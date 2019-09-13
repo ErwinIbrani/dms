@@ -10,7 +10,7 @@
                     <div class="card-body">
                      <div class="row">
 
-                       <div class="col-lg-9">
+                       <div class="col-lg-8">
                         <table class="table table-striped table-bordered detail-view">
                             <tbody>
                             <tr>
@@ -147,102 +147,58 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                             <!-- .card -->
                             <div class="card card-reflow">
-                                <div class="card-body">
-                                    <h4 class="card-title"> Payments </h4>
-                                    <div class="progress progress-sm rounded-0 mb-1">
-                                        <div class="progress-bar bg-success w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="text-muted text-weight-bolder small"> $2,322 of $3,076 </p>
-                                </div><!-- .card-body -->
                                 <div class="card-body border-top">
-                                    <h4 class="card-title"> History </h4><!-- .timeline -->
+                                    <h4 class="card-title"> Progress </h4>
                                     <ul class="timeline timeline-dashed-line">
-                                        <!-- .timeline-item -->
-                                        <li class="timeline-item">
-                                            <!-- .timeline-figure -->
+
+
+                                       <li class="timeline-item">
                                             <div class="timeline-figure">
                                                 <span class="tile tile-circle tile-xs bg-success"><i class="fa fa-check"></i></span>
-                                            </div><!-- /.timeline-figure -->
-                                            <!-- .timeline-body -->
+                                            </div>
+
                                             <div class="timeline-body">
-                                                <h6 class="timeline-heading"> Invoice created </h6><span class="timeline-date">08/18/2018 – 12:42 PM</span>
-                                            </div><!-- /.timeline-body -->
-                                        </li><!-- /.timeline-item -->
-                                        <!-- .timeline-item -->
+                                                <h6 class="timeline-heading"> COM SITAC
+                                                    @if($model->status == 'COM SITAC')
+                                                    <a href="<?= site_url("project/komsitac/create/$model->id"); ?>" class="text-muted"><small class="text-yellow">Upload</small></a>
+                                                    @elseif($model->status != 'COM SITAC' && empty($model->flag))
+                                                    <a href="javascript:void(0)" class="text-muted"><small class="text-blue">Done</small></a>
+                                                    @elseif(!empty($model->flag))
+                                                    <a href="<?= site_url("project/komsitac/create/$model->id"); ?>" class="text-muted"><small class="text-red">Revision</small></a>
+                                                    @endif()
+                                                </h6>
+                                                <span class="timeline-date">08/18/2018 – 12:42 PM</span>
+                                            </div>
+                                        </li>
+
+
                                         <li class="timeline-item">
-                                            <!-- .timeline-figure -->
                                             <div class="timeline-figure">
                                                 <span class="tile tile-circle tile-xs bg-success"><i class="fa fa-check"></i></span>
-                                            </div><!-- /.timeline-figure -->
-                                            <!-- .timeline-body -->
+                                            </div>
                                             <div class="timeline-body">
-                                                <h6 class="timeline-heading"> Invoice sent <a href="#" class="text-muted"><small>details</small></a>
-                                                </h6><span class="timeline-date">08/18/2018 – 12:42 PM</span>
-                                            </div><!-- /.timeline-body -->
-                                        </li><!-- /.timeline-item -->
-                                        <!-- .timeline-item -->
+                                                <h6 class="timeline-heading"> SITAC SURVEY </h6>
+                                                <span class="timeline-date">08/19/2018 – 09:11 AM</span>
+                                            </div>
+                                        </li>
+
                                         <li class="timeline-item">
-                                            <!-- .timeline-figure -->
-                                            <div class="timeline-figure">
-                                                <span class="tile tile-circle tile-xs bg-success"><i class="fa fa-check"></i></span>
-                                            </div><!-- /.timeline-figure -->
-                                            <!-- .timeline-body -->
-                                            <div class="timeline-body">
-                                                <h6 class="timeline-heading"> Invoice viewed </h6><span class="timeline-date">08/19/2018 – 09:11 AM</span>
-                                            </div><!-- /.timeline-body -->
-                                        </li><!-- /.timeline-item -->
-                                        <!-- .timeline-item -->
-                                        <li class="timeline-item">
-                                            <!-- .timeline-figure -->
-                                            <div class="timeline-figure">
-                                                <span class="tile tile-circle tile-xs bg-success"><i class="fa fa-check"></i></span>
-                                            </div><!-- /.timeline-figure -->
-                                            <!-- .timeline-body -->
-                                            <div class="timeline-body">
-                                                <h6 class="timeline-heading"> Invoice partial paid <a href="#" class="text-muted"><small>details</small></a>
-                                                </h6><span class="timeline-date">08/19/2018 – 10:36 AM</span>
-                                            </div><!-- /.timeline-body -->
-                                        </li><!-- /.timeline-item -->
-                                        <!-- .timeline-item -->
-                                        <li class="timeline-item">
-                                            <!-- .timeline-figure -->
-                                            <div class="timeline-figure">
-                                                <span class="tile tile-circle tile-xs bg-success"><i class="fa fa-check"></i></span>
-                                            </div><!-- /.timeline-figure -->
-                                            <!-- .timeline-body -->
-                                            <div class="timeline-body">
-                                                <h6 class="timeline-heading"> Invoice sent <a href="#" class="text-muted"><small>details</small></a>
-                                                </h6><span class="timeline-date">12/21/2018 – 12:42 PM</span>
-                                            </div><!-- /.timeline-body -->
-                                        </li><!-- /.timeline-item -->
-                                        <!-- .timeline-item -->
-                                        <li class="timeline-item">
-                                            <!-- .timeline-figure -->
                                             <div class="timeline-figure">
                                                 <span class="tile tile-circle tile-xs"><i class="fa fa-check d-none"></i></span>
-                                            </div><!-- /.timeline-figure -->
-                                            <!-- .timeline-body -->
+                                            </div>
                                             <div class="timeline-body">
                                                 <h6 class="timeline-heading"> Invoice viewed </h6>
-                                            </div><!-- /.timeline-body -->
-                                        </li><!-- /.timeline-item -->
-                                        <!-- .timeline-item -->
-                                        <li class="timeline-item">
-                                            <!-- .timeline-figure -->
-                                            <div class="timeline-figure">
-                                                <span class="tile tile-circle tile-xs"><i class="fa fa-check d-none"></i></span>
-                                            </div><!-- /.timeline-figure -->
-                                            <!-- .timeline-body -->
-                                            <div class="timeline-body">
-                                                <h6 class="timeline-heading"> Invoice fully paid </h6>
-                                            </div><!-- /.timeline-body -->
-                                        </li><!-- /.timeline-item -->
-                                    </ul><!-- /.timeline -->
-                                </div><!-- /.card-body -->
-                           </div><!-- /.card -->
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                           </div>
+
+
                     </div>
                 </div>
                         <div class="card card-fluid">

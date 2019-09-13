@@ -137,7 +137,7 @@ CREATE TABLE [dbo].[document_project] (
   [type] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
   [attachment] TEXT NULL,
   [path] TEXT NULL,
-  [approved_id] int NOT NULL,
+  [approved_id] int NULL,
   [attribute] TEXT NULL,
   [attribute_history] TEXT NULL,
   [status] TEXT NULL,

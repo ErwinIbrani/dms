@@ -46,10 +46,10 @@ class Project extends CI_Controller
         ]);
     }
 
-    public function view($id)
+    public function document($id)
     {
-        $this->make_bread->add('Index', 'procurement/project/index', TRUE);
-        $this->make_bread->add('View');
+        $this->make_bread->add('Index', 'project/project/index', TRUE);
+        $this->make_bread->add('Document');
         $breadcrumb    = $this->make_bread->output();
         $model         = $this->Project_Model->findOne($id)->row();
         $vendor        = $this->Vendor_Model->findOne($model->vendor_id)->row();

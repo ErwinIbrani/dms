@@ -80,6 +80,7 @@
 					<!-- .menu-item -->
 					<li class="menu-item">
 						<a href="{{ site_url('project/pic') }}" class="menu-link"><span class="menu-icon fas fa-user-check"></span> <span class="menu-text">PIC Project</span></a>
+						<a href="{{ site_url('project/project/index') }}" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span class="menu-text">Document Project</span></a>
 					</li><!-- /.menu-item -->
 
 					<!-- .menu-item -->

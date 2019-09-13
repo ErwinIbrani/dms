@@ -22,7 +22,7 @@ class Project_Model extends CI_Model
             $this->db->like('v.name', $search);
             $this->db->or_like('p.wbs_id', $search);
             $this->db->or_like('p.iro_number', $search);
-            $this->db->or_like('p.site_id_ibs', $search);
+            $this->db->or_like('p.status', $search);
         }
         $this->db->limit($rowperpage, $rowno);
         $query = $this->db->get();

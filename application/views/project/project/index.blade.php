@@ -84,7 +84,7 @@
                                     @endif
                                     </td>
                                     <td class="align-middle text-right">
-                                        <a href="<?= site_url("project/project/view/".$project->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-cloud-upload-alt"></i> <span class="sr-only">View</span></a>
+                                        <a href="<?= site_url("project/project/document/".$project->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-file-upload"></i> <span class="sr-only">View</span></a>
                                     </td>
                                 </tr>
                             @endforeach
