@@ -1,12 +1,12 @@
 <?php
 
-class Komsitac extends CI_Controller
+class Comsitac extends CI_Controller
 {
 
     public function __Construct()
     {
         parent::__construct();
-        $this->load->model(['Project_Model', 'KomSitac_Model']);
+        $this->load->model(['Project_Model', 'ComSitac_Model']);
         $this->load->helper('custom');
         authentication($this->ion_auth->logged_in());
     }
@@ -16,7 +16,7 @@ class Komsitac extends CI_Controller
         $this->make_bread->add('Index', 'project/project/document/' . $id, TRUE);
         $this->make_bread->add('Create');
         $breadcrumb = $this->make_bread->output();
-        return view('project/kom-sitac/create', [
+        return view('project/com-sitac/create', [
             'breadcrumb' => $breadcrumb,
             'id_project' => $id
         ]);
@@ -34,7 +34,7 @@ class Komsitac extends CI_Controller
             $this->make_bread->add('Index', 'project/project/document/' . $this->input->post('project_id'), TRUE);
             $this->make_bread->add('Create');
             $breadcrumb = $this->make_bread->output();
-            return view('project/kom-sitac/create', [
+            return view('project/com-sitac/create', [
                 'breadcrumb' => $breadcrumb,
                 'id_project' => $this->input->post('project_id')
             ]);
@@ -62,9 +62,10 @@ class Komsitac extends CI_Controller
                     'type' => $this->input->post('type'),
                     'status' => 'waiting',
                     'path' => $upload['file_name'],
-                    'created_at' => date('Y-m-d H:i:s')
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
                 ];
-                $codition = $this->KomSitac_Model->save($data);
+                $codition = $this->ComSitac_Model->save($data);
                 if ($codition == TRUE) {
                     $this->Project_Model->update($this->input->post('project_id'), ['status' => 'SITAC SURVEY']);
                     $this->session->set_flashdata('success', 'Data Uploaded');
@@ -79,9 +80,9 @@ class Komsitac extends CI_Controller
         $this->make_bread->add('Index', 'project/project/document/' . $projectID, TRUE);
         $this->make_bread->add('Recreate');
         $breadcrumb = $this->make_bread->output();
-        $model = $this->KomSitac_Model->findOne($documenntID)->row();
+        $model = $this->ComSitac_Model->findOne($documenntID)->row();
 
-        return view('project/kom-sitac/recreate', [
+        return view('project/com-sitac/recreate', [
             'breadcrumb' => $breadcrumb,
             'id_project' => $projectID,
             'model' => $model
@@ -94,12 +95,12 @@ class Komsitac extends CI_Controller
         if (empty($_FILES['path']['name'])) {
             $this->form_validation->set_rules('path', 'Document', 'required');
         }
-        $model = $this->KomSitac_Model->findOne($this->input->post('id'))->row();
+        $model = $this->ComSitac_Model->findOne($this->input->post('id'))->row();
         if ($this->form_validation->run() == FALSE) {
             $this->make_bread->add('Index', 'project/project/document/' . $this->input->post('project_id'), TRUE);
             $this->make_bread->add('Create');
             $breadcrumb = $this->make_bread->output();
-            return view('project/kom-sitac/recreate', [
+            return view('project/com-sitac/recreate', [
                 'breadcrumb' => $breadcrumb,
                 'id_project' => $this->input->post('project_id'),
                 'model' => $model
@@ -133,7 +134,7 @@ class Komsitac extends CI_Controller
                         'path' => $upload['file_name'],
                         'updated_at' => date('Y-m-d H:i:s')
                     ];
-                    $this->KomSitac_Model->update($this->input->post('id'), $update);
+                    $this->ComSitac_Model->update($this->input->post('id'), $update);
                     $this->session->set_flashdata('success', 'Data Reupload');
                     redirect("project/project/document/" . $this->input->post('project_id'), 'refresh');
                   }

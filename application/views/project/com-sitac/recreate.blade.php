@@ -17,7 +17,7 @@
              $data  = [
                         'name' => 'form-com-sitac'
                     ];
-             echo form_open_multipart('project/komsitac/store',$data);
+             echo form_open_multipart('project/comsitac/restore',$data);
             ?>
                     <!-- .fieldset -->
                     <fieldset>
@@ -34,20 +34,21 @@
 
                     <div class="row">
                         <input type="hidden" name="project_id" value="<?= $id_project ?>">
+                        <input type="hidden" name="id" value="<?= $model->id ?>">
                         <input type="hidden" name="name" value="COM_SITAC" autocomplete="off">
 
 
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="tf1">Code</label>
-                                <input type="text" class="form-control" name="code" autocomplete="off">
+                                <input type="text" class="form-control" name="code" readonly="readonly" value="<?= $model->code ?>">
                             </div>
                         </div>
 
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="tf1">Type/Classification</label>
-                                <input type="text" class="form-control" name="type" autocomplete="off">
+                                <input type="text" class="form-control" name="type" readonly="readonly" value="<?= $model->type ?>">
                             </div>
                         </div>
 

@@ -163,14 +163,23 @@ class Project extends CI_Controller
     {
         $this->form_validation->set_rules('vendor_id', 'Vendor Name', 'required');
         if ($this->form_validation->run() == FALSE) {
-            $this->session->set_flashdata('warning', 'Please Update Correctly');
-            redirect_back();
+            $this->make_bread->add('Index', 'procurement/project/index', TRUE);
+            $this->make_bread->add('Change Vendor');
+            $breadcrumb = $this->make_bread->output();
+            $vendor     = $this->Vendor_Model->vendor()->result();
+            $model      = $this->Project_Model->findOne($this->input->post('id'))->row();
+            return view('procurement/project/edit', [
+                'vendors'      => $vendor,
+                'model'        => $model,
+                'breadcrumb'   => $breadcrumb
+            ]);
         }
         else {
             $update = [
                 'vendor_id'  => $this->input->post('vendor_id'),
                 'updated_by' => $this->ion_auth->user()->row()->id,
-                'updated_at' => date('Y-m-d H:i:s')
+                'updated_at' => date('Y-m-d H:i:s'),
+                'status'     => 'COM_SITAC'
             ];
             $this->Project_Model->update($this->input->post('id'), $update);
             $this->session->set_flashdata('success', 'Data Edited');

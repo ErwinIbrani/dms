@@ -123,8 +123,18 @@ class Pic extends CI_Controller
         $this->form_validation->set_rules('username', 'Email', 'required');
         $this->form_validation->set_rules('layer', 'Layer', 'required');
         if ($this->form_validation->run() == FALSE) {
-            $this->session->set_flashdata('warning', 'Please Update Correctly');
-            redirect_back();
+            $this->make_bread->add('Index', 'project/pic/index', TRUE);
+            $this->make_bread->add('Edit');
+            $breadcrumb = $this->make_bread->output();
+            $projects   = $this->Project_Model->project()->result();
+            $users      = $this->InternalUser_Model->userInternal()->result();
+            $model      = $this->Pic_Model->findOne($this->input->post('id'))->row();
+            return view('project/pic/edit', [
+                'projects'     => $projects,
+                'users'        => $users,
+                'model'        => $model,
+                'breadcrumb'   => $breadcrumb
+            ]);
         }
         else {
             $data  = $this->Pic_Model->findOne($this->input->post('id'))->row();

@@ -9,7 +9,6 @@ class Project_Model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from($this->table);
-        $this->db->where('project.deleted_at IS NULL', null, false);
         return $this->db->get();
     }
 

@@ -23,7 +23,6 @@ class Pic_Model extends CI_Model
                             pic_project.username');
         $this->db->from($this->table);
         $this->db->join('project','pic_project.project_id = project.id','inner');
-        $this->db->where('project.deleted_at IS NULL', null, false);
         if($search != ''){
             $this->db->like('pic_project.username', $search);
             $this->db->or_like('pic_project.email', $search);
@@ -40,7 +39,6 @@ class Pic_Model extends CI_Model
         $this->db->select('count(*) as allcount');
         $this->db->from($this->table);
         $this->db->join('project','pic_project.project_id = project.id','inner');
-        $this->db->where('project.deleted_at IS NULL', null, false);
         if($search != ''){
             $this->db->like('pic_project.username', $search);
             $this->db->or_like('pic_project.email', $search);

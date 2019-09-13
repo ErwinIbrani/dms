@@ -163,13 +163,13 @@
                                             <div class="timeline-body">
                                                 <h6 class="timeline-heading"> COM SITAC
                                                   @if(!empty($kom_sitac) && $kom_sitac->status == 'rejected')
-                                                     <a href="<?= site_url("project/komsitac/recreate/$model->id/$kom_sitac->id"); ?>" class="text-muted"><small class="text-red">Revision</small></a>
+                                                     <a href="<?= site_url("project/comsitac/recreate/$model->id/$kom_sitac->id"); ?>" class="text-muted"><small class="text-red">Revision</small></a>
                                                   @elseif(!empty($kom_sitac) && $kom_sitac->status == 'accepted')
                                                      <a href="javascript:void(0)" class="text-muted"><small class="text-blue">Done</small></a>
                                                   @elseif(!empty($kom_sitac) && $kom_sitac->status == 'waiting')
                                                      <a href="javascript:void(0)" class="text-muted"><small class="text-blue">Waiting Status</small></a>
                                                   @else
-                                                     <a href="<?= site_url("project/komsitac/create/$model->id"); ?>" class="text-muted"><small class="text-yellow">Upload</small></a>
+                                                     <a href="<?= site_url("project/comsitac/create/$model->id"); ?>" class="text-muted"><small class="text-yellow">Upload</small></a>
                                                   @endif()
                                                 </h6>
                                                 <span class="timeline-date">
