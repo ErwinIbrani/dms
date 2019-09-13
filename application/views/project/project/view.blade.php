@@ -172,7 +172,11 @@
                                                      <a href="<?= site_url("project/komsitac/create/$model->id"); ?>" class="text-muted"><small class="text-yellow">Upload</small></a>
                                                   @endif()
                                                 </h6>
-                                                <span class="timeline-date">08/18/2018 – 12:42 PM</span>
+                                                <span class="timeline-date">
+                                                    <?php
+                                                          echo substr($kom_sitac->updated_at, 0, -4);
+                                                           //echo date ("Y-m-d H:i:s", $date)
+                                                    ?> </span>
                                             </div>
                                         </li>
 
