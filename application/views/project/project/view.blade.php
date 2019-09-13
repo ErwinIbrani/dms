@@ -162,13 +162,15 @@
 
                                             <div class="timeline-body">
                                                 <h6 class="timeline-heading"> COM SITAC
-                                                    @if($model->status == 'COM SITAC')
-                                                    <a href="<?= site_url("project/komsitac/create/$model->id"); ?>" class="text-muted"><small class="text-yellow">Upload</small></a>
-                                                    @elseif($model->status != 'COM SITAC' && empty($model->flag))
-                                                    <a href="javascript:void(0)" class="text-muted"><small class="text-blue">Done</small></a>
-                                                    @elseif(!empty($model->flag))
-                                                    <a href="<?= site_url("project/komsitac/create/$model->id"); ?>" class="text-muted"><small class="text-red">Revision</small></a>
-                                                    @endif()
+                                                  @if(!empty($kom_sitac) && $kom_sitac->status == 'rejected')
+                                                     <a href="<?= site_url("project/komsitac/recreate/$model->id/$kom_sitac->id"); ?>" class="text-muted"><small class="text-red">Revision</small></a>
+                                                  @elseif(!empty($kom_sitac) && $kom_sitac->status == 'accepted')
+                                                     <a href="javascript:void(0)" class="text-muted"><small class="text-blue">Done</small></a>
+                                                  @elseif(!empty($kom_sitac) && $kom_sitac->status == 'waiting')
+                                                     <a href="javascript:void(0)" class="text-muted"><small class="text-blue">Waiting Status</small></a>
+                                                  @else
+                                                     <a href="<?= site_url("project/komsitac/create/$model->id"); ?>" class="text-muted"><small class="text-yellow">Upload</small></a>
+                                                  @endif()
                                                 </h6>
                                                 <span class="timeline-date">08/18/2018 – 12:42 PM</span>
                                             </div>
