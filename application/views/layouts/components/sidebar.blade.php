@@ -70,6 +70,10 @@
 						</ul><!-- /child menu -->
 					</li><!-- /.menu-item -->
 
+					<li class="menu-item">
+						<a href="{{ site_url('admin/vendorproject/index') }}" class="menu-link"><span class="menu-icon fas fa-project-diagram"></span> <span class="menu-text">Project Vendor</span></a>
+					</li>
+
                     <li class="menu-header">Procurement</li><!-- /.menu-header -->
                     <!-- .menu-item -->
                     <li class="menu-item">

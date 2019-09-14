@@ -46,8 +46,6 @@ class Project extends CI_Controller
         ]);
     }
 
-
-
     public function document($id)
     {
         $this->make_bread->add('Index', 'project/project/index', TRUE);
@@ -58,7 +56,7 @@ class Project extends CI_Controller
         $user_created  = $this->User_Model->findOne($model->created_by)->row();
         $user_updated  = $this->User_Model->findOne($model->updated_by)->row_array();
         $pics          = $this->Pic_Model->findByProject($model->id)->result_array();
-        $kom_sitac     = $this->ComSitac_Model->status($model->id)->row();
+        $kom_sitac     = $this->ComSitac_Model->status($model->id)->row_array();
 
         return view('project/project/view', [
             'model'        => $model,

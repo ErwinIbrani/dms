@@ -39,7 +39,8 @@ class Comsitac extends CI_Controller
                 'id_project' => $this->input->post('project_id')
             ]);
         } else {
-            $new_name = $this->input->post('project_id') . '-' . $this->input->post('name');
+            $getData  = $this->Project_Model->findOne($this->input->post('project_id'))->row_array();
+            $new_name = $this->input->post('project_id') . '-' . $this->input->post('name').'-'.$getData['vendor_id'];
             $config = [];
             $config['upload_path'] = './uploads/comsitac/';
             $config['allowed_types'] = 'xlsx|xls|csv|pdf|';
@@ -53,7 +54,6 @@ class Comsitac extends CI_Controller
                 redirect("project/project/document/" . $this->input->post('project_id'), 'refresh');
             } else {
                 $upload = $this->upload->data();
-                $getData = $this->Project_Model->findOne($this->input->post('project_id'))->row_array();
                 $data = [
                     'project_id' => $this->input->post('project_id'),
                     'vendor_id' => $getData['vendor_id'],
@@ -109,7 +109,8 @@ class Comsitac extends CI_Controller
             if (is_file('./uploads/comsitac/' . $model->path) && @unlink('./uploads/comsitac/' . $model->path)) {
                 true;
             }
-                $new_name = $this->input->post('project_id') . '-' . $this->input->post('name');
+                $getData = $this->Project_Model->findOne($this->input->post('project_id'))->row_array();
+                $new_name = $this->input->post('project_id') . '-' . $this->input->post('name').'-'.$getData['vendor_id'];
                 $config = [];
                 $config['upload_path'] = './uploads/comsitac/';
                 $config['allowed_types'] = 'xlsx|xls|csv|pdf|';
@@ -123,7 +124,6 @@ class Comsitac extends CI_Controller
                     redirect("project/project/document/" . $this->input->post('project_id'), 'refresh');
                 } else {
                     $upload = $this->upload->data();
-                    $getData = $this->Project_Model->findOne($this->input->post('project_id'))->row_array();
                     $update = [
                         'project_id' => $this->input->post('project_id'),
                         'vendor_id' => $getData['vendor_id'],

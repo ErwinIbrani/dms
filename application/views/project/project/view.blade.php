@@ -162,19 +162,20 @@
 
                                             <div class="timeline-body">
                                                 <h6 class="timeline-heading"> COM SITAC
-                                                  @if(!empty($kom_sitac) && $kom_sitac->status == 'rejected')
-                                                     <a href="<?= site_url("project/comsitac/recreate/$model->id/$kom_sitac->id"); ?>" class="text-muted"><small class="text-red">Revision</small></a>
-                                                  @elseif(!empty($kom_sitac) && $kom_sitac->status == 'accepted')
+                                                  @php  $komID = $kom_sitac['id']; @endphp
+                                                  @if(!empty($kom_sitac) && $kom_sitac['status'] == 'rejected')
+                                                     <a href="<?= site_url("project/comsitac/recreate/$model->id/$komID"); ?>" class="text-muted"><small class="text-red">Revision</small></a>
+                                                  @elseif(!empty($kom_sitac) && $kom_sitac['status']  == 'accepted')
                                                      <a href="javascript:void(0)" class="text-muted"><small class="text-blue">Done</small></a>
-                                                  @elseif(!empty($kom_sitac) && $kom_sitac->status == 'waiting')
+                                                  @elseif(!empty($kom_sitac) && $kom_sitac['status']  == 'waiting')
                                                      <a href="javascript:void(0)" class="text-muted"><small class="text-blue">Waiting Status</small></a>
-                                                  @else
+                                                  @elseif(empty($kom_sitac))
                                                      <a href="<?= site_url("project/comsitac/create/$model->id"); ?>" class="text-muted"><small class="text-yellow">Upload</small></a>
                                                   @endif()
                                                 </h6>
                                                 <span class="timeline-date">
                                                     <?php
-                                                          echo substr($kom_sitac->updated_at, 0, -4);
+                                                          echo substr($kom_sitac['updated_at'], 0, -4);
                                                            //echo date ("Y-m-d H:i:s", $date)
                                                     ?> </span>
                                             </div>

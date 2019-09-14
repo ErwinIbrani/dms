@@ -6,7 +6,7 @@ class Project extends CI_Controller
     public function __Construct()
     {
         parent::__construct();
-        $this->load->model(['Tmplanning_Model', 'Project_Model', 'Vendor_Model', 'User_Model', 'Pic_Model', 'Document_Model']);
+        $this->load->model(['Tmplanning_Model', 'Project_Model', 'Vendor_Model', 'User_Model', 'Pic_Model', 'Document_Model', 'VendorProject_Model']);
         $this->lang->load('auth');
         $this->load->helper('custom');
         authentication($this->ion_auth->logged_in());
@@ -113,10 +113,22 @@ class Project extends CI_Controller
                     'address'          =>  $getData['td_planning_detail_address'],
                     'longitude'        =>  $getData['td_planning_detail_longitude'],
                     'latitude'         =>  $getData['td_planning_detail_latitude'],
-                    'status'           =>  'COM SITAC',
+                    'status'           =>  'COM_SITAC',
                     'created_at'       =>  date('Y-m-d H:i:s')
                 ];
-                $this->Project_Model->save($data);
+                $this->db->trans_start();
+                $model =  $this->Project_Model->save($data);
+                $this->VendorProject_Model->save(['project_id' => $model,
+                                                  'vendor_id'  => $this->input->post('vendor_id'),
+                                                  'status'     => 'New',
+                                                  'created_at' => date('Y-m-d H:i:s')]);
+                $this->db->trans_complete();
+                if ($this->db->trans_status() === FALSE) {
+                    $this->db->trans_rollback();
+                    //return 0;
+                    $this->session->set_flashdata('success', 'Something Wrong');
+                    redirect("procurement/project/index", 'refresh');
+                }
                 $this->session->set_flashdata('success', 'Data Inserted');
                 redirect("procurement/project/index", 'refresh');
             }
@@ -161,7 +173,6 @@ class Project extends CI_Controller
 
     public function update()
     {
-
         $this->form_validation->set_rules('vendor_id', 'Vendor Name', 'required');
         $model = $this->Project_Model->findOne($this->input->post('id'))->row();
         if ($this->form_validation->run() == FALSE) {
@@ -177,14 +188,26 @@ class Project extends CI_Controller
         }
         else {
             $condition = $this->Document_Model->changeVendor($this->input->post('id'), $model->vendor_id, ['status_vendor' => 'change']);
-            if($condition == TRUE){
+            if($condition == TRUE){ //chnage in document
                 $update = [
                     'vendor_id'  => $this->input->post('vendor_id'),
                     'updated_by' => $this->ion_auth->user()->row()->id,
                     'updated_at' => date('Y-m-d H:i:s'),
                     'status'     => 'COM_SITAC'
                 ];
-                $this->Project_Model->update($this->input->post('id'), $update);
+                $this->db->trans_start();
+                $this->Project_Model->update($this->input->post('id'), $update); //change in project
+                $this->VendorProject_Model->save(['project_id' => $this->input->post('id'),
+                                                  'vendor_id'  => $this->input->post('vendor_id'),
+                                                  'status'     => 'Change',
+                                                  'created_at' => date('Y-m-d H:i:s')]); //insert to history
+                $this->db->trans_complete();
+                if ($this->db->trans_status() === FALSE) {
+                    $this->db->trans_rollback();
+                    //return 0;
+                    $this->session->set_flashdata('success', 'Something Wrong');
+                    redirect("procurement/project/index", 'refresh');
+                }
                 $this->session->set_flashdata('success', 'Data Edited');
                 redirect("procurement/project/index", 'refresh');
             }
