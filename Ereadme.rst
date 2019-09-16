@@ -153,6 +153,7 @@ Create candidate
 CREATE TABLE candidate (
     id int NOT NULL IDENTITY(1,1),
     project_id int NOT NULL,
+	vendor_id int NOT NULL,
     name varchar(150) NULL,
 	long varchar(100) NULL,
 	lat varchar(100) NULL,
