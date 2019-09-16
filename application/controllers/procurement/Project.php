@@ -9,7 +9,7 @@ class Project extends CI_Controller
         $this->load->model(['Tmplanning_Model', 'Project_Model', 'Vendor_Model', 'User_Model', 'Pic_Model']);
         $this->lang->load('auth');
         $this->load->helper('custom');
-        authentication($this->ion_auth->logged_in());
+      //  authentication($this->ion_auth->logged_in());
     }
 
     public function index($rowno=0)
@@ -113,7 +113,7 @@ class Project extends CI_Controller
                     'address'          =>  $getData['td_planning_detail_address'],
                     'longitude'        =>  $getData['td_planning_detail_longitude'],
                     'latitude'         =>  $getData['td_planning_detail_latitude'],
-                    'status'           =>  1,
+                    'status'           =>  'COM SITAC',
                     'created_at'       =>  date('Y-m-d H:i:s')
                 ];
                 $this->Project_Model->save($data);

@@ -15,7 +15,7 @@ class Project_Model extends CI_Model
 
     public function getData($rowno,$rowperpage,$search="")
     {
-        $this->db->select('p.id, p.wbs_id, p.iro_number, p.site_id_ibs, v.name');
+        $this->db->select('p.id, p.wbs_id, p.iro_number, p.site_id_ibs, p.status, p.flag, v.name');
         $this->db->from('project p');
         $this->db->join('vendor v', 'p.vendor_id = v.id', 'inner');
         if($search != ''){

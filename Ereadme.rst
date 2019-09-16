@@ -107,6 +107,7 @@ CREATE TABLE [dbo].[project] (
   [longitude] TEXT NULL,
   [latitude] TEXT NULL,
   [status] TEXT NULL,
+  [flag] int NULL,
   [created_at] datetime NULL,
   [updated_at] datetime NULL,
   [deleted_at] datetime NULL
