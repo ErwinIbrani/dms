@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page_title', ucwords($candidate[0]->name))
+@section('page_title', ucwords($candidate->name))
 
 @section('content')
 	<div class="page">
@@ -16,7 +16,7 @@
 
 				<!-- title and toolbar -->
 				<div class="d-md-flex align-items-md-start">
-					<h1 class="page-title mr-sm-auto"> {{ ucwords($candidate[0]->name) }} </h1><!-- .btn-toolbar -->
+					<h1 class="page-title mr-sm-auto"> {{ ucwords($candidate->name) }} </h1><!-- .btn-toolbar -->
 				</div><!-- /title and toolbar -->
 			</header>
 
@@ -24,20 +24,17 @@
 				<div class="card-header">
 					<ul class="nav nav-tabs card-header-tabs">
 						<li class="nav-item">
-							<a class="nav-link show active" data-toggle="tab" href="#candidate-survey">Document Survey</a>
+							<a class="nav-link" href="{{ site_url('/vendor/candidate/document/survey/index/'.$candidate->id) }}">Document Survey</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#candidate-bap">BAP Document</a>
+							<a class="nav-link show active" href="{{ site_url('/vendor/candidate/document/bap/index/'. $candidate->id) }}">BAP Document</a>
 						</li>
 					</ul>
 				</div>
 				<div class="card-body">
 					<div class="tab-content">
 						<div class="tab-pane fade active show" id="candidate-survey" role="tabpanel">
-							tssr
-						</div>
-						<div class="tab-pane fade" id="candidate-bap" role="tabpanel">
-							bap
+							form hre
 						</div>
 					</div>
 				</div>

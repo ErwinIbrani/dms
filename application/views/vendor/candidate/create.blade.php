@@ -17,7 +17,7 @@
 							</div>
 						</div>
 					@endif
-					{!! form_open(site_url('vendor/candidate/store/' . $project->id)) !!}
+					{!! form_open(site_url('vendor/candidates/store/' . $project->id)) !!}
 						<input type="hidden" class="form-control" name="project_id" value="{{ $project->id }}">
 						<input type="hidden" class="form-control" name="vendor_id" value="{{ $project->vendor_id }}">
 					<div class="form-group">

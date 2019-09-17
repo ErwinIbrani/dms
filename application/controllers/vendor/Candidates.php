@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Candidate extends CI_Controller {
+class Candidates extends CI_Controller {
 
 	public function __construct()
 	{
@@ -34,16 +34,26 @@ class Candidate extends CI_Controller {
 		if($this->form_validation->run()) {
 			$candidate = $this->Candidate_Model->storeData($this->input->post());
 			$this->session->set_flashdata('success', 'Candidate was added, complete the following document for this candidate.');
-			return redirect("vendor/candidate/document/" . $candidate, 'refresh');
+			return redirect("vendor/candidate/document/survey/index/" . $candidate, 'refresh');
 		} else {
 			return $this->create($project_id);
 		}
 	}
 
-	public function document($candidate_id)
+	public function documenta($candidate_id)
 	{
 		return view('vendor.candidate.document', array(
 			'candidate' => $this->Candidate_Model->getCandidateById($candidate_id)->result()
 		));
+	}
+
+	public function survey()
+	{
+
+	}
+
+	public function bap()
+	{
+		
 	}
 }
