@@ -24,17 +24,21 @@
 				<div class="card-header">
 					<ul class="nav nav-tabs card-header-tabs">
 						<li class="nav-item">
-							<a class="nav-link show active" href="{{ site_url('/vendor/candidate/document/survey/index/'.$candidate->id) }}">Document Survey</a>
+							<a class="nav-link" href="{{ site_url('/vendor/candidate/document/survey/index/'.$candidate->id) }}">Document Survey</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{ site_url('/vendor/candidate/document/bap/add/'. $candidate->id) }}">BAP Document</a>
+							<a class="nav-link show active" href="{{ site_url('/vendor/candidate/document/bap/index/'. $candidate->id) }}">BAP Document</a>
 						</li>
 					</ul>
 				</div>
 				<div class="card-body">
 					<div class="tab-content">
 						<div class="tab-pane fade active show" id="candidate-survey" role="tabpanel">
-							form here
+							{!! form_open() !!}
+								<div class="">
+
+								</div>
+							{!! form_close() !!}
 						</div>
 					</div>
 				</div>

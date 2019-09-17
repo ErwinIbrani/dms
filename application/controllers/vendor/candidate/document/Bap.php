@@ -7,12 +7,13 @@ class Bap extends CI_Controller {
 		$this->load->model(array('Candidate_Model', 'Project_Model'));
 	}
 
-	public function index($candidate_id)
+	public function add($candidate_id)
 	{
 		$candidate = $this->Candidate_Model->getCandidateById($candidate_id)->row();
 
-		return view('vendor.candidate.document.bap', array(
+		return view('vendor.candidate.document.add_bap', array(
 			'candidate' => $candidate
 		));
 	}
+
 }

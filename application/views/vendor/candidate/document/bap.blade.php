@@ -34,7 +34,9 @@
 				<div class="card-body">
 					<div class="tab-content">
 						<div class="tab-pane fade active show" id="candidate-survey" role="tabpanel">
-							form hre
+							{!! form_open() !!}
+
+							{!! form_close() !!}
 						</div>
 					</div>
 				</div>
