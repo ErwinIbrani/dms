@@ -1,0 +1,48 @@
+@extends('layouts.app')
+@section('page_title', ucwords($candidate[0]->name))
+
+@section('content')
+	<div class="page">
+		<div class="page-inner">
+			<header class="page-title-bar">
+				<!-- .breadcrumb -->
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active">
+							<a href="#"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Candidate Document</a>
+						</li>
+					</ol>
+				</nav><!-- /.breadcrumb -->
+
+				<!-- title and toolbar -->
+				<div class="d-md-flex align-items-md-start">
+					<h1 class="page-title mr-sm-auto"> {{ ucwords($candidate[0]->name) }} </h1><!-- .btn-toolbar -->
+				</div><!-- /title and toolbar -->
+			</header>
+
+			<div class="card card-fluid">
+				<div class="card-header">
+					<ul class="nav nav-tabs card-header-tabs">
+						<li class="nav-item">
+							<a class="nav-link show active" data-toggle="tab" href="#candidate-survey">Document Survey</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#candidate-bap">BAP Document</a>
+						</li>
+					</ul>
+				</div>
+				<div class="card-body">
+					<div class="tab-content">
+						<div class="tab-pane fade active show" id="candidate-survey" role="tabpanel">
+							tssr
+						</div>
+						<div class="tab-pane fade" id="candidate-bap" role="tabpanel">
+							bap
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+@endsection

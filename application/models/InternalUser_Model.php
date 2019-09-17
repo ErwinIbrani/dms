@@ -8,6 +8,11 @@ class InternalUser_Model extends CI_Model {
 
 	protected $primaryKey = 'id';
 
+	/**
+	 * Get all list of data user groups.
+	 *
+	 * @return mixed
+	 */
 	public function getData($search = null)
 	{
 		$query = $this->db->select('*')
@@ -19,19 +24,6 @@ class InternalUser_Model extends CI_Model {
 		}
 
 		return $query;
-	}
-
-	/**
-	 * Get all list of data user groups.
-	 *
-	 * @return mixed
-	 */
-	public function getAllList($rowPerpage,$rowNo) {
-		return  $this->db->select('*')
-			->from($this->table)
-			->limit($rowPerpage, $rowNo)
-			->get()
-			->result();
 	}
 
 	/**
@@ -59,7 +51,28 @@ class InternalUser_Model extends CI_Model {
 	 * @return bool
 	 */
 	public function storeData(array $data) {
-		return $this->db->insert($this->table, $data);
+
+		$username = $data['name'];
+		$password = $data['password'];
+		$email = $data['email'];
+		$additional_data = array(
+			'type' => $data['type'],
+			'level' => $data['level'],
+		);
+		$group = $data['role'];
+
+		return $this->ion_auth->register($username, $password, $email, $additional_data, $group);
+	}
+
+	/**
+	 * Find internal user by id.
+	 *
+	 * @param $id
+	 * @return mixed
+	 */
+	public function findById($id)
+	{
+		return $this->db->get_where($this->table, array('id' => $id, 'type' => 'internal'))->row();
 	}
 
 	/**
@@ -69,9 +82,16 @@ class InternalUser_Model extends CI_Model {
 	 * @param $id
 	 * @return bool
 	 */
-	public function updateData(array $data, $id) {
-		$this->db->where('id', $id);
-		return	$this->db->update($this->table, $data);
+	public function updateData(array $data, $user_id) {
+		$this->ion_auth->remove_from_group(false, $user_id);
+		$this->ion_auth->add_to_group($data['role'], $user_id);
+
+		if(empty($data['password'])) {
+			unset($data['password']);
+		}
+
+		$data['username'] = $data['name'];
+		$this->ion_auth->update($user_id, $data);
 	}
 
 	/**

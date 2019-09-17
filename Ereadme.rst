@@ -147,6 +147,7 @@ CREATE TABLE [dbo].[document_project] (
   [deleted_at] datetime NULL
 );
 
+
 ###################
 Create vendor_project:
 ###################
@@ -156,4 +157,20 @@ CREATE TABLE [dbo].[vendor_project] (
   [vendor_id] int NOT NULL,
   [status] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
   [created_at] datetime NULL,
+);
+=======
+##################
+Create candidate
+##################
+CREATE TABLE candidate (
+    id int NOT NULL IDENTITY(1,1),
+    project_id int NOT NULL,
+	vendor_id int NOT NULL,
+    name varchar(150) NULL,
+	long varchar(100) NULL,
+	lat varchar(100) NULL,
+	address varchar(255) NUll
+    is_default int NULL DEFAULT 0,
+	has_selected int NULL DEFAULT 0,
+  PRIMARY KEY(id)
 );
