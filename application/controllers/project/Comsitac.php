@@ -109,7 +109,7 @@ class Comsitac extends CI_Controller
             if (is_file('./uploads/comsitac/' . $model->path) && @unlink('./uploads/comsitac/' . $model->path)) {
                 true;
             }
-                $getData = $this->Project_Model->findOne($this->input->post('project_id'))->row_array();
+                $getData  = $this->Project_Model->findOne($this->input->post('project_id'))->row_array();
                 $new_name = $this->input->post('project_id') . '-' . $this->input->post('name').'-'.$getData['vendor_id'];
                 $config = [];
                 $config['upload_path'] = './uploads/comsitac/';

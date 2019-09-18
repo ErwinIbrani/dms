@@ -16,4 +16,10 @@ class Candidate_Model extends CI_Model
 	{
 		return $this->db->get_where($this->table, array('id' => $candidate_id));
 	}
+
+    public function save($data)
+    {
+        $this->db->insert($this->table, $data);
+        return $this->db->insert_id();
+    }
 }
