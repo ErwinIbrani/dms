@@ -12,10 +12,15 @@ class Candidates extends CI_Controller {
 
 	protected function validator()
 	{
-		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('name', 'Candidate Name', 'required');
 		$this->form_validation->set_rules('long', 'Long', 'required');
 		$this->form_validation->set_rules('lat', 'Lat', 'required');
-		$this->form_validation->set_rules('address', 'Lat', 'required');
+		$this->form_validation->set_rules('address', 'Address', 'required');
+
+		$this->form_validation->set_rules('owner_name', 'Owner Name', 'required');
+		$this->form_validation->set_rules('id_card', 'No. KTP Owner', 'required|numeric');
+		$this->form_validation->set_rules('phone_number', 'Phone Number', 'required|numeric');
+		$this->form_validation->set_rules('address', 'Owner Address', 'required');
 	}
 
 	public function create($project_id)
