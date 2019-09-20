@@ -16,4 +16,9 @@ class Bap extends CI_Controller {
 		));
 	}
 
+	public function preview($document_id)
+	{
+		echo $document_id;
+	}
+
 }

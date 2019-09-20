@@ -10,6 +10,7 @@
     <!-- BEGIN PLUGINS STYLES -->
     <link rel="stylesheet" href="{{ base_url('assets/vendor/open-iconic/css/open-iconic-bootstrap.min.css') }}">
     @yield('header')
+	@stack('style')
     <link rel="stylesheet" href="{{ base_url('assets/vendor/fontawesome/css/all.css') }}">
     <link rel="stylesheet" href="{{ base_url('assets/vendor/tributejs/tribute.css') }}">
 	<link rel="stylesheet" href="{{ base_url('assets/vendor/tributejs/tribute.css') }}">
@@ -64,6 +65,6 @@
 <script src="{{ base_url('assets/javascript/pages/dataTables.bootstrap.js') }}></script>
 @stack('js')
 <!-- BEGIN THEME JS -->
-<script src="{{ base_url('assets/js/theme.min.js') }}"></script> <!-- END THEME JS -->
+<script src="{{ base_url('assets/js/theme.js') }}"></script> <!-- END THEME JS -->
 </body>
 </html>

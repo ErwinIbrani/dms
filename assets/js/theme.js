@@ -1303,7 +1303,7 @@ function () {
 
           if (options.confirmdate) {
             options.plugins.push(new confirmDatePlugin({
-              showAlways: true
+              showAlways: true,
             }));
           }
 
@@ -1318,7 +1318,6 @@ function () {
               dateFormat: 'm/y',
               //defaults to 'F Y'
               altFormat: 'F Y' //defaults to 'F Y'
-
             }));
           }
 
