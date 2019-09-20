@@ -1,17 +1,8 @@
-<?php
-
-if ( ! function_exists('generate')) {
-
-    function generateSurvey($params)
-    {
-        $api_endpoint = "https://selectpdf.com/api2/convert/";
-        $key          = 'b53a60b8-7af2-4a9f-bf0c-c03fbde4911a';
-        $raw_html     = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD>
-    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <META http-equiv="X-UA-Compatible" content="IE=8">
-    <TITLE>bcl_412720472.htm</TITLE>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <TITLE>SITAC SURVEY</TITLE>
     <META name="generator" content="BCL easyConverter SDK 5.0.140">
     <STYLE type="text/css">
 
@@ -139,44 +130,44 @@ if ( ! function_exists('generate')) {
 
         .dclr {clear:both;float:none;height:1px;margin:0px;padding:0px;overflow:hidden;}
 
-        .ft0{font: italic bold 10px \'Arial\';line-height: 11px;}
-        .ft1{font: 1px \'Calibri\';line-height: 1px;}
-        .ft2{font: bold 17px \'Calibri\';line-height: 21px;}
-        .ft3{font: bold 11px \'Calibri\';line-height: 13px;}
-        .ft4{font: 1px \'Calibri\';line-height: 12px;}
-        .ft5{font: 1px \'Calibri\';line-height: 2px;}
-        .ft6{font: bold 10px \'Calibri\';line-height: 13px;}
-        .ft7{font: 11px \'Calibri\';line-height: 13px;}
-        .ft8{font: bold 16px \'Calibri\';line-height: 19px;}
-        .ft9{font: 1px \'Calibri\';line-height: 7px;}
-        .ft10{font: bold 12px \'Arial\';line-height: 15px;}
-        .ft11{font: bold 9px \'Calibri\';line-height: 11px;}
-        .ft12{font: 1px \'Calibri\';line-height: 10px;}
-        .ft13{font: 12px \'Arial\';line-height: 15px;}
-        .ft14{font: 1px \'Calibri\';line-height: 11px;}
-        .ft15{font: 1px \'Calibri\';line-height: 3px;}
-        .ft16{font: bold 15px \'Calibri\';line-height: 18px;}
-        .ft17{font: 1px \'Calibri\';line-height: 13px;}
-        .ft18{font: 1px \'Calibri\';line-height: 5px;}
-        .ft19{font: 1px \'Calibri\';line-height: 4px;}
-        .ft20{font: 12px \'Calibri\';line-height: 14px;}
-        .ft21{font: bold 12px \'Calibri\';line-height: 14px;}
-        .ft22{font: 1px \'Calibri\';line-height: 8px;}
-        .ft23{font: 1px \'Calibri\';line-height: 9px;}
-        .ft24{font: 1px \'Calibri\';line-height: 6px;}
-        .ft25{font: bold 1px \'Calibri\';line-height: 3px;}
-        .ft26{font: 16px \'Calibri\';line-height: 15px;}
-        .ft27{font: bold 12px \'Calibri\';line-height: 12px;}
-        .ft28{font: italic bold 12px \'Arial\';line-height: 15px;}
-        .ft29{font: bold 19px \'Calibri\';line-height: 23px;}
-        .ft30{font: 13px \'Calibri\';line-height: 15px;}
-        .ft31{font: italic bold 13px \'Arial\';line-height: 16px;}
-        .ft32{font: bold 18px \'Arial\';line-height: 21px;}
-        .ft33{font: bold 14px \'Arial\';line-height: 16px;}
-        .ft34{font: bold 14px \'Arial\';text-decoration: underline;line-height: 16px;}
-        .ft35{font: 14px \'Calibri\';line-height: 17px;}
-        .ft36{font: italic bold 11px \'Arial\';line-height: 13px;}
-        .ft37{font: 8px \'Calibri\';line-height: 10px;position: relative; bottom: 6px;}
+        .ft0{font: italic bold 10px 'Arial';line-height: 11px;}
+        .ft1{font: 1px 'Calibri';line-height: 1px;}
+        .ft2{font: bold 17px 'Calibri';line-height: 21px;}
+        .ft3{font: bold 11px 'Calibri';line-height: 13px;}
+        .ft4{font: 1px 'Calibri';line-height: 12px;}
+        .ft5{font: 1px 'Calibri';line-height: 2px;}
+        .ft6{font: bold 10px 'Calibri';line-height: 13px;}
+        .ft7{font: 11px 'Calibri';line-height: 13px;}
+        .ft8{font: bold 16px 'Calibri';line-height: 19px;}
+        .ft9{font: 1px 'Calibri';line-height: 7px;}
+        .ft10{font: bold 12px 'Arial';line-height: 15px;}
+        .ft11{font: bold 9px 'Calibri';line-height: 11px;}
+        .ft12{font: 1px 'Calibri';line-height: 10px;}
+        .ft13{font: 12px 'Arial';line-height: 15px;}
+        .ft14{font: 1px 'Calibri';line-height: 11px;}
+        .ft15{font: 1px 'Calibri';line-height: 3px;}
+        .ft16{font: bold 15px 'Calibri';line-height: 18px;}
+        .ft17{font: 1px 'Calibri';line-height: 13px;}
+        .ft18{font: 1px 'Calibri';line-height: 5px;}
+        .ft19{font: 1px 'Calibri';line-height: 4px;}
+        .ft20{font: 12px 'Calibri';line-height: 14px;}
+        .ft21{font: bold 12px 'Calibri';line-height: 14px;}
+        .ft22{font: 1px 'Calibri';line-height: 8px;}
+        .ft23{font: 1px 'Calibri';line-height: 9px;}
+        .ft24{font: 1px 'Calibri';line-height: 6px;}
+        .ft25{font: bold 1px 'Calibri';line-height: 3px;}
+        .ft26{font: 16px 'Calibri';line-height: 15px;}
+        .ft27{font: bold 12px 'Calibri';line-height: 12px;}
+        .ft28{font: italic bold 12px 'Arial';line-height: 15px;}
+        .ft29{font: bold 19px 'Calibri';line-height: 23px;}
+        .ft30{font: 13px 'Calibri';line-height: 15px;}
+        .ft31{font: italic bold 13px 'Arial';line-height: 16px;}
+        .ft32{font: bold 18px 'Arial';line-height: 21px;}
+        .ft33{font: bold 14px 'Arial';line-height: 16px;}
+        .ft34{font: bold 14px 'Arial';text-decoration: underline;line-height: 16px;}
+        .ft35{font: 14px 'Calibri';line-height: 17px;}
+        .ft36{font: italic bold 11px 'Arial';line-height: 13px;}
+        .ft37{font: 8px 'Calibri';line-height: 10px;position: relative; bottom: 6px;}
 
         .p0{text-align: left;margin-top: 0px;margin-bottom: 0px;}
         .p1{text-align: left;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
@@ -448,28 +439,28 @@ if ( ! function_exists('generate')) {
         .tr41{height: 81px;}
         .tr42{height: 122px;}
 
-        .t0{width: 469px;font: bold 11px \'Calibri\';}
-        .t1{width: 48px;font: bold 11px \'Calibri\';}
-        .t2{width: 509px;font: bold 11px \'Calibri\';}
-        .t3{width: 509px;margin-top: 2px;font: bold 11px \'Calibri\';}
-        .t4{width: 648px;font: 11px \'Calibri\';}
-        .t5{width: 608px;margin-left: 104px;margin-top: 76px;font: bold 12px \'Arial\';}
-        .t6{width: 606px;margin-left: 106px;margin-top: 1px;font: 12px \'Calibri\';}
-        .t7{width: 517px;margin-left: 120px;margin-top: 410px;font: 13px \'Calibri\';}
-        .t8{width: 648px;font: 13px \'Calibri\';}
-        .t9{width: 657px;font: 14px \'Calibri\';}
-        .t10{width: 609px;margin-top: 14px;font: 8px \'Calibri\';}
-        .t11{width: 607px;margin-left: 1px;margin-top: 2px;font: 8px \'Calibri\';}
-        .t12{width: 603px;margin-left: 3px;margin-top: 2px;font: 8px \'Calibri\';}
-        .t13{width: 648px;font: 12px \'Calibri\';}
-        .t14{width: 609px;margin-top: 8px;font: 8px \'Calibri\';}
-        .t15{width: 608px;margin-top: 2px;font: 8px \'Calibri\';}
-        .t16{width: 609px;margin-top: 14px;font: 12px \'Calibri\';}
-        .t17{width: 607px;margin-left: 1px;margin-top: 2px;font: 12px \'Calibri\';}
-        .t18{width: 603px;margin-left: 3px;margin-top: 2px;font: 12px \'Calibri\';}
-        .t19{width: 609px;margin-top: 14px;font: 11px \'Calibri\';}
-        .t20{width: 603px;margin-left: 3px;margin-top: 2px;font: 11px \'Calibri\';}
-        .t21{width: 647px;font: 12px \'Calibri\';}
+        .t0{width: 469px;font: bold 11px 'Calibri';}
+        .t1{width: 48px;font: bold 11px 'Calibri';}
+        .t2{width: 509px;font: bold 11px 'Calibri';}
+        .t3{width: 509px;margin-top: 2px;font: bold 11px 'Calibri';}
+        .t4{width: 648px;font: 11px 'Calibri';}
+        .t5{width: 608px;margin-left: 104px;margin-top: 76px;font: bold 12px 'Arial';}
+        .t6{width: 606px;margin-left: 106px;margin-top: 1px;font: 12px 'Calibri';}
+        .t7{width: 517px;margin-left: 120px;margin-top: 410px;font: 13px 'Calibri';}
+        .t8{width: 648px;font: 13px 'Calibri';}
+        .t9{width: 657px;font: 14px 'Calibri';}
+        .t10{width: 609px;margin-top: 14px;font: 8px 'Calibri';}
+        .t11{width: 607px;margin-left: 1px;margin-top: 2px;font: 8px 'Calibri';}
+        .t12{width: 603px;margin-left: 3px;margin-top: 2px;font: 8px 'Calibri';}
+        .t13{width: 648px;font: 12px 'Calibri';}
+        .t14{width: 609px;margin-top: 8px;font: 8px 'Calibri';}
+        .t15{width: 608px;margin-top: 2px;font: 8px 'Calibri';}
+        .t16{width: 609px;margin-top: 14px;font: 12px 'Calibri';}
+        .t17{width: 607px;margin-left: 1px;margin-top: 2px;font: 12px 'Calibri';}
+        .t18{width: 603px;margin-left: 3px;margin-top: 2px;font: 12px 'Calibri';}
+        .t19{width: 609px;margin-top: 14px;font: 11px 'Calibri';}
+        .t20{width: 603px;margin-left: 3px;margin-top: 2px;font: 11px 'Calibri';}
+        .t21{width: 647px;font: 12px 'Calibri';}
 
     </STYLE>
 </HEAD>
@@ -492,19 +483,19 @@ if ( ! function_exists('generate')) {
             </TR>
             <TR>
                 <TD class="tr1 td0"><P class="p1 ft3">SITE ID</P></TD>
-                <TD class="tr1 td1"><P class="p1 ft3">: BGR_TDDInfill_33</P></TD>
+                <TD class="tr1 td1"><P class="p1 ft3">: <?= $project->site_id_ibs ?></P></TD>
             </TR>
             <TR>
                 <TD class="tr2 td0"><P class="p1 ft3">SITE NAME</P></TD>
-                <TD class="tr2 td1"><P class="p1 ft3">: KP. PABUARAN</P></TD>
+                <TD class="tr2 td1"><P class="p1 ft3">: <?= $project->site_name ?></P></TD>
             </TR>
             <TR>
                 <TD class="tr2 td0"><P class="p1 ft3">REGION</P></TD>
-                <TD class="tr2 td1"><P class="p1 ft3">: Jabodetabek</P></TD>
+                <TD class="tr2 td1"><P class="p1 ft3">: <?= $project->region ?></P></TD>
             </TR>
             <TR>
                 <TD class="tr3 td0"><P class="p1 ft3">SITE TYPE</P></TD>
-                <TD class="tr3 td1"><P class="p1 ft3">: GREEN FIELD</P></TD>
+                <TD class="tr3 td1"><P class="p1 ft3">: <?= $project->site_type ?></P></TD>
             </TR>
         </TABLE>
         <P class="p3 ft3">We Hereby guarantee that approval proccess for ESSR can be conducted, for there shall be no</P>
@@ -512,18 +503,36 @@ if ( ! function_exists('generate')) {
     </DIV>
     <DIV id="id1_3">
         <DIV id="id1_3_1">
-            <!--[if lte IE 7]><P style="margin-left:12px;margin-top:0px;margin-right:-52px;margin-bottom:0px;" class="p5 ft3"><![endif]--><!--[if gte IE 8]><P style="margin-left:-28px;margin-top:0px;margin-right:-12px;margin-bottom:40px;" class="p5 ft3"><![endif]--><![if ! IE]><P style="margin-left:-8px;margin-top:20px;margin-right:-32px;margin-bottom:20px;" class="p5 ft3"><![endif]>Prepared By (By Contactor)</P>
+            {{--<P style="margin-left:12px;margin-top:0px;margin-right:-52px;margin-bottom:0px;" class="p5 ft3">
+            <P style="margin-left:-28px;margin-top:0px;margin-right:-12px;margin-bottom:40px;" class="p5 ft3">--}}
+            <P style="margin-left:-8px;margin-top:20px;margin-right:-32px;margin-bottom:20px;" class="p5 ft3">
+                Prepared By (By Contactor)
+            </P>
             <TABLE cellpadding=0 cellspacing=0 class="t1">
                 <TR>
-                    <TD class="tr4 td2"><!--[if lte IE 7]><P style="margin-left:13px;margin-top:-3px;margin-right:-118px;margin-bottom:3px;" class="p6 ft3"><![endif]--><!--[if gte IE 8]><P style="margin-left:-92px;margin-top:-3px;margin-right:-13px;margin-bottom:108px;" class="p6 ft3"><![endif]--><![if ! IE]><P style="margin-left:-40px;margin-top:50px;margin-right:-65px;margin-bottom:55px;" class="p6 ft3"><![endif]>Checked By</P></TD>
-                    <TD class="tr4 td3"><!--[if lte IE 7]><P style="margin-left:0px;margin-top:1px;margin-right:-101px;margin-bottom:-1px;" class="p7 ft3"><![endif]--><!--[if gte IE 8]><P style="margin-left:-101px;margin-top:1px;margin-right:0px;margin-bottom:100px;" class="p7 ft3"><![endif]--><![if ! IE]><P style="margin-left:-51px;margin-top:52px;margin-right:-50px;margin-bottom:49px;" class="p7 ft3"><![endif]>(IBS Regional</P></TD>
+                    <TD class="tr4 td2">
+                       {{-- <P style="margin-left:13px;margin-top:-3px;margin-right:-118px;margin-bottom:3px;" class="p6 ft3">
+                        <P style="margin-left:-92px;margin-top:-3px;margin-right:-13px;margin-bottom:108px;" class="p6 ft3">--}}
+                        <P style="margin-left:-40px;margin-top:50px;margin-right:-65px;margin-bottom:55px;" class="p6 ft3">
+                        Checked By</P>
+                    </TD>
+                    <TD class="tr4 td3">
+                 {{--       <P style="margin-left:0px;margin-top:1px;margin-right:-101px;margin-bottom:-1px;" class="p7 ft3">
+                        <P style="margin-left:-101px;margin-top:1px;margin-right:0px;margin-bottom:100px;" class="p7 ft3">--}}
+                        <P style="margin-left:-51px;margin-top:52px;margin-right:-50px;margin-bottom:49px;" class="p7 ft3">
+                        (IBS Regional)
+                        </P>
+                    </TD>
                 </TR>
                 <TR>
                     <TD class="tr5 td4"><P class="p1 ft1">&nbsp;</P></TD>
                     <TD class="tr5 td5"><P class="p1 ft1">&nbsp;</P></TD>
                 </TR>
             </TABLE>
-            <!--[if lte IE 7]><P style="margin-left:12px;margin-top:45px;margin-right:-44px;margin-bottom:-45px;" class="p8 ft3"><![endif]--><!--[if gte IE 8]><P style="margin-left:-20px;margin-top:45px;margin-right:-12px;margin-bottom:-13px;" class="p8 ft3"><![endif]--><![if ! IE]><P style="margin-left:-4px;margin-top:61px;margin-right:-28px;margin-bottom:-29px;" class="p8 ft3"><![endif]>Approved By (Operator)</P>
+           {{-- <P style="margin-left:12px;margin-top:45px;margin-right:-44px;margin-bottom:-45px;" class="p8 ft3">
+            <P style="margin-left:-20px;margin-top:45px;margin-right:-12px;margin-bottom:-13px;" class="p8 ft3">--}}
+            <P style="margin-left:-4px;margin-top:61px;margin-right:-28px;margin-bottom:-29px;" class="p8 ft3">
+                Approved By (Operator)</P>
         </DIV>
         <DIV id="id1_3_2">
             <TABLE cellpadding=0 cellspacing=0 class="t2">
@@ -2030,33 +2039,4 @@ if ( ! function_exists('generate')) {
     </DIV>
 </DIV>
 </BODY>
-</HTML>';
-        $local_file   = './uploads/surveysitac/'.$params['project_id'].'SITAC_SURVEY'.$params['vendor_id'].'.pdf';
-
-        $parameters = array('key' => $key, 'html' => $raw_html);
-        $options = array(
-            'http' => array(
-                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method' => 'POST',
-                'content' => http_build_query($parameters),
-            ),
-        );
-        $context = stream_context_create($options);
-        $result = @file_get_contents($api_endpoint, false, $context);
-
-        if (!$result) {
-            echo "HTTP Response: " . $http_response_header[0] . "<br/>";
-            $error = error_get_last();
-            echo "Error Message: " . $error['message'];
-        } else {
-            file_put_contents($local_file, $result);
-            $CI = get_instance();
-            $CI->load->model(['CandidateDocument_Model']);
-            $CI->CandidateDocument_Model->update($params['id'], [
-                                          'path' => $params['project_id'].'SITAC_SURVEY'.$params['vendor_id'].'.pdf']);
-            //echo "HTTP Response: " . $http_response_header[0] . "<br/>";
-            //echo($result);
-        }
-    }
-}
-
+</HTML>

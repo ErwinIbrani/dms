@@ -146,7 +146,7 @@ class Survey extends CI_Controller {
                 $data     =  $this->CandidateDocument_Model->save($data);
                 if(!empty($data)) {
                     $template = $this->CandidateDocument_Model->findOne($data)->row_array();
-                    $test = generateSurvey($template);
+                    generateSurvey($template);
                     $this->session->set_flashdata('success', 'Data Uploded');
                     redirect("project/project/document/" . $this->input->post('project_id'), 'refresh');
                 }
@@ -157,6 +157,26 @@ class Survey extends CI_Controller {
             }
           }
       }
+
+    public function laporan_pdf(){
+        $template = $this->CandidateDocument_Model->findOne(16)->row();
+        $project   = $this->Project_Model->findOne($template->project_id)->row();
+        return view('mypdf', ['template' => $template, 'project' => $project]);
+       /* $data = array(
+            "dataku" => array(
+                "nama" => "Petani Kode",
+                "url" => "http://petanikode.com"
+            )
+        );
+
+        $this->load->library('pdf');
+
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "laporan-petanikode.pdf";
+        $this->pdf->load_view('mypdf', $data);*/
+
+
+    }
 
 
 }
