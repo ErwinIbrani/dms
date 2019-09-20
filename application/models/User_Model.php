@@ -30,6 +30,16 @@ class User_Model extends CI_Model {
         return $this->db->get_where($this->table, ['username' => $username]);
     }
 
+    public function vendorPIC()
+    {
+        return $this->db->get_where($this->table, ['type' => 'Vendor']);
+    }
+
+    public function UserIBS()
+    {
+        return $this->db->get_where($this->table, ['type' => 'internal']);
+    }
+
 
 
 }

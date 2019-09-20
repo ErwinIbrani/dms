@@ -1,44 +1,51 @@
 @extends('layouts.app')
 @section('page_title', 'Project')
 
-@section('header')
-    <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/select2/select2.css">
-@endsection
 @section('content')
     <div class="page-inner">
         <div style="text-align: right"><?= $breadcrumb ?></div>
         <br/>
-        <div class="page-section">
-            <div id="base-style" class="card">
+        <div id="stepper" class="bs-stepper">
+            <!-- .card -->
+            <div class="card">
+                <!-- .card-header -->
+                <div class="card-header">
+                    <!-- .steps -->
+                    <div class="steps steps-" role="tablist">
+                        <ul>
+                            <li class="step active" data-target="#test-l-1">
+                                <a href="#" class="step-trigger" tabindex="-1" aria-selected="true"><span class="step-indicator step-indicator-icon"><i class="oi oi-project"></i></span> <span class="d-none d-sm-inline">Assign Project</span></a>
+                            </li>
+                            <li class="step" data-target="#test-l-2">
+                                <a href="#" class="step-trigger" tabindex="-1" aria-selected="false"><span class="step-indicator step-indicator-icon"><i class="oi oi-person"></i></span> <span class="d-none d-sm-inline">PIC Vendor</span></a>
+                            </li>
+                            <li class="step" data-target="#test-l-3">
+                                <a href="#" class="step-trigger" tabindex="-1" aria-selected="false"><span class="step-indicator step-indicator-icon"><i class="oi oi-layers"></i></span> <span class="d-none d-sm-inline">IBS Approvals</span></a>
+                            </li>
+                        </ul>
+                    </div><!-- /.steps -->
+                </div><!-- /.card-header -->
                 <!-- .card-body -->
+
                 <div class="card-body">
-                    <!-- .form -->
                 <?php
                 $data  = [
-                    'class' => 'null'
+                    'class' => 'p-lg-4 p-sm-3 p-0',
+                    'id'    => 'stepper-form',
+                    'name'  => 'stepperForm',
                 ];
                 echo form_open('procurement/project/store',$data);
                 ?>
-                <!-- .fieldset -->
-                    <fieldset>
-                        <legend>Assign Project</legend>
+                <!-- .content -->
+                    <div id="test-l-1" class="content fade active dstepper-block">
+                        <!-- fieldset -->
+                        <fieldset>
+                            <legend>Project</legend>
+                            <div class="row">
 
-                        @if(!empty(validation_errors()))
-                            <div class="col-lg-12">
-                                <div class="alert alert-warning alert-dismissible fade show">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                    <strong><?php echo validation_errors(); ?></strong>
-                                </div>
-                            </div>
-                        @endif
-
-                        <div class="row">
-
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label  for="selDefault">WBS ID / IRO</label>
-                                    <select name="wbs_id" class="custom-select js-example-basic-single">
-                                        <option value="" selected="selected">Select</option>
+                                <div class="col-md-6 mb-4">
+                                    <select name="wbs_id" id="state" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="fieldset01" required="">
+                                        <option value="" selected="selected">Select Project Name</option>
                                         <?php
                                         foreach ($projects as $project) {
                                             echo"<option value='$project->td_planning_detail_wbs_id'> $project->td_planning_detail_wbs_id / $project->tm_planning_iro_number </option>";
@@ -46,45 +53,108 @@
                                         ?>
                                     </select>
                                 </div>
-                            </div>
 
-
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label  for="selDefault">Vendor</label>
-                                    <select name="vendor_id" class="custom-select js-example-basic-single">
-                                        <option value="" selected="selected">Select</option>
+                                <div class="col-md-6 mb-4">
+                                    <select name="vendor_id" id="state" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="fieldset01" required="">
+                                        <option value="" selected="selected">Select Vendor Name</option>
                                         <?php
                                         foreach ($vendors as $vendor) {
-                                        echo"<option value='$vendor->id'> $vendor->name </option>";
+                                            echo"<option value='$vendor->id'> $vendor->group_name </option>";
                                         }
                                         ?>
                                     </select>
                                 </div>
+
                             </div>
 
-                        </div>
+                            <hr class="mt-5">
+                            <!-- .d-flex -->
+                            <div class="d-flex">
+                                {{--    <p>Next </p>--}}
+                                <button type="button" class="next btn btn-primary ml-auto" data-validate="fieldset01">Next step</button>
+                            </div><!-- /.d-flex -->
+                        </fieldset><!-- /fieldset -->
+                    </div><!-- /.content -->
+                    <!-- .content -->
 
-                        <div class="publisher-actions">
-                            <!-- .publisher-tools -->
-                            <div class="publisher-tools mr-auto">
+
+                    <div id="test-l-2" class="content fade dstepper-none">
+                        <!-- fieldset -->
+                        <fieldset>
+                            <legend>PIC Vendor</legend>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <select name="pic_id" id="state" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="fieldset02" required="">
+                                        <option value="" selected="selected">Select PIC Vendor</option>
+                                        <?php
+                                        foreach ($userVendors as $userVendor) {
+                                            echo"<option value='$userVendor->id'> $userVendor->email </option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <select name="role_pic" id="state" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="fieldset02" required="">
+                                        <option value="" selected="selected">Select PIC Vendor</option>
+                                        <?php
+                                        foreach ($pic_users as $role) {
+                                            echo"<option value='$role->id'> $role->name </option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
                             </div>
-                            <!-- /.publisher-tools -->
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                    </fieldset>
-                    <?php echo form_close();?>
+
+
+                            <hr class="mt-5">
+                            <div class="d-flex">
+                                <button type="button" class="prev btn btn-secondary">Previous</button> <button type="button" class="next btn btn-primary ml-auto" data-validate="fieldset02">Next step</button>
+                            </div>
+                        </fieldset><!-- /fieldset -->
+                    </div><!-- /.content -->
+                    <!-- .content -->
+                    <div id="test-l-3" class="content fade dstepper-none">
+                        <!-- fieldset -->
+                        <fieldset>
+                            <legend>User IBS</legend> <!-- .card -->
+                            <div class="row">
+                                <!-- grid column -->
+                                <div class="col-md-6 mb-4">
+                                    <select name="ibs_id" id="statess" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="agreement" required="">
+                                        <option value="" selected="selected">Select User IBS</option>
+                                        <?php
+                                        foreach ($userIbs as $user) {
+                                            echo"<option value='$user->id'> $user->email </option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <select name="role_ibs" id="statess" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="agreement" required="">
+                                        <option value="" selected="selected">Select Role</option>
+                                        <?php
+                                        foreach ($ibs_users as $role) {
+                                            echo"<option value='$role->id'> $role->name </option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <hr class="mt-5">
+                            <div class="d-flex">
+                                <button type="button" class="prev btn btn-secondary">Previous</button>
+                                <button type="submit" class="submit btn btn-primary ml-auto">Submit</button>
+                            </div>
+                        </fieldset><!-- /fieldset -->
+                    </div><!-- /.content -->
+                <?php echo form_close();?><!-- /form -->
                 </div><!-- /.card-body -->
-            </div>
+            </div><!-- /.card -->
         </div>
     </div>
-@endsection
-@section('footer')
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/select2/select2.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/select2/select2.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $(".js-example-basic-single").select2();
-        });
-    </script>
 @endsection

@@ -135,8 +135,6 @@ class Survey extends CI_Controller {
                     'vendor_id'     => $getData['vendor_id'],
                     'candidate_id'  => $this->input->post('candidate_id'),
                     'name'          => $this->input->post('name'),
-                    'code'          => $this->input->post('code'),
-                    'type'          => $this->input->post('type'),
                     'status'        => 'waiting',
                     'created_at'    => date('Y-m-d H:i:s'),
                     'attribute'     => json_encode($attribute), //nanti didecode

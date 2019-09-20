@@ -42,8 +42,9 @@ function () {
           $groupStep.addClass('success'); // go to next step or submit
 
           if ($trigger.hasClass('submit')) {
-            $('#submitfeedback').toast('show');
-            console.log($('#stepper-form').serializeArray());
+              stepperDemo.submit();
+              /*$('#submitfeedback').toast('show');
+              console.log($('#stepper-form').serializeArray());*/
           } else {
             stepperDemo.next();
           }

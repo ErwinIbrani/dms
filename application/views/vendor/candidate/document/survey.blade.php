@@ -43,7 +43,7 @@
 
 							<input type="hidden" class="form-control" name="candidate_id" value="<?= $candidate->id ?>">
 							<input type="hidden" class="form-control" name="project_id" value="<?= $project->id ?>">
-						    <input type="hidden" name="name" value="SURVEY_SITAC" autocomplete="off">
+						    <input type="hidden" name="name" value="SURVEY_SITAC">
 
 							<!-- .fieldset -->
 								<fieldset>
@@ -57,29 +57,7 @@
 									@endif
 
 								<div class="row">
-									<div class="col-lg-12">
-										<div class="form-group">
-											<label for="tf1" class="badge badge-secondary">
-												Classification
-											</label>
-										</div>
-									</div>
 
-									<div class="col-lg-6">
-										<div class="form-group">
-											<label for="tf1">Code</label>
-											<input type="text" class="form-control" name="code" autocomplete="off">
-										</div>
-									</div>
-
-									<div class="col-lg-6">
-										<div class="form-group">
-											<label for="tf1">Type</label>
-											<input type="text" class="form-control" name="type" autocomplete="off">
-										</div>
-									</div>
-
-									<hr style="border-top: 1px dashed #8c8b8b;background-color: #f0f0f0;width: 100%;">
 										<div class="col-lg-12">
 											<div class="form-group">
 												<label for="tf1" class="badge badge-secondary">

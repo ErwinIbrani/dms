@@ -6,7 +6,7 @@ class Project extends CI_Controller
     public function __Construct()
     {
         parent::__construct();
-        $this->load->model(['Tmplanning_Model', 'Project_Model', 'Vendor_Model', 'User_Model', 'Pic_Model', 'Document_Model', 'VendorProject_Model']);
+        $this->load->model(['Tmplanning_Model', 'Project_Model', 'Vendor_Model', 'User_Model', 'Pic_Model', 'Document_Model', 'VendorProject_Model', 'GroupVendor_Model', 'Group_Model']);
         $this->lang->load('auth');
         $this->load->helper('custom');
         authentication($this->ion_auth->logged_in());
@@ -51,11 +51,22 @@ class Project extends CI_Controller
         $this->make_bread->add('Index', 'procurement/project/index', TRUE);
         $this->make_bread->add('Create');
         $breadcrumb = $this->make_bread->output();
-        $vendor = $this->Vendor_Model->vendor()->result();
-        $project = $this->Tmplanning_Model->getData()->result();
+        $vendor     = $this->GroupVendor_Model->groupvendor()->result();
+        $project    = $this->Tmplanning_Model->getData()->result();
+
+        $userVendors= $this->User_Model->vendorPIC()->result();
+        $pic_users  = $this->Group_Model->findByPIC()->result();
+
+        $userIbs    = $this->User_Model->UserIBS()->result();
+        $ibs_users  = $this->Group_Model->findByRoleIbs()->result();
+
         return view('procurement/project/create', [
             'vendors'      => $vendor,
             'projects'     => $project,
+            'userVendors'  => $userVendors,
+            'pic_users'    => $pic_users,
+            'userIbs'      => $userIbs,
+            'ibs_users'    => $ibs_users,
             'breadcrumb'   => $breadcrumb
         ]);
     }

@@ -113,17 +113,7 @@ CREATE TABLE [dbo].[project] (
   [deleted_at] datetime NULL
 );
 
-###################
-Create pic_project:
-###################
-CREATE TABLE [dbo].[pic_project] (
-  [id] int IDENTITY(1,1) NOT NULL,
-  [project_id] int NOT NULL,
-  [layer] int NOT NULL,
-  [username] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-  [email] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-  [status] varchar(3) DEFAULT 1
-);
+
 
 ###################
 Create document_project:
@@ -169,8 +159,16 @@ CREATE TABLE candidate (
     name varchar(150) NULL,
 	long varchar(100) NULL,
 	lat varchar(100) NULL,
-	address varchar(255) NUll
+	address varchar(255) NUll,
+    owner_address varchar(255) NUll,
     is_default int NULL DEFAULT 0,
 	has_selected int NULL DEFAULT 0,
   PRIMARY KEY(id)
 );
+
+============
+1. candidate new field owner_address
+2. documnet_candidate new field status_revision and delete history_attriute
+3. documnet_project new field status_revision and delete history_attriute
+4. Delete table pic_project
+=============
