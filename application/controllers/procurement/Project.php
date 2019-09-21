@@ -6,7 +6,7 @@ class Project extends CI_Controller
     public function __Construct()
     {
         parent::__construct();
-        $this->load->model(['Tmplanning_Model', 'Project_Model', 'Vendor_Model', 'User_Model', 'Pic_Model', 'Document_Model', 'VendorProject_Model', 'GroupVendor_Model', 'Group_Model']);
+        $this->load->model(['Tmplanning_Model', 'Project_Model', 'Vendor_Model', 'User_Model', 'Pic_Model', 'Document_Model', 'VendorProject_Model', 'GroupVendor_Model', 'Group_Model', 'Role_Model']);
         $this->lang->load('auth');
         $this->load->helper('custom');
         authentication($this->ion_auth->logged_in());
@@ -73,25 +73,10 @@ class Project extends CI_Controller
 
     public function store()
     {
-        $this->form_validation->set_rules('wbs_id', 'WBS/Iro', 'required');
-        $this->form_validation->set_rules('vendor_id', 'Vendor', 'required');
-        if ($this->form_validation->run() == FALSE) {
-            $this->make_bread->add('Index', 'procurement/project/index', TRUE);
-            $this->make_bread->add('Create');
-            $breadcrumb = $this->make_bread->output();
-            $vendor     = $this->Vendor_Model->vendor()->result();
-            $project    = $this->Tmplanning_Model->getData()->result();
-            return view('procurement/project/create', [
-                'vendors'      => $vendor,
-                'projects'     => $project,
-                'breadcrumb'   => $breadcrumb
-            ]);
-        }
-        else {
-            $cek = $this->Project_Model->duplicate($this->input->post('wbs_id'));
-            if($cek->num_rows() > 0){
-                $this->session->set_flashdata('error', 'Data Duplicate');
-                redirect("procurement/project/create", 'refresh');
+       $cek = $this->Project_Model->duplicate($this->input->post('wbs_id'), $this->input->post('vendor_id'));
+         if($cek->num_rows() > 0){
+            $this->session->set_flashdata('error', 'Data Duplicate');
+             redirect("procurement/project/create", 'refresh');
             }else {
                 $getData = $this->Tmplanning_Model->findByWBS($this->input->post('wbs_id'))->row_array();
                 $data = [
@@ -125,7 +110,8 @@ class Project extends CI_Controller
                     'longitude'        =>  $getData['td_planning_detail_longitude'],
                     'latitude'         =>  $getData['td_planning_detail_latitude'],
                     'status'           =>  'COM_SITAC',
-                    'created_at'       =>  date('Y-m-d H:i:s')
+                    'created_at'       =>  date('Y-m-d H:i:s'),
+                    'updated_at'       =>  date('Y-m-d H:i:s')
                 ];
                 $this->db->trans_start();
                 $model =  $this->Project_Model->save($data);
@@ -133,17 +119,27 @@ class Project extends CI_Controller
                                                   'vendor_id'  => $this->input->post('vendor_id'),
                                                   'status'     => 'New',
                                                   'created_at' => date('Y-m-d H:i:s')]);
+
+                $this->Role_Model->save(['user_id'    => $this->input->post('user_pic_id'),
+                                         'group_id'   => $this->input->post('role_pic_id'),
+                                         'project_id' => $model
+                                         ]);
+
+                $this->Role_Model->save(['user_id'    => $this->input->post('user_pic_id'),
+                     'group_id'   => $this->input->post('role_pic_id'),
+                     'project_id' => $model
+                 ]);
+
                 $this->db->trans_complete();
                 if ($this->db->trans_status() === FALSE) {
                     $this->db->trans_rollback();
                     //return 0;
                     $this->session->set_flashdata('success', 'Something Wrong');
                     redirect("procurement/project/index", 'refresh');
-                }
+               }
                 $this->session->set_flashdata('success', 'Data Inserted');
                 redirect("procurement/project/index", 'refresh');
-            }
-        }
+          }
     }
 
     public function view($id)

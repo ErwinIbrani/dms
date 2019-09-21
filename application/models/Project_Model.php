@@ -14,11 +14,11 @@ class Project_Model extends CI_Model
 
     public function getData($rowno,$rowperpage,$search="")
     {
-        $this->db->select('p.id, p.wbs_id, p.iro_number, p.site_id_ibs, p.status, v.name');
+        $this->db->select('p.id, p.wbs_id, p.iro_number, p.site_id_ibs, p.status, v.group_name');
         $this->db->from('project p');
-        $this->db->join('vendor v', 'p.vendor_id = v.id', 'inner');
+        $this->db->join('group_vendor v', 'p.vendor_id = v.id', 'inner');
         if($search != ''){
-            $this->db->like('v.name', $search);
+            $this->db->like('v.group_name', $search);
             $this->db->or_like('p.wbs_id', $search);
             $this->db->or_like('p.iro_number', $search);
             $this->db->or_like('p.status', $search);
@@ -32,9 +32,9 @@ class Project_Model extends CI_Model
     {
         $this->db->select('count(*) as allcount');
         $this->db->from('project');
-        $this->db->join('vendor', 'project.vendor_id = vendor.id', 'inner');
+        $this->db->join('group_vendor', 'project.vendor_id = group_vendor.id', 'inner');
         if($search != ''){
-            $this->db->like('vendor.name', $search);
+            $this->db->like('group_vendor.group_name', $search);
             $this->db->or_like('project.wbs_id', $search);
             $this->db->or_like('project.iro_number', $search);
             $this->db->or_like('project.site_id_ibs', $search);
@@ -44,11 +44,12 @@ class Project_Model extends CI_Model
         return $result[0]['allcount'];
     }
 
-    public function duplicate($wbs_id)
+    public function duplicate($wbs_id,$vendor_id)
     {
-        $this->db->select('wbs_id');
+        $this->db->select('wbs_id, vendor_id');
         $this->db->from($this->table);
         $this->db->where(['wbs_id' => $wbs_id]);
+        $this->db->where(['vendor_id' => $vendor_id]);
         return $this->db->get();
     }
 

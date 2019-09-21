@@ -63,7 +63,7 @@
                             @foreach($projects as $key => $roject)
                                 <tr>
                                     <td class="align-middle"> {{ $i++ }} </td>
-                                    <td class="align-middle"> {{ $roject->name }} </td>
+                                    <td class="align-middle"> {{ $roject->group_name }} </td>
                                     <td class="align-middle"> {{ $roject->wbs_id }} </td>
                                     <td class="align-middle"> {{ $roject->iro_number }} </td>
                                     <td class="align-middle"> {{ $roject->site_id_ibs }} </td>
