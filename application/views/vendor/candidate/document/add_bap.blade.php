@@ -137,15 +137,28 @@
 								</div>
 							</div>
 
-							<p class="mb-1">Rend Price</p>
-							<div class="input-group">
-								<label class="input-group-prepend" for="rent_price">
-									<span class="badge">IDR</span>
-								</label>
-								<input type="text" class="form-control" id="rent_price" name="rent_price">
+							<p class="mb-1">Rent Price</p>
+							<div class="form-group">
+								<div class="input-group">
+									<label class="input-group-prepend" for="rent_price">
+										<span class="badge">IDR</span>
+									</label>
+									<input type="text" class="form-control" id="rent_price" name="rent_price">
+								</div>
 							</div>
 
-							<p class="mt-5 text-muted">Land Area:</p>
+							<div class="form-group">
+								<label for="rent_period">Rent Period</label>
+								<div class="input-group input-group-alt">
+									<input type="text" class="form-control" id="rent_period" placeholder="Rent Period">
+									<div class="input-group-append">
+										<span class="input-group-text"> / Year</span>
+									</div>
+								</div>
+							</div>
+
+
+							<p class="mt-5 text-muted">Space Dimension:</p>
 							<div class="form-row">
 								<div class="col-md-3">
 									<div class="form-group">
@@ -174,6 +187,28 @@
 										<div class="form-label-group">
 											<input type="text" class="form-control" id="total_area" name="total_area">
 											<label for="total_area">Total (m<sup>2</sup>) </label>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+							<p class="mt-3 text-muted">Access Road:</p>
+							<div class="form-row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<div class="form-label-group">
+											<input type="text" class="form-control" id="sisi_2" name="sisi_2">
+										 b	<label for="sisi_2">(m)</label>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-3">
+									<div class="form-group">
+										<div class="form-label-group">
+											<input type="text" class="form-control" id="sisi" name="sisi">
+											<label for="sisi">(m)</label>
 										</div>
 									</div>
 								</div>
