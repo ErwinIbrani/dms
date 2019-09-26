@@ -144,6 +144,17 @@
                                                     ?>
                                                 </select>
                                             </td>
+                                            <td>
+                                                  <select  name="addmore[][layer]" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="agreement" required="">
+                                                     <option value="" selected="selected">Layer</option>
+                                                     <option value="1">1</option>
+                                                     <option value="2">2</option>
+                                                     <option value="3">3</option>
+                                                     <option value="4">4</option>
+                                                     <option value="5">5</option>
+                                                     <option value="6">6</option>
+                                                   </select>
+                                            </td>
 
                                             <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                                         </tr>
@@ -185,6 +196,15 @@
                                                                               echo "<option value=".$role->id."> $role->name </option>";
                                                                               }
                                                                               ?></select></td>' +
+                    '<td><select  name="addmore[][layer]" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="agreement" required="">\n' +
+                    '    <option value="" selected="selected">Layer</option>\n' +
+                    '    <option value="1">1</option>\n' +
+                    '    <option value="2">2</option>\n' +
+                    '    <option value="3">3</option>\n' +
+                    '    <option value="4">4</option>\n' +
+                    '    <option value="5">5</option>\n' +
+                    '    <option value="6">6</option>\n' +
+                    '    </select></td>' +
                     '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
             });
 

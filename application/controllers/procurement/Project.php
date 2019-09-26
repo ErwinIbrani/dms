@@ -73,6 +73,12 @@ class Project extends CI_Controller
 
     public function store()
     {
+        foreach ($this->input->post('addmore') as $key => $value) {
+
+          var_dump($value);
+
+        }
+        exit();
        $cek = $this->Project_Model->duplicate($this->input->post('wbs_id'), $this->input->post('vendor_id'));
          if($cek->num_rows() > 0){
             $this->session->set_flashdata('error', 'Data Duplicate');
