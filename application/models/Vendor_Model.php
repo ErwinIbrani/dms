@@ -5,7 +5,7 @@ class Vendor_Model extends CI_Model
     protected $table       = "vendor";
     protected $primaryKey  = 'id';
 
-    public function vendor()
+    public function groupvendor()
     {
         $this->db->select('*');
         $this->db->from($this->table);
@@ -13,39 +13,19 @@ class Vendor_Model extends CI_Model
         return $this->db->get();
     }
 
-    public function getData($rowno,$rowperpage,$search="")
+
+    public function getDatas($rowno,$rowperpage,$search="")
     {
-        $this->db->select('vendor.id as vendor_id,
-                           vendor.group_vendor_id as vendor_group_vendor_id,
-                           vendor.name as vendor_name,
-                           vendor.email as vendor_email,
-                           vendor.phone as vendor_phone,
-                           vendor.address as vendor_address,
-                           vendor.region_id as vendor_region_id,
-                           vendor.province_id as vendor_province_id,
-                           vendor.city_id as vendor_city_id,
-                           vendor.created_by as vendor_created_by,
-                           vendor.updated_by as vendor_updated_by,
-                           group_vendor.group_name as group_name,
-                           region.name as region_name,
-                           region.code as region_code,
-                           region.char as region_char,
-                           province.name as province_name,
-                           province.code as province_code,
-                           city.name as city_name,
-                           city.code as city_code,
-                           city.bsni as city_bsni');
+
+        $this->db->select('created.id as created_id, created.username as created_username ,created.email as created_email,
+                           updated.id as updated_id, updated.username as updated_username ,updated.email as updated_email,
+                           vendor.id, vendor.group_name');
         $this->db->from($this->table);
-        $this->db->join('group_vendor','group_vendor.id = vendor.group_vendor_id','inner');
-        $this->db->join('region','region.id = vendor.region_id','inner');
-        $this->db->join('province','province.id = vendor.province_id','inner');
-        $this->db->join('city','city.id = vendor.city_id','inner');
-        $this->db->join('users as created','created.id = group_vendor.created_by','inner'); //inner //Right
-        $this->db->join('users as updated','updated.id = group_vendor.updated_by','Left');
+        $this->db->join('users as created','created.id = vendor.created_by','inner'); //inner //Right
+        $this->db->join('users as updated','updated.id = vendor.updated_by','Left');
         $this->db->where('vendor.deleted_at IS NULL', null, false);
         if($search != ''){
-            $this->db->like('vendor.name', $search);
-            $this->db->or_like('group_vendor.group_name', $search);
+            $this->db->like('vendor.group_name', $search);
         }
         $this->db->limit($rowperpage, $rowno);
         $query = $this->db->get();
@@ -56,16 +36,11 @@ class Vendor_Model extends CI_Model
     {
         $this->db->select('count(*) as allcount');
         $this->db->from($this->table);
-        $this->db->join('group_vendor','group_vendor.id = vendor.group_vendor_id','inner');
-        $this->db->join('region','region.id = vendor.region_id','inner');
-        $this->db->join('province','province.id = vendor.province_id','inner');
-        $this->db->join('city','city.id = vendor.city_id','inner');
-        $this->db->join('users as created','created.id = group_vendor.created_by','inner'); //inner //Right
-        $this->db->join('users as updated','updated.id = group_vendor.updated_by','Left');
+        $this->db->join('users as created','created.id = vendor.created_by','inner'); //inner //Right
+        $this->db->join('users as updated','updated.id = vendor.updated_by','Left');
         $this->db->where('vendor.deleted_at IS NULL', null, false);
         if($search != ''){
-            $this->db->like('vendor.name', $search);
-            $this->db->or_like('group_vendor.group_name', $search);
+            $this->db->like('vendor.group_name', $search);
         }
         $query = $this->db->get();
         $result = $query->result_array();

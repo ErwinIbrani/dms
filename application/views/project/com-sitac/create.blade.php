@@ -23,39 +23,14 @@
                     <fieldset>
                         <legend>COM SITAC</legend>
 
-                        @if(!empty(validation_errors()))
-                        <div class="col-lg-12">
-                            <div class="alert alert-warning alert-dismissible fade show">
-                                <button type="button" class="close" data-dismiss="alert">×</button>
-                                <strong><?php echo validation_errors(); ?></strong>
-                            </div>
-                        </div>
-                        @endif
-
                     <div class="row">
                         <input type="hidden" name="project_id" value="<?= $id_project ?>">
-                        <input type="hidden" name="name" value="COM_SITAC" autocomplete="off">
-
-
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="tf1">Code</label>
-                                <input type="text" class="form-control" name="code" autocomplete="off">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="tf1">Type/Classification</label>
-                                <input type="text" class="form-control" name="type" autocomplete="off">
-                            </div>
-                        </div>
 
                         <div class="col-lg-6">
                            <div class="form-group">
-                            <label for="tf3">Upload File</label>
+                            <label for="tf3">Upload File (xls)</label>
                             <div class="custom-file">
-                                <input type="file" name="path" class="custom-file-input" id="tf3" multiple=""> <label class="custom-file-label" for="tf3">Choose file</label>
+                                <input type="file" name="path" class="custom-file-input" id="tf3" required=""> <label class="custom-file-label" for="tf3">Choose file</label>
                             </div>
                         </div>
                        </div>

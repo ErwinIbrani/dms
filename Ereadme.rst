@@ -1,7 +1,7 @@
 ###################
-Create Vendor Group:
+Create Vendor:
 ###################
-CREATE TABLE [dbo].[group_vendor] (
+CREATE TABLE [dbo].[vendor] (
   [id] int  IDENTITY(1,1) NOT NULL,
   [group_name] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
   [created_by] int NULL,
@@ -11,25 +11,26 @@ CREATE TABLE [dbo].[group_vendor] (
   [deleted_at] datetime NULL
 );
 
-###################
-Create Vendor:
-###################
-CREATE TABLE [dbo].[vendor] (
-  [id] int IDENTITY(1,1) NOT NULL,
-  [group_vendor_id] int NULL,
-  [name] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-  [email] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-  [phone] varchar(15) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-  [address] TEXT NULL,
-  [region_id] int NULL,
-  [province_id] int NULL,
-  [city_id] int NULL,
-  [created_by] int NULL,
-  [updated_by] int NULL,
-  [created_at] datetime NULL,
-  [updated_at] datetime NULL,
-  [deleted_at] datetime NULL
-);
+##################
+Create User Vendor
+##################
+CREATE TABLE [dbo].[user_vendor] (
+  [id] int  IDENTITY(1,1) NOT NULL,
+  [vendor_id] int  NULL,
+  [name] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [email] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [phone] varchar(15) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [address] text COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [region_id] int  NULL,
+  [province_id] int  NULL,
+  [city_id] int  NULL,
+  [level] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [created_by] int  NULL,
+  [updated_by] int  NULL,
+  [created_at] datetime  NULL,
+  [updated_at] datetime  NULL,
+  [deleted_at] datetime  NULL
+)
 
 ###################
 Create Region:
@@ -172,3 +173,4 @@ CREATE TABLE candidate (
 3. documnet_project new field status_revision and delete history_attriute
 4. Delete table pic_project
 =============
+
