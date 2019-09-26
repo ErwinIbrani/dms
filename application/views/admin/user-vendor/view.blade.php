@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page_title', 'Vendor')
+@section('page_title', 'User Vendor')
 
 @section('content')
     <div class="page-inner">
@@ -16,13 +16,13 @@
                                 <td><?= $model->id ?></td>
                             </tr>
                             <tr>
-                                <th>Grup Name</th>
+                                <th>Vendor Name</th>
                                 <td>
                                     <?= $group->group_name ?>
                                 </td>
                             </tr>
                             <tr>
-                                <th>Vendor Name</th>
+                                <th>User Vendor Name</th>
                                 <td><?= $model->name ?></td>
                             </tr>
                             <tr>

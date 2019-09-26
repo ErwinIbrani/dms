@@ -49,59 +49,44 @@ class Vendor extends CI_Controller
 
     public function create()
     {
-        $this->make_bread->add('Index', 'admin/groupvendor/index', TRUE);
+        $this->make_bread->add('Index', 'admin/vendor/index', TRUE);
         $this->make_bread->add('Create');
         $breadcrumb = $this->make_bread->output();
-        return view('admin/group-vendor/create', ['breadcrumb' => $breadcrumb]);
+        return view('admin/vendor/create', ['breadcrumb' => $breadcrumb]);
     }
 
     public  function store()
     {
-      $this->form_validation->set_rules('group_name', 'Group Name', 'required');
-      if ($this->form_validation->run() == FALSE) {
-          $this->make_bread->add('Index', 'admin/groupvendor/index', TRUE);
-          $this->make_bread->add('Create');
-          $breadcrumb = $this->make_bread->output();
-          return view('admin/group-vendor/create', ['breadcrumb' => $breadcrumb]);
-        }
-      else {
-            $data = [
-                'group_name'   => $this->input->post('group_name'),
-                'created_by'   => $this->ion_auth->user()->row()->id,
-                'created_at'   => date('Y-m-d H:i:s')
+          $data = [
+                    'group_name'   => $this->input->post('group_name'),
+                    'created_by'   => $this->ion_auth->user()->row()->id,
+                    'created_at'   => date('Y-m-d H:i:s')
             ];
-            $this->GroupVendor_Model->save($data);
+            $this->Vendor_Model->save($data);
             $this->session->set_flashdata('success', 'Data Inserted');
-            redirect("admin/groupvendor/index", 'refresh');
-         }
+            redirect("admin/vendor/index", 'refresh');
+
     }
 
     public function edit($id)
     {
-        $this->make_bread->add('Index', 'admin/groupvendor/index', TRUE);
+        $this->make_bread->add('Index', 'admin/vendor/index', TRUE);
         $this->make_bread->add('Update');
         $breadcrumb   = $this->make_bread->output();
-        $model        = $this->GroupVendor_Model->findOne($id)->row();
-        return view('admin/group-vendor/edit', ['model' => $model, 'breadcrumb' => $breadcrumb]);
+        $model        = $this->Vendor_Model->findOne($id)->row();
+        return view('admin/vendor/edit', ['model' => $model, 'breadcrumb' => $breadcrumb]);
     }
 
     public function update()
     {
-        $this->form_validation->set_rules('group_name', 'Group Name', 'required');
-        if ($this->form_validation->run() == FALSE) {
-            $this->session->set_flashdata('warning', 'Please Update Correctly');
-            redirect_back();
-        }
-        else {
-            $update = [
+      $update = [
                 'group_name'   => $this->input->post('group_name'),
                 'updated_by'   => $this->ion_auth->user()->row()->id,
                 'updated_at'   => date('Y-m-d H:i:s')
-            ];
-            $this->GroupVendor_Model->update($this->input->post('id'), $update);
-            $this->session->set_flashdata('success', 'Data Edited');
-            redirect("admin/groupvendor/index", 'refresh');
-        }
+       ];
+       $this->Vendor_Model->update($this->input->post('id'), $update);
+       $this->session->set_flashdata('success', 'Data Edited');
+       redirect("admin/vendor/index", 'refresh');
     }
 
     public function destroy($id)
@@ -110,11 +95,11 @@ class Vendor extends CI_Controller
         $update = [
             'deleted_at'   => date('Y-m-d H:i:s')
         ];
-        $this->GroupVendor_Model->update($id, $update);
+        $this->Vendor_Model->update($id, $update);
         //hard delete
        // $this->GroupVendor_Model->delete($id);
         $this->session->set_flashdata('success', 'Data Deleted');
-        redirect("admin/groupvendor/index", 'refresh');
+        redirect("admin/vendor/index", 'refresh');
     }
     
 

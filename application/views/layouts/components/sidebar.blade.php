@@ -62,10 +62,10 @@
 						</a> <!-- child menu -->
 						<ul class="menu">
 							<li class="menu-item">
-								<a href="{{ site_url("admin/groupvendor/index") }}" class="menu-link">Group Vendor</a>
+								<a href="{{ site_url("admin/vendor/index") }}" class="menu-link">Vendor</a>
 							</li>
 							<li class="menu-item">
-								<a href="{{ site_url("/admin/vendor") }}" class="menu-link">Vendor</a>
+								<a href="{{ site_url("/admin/uservendor/index") }}" class="menu-link">User Vendor</a>
 							</li>
 						</ul><!-- /child menu -->
 					</li><!-- /.menu-item -->

@@ -5,7 +5,7 @@ class Vendor_Model extends CI_Model
     protected $table       = "vendor";
     protected $primaryKey  = 'id';
 
-    public function groupvendor()
+    public function vendor()
     {
         $this->db->select('*');
         $this->db->from($this->table);
