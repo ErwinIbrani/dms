@@ -46,12 +46,13 @@
 							</div>
 						</div>
 					</div>
-					{{--					<div class="form-group">--}}
-					{{--						<div class="form-label-group">--}}
-					{{--							<input type="text" class="form-control" name="address" id="address" placeholder="Address">--}}
-					{{--							<label for="address">Address</label>--}}
-					{{--						</div>--}}
-					{{--					</div>--}}
+						<div class="form-group">
+							<div class="form-label-group">
+								<input type="text" class="form-control" name="address" id="address"
+									   placeholder="Address">
+								<label for="address">Address</label>
+							</div>
+						</div>
 
 					<h5 class="h5 text-muted">Owner Information</h5>
 					<div class="form-row">
@@ -96,8 +97,8 @@
 
 					<div class="form-group">
 						<div class="form-label-group">
-							<input type="text" class="form-control" id="address" name="address">
-							<label for="address">Owner Address</label>
+							<input type="text" class="form-control" id="owner-address" name="owner_address">
+							<label for="owner-address">Owner Address</label>
 						</div>
 					</div>
 
