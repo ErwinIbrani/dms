@@ -2,7 +2,8 @@
 
 use PhpOffice\PhpWord\TemplateProcessor;
 
-class Bap extends CI_Controller {
+class Bap extends CI_Controller
+{
 
 	protected $attribute = [];
 
@@ -15,9 +16,12 @@ class Bap extends CI_Controller {
 	public function add($candidate_id)
 	{
 		$candidate = $this->Candidate_Model->getCandidateById($candidate_id)->row();
+		$project = $this->Project_Model->findOne($candidate->project_id)->row();
 
+		//var_dump($project) or die;
 		return view('vendor.candidate.document.bap.add_bap', array(
-			'candidate' => $candidate
+			'candidate' => $candidate,
+			'project' => $project
 		));
 	}
 
@@ -40,21 +44,14 @@ class Bap extends CI_Controller {
 
 
 		$document = $this->CandidateDocument_Model->save($candidate_document);
-		return redirect('/vendor/candidate/document/bap/preview/'.$document);
+		return redirect('/vendor/candidate/document/bap/preview/' . $document);
 	}
 
 	public function preview($document_id)
 	{
 		$document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
 		$attribute = json_decode($document_candidate->attribute);
-		$arrContextOptions=array(
-			"ssl"=>array(
-				"verify_peer"=>false,
-				"verify_peer_name"=>false,
-			),
-		);
 
-//		$document = file_get_contents(,  false, stream_context_create($arrContextOptions));
 		$arrContextOptions = array(
 			"ssl" => array(
 				"verify_peer" => false,
@@ -63,17 +60,73 @@ class Bap extends CI_Controller {
 		);
 		stream_context_set_default($arrContextOptions);
 
+		$candidate = $attribute->candidate[0];
+		$project = $this->Project_Model->findOne($candidate->project_id)->row();
+		$candidate_bap = $attribute->bap;
+
 		$template = new TemplateProcessor(base_url('documents/sitac/BAP.docx'));
 
-		$template->setValue('site_id', 'Nama site id');
 
-		$template->saveAs('bape');
+		$template->setValue(array(
+			'site_id',
+			'site_name',
+			'long',
+			'lat',
+			'site_address',
+			'owner_name',
+			'owner_id_card',
+			'owner_phone',
+			'owner_fax',
+			'owner_address',
+			'authorized_name',
+			'authorized_id_card',
+			'authorized_phone',
+			'authorized_address',
+			'type',
+			'rent_price',
+			'rent_period',
+			'space_dimension',
+			'access_road',
+			'access_road_type',
+			'ppn',
+			'pph',
+			'notary_fee',
+			'electricity_cost',
+			'note',), array(
+			$project->site_id_ibs,
+			$project->site_name,
+			$candidate->long,
+			$candidate->lat,
+			$project->address,
+			$candidate->owner_name,
+			$candidate->id_card,
+			$candidate->phone_number,
+			$candidate->fax,
+			$candidate->owner_address,
+			'',//$candidate_bap->authorized_name,
+			'',//$candidate_bap->authorized_id_card,
+			'',//$candidate_bap->authorized_phone,
+			'',//$candidate_bap->authorized_address,
+			$candidate_bap->building_type,
+			$candidate_bap->rent_price,
+			$candidate_bap->rent_period,
+			$candidate_bap->space_dimension,
+			$candidate_bap->access_road,
+			$candidate_bap->access_road_type,
+			$candidate_bap->ppn,
+			$candidate_bap->pph,
+			$candidate_bap->notary_fee,
+			$candidate_bap->electricity_cost,
+			$candidate_bap->note));
+
+		$template->saveAs('uploads/BAP-'.$candidate->name.'.docx');
+		// Saving the document as HTML file...
 
 		var_dump($template) or die;
-		return view('vendor.candidate.document.bap.preview', array(
-			'candidate' => $attribute->candidate[0],
-			'bap' => $attribute->bap
-		));
+//		return view('vendor.candidate.document.bap.preview', array(
+//			'candidate' => $attribute->candidate[0],
+//			'bap' => $attribute->bap
+//		));
 	}
 
 }

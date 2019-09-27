@@ -50,15 +50,15 @@
 							<div class="mb-5">
 								<div class="row mb-2">
 									<div class="col-md-3">Site ID / Name:</div>
-									<div class="col-md-7"><b>BGR_TDD001</b> / <b>KP. PABUARAN</b></div>
+									<div class="col-md-7"><b>{{ $project->site_id_ibs }}</b> / <b>{{ $project->site_name }}</b></div>
 								</div>
 								<div class="row mb-2">
 									<span class="col-md-3">Longituted / Latitude: </span>
-									<span class="col-md-7">-233485.123 / 123394883 </span>
+									<span class="col-md-7">{{ $candidate->long }} / {{ $candidate->lat }} </span>
 								</div>
 								<div class="row mb-4">
 									<span class="col-md-3">Site Address: </span>
-									<span class="col-md-7">Jl. Sukasari V No.70, Sukawarna, Sukajadi, Bandung, Jawa Barat.</span>
+									<span class="col-md-7">{{ $project->address }}</span>
 								</div>
 								<div class="row mb-2">
 									<span class="col-md-3">Owner Name: </span>
@@ -140,9 +140,9 @@
 										<label for="fls1">Type</label>
 										<select class="form-control" id="building_type" name="building_type">
 											<option value=""> Choose...</option>
-											<option value="lahan"> Lahan</option>
-											<option value="ruko"> Ruko</option>
-											<option value="roof_top"> Roof Top</option>
+											<option value="Lahan"> Lahan</option>
+											<option value="Ruko"> Ruko</option>
+											<option value="Roof Top"> Roof Top</option>
 										</select>
 									</div>
 								</div>
@@ -163,7 +163,7 @@
 									<div class="form-group">
 										<label for="rent_period">Rent Period</label>
 										<div class="input-group input-group-alt">
-											<input type="text" class="form-control" id="rent_period">
+											<input type="text" class="form-control" id="rent_period" name="rent_period">
 											<div class="input-group-append">
 												<span class="input-group-text"> / Year</span>
 											</div>
@@ -200,12 +200,12 @@
 										</div>
 										<div class="mt-1">
 											<div class="custom-control custom-control-inline custom-radio">
-												<input type="radio" class="custom-control-input" name="access_road_type" id="rd1">
-												<label class="custom-control-label" value="rent" for="rd1">Include Rent</label>
+												<input type="radio" class="custom-control-input" value="Termasuk harga sewa" name="access_road_type" id="rd1">
+												<label class="custom-control-label" for="rd1">Include Rent</label>
 											</div>
 											<div class="custom-control custom-control-inline custom-radio">
-												<input type="radio" class="custom-control-input" name="access_road_type" id="rd2">
-												<label class="custom-control-label" value="public" for="rd2">Public Road</label>
+												<input type="radio" class="custom-control-input" value="Jalan Milik Umum" name="access_road_type" id="rd2">
+												<label class="custom-control-label"  for="rd2">Public Road</label>
 											</div>
 										</div>
 									</div>
@@ -224,10 +224,10 @@
 									<div class="form-group">
 										<label class="d-block">PPN</label>
 										<div class="custom-control custom-control-inline custom-radio">
-											<input type="radio" class="custom-control-input" value="include" name="ppn" id="ppn1"> <label class="custom-control-label" for="ppn1">Include</label>
+											<input type="radio" class="custom-control-input" value="Termasuk" name="ppn" id="ppn1"> <label class="custom-control-label" for="ppn1">Include</label>
 										</div>
 										<div class="custom-control custom-control-inline custom-radio">
-											<input type="radio" class="custom-control-input" value="not_include" name="ppn" id="ppn2"> <label class="custom-control-label" for="ppn2">Not Included</label>
+											<input type="radio" class="custom-control-input" value="Tidak termasuk" name="ppn" id="ppn2"> <label class="custom-control-label" for="ppn2">Not Included</label>
 										</div>
 									</div>
 								</div>
@@ -235,10 +235,10 @@
 									<div class="form-group">
 										<label class="d-block">PPh</label>
 										<div class="custom-control custom-control-inline custom-radio">
-											<input type="radio" class="custom-control-input" value="include" name="pph" id="pph1"> <label class="custom-control-label" for="pph1">Include</label>
+											<input type="radio" class="custom-control-input" value="Termasuk" name="pph" id="pph1"> <label class="custom-control-label" for="pph1">Include</label>
 										</div>
 										<div class="custom-control custom-control-inline custom-radio">
-											<input type="radio" class="custom-control-input" value="not_include"  name="pph" id="pph2"> <label class="custom-control-label" for="pph2">Not Included</label>
+											<input type="radio" class="custom-control-input" value="Tidak termasuk"  name="pph" id="pph2"> <label class="custom-control-label" for="pph2">Not Included</label>
 										</div>
 									</div>
 								</div>
@@ -246,10 +246,10 @@
 									<div class="form-group">
 										<label class="d-block">Notary Fee</label>
 										<div class="custom-control custom-control-inline custom-radio">
-											<input type="radio" class="custom-control-input" value="include" name="notary_fee" id="nf1"> <label class="custom-control-label" for="nf1">Include</label>
+											<input type="radio" class="custom-control-input" value="Termasuk" name="notary_fee" id="nf1"> <label class="custom-control-label" for="nf1">Include</label>
 										</div>
 										<div class="custom-control custom-control-inline custom-radio">
-											<input type="radio" class="custom-control-input" value="not_include" name="notary_fee" id="nf2"> <label class="custom-control-label" for="nf2">Not Included</label>
+											<input type="radio" class="custom-control-input" value="Tidak termasuk" name="notary_fee" id="nf2"> <label class="custom-control-label" for="nf2">Not Included</label>
 										</div>
 									</div>
 								</div>
@@ -257,10 +257,10 @@
 									<div class="form-group">
 										<label class="d-block">Electricity cost.</label>
 										<div class="custom-control custom-control-inline custom-radio">
-											<input type="radio" class="custom-control-input" value="include" name="electricity_cost" id="ec1"> <label class="custom-control-label" for="ec1">Include</label>
+											<input type="radio" class="custom-control-input" value="Termasuk" name="electricity_cost" id="ec1"> <label class="custom-control-label" for="ec1">Include</label>
 										</div>
 										<div class="custom-control custom-control-inline custom-radio">
-											<input type="radio" class="custom-control-input" value="not_include" name="electricity_cost" id="ec2"> <label class="custom-control-label" for="ec2">Not Included</label>
+											<input type="radio" class="custom-control-input" value="Tidak termasuk" name="electricity_cost" id="ec2"> <label class="custom-control-label" for="ec2">Not Included</label>
 										</div>
 									</div>
 								</div>
