@@ -83,13 +83,7 @@
 					<li class="menu-header">Project</li><!-- /.menu-header -->
 					<!-- .menu-item -->
 					<li class="menu-item">
-						<a href="{{ site_url('project/pic') }}" class="menu-link"><span class="menu-icon fas fa-user-check"></span> <span class="menu-text">PIC Project</span></a>
 						<a href="{{ site_url('project/project/index') }}" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span class="menu-text">Document Project</span></a>
-					</li><!-- /.menu-item -->
-
-					<!-- .menu-item -->
-					<li class="menu-item">
-						<a href="{{ site_url('project/pic') }}" class="menu-link"><span class="menu-icon fas fa-file-archive"></span> <span class="menu-text">Projects</span></a>
 					</li><!-- /.menu-item -->
 
 					<li class="menu-item has-child">

@@ -16,7 +16,7 @@ class Project_Model extends CI_Model
     {
         $this->db->select('p.id, p.wbs_id, p.iro_number, p.site_id_ibs, p.status, v.group_name');
         $this->db->from('project p');
-        $this->db->join('group_vendor v', 'p.vendor_id = v.id', 'inner');
+        $this->db->join('vendor v', 'p.vendor_id = v.id', 'inner');
         if($search != ''){
             $this->db->like('v.group_name', $search);
             $this->db->or_like('p.wbs_id', $search);
@@ -32,9 +32,9 @@ class Project_Model extends CI_Model
     {
         $this->db->select('count(*) as allcount');
         $this->db->from('project');
-        $this->db->join('group_vendor', 'project.vendor_id = group_vendor.id', 'inner');
+        $this->db->join('vendor', 'project.vendor_id = vendor.id', 'inner');
         if($search != ''){
-            $this->db->like('group_vendor.group_name', $search);
+            $this->db->like('vendor.group_name', $search);
             $this->db->or_like('project.wbs_id', $search);
             $this->db->or_like('project.iro_number', $search);
             $this->db->or_like('project.site_id_ibs', $search);

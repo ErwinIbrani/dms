@@ -6,7 +6,7 @@ class Project extends CI_Controller
     public function __Construct()
     {
         parent::__construct();
-        $this->load->model(['Tmplanning_Model', 'Project_Model', 'Vendor_Model', 'User_Model', 'Pic_Model', 'Document_Model', 'VendorProject_Model', 'GroupVendor_Model', 'Group_Model', 'Role_Model']);
+        $this->load->model(['Tmplanning_Model', 'Project_Model', 'UserVendor_Model', 'User_Model',  'Document_Model', 'Vendor_Model', 'Group_Model', 'Role_Model']);
         $this->lang->load('auth');
         $this->load->helper('custom');
         authentication($this->ion_auth->logged_in());
@@ -34,7 +34,6 @@ class Project extends CI_Controller
         $config['base_url']   = base_url().'procurement/project/index';
         $config['total_rows'] = $allcount;
         $config['per_page']   = $rowperpage;
-
         $this->pagination->initialize($config);
         $pagination = $this->pagination->create_links();
 
@@ -51,7 +50,7 @@ class Project extends CI_Controller
         $this->make_bread->add('Index', 'procurement/project/index', TRUE);
         $this->make_bread->add('Create');
         $breadcrumb = $this->make_bread->output();
-        $vendor     = $this->GroupVendor_Model->groupvendor()->result();
+        $vendor     = $this->Vendor_Model->vendor()->result();
         $project    = $this->Tmplanning_Model->getData()->result();
 
         $userVendors= $this->User_Model->vendorPIC()->result();
@@ -157,15 +156,13 @@ class Project extends CI_Controller
         $vendor        = $this->Vendor_Model->findOne($model->vendor_id)->row();
         $user_created  = $this->User_Model->findOne($model->created_by)->row();
         $user_updated  = $this->User_Model->findOne($model->updated_by)->row_array();
-        $pics          = $this->Pic_Model->findByProject($model->id)->result_array();
 
         return view('procurement/project/view', [
             'model'        => $model,
             'vendor'       => $vendor,
             'breadcrumb'   => $breadcrumb,
             'user_ceated'  => $user_created,
-            'user_updated' => $user_updated,
-            'pics'         => $pics
+            'user_updated' => $user_updated
         ]);
     }
 

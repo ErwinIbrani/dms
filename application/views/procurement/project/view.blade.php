@@ -145,40 +145,6 @@
 
                             </tbody>
                         </table>
-
-                        <div class="card card-fluid">
-                            <div class="card-header border-0">
-                                <div class="d-flex align-items-center">
-                                    <span class="mr-auto">PIC Project</span>
-                                </div>
-                            </div>
-                            <div class="table-responsive">
-                                @if(!empty($pics))
-                                <table class="table table-striped">
-                                    <thead class="thead-">
-                                    <tr>
-                                        <th> Layer </th>
-                                        <th> Username </th>
-                                        <th> Email </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($pics as $key => $value)
-                                    <tr>
-                                        <td> {{ $value['layer']  }} </td>
-                                        <td> {{ $value['username']  }} </td>
-                                        <td> {{ $value['email']  }} </td>
-                                    </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                               @else
-                                    <div style="text-align: center"> {{ 'Pic Not Set ' }} </div>
-                               @endif
-                            </div>
-                        </div>
-
-
                     </div>
                 </div>
             </div>

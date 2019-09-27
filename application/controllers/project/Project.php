@@ -6,7 +6,7 @@ class Project extends CI_Controller
     public function __Construct()
     {
         parent::__construct();
-        $this->load->model(['Project_Model', 'Vendor_Model', 'User_Model', 'Pic_Model', 'ComSitac_Model']);
+        $this->load->model(['Project_Model', 'Vendor_Model', 'User_Model', 'ComSitac_Model']);
         $this->lang->load('auth');
         $this->load->helper('custom');
         authentication($this->ion_auth->logged_in());
@@ -55,7 +55,6 @@ class Project extends CI_Controller
         $vendor        = $this->Vendor_Model->findOne($model->vendor_id)->row();
         $user_created  = $this->User_Model->findOne($model->created_by)->row();
         $user_updated  = $this->User_Model->findOne($model->updated_by)->row_array();
-        $pics          = $this->Pic_Model->findByProject($model->id)->result_array();
         $kom_sitac     = $this->ComSitac_Model->status($model->id)->row_array();
 
         return view('project/project/view', [
@@ -64,7 +63,6 @@ class Project extends CI_Controller
             'breadcrumb'   => $breadcrumb,
             'user_ceated'  => $user_created,
             'user_updated' => $user_updated,
-            'pics'         => $pics,
             'kom_sitac'    => $kom_sitac
         ]);
     }

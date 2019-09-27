@@ -12,7 +12,7 @@ class VendorProject_Model extends CI_Model
                            vendor_project.created_at as vendor_project_created_at,
                            project.wbs_id,
                            project.iro_number,
-                           vendor.name');
+                           vendor.group_name');
         $this->db->from($this->table);
         $this->db->join('project','vendor_project.project_id = project.id','inner');
         $this->db->join('vendor', 'vendor_project.vendor_id = vendor.id','inner');
@@ -20,7 +20,7 @@ class VendorProject_Model extends CI_Model
             $this->db->like('vendor_project.status', $search);
             $this->db->or_like('project.wbs_id', $search);
             $this->db->or_like('project.iro_number', $search);
-            $this->db->or_like('vendor.name', $search);
+            $this->db->or_like('vendor.group_name', $search);
         }
         $this->db->limit($rowperpage, $rowno);
         $query = $this->db->get();
@@ -37,7 +37,7 @@ class VendorProject_Model extends CI_Model
             $this->db->like('vendor_project.status', $search);
             $this->db->or_like('project.wbs_id', $search);
             $this->db->or_like('project.iro_number', $search);
-            $this->db->or_like('vendor.name', $search);
+            $this->db->or_like('vendor.group_name', $search);
         }
         $query = $this->db->get();
         $result = $query->result_array();
