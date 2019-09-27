@@ -6,7 +6,7 @@ class Admin extends REST_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(['Region_Model', 'Province_Model','City_Model', 'GroupVendor_Model', 'Vendor_Model', 'Project_Model']);
+        $this->load->model(['Region_Model', 'Province_Model','City_Model', 'UserVendor_Model', 'Vendor_Model', 'Project_Model']);
     }
 
     public function region_get()
@@ -27,15 +27,15 @@ class Admin extends REST_Controller
         $this->response($data, REST_Controller::HTTP_OK);
     }
 
-    public function groupvendor_get()
-    {
-        $data =  $this->GroupVendor_Model->groupvendor()->result();
-        $this->response($data, REST_Controller::HTTP_OK);
-    }
-
     public function vendor_get()
     {
         $data =  $this->Vendor_Model->vendor()->result();
+        $this->response($data, REST_Controller::HTTP_OK);
+    }
+
+    public function uservendor_get()
+    {
+        $data =  $this->UserVendor_Model->uservendor()->result();
         $this->response($data, REST_Controller::HTTP_OK);
     }
 

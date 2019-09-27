@@ -5,11 +5,17 @@ class Group_Model extends CI_Model
     protected $table = 'groups';
     protected $primaryKey = 'id';
 
+    public function groups()
+    {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        return $this->db->get();
+    }
+
     public function findByPIC()
     {
         $this->db->select('*');
         $this->db->from($this->table);
-        $this->db->where(['type ' => 'Vendor']);
         return $this->db->get();
     }
 
@@ -17,7 +23,6 @@ class Group_Model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from($this->table);
-        $this->db->where(['type ' => 'IBS']);
         return $this->db->get();
     }
 

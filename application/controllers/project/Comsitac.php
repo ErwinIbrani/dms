@@ -25,13 +25,12 @@ class Comsitac extends CI_Controller
     public function store()
     {
         $getData  = $this->Project_Model->findOne($this->input->post('project_id'))->row_array();
-        $new_name = $this->input->post('project_id') . '-' . $this->input->post('name').'-'.$getData['vendor_id'];
         $config = [];
-        $config['upload_path'] = './uploads/comsitac/';
+        $config['upload_path']   = './uploads/comsitac/';
         $config['allowed_types'] = 'xlsx|xls|';
-        $config['max_size'] = '2000';
-        //$config['encrypt_name']  = TRUE;
-        $config['file_name'] = $new_name;
+        $config['max_size']      = '2000';
+        $config['encrypt_name']  = TRUE;
+        //$config['file_name'] = $new_name;
         $this->load->library('upload', $config);
         if (!$this->upload->do_upload('path')) {
                 $error = ['error' => $this->upload->display_errors()];
@@ -52,7 +51,7 @@ class Comsitac extends CI_Controller
                 ];
                 $codition = $this->ComSitac_Model->save($data);
                 if ($codition == TRUE) {
-                    $this->Project_Model->update($this->input->post('project_id'), ['status' => 'SITAC SURVEY']);
+                    $this->Project_Model->update($this->input->post('project_id'), ['status' => 'SITAC_SURVEY']);
                     $this->session->set_flashdata('success', 'Data Uploaded');
                     redirect("project/project/document/" . $this->input->post('project_id'), 'refresh');
                 }
@@ -75,18 +74,12 @@ class Comsitac extends CI_Controller
 
     public function restore()
     {
-        $model = $this->ComSitac_Model->findOne($this->input->post('id'))->row();
-        if (is_file('./uploads/comsitac/' . $model->path) && @unlink('./uploads/comsitac/' . $model->path)) {
-               true;
-        }
          $getData  = $this->Project_Model->findOne($this->input->post('project_id'))->row_array();
-         $new_name = $this->input->post('project_id') . '-' . $this->input->post('name').'-'.$getData['vendor_id'];
          $config = [];
-         $config['upload_path'] = './uploads/comsitac/';
+         $config['upload_path']   = './uploads/comsitac/';
          $config['allowed_types'] = 'xlsx|xls|csv|pdf|';
-         $config['max_size'] = '2000';
-        //$config['encrypt_name']  = TRUE;
-         $config['file_name'] = $new_name;
+         $config['max_size']      = '2000';
+         $config['encrypt_name']  = TRUE;
          $this->load->library('upload', $config);
         if (!$this->upload->do_upload('path')) {
              $error = ['error' => $this->upload->display_errors()];
@@ -94,14 +87,14 @@ class Comsitac extends CI_Controller
              redirect("project/project/document/" . $this->input->post('project_id'), 'refresh');
          } else {
              $upload = $this->upload->data();
-             $update = [
+             $recreate = [
                         'project_id' => $this->input->post('project_id'),
                         'vendor_id'  => $getData['vendor_id'],
                         'status'     => 'waiting',
                         'path'       => $upload['file_name'],
                         'updated_at' => date('Y-m-d H:i:s')
                     ];
-            $this->ComSitac_Model->update($this->input->post('id'), $update);
+            $this->ComSitac_Model->save($recreate);
             $this->session->set_flashdata('success', 'Data Reupload');
             redirect("project/project/document/" . $this->input->post('project_id'), 'refresh');
           }

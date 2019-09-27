@@ -159,12 +159,9 @@
                                             <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                                         </tr>
                                     </table>
-
                                 </div>
 
-
                             </div>
-
                             <hr class="mt-5">
                             <div class="d-flex">
                                 <button type="button" class="prev btn btn-secondary">Previous</button>

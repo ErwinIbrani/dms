@@ -174,3 +174,16 @@ CREATE TABLE candidate (
 4. Delete table pic_project
 =============
 
+===========
+Create Setting Document
+==========
+CREATE TABLE [dbo].[document_setting] (
+  [id] int IDENTITY(1,1) NOT NULL,
+  [document_name] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [document_role] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [document_type] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [created_at] datetime NULL,
+  [updated_at] datetime NULL,
+  [deleted_at] datetime NULL,
+);
+

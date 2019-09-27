@@ -7,7 +7,7 @@ class Vendor extends REST_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(['Region_Model', 'Province_Model','City_Model', 'GroupVendor_Model', 'Vendor_Model', 'Project_Model']);
+        $this->load->model(['Region_Model', 'Province_Model','City_Model', 'UserVendor_Model', 'Vendor_Model', 'Project_Model']);
     }
 
     public function survey_get()
