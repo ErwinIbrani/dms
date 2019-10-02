@@ -1,51 +1,41 @@
-<?php $CI = &get_instance(); ?>
 <aside class="app-aside app-aside-expand-md app-aside-light">
-	<!-- .aside-content -->
-	<div class="aside-content">
-		<!-- .aside-header -->
-		<header class="aside-header d-block d-md-none">
-			<!-- .btn-account -->
-			<button class="btn-account" type="button" data-toggle="collapse" data-target="#dropdown-aside"><span
-					class="user-avatar user-avatar-lg"><img src="assets/images/avatars/profile.jpg" alt=""></span> <span
-					class="account-icon"><span class="fa fa-caret-down fa-lg"></span></span> <span
-					class="account-summary"><span class="account-name">Beni Arisandi</span> <span
-						class="account-description">Marketing Manager</span></span></button> <!-- /.btn-account -->
-			<!-- .dropdown-aside -->
-			<div id="dropdown-aside" class="dropdown-aside collapse">
-				<!-- dropdown-items -->
-				<div class="pb-3">
-					<a class="dropdown-item" href="user-profile.html"><span class="dropdown-icon oi oi-person"></span>
-						Profile</a> <a class="dropdown-item" href="auth-signin-v1.html"><span
-							class="dropdown-icon oi oi-account-logout"></span> Logout</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Help Center</a> <a class="dropdown-item" href="#">Ask Forum</a> <a
-						class="dropdown-item" href="#">Keyboard Shortcuts</a>
-				</div><!-- /dropdown-items -->
-			</div><!-- /.dropdown-aside -->
-		</header><!-- /.aside-header -->
-		<!-- .aside-menu -->
-		<div class="aside-menu overflow-hidden ps ps--active-y">
-			<!-- .stacked-menu -->
-			<nav id="stacked-menu" class="stacked-menu stacked-menu-has-collapsible">
-				<!-- .menu -->
-				<ul class="menu">
-                    <?php if($CI->ion_auth->in_group('Admin')): ?>
-					<li class="menu-header">SUPERADMIN</li><!-- /.menu-header -->
-					<!-- .menu-item -->
-					<li class="menu-item has-child">
-						<a href="#" class="menu-link">
-							<span class="menu-icon far fa-user"></span>
-							<span class="menu-text">User Management</span>
-						</a> <!-- child menu -->
-						<ul class="menu">
-							<li class="menu-item">
-								<a href="{{ site_url("admin/user-management/internal") }}" class="menu-link">Users</a>
-							</li>
-							<li class="menu-item">
-								<a href="{{ site_url("admin/user/groups") }}" class="menu-link">User Gorup</a>
-							</li>
-						</ul><!-- /child menu -->
-					</li><!-- /.menu-item -->
+    <!-- .aside-content -->
+    <div class="aside-content">
+        <!-- .aside-header -->
+        <header class="aside-header d-block d-md-none">
+            <!-- .btn-account -->
+            <button class="btn-account" type="button" data-toggle="collapse" data-target="#dropdown-aside"><span class="user-avatar user-avatar-lg"><img src="assets/images/avatars/profile.jpg" alt=""></span> <span class="account-icon"><span class="fa fa-caret-down fa-lg"></span></span> <span class="account-summary"><span class="account-name">Beni Arisandi</span> <span class="account-description">Marketing Manager</span></span></button> <!-- /.btn-account -->
+            <!-- .dropdown-aside -->
+            <div id="dropdown-aside" class="dropdown-aside collapse">
+                <!-- dropdown-items -->
+                <div class="pb-3">
+                    <a class="dropdown-item" href="user-profile.html"><span class="dropdown-icon oi oi-person"></span> Profile</a> <a class="dropdown-item" href="auth-signin-v1.html"><span class="dropdown-icon oi oi-account-logout"></span> Logout</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#">Help Center</a> <a class="dropdown-item" href="#">Ask Forum</a> <a class="dropdown-item" href="#">Keyboard Shortcuts</a>
+                </div><!-- /dropdown-items -->
+            </div><!-- /.dropdown-aside -->
+        </header><!-- /.aside-header -->
+        <!-- .aside-menu -->
+        <div class="aside-menu overflow-hidden ps ps--active-y">
+            <!-- .stacked-menu -->
+            <nav id="stacked-menu" class="stacked-menu stacked-menu-has-collapsible">
+                <!-- .menu -->
+                <ul class="menu">
+                    <li class="menu-header">SUPERADMIN</li><!-- /.menu-header -->
+                    <!-- .menu-item -->
+                    <li class="menu-item has-child">
+                        <a href="#" class="menu-link">
+                            <span class="menu-icon far fa-user"></span>
+                            <span class="menu-text">User Management</span>
+                        </a> <!-- child menu -->
+                        <ul class="menu">
+                            <li class="menu-item">
+                                <a href="{{ site_url("admin/user-management/internal") }}" class="menu-link">Users</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{{ site_url("admin/user/groups") }}" class="menu-link">User Gorup</a>
+                            </li>
+                        </ul><!-- /child menu -->
+                    </li><!-- /.menu-item -->
 
 					<li class="menu-item has-child">
 						<a href="#" class="menu-link">
@@ -79,43 +69,23 @@
 							</li>
 						</ul><!-- /child menu -->
 					</li><!-- /.menu-item -->
-                    <?php endif ?>
 
-                    <?php if($CI->ion_auth->in_group('Procurement')): ?>
-					<li class="menu-header">Procurement</li><!-- /.menu-header -->
-					<!-- .menu-item -->
 					<li class="menu-item">
-						<a href="{{ site_url('procurement/project') }}" class="menu-link"><span
-								class="menu-icon fas fa-clipboard-check"></span> <span
-								class="menu-text">Register WBS ID</span></a>
-					</li><!-- /.menu-item -->
+						<a href="{{ site_url('admin/vendorproject/index') }}" class="menu-link"><span class="menu-icon fas fa-project-diagram"></span> <span class="menu-text">Project Vendor</span></a>
+					</li>
 
-
-					<li class="menu-header">Assignment</li><!-- /.menu-header -->
-					<!-- .menu-item -->
-					<li class="menu-item">
-						<a href="{{ site_url('procurement/project') }}" class="menu-link"><span
-								class="menu-icon fas fa-clipboard-check"></span> <span
-								class="menu-text">Project to Vendor</span></a>
-					</li><!-- /.menu-item -->
-
-					<!-- .menu-item -->
-					<li class="menu-item">
-						<a href="{{ site_url('procurement/project') }}" class="menu-link"><span
-								class="menu-icon fas fa-clipboard-check"></span> <span
-								class="menu-text">Vendor to Project</span></a>
-					</li><!-- /.menu-item -->
-
-                    <?php endif; ?>
-
-                    <?php if($CI->ion_auth->in_group('Project')): ?>
-				<!-- .menu-item -->
+                    <li class="menu-header">Procurement</li><!-- /.menu-header -->
+                    <!-- .menu-item -->
+                    <li class="menu-item">
+                        <a href="{{ site_url('procurement/project') }}" class="menu-link"><span class="menu-icon fas fa-clipboard-check"></span> <span class="menu-text">Project Assignment</span></a>
+                    </li><!-- /.menu-item -->
+                    <!-- .menu-item -->
 					<li class="menu-header">Project</li><!-- /.menu-header -->
 					<!-- .menu-item -->
 					<li class="menu-item">
-						<a href="{{ site_url('project/project/index') }}" class="menu-link"><span
-								class="menu-icon oi oi-browser"></span> <span class="menu-text">Document Project</span></a>
+						<a href="{{ site_url('project/project/index') }}" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span class="menu-text">Document Project</span></a>
 					</li><!-- /.menu-item -->
+
 					<li class="menu-item has-child">
 						<a href="#" class="menu-link">
 							<span class="menu-icon fas fa-check-double"></span>
@@ -123,19 +93,14 @@
 						</a> <!-- child menu -->
 						<ul class="menu">
 							<li class="menu-item">
-								<a href="{{ site_url("admin/user-management/internal") }}" class="menu-link">Approval
-									Required</a>
+								<a href="{{ site_url("admin/user-management/internal") }}" class="menu-link">Approval Required</a>
 							</li>
 							<li class="menu-item">
-								<a href="{{ site_url("admin/user-management/internal") }}" class="menu-link">Approval
-									Rejected</a>
+								<a href="{{ site_url("admin/user-management/internal") }}" class="menu-link">Approval Rejected</a>
 							</li>
 						</ul><!-- /child menu -->
 					</li><!-- /.menu-item -->
 
-                    <?php endif?>
-
-                    <?php if($CI->ion_auth->in_group('Vendor')): ?>
 					<li class="menu-header">Vendor</li><!-- /.menu-header -->
 
 					<li class="menu-item has-child">
@@ -155,11 +120,11 @@
 							</li>
 						</ul><!-- /child menu -->
 					</li><!-- /.menu-item -->
-                    <?php endif; ?>
 
-				</ul><!-- /.menu -->
-			</nav><!-- /.stacked-menu -->
 
-		</div><!-- /.aside-menu -->
+                </ul><!-- /.menu -->
+            </nav><!-- /.stacked-menu -->
+
+        </div><!-- /.aside-menu -->
 
 </aside>
