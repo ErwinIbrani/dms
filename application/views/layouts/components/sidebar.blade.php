@@ -90,18 +90,25 @@
 								class="menu-text">Register WBS ID</span></a>
 					</li><!-- /.menu-item -->
 
+					<!-- .menu-item -->
+					<li class="menu-item">
+						<a href="{{ site_url('procurement/project') }}" class="menu-link"><span
+								class="menu-icon fas fa-clipboard-check"></span> <span
+								class="menu-text">Projects</span></a>
+					</li><!-- /.menu-item -->
+
 
 					<li class="menu-header">Assignment</li><!-- /.menu-header -->
 					<!-- .menu-item -->
 					<li class="menu-item">
-						<a href="{{ site_url('procurement/project') }}" class="menu-link"><span
+						<a href="{{ site_url('procurement/assigntovendor') }}" class="menu-link"><span
 								class="menu-icon fas fa-clipboard-check"></span> <span
 								class="menu-text">Project to Vendor</span></a>
 					</li><!-- /.menu-item -->
 
 					<!-- .menu-item -->
 					<li class="menu-item">
-						<a href="{{ site_url('procurement/project') }}" class="menu-link"><span
+						<a href="{{ site_url('procurement/assigntoproject') }}" class="menu-link"><span
 								class="menu-icon fas fa-clipboard-check"></span> <span
 								class="menu-text">Vendor to Project</span></a>
 					</li><!-- /.menu-item -->
