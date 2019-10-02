@@ -57,59 +57,53 @@ class Documentsetting extends CI_Controller
             ]);
     }
 
-    public  function store()
+    public function store()
     {
-        $data = ['document_name' => $this->input->post('document_name'),
-                 'document_role' => $this->input->post('addmore'),
-                 'document_type' => $this->input->post('addmores')
-        ];
-
-        foreach ($this->input->post('addmore') as $key => $value) {
-
-            var_dump($value);
-
+       $data   = [];
+       $count = count($this->input->post('document_role'));
+        for($i=0; $i<$count; $i++) {
+            $data[$i] = [
+                'document_name' => $this->input->post('document_name'),
+                'document_role' => $this->input->post('document_role')[$i],
+                'document_type' => $this->input->post('document_type')[$i],
+                'created_at'    => date('Y-m-d H:i:s'),
+                'updated_at'    => date('Y-m-d H:i:s'),
+             ];
         }
-        exit();
-
-        $status = $this->DocumentSetting_Model->saveMultiple($data);
-        var_dump($status);
-        exit();
+        $this->DocumentSetting_Model->saveMultiple($data);
         $this->session->set_flashdata('success', 'Data Inserted');
-        redirect("admin/vendor/index", 'refresh');
+        redirect("admin/documentsetting/index", 'refresh');
     }
 
     public function edit($id)
     {
-        $this->make_bread->add('Index', 'admin/vendor/index', TRUE);
+        $this->make_bread->add('Index', 'admin/documentsetting/index', TRUE);
         $this->make_bread->add('Update');
+        $roles        = $this->Group_Model->groups()->result();
         $breadcrumb   = $this->make_bread->output();
-        $model        = $this->Vendor_Model->findOne($id)->row();
-        return view('admin/vendor/edit', ['model' => $model, 'breadcrumb' => $breadcrumb]);
+        $model        = $this->DocumentSetting_Model->findOne($id)->row();
+        return view('admin/document-setting/edit', ['model'      => $model,
+                                                         'breadcrumb' => $breadcrumb,
+                                                         'roles'      => $roles]);
     }
 
     public function update()
     {
       $update = [
-                'group_name'   => $this->input->post('group_name'),
-                'updated_by'   => $this->ion_auth->user()->row()->id,
-                'updated_at'   => date('Y-m-d H:i:s')
+                'document_role'   => $this->input->post('document_role'),
+                'document_type'   => $this->input->post('document_type'),
+                'updated_at'      => date('Y-m-d H:i:s')
        ];
-       $this->Vendor_Model->update($this->input->post('id'), $update);
+       $this->DocumentSetting_Model->update($this->input->post('id'), $update);
        $this->session->set_flashdata('success', 'Data Edited');
-       redirect("admin/vendor/index", 'refresh');
+       redirect("admin/documentsetting/index", 'refresh');
     }
 
     public function destroy($id)
     {
-        //Soft delete
-        $update = [
-            'deleted_at'   => date('Y-m-d H:i:s')
-        ];
-        $this->Vendor_Model->update($id, $update);
-        //hard delete
-       // $this->GroupVendor_Model->delete($id);
+        $this->DocumentSetting_Model->delete($id);
         $this->session->set_flashdata('success', 'Data Deleted');
-        redirect("admin/vendor/index", 'refresh');
+        redirect("admin/documentsetting/index", 'refresh');
     }
     
 

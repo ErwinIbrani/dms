@@ -6,6 +6,8 @@
 @endsection
 @section('content')
    <div class="page-inner">
+       <div style="text-align: right"><?= $breadcrumb ?></div>
+    <br/>
     <div class="page-section">
         <div id="base-style" class="card">
             <!-- .card-body -->
@@ -19,7 +21,7 @@
             ?>
                     <!-- .fieldset -->
                     <fieldset>
-                        <legend>Document Setting</legend>
+                        <legend>Create Document Setting</legend>
 
                     <div class="row">
 
@@ -35,17 +37,15 @@
                             <table class="table table-bordered" id="dynamic_field">
                                 <tr>
                                     <td>
-                                        <select name="addmore[][document_role]" class="custom-select js-example-basic-single" required="">
+                                        <select name="document_role[]" class="custom-select js-example-basic-single" required="">
                                             <option value="" selected="selected">Select Role</option>
-                                            <?php
-                                            foreach ($roles as $role) {
-                                                echo"<option value='$role->name'> $role->name </option>";
-                                            }
-                                            ?>
+                                            @foreach ($roles as $role)
+                                                 <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                            @endforeach
                                         </select>
                                     </td>
                                     <td>
-                                        <select  name="addmores[][document_type]" class="custom-select js-example-basic-single" required="">
+                                        <select  name="document_type[]" class="custom-select js-example-basic-single" required="">
                                             <option value="" selected="selected">Document Type</option>
                                             <option value="Submiter">Submiter</option>
                                             <option value="Review">Review</option>
@@ -79,12 +79,13 @@
             $('#add').click(function(){
                 i++;
                 $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added">' +
-                    '<td>' + '<select name="addmore[][document_role]" class="custom-select" required="">\n' +
-                    '<option value="" selected="selected">Select Role</option> <?php foreach ($roles as $role) {
-                        echo"<option value=".$role->name."> $role->name </option>";
-                    }
-                        ?></select></td>' +
-                    '<td><select  name="addmores[][document_type]" class="custom-select" required="">\n' +
+                    '<td>' + '<select name="document_role[]" class="custom-select" required="">\n' +
+                    '<option value="" selected="selected">Select Role</option>' +
+                    @foreach ($roles as $role)
+                       '<option value="{{ $role->name }}"> {{ $role->name }} </option>'+
+                    @endforeach
+                    '</select></td>' +
+                    '<td><select  name="document_type[]" class="custom-select" required="">\n' +
                     '    <option value="" selected="selected">Document Type</option>\n' +
                     '    <option value="Submiter">Submiter</option>\n' +
                     '    <option value="Review">Review</option>\n' +
