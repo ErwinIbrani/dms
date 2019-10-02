@@ -1,6 +1,6 @@
 <?php
 
-class Project_Model extends CI_Model
+class AssignProject_Model extends CI_Model
 {
     protected $table       = 'project';
     protected $primaryKey  = 'id';
@@ -14,12 +14,14 @@ class Project_Model extends CI_Model
 
     public function getData($rowno,$rowperpage,$search="")
     {
-        $this->db->select('*');
-        $this->db->from('project');
+        $this->db->select('p.id, p.wbs_id, p.iro_number, p.site_id_ibs, p.status, v.name');
+        $this->db->from('project p');
+        $this->db->join('vendor v', 'p.vendor_id = v.id', 'inner');
         if($search != ''){
-            $this->db->or_like('wbs_id', $search);
-            $this->db->or_like('iro_number', $search);
-            $this->db->or_like('status', $search);
+            $this->db->like('v.name', $search);
+            $this->db->or_like('p.wbs_id', $search);
+            $this->db->or_like('p.iro_number', $search);
+            $this->db->or_like('p.status', $search);
         }
         $this->db->limit($rowperpage, $rowno);
         $query = $this->db->get();
@@ -30,21 +32,24 @@ class Project_Model extends CI_Model
     {
         $this->db->select('count(*) as allcount');
         $this->db->from('project');
+        $this->db->join('vendor', 'project.vendor_id = vendor.id', 'inner');
         if($search != ''){
-            $this->db->or_like('wbs_id', $search);
-            $this->db->or_like('iro_number', $search);
-            $this->db->or_like('site_id_ibs', $search);
+            $this->db->like('vendor.name', $search);
+            $this->db->or_like('project.wbs_id', $search);
+            $this->db->or_like('project.iro_number', $search);
+            $this->db->or_like('project.site_id_ibs', $search);
         }
         $query = $this->db->get();
         $result = $query->result_array();
         return $result[0]['allcount'];
     }
 
-    public function duplicate($wbs_id)
+    public function duplicate($wbs_id,$vendor_id)
     {
-        $this->db->select('wbs_id');
+        $this->db->select('wbs_id, vendor_id');
         $this->db->from($this->table);
         $this->db->where(['wbs_id' => $wbs_id]);
+        $this->db->where(['vendor_id' => $vendor_id]);
         return $this->db->get();
     }
 

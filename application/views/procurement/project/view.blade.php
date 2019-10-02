@@ -16,12 +16,6 @@
                                 <td><?= $model->id ?></td>
                             </tr>
                             <tr>
-                                <th>Vendor Name</th>
-                                <td>
-                                    <?= $vendor->name ?>
-                                </td>
-                            </tr>
-                            <tr>
                                 <th>WBS ID</th>
                                 <td><?= $model->wbs_id ?></td>
                             </tr>

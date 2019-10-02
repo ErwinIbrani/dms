@@ -50,35 +50,17 @@ class Project extends CI_Controller
         $this->make_bread->add('Index', 'procurement/project/index', TRUE);
         $this->make_bread->add('Create');
         $breadcrumb = $this->make_bread->output();
-        $vendor     = $this->Vendor_Model->vendor()->result();
         $project    = $this->Tmplanning_Model->getData()->result();
 
-        $userVendors= $this->User_Model->vendorPIC()->result();
-        $pic_users  = $this->Group_Model->findByPIC()->result();
-
-        $userIbs    = $this->User_Model->UserIBS()->result();
-        $ibs_users  = $this->Group_Model->findByRoleIbs()->result();
-
         return view('procurement/project/create', [
-            'vendors'      => $vendor,
             'projects'     => $project,
-            'userVendors'  => $userVendors,
-            'pic_users'    => $pic_users,
-            'userIbs'      => $userIbs,
-            'ibs_users'    => $ibs_users,
             'breadcrumb'   => $breadcrumb
         ]);
     }
 
     public function store()
     {
-        foreach ($this->input->post('addmore') as $key => $value) {
-
-          var_dump($value);
-
-        }
-        exit();
-       $cek = $this->Project_Model->duplicate($this->input->post('wbs_id'), $this->input->post('vendor_id'));
+       $cek = $this->Project_Model->duplicate($this->input->post('wbs_id'));
          if($cek->num_rows() > 0){
             $this->session->set_flashdata('error', 'Data Duplicate');
              redirect("procurement/project/create", 'refresh');
@@ -86,7 +68,6 @@ class Project extends CI_Controller
                 $getData = $this->Tmplanning_Model->findByWBS($this->input->post('wbs_id'))->row_array();
                 $data = [
                     'wbs_id'           =>  $getData['td_planning_detail_wbs_id'],
-                    'vendor_id'        =>  $this->input->post('vendor_id'),
                     'iro_number'       =>  $getData['tm_planning_iro_number'],
                     'project'          =>  $getData['tm_planning_project'],
                     'work_group'       =>  $getData['tm_planning_work_group'],
@@ -114,35 +95,12 @@ class Project extends CI_Controller
                     'address'          =>  $getData['td_planning_detail_address'],
                     'longitude'        =>  $getData['td_planning_detail_longitude'],
                     'latitude'         =>  $getData['td_planning_detail_latitude'],
-                    'status'           =>  'COM_SITAC',
+                    'status'           =>  'New',
                     'created_at'       =>  date('Y-m-d H:i:s'),
                     'updated_at'       =>  date('Y-m-d H:i:s')
                 ];
-                $this->db->trans_start();
-                $model =  $this->Project_Model->save($data);
-                $this->VendorProject_Model->save(['project_id' => $model,
-                                                  'vendor_id'  => $this->input->post('vendor_id'),
-                                                  'status'     => 'New',
-                                                  'created_at' => date('Y-m-d H:i:s')]);
-
-                $this->Role_Model->save(['user_id'    => $this->input->post('user_pic_id'),
-                                         'group_id'   => $this->input->post('role_pic_id'),
-                                         'project_id' => $model
-                                         ]);
-
-                $this->Role_Model->save(['user_id'    => $this->input->post('user_pic_id'),
-                     'group_id'   => $this->input->post('role_pic_id'),
-                     'project_id' => $model
-                 ]);
-
-                $this->db->trans_complete();
-                if ($this->db->trans_status() === FALSE) {
-                    $this->db->trans_rollback();
-                    //return 0;
-                    $this->session->set_flashdata('success', 'Something Wrong');
-                    redirect("procurement/project/index", 'refresh');
-               }
-                $this->session->set_flashdata('success', 'Data Inserted');
+                $this->Project_Model->save($data);
+                $this->session->set_flashdata('success', 'Data Registered');
                 redirect("procurement/project/index", 'refresh');
           }
     }
@@ -153,77 +111,17 @@ class Project extends CI_Controller
         $this->make_bread->add('View');
         $breadcrumb    = $this->make_bread->output();
         $model         = $this->Project_Model->findOne($id)->row();
-        $vendor        = $this->Vendor_Model->findOne($model->vendor_id)->row();
         $user_created  = $this->User_Model->findOne($model->created_by)->row();
         $user_updated  = $this->User_Model->findOne($model->updated_by)->row_array();
 
         return view('procurement/project/view', [
             'model'        => $model,
-            'vendor'       => $vendor,
             'breadcrumb'   => $breadcrumb,
             'user_ceated'  => $user_created,
             'user_updated' => $user_updated
         ]);
     }
 
-    public function edit($id)
-    {
-        $this->make_bread->add('Index', 'procurement/project/index', TRUE);
-        $this->make_bread->add('Change Vendor');
-        $breadcrumb = $this->make_bread->output();
-        $vendor     = $this->Vendor_Model->vendor()->result();
-        $model      = $this->Project_Model->findOne($id)->row();
-
-        return view('procurement/project/edit', [
-            'vendors'      => $vendor,
-            'model'        => $model,
-            'breadcrumb'   => $breadcrumb
-        ]);
-    }
-
-    public function update()
-    {
-        $this->form_validation->set_rules('vendor_id', 'Vendor Name', 'required');
-        $model = $this->Project_Model->findOne($this->input->post('id'))->row();
-        if ($this->form_validation->run() == FALSE) {
-            $this->make_bread->add('Index', 'procurement/project/index', TRUE);
-            $this->make_bread->add('Change Vendor');
-            $breadcrumb = $this->make_bread->output();
-            $vendor     = $this->Vendor_Model->vendor()->result();
-            return view('procurement/project/edit', [
-                'vendors'      => $vendor,
-                'model'        => $model,
-                'breadcrumb'   => $breadcrumb
-            ]);
-        }
-        else {
-            $condition = $this->Document_Model->changeVendor($this->input->post('id'), $model->vendor_id, ['status_vendor' => 'change']);
-            if($condition == TRUE){ //chnage in document
-                $update = [
-                    'vendor_id'  => $this->input->post('vendor_id'),
-                    'updated_by' => $this->ion_auth->user()->row()->id,
-                    'updated_at' => date('Y-m-d H:i:s'),
-                    'status'     => 'COM_SITAC'
-                ];
-                $this->db->trans_start();
-                $this->Project_Model->update($this->input->post('id'), $update); //change in project
-                $this->VendorProject_Model->save(['project_id' => $this->input->post('id'),
-                                                  'vendor_id'  => $this->input->post('vendor_id'),
-                                                  'status'     => 'Change',
-                                                  'created_at' => date('Y-m-d H:i:s')]); //insert to history
-                $this->db->trans_complete();
-                if ($this->db->trans_status() === FALSE) {
-                    $this->db->trans_rollback();
-                    //return 0;
-                    $this->session->set_flashdata('success', 'Something Wrong');
-                    redirect("procurement/project/index", 'refresh');
-                }
-                $this->session->set_flashdata('success', 'Data Edited');
-                redirect("procurement/project/index", 'refresh');
-            }
-        }
-
-    }
 
 
 

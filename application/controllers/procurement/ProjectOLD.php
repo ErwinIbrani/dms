@@ -1,6 +1,6 @@
 <?php
 
-class GenerateProject extends CI_Controller
+class AssignProject extends CI_Controller
 {
 
     public function __Construct()
@@ -44,7 +44,7 @@ class GenerateProject extends CI_Controller
             'breadcrumb' => $breadcrumb,
         ]);
     }
-    
+
     public function create()
     {
         $this->make_bread->add('Index', 'procurement/project/index', TRUE);

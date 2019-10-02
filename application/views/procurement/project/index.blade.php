@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="page-inner">
-        <div style="text-align: right"><?/*= $breadcrumb */?></div>
+        <div style="text-align: right"><?= $breadcrumb ?></div>
         <br/>
         <div class="page-section">
             <div class="card card-fluid">
@@ -49,10 +49,11 @@
                             <thead>
                             <tr>
                                 <th> No </th>
-                                <th> Vendor Name </th>
                                 <th> WBS ID </th>
                                 <th> IRO Number </th>
                                 <th>Site ID</th>
+                                <th>Site Name</th>
+                                <th>Status</th>
                                 <th style="width:100px; min-width:100px;"> &nbsp; </th>
                             </tr>
                             </thead>
@@ -63,12 +64,12 @@
                             @foreach($projects as $key => $roject)
                                 <tr>
                                     <td class="align-middle"> {{ $i++ }} </td>
-                                    <td class="align-middle"> {{ $roject->group_name }} </td>
                                     <td class="align-middle"> {{ $roject->wbs_id }} </td>
                                     <td class="align-middle"> {{ $roject->iro_number }} </td>
                                     <td class="align-middle"> {{ $roject->site_id_ibs }} </td>
+                                    <td class="align-middle"> {{ $roject->site_name }} </td>
+                                    <td class="align-middle"> {{ $roject->status }} </td>
                                     <td class="align-middle text-right">
-                                        <a href="<?= site_url("procurement/project/edit/".$roject->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a>
                                         <a href="<?= site_url("procurement/project/view/".$roject->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-eye"></i> <span class="sr-only">View</span></a>
                                     </td>
                                 </tr>
