@@ -1,11 +1,13 @@
 @extends('layouts.app')
-@section('page_title', 'City')
+@section('page_title', 'Document Setting')
 
 @section('header')
     <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/select2/select2.css">
 @endsection
 @section('content')
     <div class="page-inner">
+        <div style="text-align: right"><?= $breadcrumb ?></div>
+        <br/>
         <div class="page-section">
             <div id="base-style" class="card">
                 <!-- .card-body -->
@@ -13,68 +15,67 @@
                     <!-- .form -->
                 <?php
                 $data  = [
-                    'class' => 'null'
+                    'name' => 'document-setting'
                 ];
-                echo form_open('admin/city/update',$data);
+                echo form_open('admin/documentsetting/update',$data);
                 ?>
                 <!-- .fieldset -->
                     <fieldset>
-                        <legend>City</legend>
+                        <legend>Update Document Setting</legend>
 
-                        @if(!empty(validation_errors()))
-                            <div class="col-lg-12">
-                                <div class="alert alert-warning alert-dismissible fade show">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                    <strong><?php echo validation_errors(); ?></strong>
-                                </div>
-                            </div>
-                        @endif
-
-                        <input type="hidden" class="form-control" name="id" autocomplete="off" value="<?= $model->id ?>">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <input type="hidden" class="form-control" name="id" value="<?= $model->id ?>" />
+                            <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label for="tf1">Name</label>
-                                    <input type="text" class="form-control" name="name" autocomplete="off" value="<?= $model->name ?>">
+                                    <label for="tf1">Document Name</label>
+                                    <input type="text" class="form-control" name="document_name" value="<?= $model->document_name ?>" readonly="readonly"/>
                                 </div>
                             </div>
 
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label  for="selDefault">Province</label>
-                                    <select name="province_id" class="custom-select js-example-basic-single">
-                                        <option value="" selected="selected">Select Province</option>
-                                        <?php
-                                        foreach ($models as $data) {
-                                            echo "<option value='$data->id'";
-                                            echo $model->province_id == $data->id ? 'selected': '';
-                                            echo ">$data->name </option>";
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
+                            <div class="col-lg-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dynamic_field">
+                                        <tr>
+                                            <td>
+                                                <select name="document_role" class="custom-select js-example-basic-single" required="">
+                                                    <option value="" selected="selected">Select Role</option>
+                                                    <?php
+                                                    foreach ($roles as $role) {
+                                                        echo "<option value='$role->name'";
+                                                        echo (string)$model->document_role ===   (string)$role->name ? 'selected': '';
+                                                        echo ">$role->name </option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select  name="document_type" class="custom-select js-example-basic-single" required="">
+                                                    <option value="" selected="selected">Document Type</option>
+                                                    <?php
+                                                    if ($model->document_type == 'Submiter')
+                                                        echo "<option value='Submiter' selected> Submiter </option>";
+                                                    else echo "<option value='Submiter'> Submiter </option>";
 
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="tf1">Code</label>
-                                    <input type="text" class="form-control" name="code" autocomplete="off" value="<?= $model->code ?>">
-                                </div>
-                            </div>
+                                                    if ($model->document_type == 'Review')
+                                                        echo "<option value='Review' selected> Review </option>";
+                                                    else echo "<option value='Review'> Review </option>";
 
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="tf1">BSNI</label>
-                                    <input type="text" class="form-control" name="bsni" autocomplete="off" value="<?= $model->bsni ?>">
+                                                    if ($model->document_type == 'Approval')
+                                                        echo "<option value='Approval' selected> Approval </option>";
+                                                    else echo "<option value='Approval'> Approval </option>";
+
+                                                    ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
 
                         <div class="publisher-actions">
-                            <!-- .publisher-tools -->
                             <div class="publisher-tools mr-auto">
                             </div>
-                            <!-- /.publisher-tools -->
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </fieldset>
@@ -85,11 +86,4 @@
     </div>
 @endsection
 @section('footer')
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/select2/select2.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/select2/select2.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $(".js-example-basic-single").select2();
-        });
-    </script>
 @endsection
