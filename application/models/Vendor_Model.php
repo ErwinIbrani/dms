@@ -68,4 +68,9 @@ class Vendor_Model extends CI_Model
         $this->db->where($this->primaryKey, $id);
         $this->db->delete($this->table);
     }
+
+	public function getAll()
+	{
+		return $this->db->get($this->table);
+    }
 }

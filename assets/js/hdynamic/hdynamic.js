@@ -3,7 +3,7 @@ $(document).ready(function () {
 	let limit = 3;
 	let childLength = 0;
 	let confirmationText = 'Are you sure want to delete this item?';
-	let elementRemoveBtn = '<button class="btn mt-2 btn-subtle-danger" id="dynamic-delete-action">Delete</button>';
+	let elementRemoveBtn = '<span class="btn mt-2 btn-subtle-danger" id="dynamic-delete-action">Delete</span>';
 
 	$('#dynamic-add-button').on('click', function () {
 		i++;
@@ -15,11 +15,13 @@ $(document).ready(function () {
 				.find("input:text").val("").end()
 				.appendTo('#child-node')
 				.find('#dynamic-action').append(elementRemoveBtn)
-				.find('#dynamic-delete-action').attr('data-ref', 'child-node-'+i);
+				.find('#dynamic-delete-action')
+				.attr('data-ref', 'child-node-'+i);
 		}
 	});
 
 	$(document).on('click', '#dynamic-delete-action' ,function () {
+		event.preventDefault();
 		let ref = $('#dynamic-delete-action').data('ref');
 		let hasConfirm = confirm(confirmationText);
 

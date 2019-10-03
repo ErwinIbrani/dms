@@ -65,5 +65,10 @@ class Project_Model extends CI_Model
         $this->db->update($this->table, $update);
     }
 
+    public function getAll()
+	{
+		return $this->db->get($this->table);
+	}
+
 
 }
