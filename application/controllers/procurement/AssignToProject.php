@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * Class AssignToProject
  * Assign to vendor to many project
