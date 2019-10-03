@@ -59,7 +59,11 @@ class AssignToVendor extends CI_Controller
 		$this->validator();
 
 		if($this->form_validation->run()) {
-			var_dump($this->input->post());
+			//var_dump($this->input->post());
+			$this->session->set_flashdata('success', 'Data Inserted');
+			return redirect("/procurement/project/", 'refresh');
+		} else {
+
 		}
 
 
