@@ -1,6 +1,6 @@
 <?php
 
-class AssignProject extends CI_Controller
+class AssignProjectOLD extends CI_Controller
 {
 
     public function __Construct()

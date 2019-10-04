@@ -1,6 +1,6 @@
 <?php
 
-
+defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Class AssignToProject
  * Assign to vendor to many project
@@ -17,6 +17,8 @@ class AssignToProject extends CI_Controller
 			'Vendor_Model',
 			'Project_Model'
 		));
+
+		authentication($this->ion_auth->logged_in());
 	}
 
 	/**
@@ -34,7 +36,6 @@ class AssignToProject extends CI_Controller
 	 */
 	public function add()
 	{
-
 		$vendor = $this->Vendor_Model->getAll();
 		$project = $this->Project_Model->getAll();
 
@@ -60,9 +61,9 @@ class AssignToProject extends CI_Controller
 		$this->validator();
 
 		if($this->form_validation->run()) {
-			//var_dump($this->input->post());
-			$this->session->set_flashdata('success', 'Data Inserted');
-			return redirect("/procurement/project/", 'refresh');
+			var_dump($this->input->post());
+			//$this->session->set_flashdata('success', 'Data Inserted');
+			//return redirect("/procurement/project/", 'refresh');
 		} else {
 
 		}

@@ -1,6 +1,6 @@
 <?php
 
-
+defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Class AssignToVendor
  * Assign project to many vendor.
@@ -15,8 +15,11 @@ class AssignToVendor extends CI_Controller
 		parent::__construct();
 		$this->load->model(array(
 			'Vendor_Model',
-			'Project_Model'
+			'Project_Model',
+			'project_assigment_model'
 		));
+
+		authentication($this->ion_auth->logged_in());
 	}
 
 	/**
@@ -59,11 +62,25 @@ class AssignToVendor extends CI_Controller
 		$this->validator();
 
 		if($this->form_validation->run()) {
-			//var_dump($this->input->post());
-			$this->session->set_flashdata('success', 'Data Inserted');
-			return redirect("/procurement/project/", 'refresh');
-		} else {
 
+			$data = json_decode(json_encode($this->input->post()));
+
+			for ($i = 0;$i < count($data->assign_wbs);$i++) {
+				$data_collection = array(
+					'vendor_id' => (int) $data->vendor,
+					'project_id' => (int) $data->assign_wbs[$i],
+					'assignment_type' => $data->assign_type[$i],
+					'status' => 1 // this vendor is used when status set to 1.
+				);
+
+				$this->project_assigment_model->insert($data_collection);
+			}
+
+			echo json_encode(array('data' => array(
+				'success' => 'success proccess assigment vendor to many project.'
+			)));
+		} else {
+			echo json_encode(['error proccess assigment vendor to many project.']);
 		}
 
 

@@ -14,11 +14,12 @@
 							</li>
 						</ul>
 					</div>
+					{!! form_open('', array('id' => 'add-form', 'class' => 'needs-validation')) !!}
 					<div class="card-body">
-						{!! form_open('/procurement/assigntovendor/store', array('id' => 'add-form')) !!}
+						<div id="alert-display"></div>
 						<div class="form-group">
 							<label for="vendor">Vendor</label>
-							<select name="vendor" id="vendor" class="form-control">
+							<select name="vendor" id="vendor" class="custom-select" required>
 								<option value="">Select...</option>
 								@foreach($vendors as $vendor)
 									<option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
@@ -26,7 +27,8 @@
 							</select>
 
 							<p class="form-text text-muted small">
-								Before make assigment vendor to project, make sure that vendor has registered in this application.
+								Before make assigment vendor to project, make sure that vendor has registered in this
+								application.
 							</p>
 						</div>
 
@@ -39,10 +41,12 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="assign_wbs">Project (WBS ID)</label>
-										<select name="assign_wbs" id="assign_wbs[]" class="form-control">
-											<option>Select...</option>
+										<select name="assign_wbs[]" id="assign_wbs" class="custom-select" required>
+											<option value="">Select...</option>
 											@foreach($projects as $project)
-												<option value="{{ $project->id }}">{{$project->wbs_id}} - (IRO: {{ $project->iro_number }})</option>
+												<option value="{{ $project->id }}">{{$project->wbs_id}} -
+													(IRO: {{ $project->iro_number }})
+												</option>
 											@endforeach
 										</select>
 									</div>
@@ -50,7 +54,8 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="assign_type">Assign Type</label>
-										<select name="assign_type[]" id="assign_type" class="form-control">
+										<select name="assign_type[]" id="assign_type" class="custom-select" required>
+											<option value="">Select...</option>
 											<option value="SITAC">SITAC</option>
 											<option value="IMB">IMB</option>
 											<option value="CME">CME</option>
@@ -70,13 +75,13 @@
 						<div class="form-group">
 							<span class="btn btn-subtle-primary" id="dynamic-add-button">Add Project</span>
 						</div>
-						{!! form_close() !!}
 					</div>
 					<div class="card-footer">
 						<div class="card-footer-content">
-							<button class="btn btn-primary float-right" onclick="document.getElementById('add-form').submit()">Submit</button>
+							<button class="btn btn-primary float-right" id="submit-button">Submit</button>
 						</div>
 					</div>
+					{!! form_close() !!}
 				</div>
 			</div>
 		</div>
@@ -85,4 +90,56 @@
 
 @push('js')
 	<script src="{{ base_url('assets/js/hdynamic/hdynamic.js') }}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"
+			type="text/javascript"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"
+			type="text/javascript"></script>
+
+	<script type="text/javascript">
+        $(document).ready(function () {
+            let resText = '';
+
+            $("#add-form").validate({
+                rules: {
+                    vendor: "required",
+                    "assign_wbs[]": "required",
+                    "assign_type[]": "required"
+                },
+                messages: {
+                    vendor: {
+                        required: "We need your email address to contact you",
+                    },
+                    "assign_wbs[]": {
+                        required: "We need your email address to contact you",
+                    },
+                    "assign_type[]": {
+                        required: "We need your email address to contact you",
+                    }
+                },
+                submitHandler: function (from) {
+                    $('#submit-button').html('Saving...');
+
+                    $.ajax({
+						url: "{{ base_url('/procurement/assigntovendor/store') }}",
+						method: "POST",
+						data: $('#add-form').serialize(),
+						dataType: "json",
+						success: function(response) {
+                            $('#submit-button').html('Saved');
+                            resText = response.data.success;
+                            let alertSuccess = '<div class="alert alert-success">'+resText+'</div>';
+                            $('#alert-display').append(alertSuccess);
+
+                            setTimeout(function(){
+                                $('#alert-display').empty();
+                            },5000);
+						},
+						error: function(response) {
+						    console.log(response)
+						}
+					})
+                }
+            });
+        });
+	</script>
 @endpush
