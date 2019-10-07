@@ -4,7 +4,25 @@
 @section('content')
 	<div class="page">
 		<div class="page-inner">
-			@include('procurement.assign_to_vendor._header')
+			<header class="page-title-bar">
+				<!-- .breadcrumb -->
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active">
+							<a href="#"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Assigment</a>
+						</li>
+					</ol>
+				</nav><!-- /.breadcrumb -->
+
+				<!-- title and toolbar -->
+				<div class="d-md-flex align-items-md-start">
+					<h1 class="page-title mr-sm-auto"> Vendor to project </h1><!-- .btn-toolbar -->
+					<div class="btn-toolbar">
+
+					</div>
+				</div><!-- /title and toolbar -->
+			</header>
+
 			<div class="page-section">
 				<div class="card card-fluid">
 					<div class="card-header">
@@ -107,13 +125,13 @@
                 },
                 messages: {
                     vendor: {
-                        required: "We need your email address to contact you",
+                        required: "Vendor is required",
                     },
                     "assign_wbs[]": {
-                        required: "We need your email address to contact you",
+                        required: "WBS ID is required",
                     },
                     "assign_type[]": {
-                        required: "We need your email address to contact you",
+                        required: "Assign Type is required",
                     }
                 },
                 submitHandler: function (from) {

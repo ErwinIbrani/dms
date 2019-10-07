@@ -8,8 +8,4 @@ class Project_assigment_model extends CI_Model
 		return $this->db->insert($this->table, $data);
 	}
 
-	public function multipleInsert()
-	{
-		
-	}
 }

@@ -76,13 +76,15 @@ class AssignToVendor extends CI_Controller
 				$this->project_assigment_model->insert($data_collection);
 			}
 
-			echo json_encode(array('data' => array(
-				'success' => 'success proccess assigment vendor to many project.'
-			)));
+			echo json_encode(
+				array('data' => array(
+					'success' => 'success proccess assigment vendor to many project.'
+				))
+			);
 		} else {
-			echo json_encode(['error proccess assigment vendor to many project.']);
+			echo json_encode(
+				array('error proccess assigment vendor to many project.')
+			);
 		}
-
-
 	}
 }
