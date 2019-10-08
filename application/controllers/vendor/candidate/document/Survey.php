@@ -6,69 +6,33 @@ class Survey extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('generatepdf');
-		$this->load->model(['Candidate_Model', 'Project_Model', 'CandidateDocument_Model']);
+		$this->load->model(['Candidate_Model', 'Project_Model', 'CandidateDocument_Model', 'User_Model', 'UserVendor_Model', 'Vendor_Model']);
 	}
 
 	public function index($candidate_id)
 	{
 		$candidate = $this->Candidate_Model->getCandidateById($candidate_id)->row();
-		$project   = $this->Project_Model->findOne($candidate->project_id)->row();
-		return view('vendor.candidate.document.survey', array(
+        $project   = $this->Project_Model->findOne($candidate->project_id)->row();
+        $vendor    = $this->Vendor_Model->findOne($candidate->vendor_id)->row();
+        $vendorPIC = $this->UserVendor_Model->getPIC($vendor->id)->row();
+        return view('vendor.candidate.document.survey', array(
 			'candidate' => $candidate,
-            'project'   => $project
+            'project'   => $project,
+            'vendor'    => $vendor,
+            'pic'       => $vendorPIC,
 		));
 	}
 
 	public function store()
     {
-       /* $this->form_validation->set_rules('code', 'Code', 'trim|required');
-        $this->form_validation->set_rules('type', 'Type', 'trim|required');
-        $this->form_validation->set_rules('contractor', 'Contractor', 'trim|required');
-        $this->form_validation->set_rules('project_manger', 'Project Manger', 'trim|required');
-        $this->form_validation->set_rules('distance_from_nom', 'Distance From Nom', 'trim|required');
-        $this->form_validation->set_rules('azimuth', 'Azimuth', 'trim|required');
-        $this->form_validation->set_rules('site_address', 'Site Address', 'trim|required');
-        $this->form_validation->set_rules('site_location', 'Site Location', 'trim|required');
-        $this->form_validation->set_rules('tower_type', 'Tower Type', 'trim|required');
-        $this->form_validation->set_rules('building_height', 'Building Height', 'trim|required');
-        $this->form_validation->set_rules('floor_no', 'Floor No', 'trim|required');
-        $this->form_validation->set_rules('tower_height', 'Tower Height', 'trim|required');
-        $this->form_validation->set_rules('space_dimension', 'Space Dimension', 'trim|required');
-        $this->form_validation->set_rules('access_road', 'Access Road', 'trim|required');
-        $this->form_validation->set_rules('access', 'Access', 'trim|required');
-        $this->form_validation->set_rules('owner', 'Owner', 'trim|required');
-        $this->form_validation->set_rules('address_owner', 'Address Owner', 'trim|required');
-        $this->form_validation->set_rules('pic_owner', 'PIC Owner', 'trim|required');
-        $this->form_validation->set_rules('phone_owner', 'Phone Number Owner', 'trim|required');*/
+       $config = [];
+       $config['upload_path']   = './uploads/attachment/survey/';
+       $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+       $config['max_size']      = '2000';
+       $config['encrypt_name']  = TRUE;
+       //$config['file_name'] = $new_name;
 
-     /*   if (empty($_FILES['path']['site_location_map'])) {
-            $this->form_validation->set_rules('site_location_map', 'Site Location Map', 'required');
-        }
-        if (empty($_FILES['path']['site_layout'])) {
-            $this->form_validation->set_rules('site_layout', 'Site Layout', 'required');
-        }
-        if (empty($_FILES['path']['site_contour'])) {
-            $this->form_validation->set_rules('site_contour', 'Site Contour', 'required');
-        }*/
-        if ($this->form_validation->run() == TRUE) {
-            $candidate = $this->Candidate_Model->getCandidateById($this->input->post('candidate_id'))->row();
-            $project   = $this->Project_Model->findOne($candidate->project_id)->row();
-            return view('vendor.candidate.document.survey', array(
-                'candidate' => $candidate,
-                'project'   => $project
-            ));
-        }else {
-            $getData  = $this->Project_Model->findOne($this->input->post('project_id'))->row_array();
-
-            $config = [];
-            $config['upload_path']   = './uploads/attachment/survey/';
-            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
-            $config['max_size']      = '2000';
-            //$config['encrypt_name']  = TRUE;
-            //$config['file_name'] = $new_name;
-
-            $this->load->library('upload', $config);
-
+       $this->load->library('upload', $config);
             $site_location_map = '';
             if (!$this->upload->do_upload('site_location_map')) {
                 $error = ['error' => $this->upload->display_errors()];
@@ -104,6 +68,8 @@ class Survey extends CI_Controller {
                     'site_name'         => $this->input->post('site_name'),
                     'nominal_long'      => $this->input->post('nominal_long'),
                     'nominal_lat'       => $this->input->post('nominal_lat'),
+                    'region'            => $this->input->post('region'),
+                    'site_type'         => $this->input->post('site_type'),
                     'search_radius'     => $this->input->post('search_radius'),
                     'antena_height'     => $this->input->post('antena_height'),
                     'candidate'         => $this->input->post('candidate'),
@@ -132,16 +98,16 @@ class Survey extends CI_Controller {
                 ];
                 $data = [
                     'project_id'    => $this->input->post('project_id'),
-                    'vendor_id'     => $getData['vendor_id'],
+                    'vendor_id'     => $this->input->post('vendor_id'),
                     'candidate_id'  => $this->input->post('candidate_id'),
                     'name'          => $this->input->post('name'),
-                    'status'        => 'waiting',
+                    'status'        => 'submited',
                     'created_at'    => date('Y-m-d H:i:s'),
                     'attribute'     => json_encode($attribute), //nanti didecode
                     'attachment'    => json_encode($attachment)
                 ];
 
-                $data     =  $this->CandidateDocument_Model->save($data);
+                $data  =  $this->CandidateDocument_Model->save($data);
                 if(!empty($data)) {
                     $template = $this->CandidateDocument_Model->findOne($data)->row_array();
                     generateSurvey($template);
@@ -153,27 +119,12 @@ class Survey extends CI_Controller {
                 $this->session->set_flashdata('error', $error['error']);
                 redirect("vendor/candidate/document/survey/index/" . $this->input->post('candidate_id'), 'refresh');
             }
-          }
-      }
+     }
 
-    public function laporan_pdf(){
-        $template = $this->CandidateDocument_Model->findOne(16)->row();
-        $project   = $this->Project_Model->findOne($template->project_id)->row();
-        return view('mypdf', ['template' => $template, 'project' => $project]);
-       /* $data = array(
-            "dataku" => array(
-                "nama" => "Petani Kode",
-                "url" => "http://petanikode.com"
-            )
-        );
-
-        $this->load->library('pdf');
-
-        $this->pdf->setPaper('A4', 'potrait');
-        $this->pdf->filename = "laporan-petanikode.pdf";
-        $this->pdf->load_view('mypdf', $data);*/
-
-
+    public function testpdf()
+    {
+        $model = $this->CandidateDocument_Model->findOne(117)->row_array();
+        return view('test_template.survey', ['model' => $model]);
     }
 
 

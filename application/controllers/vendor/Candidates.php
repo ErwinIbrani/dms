@@ -7,7 +7,7 @@ class Candidates extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('Candidate_Model', 'Project_Model'));
+		$this->load->model(array('Candidate_Model', 'Project_Model', 'Project_assigment_model'));
 	}
 
 	protected function validator()
@@ -25,17 +25,15 @@ class Candidates extends CI_Controller {
 
 	public function create($project_id)
 	{
-		$project = $this->Project_Model->findOne($project_id)->result();
-
+		$project = $this->Project_assigment_model->findByProject($project_id)->row();
 		return view('vendor.candidate.create', array(
-			'project' => $project[0]
+			'project' => $project
 		));
 	}
 
 	public function store($project_id)
 	{
 		$this->validator();
-
 		if($this->form_validation->run()) {
 			$candidate = $this->Candidate_Model->storeData($this->input->post());
 			$this->session->set_flashdata('success', 'Candidate was added, complete the following document for this candidate.');

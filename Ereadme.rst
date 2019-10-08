@@ -187,3 +187,7 @@ CREATE TABLE [dbo].[document_setting] (
   [deleted_at] datetime NULL,
 );
 
+==========
+ALTER TABLE dbo.user_vendor ADD user_id INT NULL;
+=========
+

@@ -46,18 +46,8 @@
 						    <input type="hidden" name="name" value="SURVEY_SITAC">
 
 							<!-- .fieldset -->
-								<fieldset>
-									@if(!empty(validation_errors()))
-										<div class="col-lg-12">
-											<div class="alert alert-warning alert-dismissible fade show">
-												<button type="button" class="close" data-dismiss="alert">×</button>
-												<strong><?php echo validation_errors(); ?></strong>
-											</div>
-										</div>
-									@endif
-
+							<fieldset>
 								<div class="row">
-
 										<div class="col-lg-12">
 											<div class="form-group">
 												<label for="tf1" class="badge badge-secondary">
@@ -73,35 +63,36 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Contractor</label>
-												<input type="text" class="form-control" name="contractor" autocomplete="off">
+												 <input type="text" class="form-control" name="contractor" value="{{ $vendor->name }}" readonly/>
+												<input type="hidden" class="form-control" name="vendor_id" value="{{ $vendor->id }}">
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Project Manager</label>
-												<input type="text" class="form-control" name="project_manger" autocomplete="off">
+												<input type="text" class="form-control" name="project_manger" value="{{ $pic->name }}" readonly/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">SITAC HO (Initial by Sitac & CME Reg)</label>
-												<input type="text" class="form-control" name="sitac_ho" autocomplete="off">
+												<input type="text" class="form-control" name="sitac_ho" autocomplete="off" required/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Approved By (Operator) RF</label>
-												<input type="text" class="form-control" name="rf" autocomplete="off">
+												<input type="text" class="form-control" name="rf" autocomplete="off" required/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Approved By (Operator) TX</label>
-												<input type="text" class="form-control" name="tx" autocomplete="off">
+												<input type="text" class="form-control" name="tx" autocomplete="off" required/>
 											</div>
 										</div>
 
@@ -115,42 +106,56 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Site ID</label>
-												<input type="text" class="form-control" name="site_id" value="<?= $project->site_id_ibs ?>" readonly="readonly"/>
+												<input type="text" class="form-control" name="site_id" value="<?= $project->site_id_ibs ?>" readonly/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Site Name</label>
-												<input type="text" class="form-control" name="site_name" value="<?= $project->site_name ?>" readonly="readonly"/>
+												<input type="text" class="form-control" name="site_name" value="<?= $project->site_name ?>" readonly/>
 											</div>
 										</div>
+
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="tf1">Regions</label>
+											<input type="text" class="form-control" name="region" value="<?= $project->region ?>" readonly/>
+										</div>
+									</div>
+
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="tf1">Site Type</label>
+											<input type="text" class="form-control" name="site_type" value="<?= $project->site_type ?>" readonly/>
+										</div>
+									</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Nominal Long</label>
-												<input type="text" class="form-control" name="nominal_long" value="<?= $project->longitude ?>" readonly="readonly"/>
+												<input type="text" class="form-control" name="nominal_long" value="<?= $project->longitude ?>" readonly/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Nominal Lat</label>
-												<input type="text" class="form-control" name="nominal_lat" value="<?= $project->latitude ?>" readonly="readonly"/>
+												<input type="text" class="form-control" name="nominal_lat" value="<?= $project->latitude ?>" readonly/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Search Radius</label>
-												<input type="text" class="form-control" name="search_radius" autocomplete="off">
+												<input type="text" class="form-control" name="search_radius" autocomplete="off" required/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Antena Height</label>
-												<input type="text" class="form-control" name="antena_height" autocomplete="off">
+												<input type="text" class="form-control" name="antena_height" autocomplete="off" required/>
 											</div>
 										</div>
 										<hr style="border-top: 1px dashed #8c8b8b;background-color: #f0f0f0;width: 100%;">
@@ -165,49 +170,49 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Candidate</label>
-												<input type="text" class="form-control" name="candidate" value="<?= ucwords($candidate->name) ?>" readonly="readonly">
+												<input type="text" class="form-control" name="candidate" value="<?= ucwords($candidate->name) ?>" readonly/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Candidate Long</label>
-												<input type="text" class="form-control" name="candidate_long" value="<?= $candidate->long ?>" readonly="readonly">
+												<input type="text" class="form-control" name="candidate_long" value="<?= $candidate->long ?>" readonly/>
 											</div>
 										</div>
 
-										<div class="col-lg-6">
+									<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Candidate Lat</label>
-												<input type="text" class="form-control" name="candidate_lat" value="<?= $candidate->lat ?>" readonly="readonly">
+												<input type="text" class="form-control" name="candidate_lat" value="<?= $candidate->lat ?>" readonly/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
-												<label for="tf1">Distance From Nom</label>
-												<input type="text" class="form-control" name="distance_from_nom" autocomplete="off">
+												<label for="tf1">Distance From Nom(m)</label>
+												<input type="text" class="form-control" name="distance_from_nom" autocomplete="off" required/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
-												<label for="tf1">Azimuth</label>
-												<input type="text" class="form-control" name="azimuth" autocomplete="off">
+												<label for="tf1">Azimuth (Degree)</label>
+												<input type="text" class="form-control" name="azimuth" autocomplete="off" required/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Site Address</label>
-												<input type="text" class="form-control" name="site_address" value="<?= $candidate->address ?>" readonly="readonly">
+												<input type="text" class="form-control" name="site_address" value="<?= $candidate->address ?>" readonly/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Site Location</label>
-												<select class="form-control" name="site_location">
+												<select class="form-control" name="site_location" required>
 													<option value="" selected="selected">.:Choose:.</option>
 													<option value="Office">Office</option>
 													<option value="Commercial">Commercial</option>
@@ -220,7 +225,7 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Tower Type</label>
-												<select class="form-control" name="tower_type">
+												<select class="form-control" name="tower_type" required>
 													<option value="" selected="selected">.:Choose:.</option>
 													<option value="Self Support Tower">Self Support Tower</option>
 													<option value="Monopole Tower">Monopole Tower</option>
@@ -235,42 +240,46 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Building Height(m)</label>
-												<input type="text" class="form-control" name="building_height" autocomplete="off">
+												<input type="text" class="form-control" name="building_height" autocomplete="off" required/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Floor No(fl)</label>
-												<input type="text" class="form-control" name="floor_no" autocomplete="off">
+												<input type="text" class="form-control" name="floor_no" autocomplete="off" required/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Pole/Tower Height(m)</label>
-												<input type="text" class="form-control" name="tower_height" autocomplete="off">
+												<input type="text" class="form-control" name="tower_height" autocomplete="off" required/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Space Dimension(m)</label>
-												<input type="text" class="form-control" name="space_dimension" autocomplete="off">
+												<input type="text" class="form-control" name="space_dimension" autocomplete="off" required/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Access Road(m)</label>
-												<input type="text" class="form-control" name="access_road" autocomplete="off">
+												<input type="text" class="form-control" name="access_road" autocomplete="off" required/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">24/7 Access</label>
-												<input type="text" class="form-control" name="access" autocomplete="off">
+												<select class="form-control" name="access" required>
+													<option value="" selected="selected">.:Choose:.</option>
+													<option value="Office">Yes</option>
+													<option value="Commercial">No</option>
+												</select>
 											</div>
 										</div>
 
@@ -285,14 +294,14 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Owner(Institution)</label>
-												<input type="text" class="form-control" name="owner" autocomplete="off">
+												<input type="text" class="form-control" name="owner" value="{{ $candidate->owner_name }}" readonly/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Address(Owner)</label>
-												<input type="text" class="form-control" name="address_owner" autocomplete="off">
+												<input type="text" class="form-control" name="address_owner" value="{{ $candidate->owner_address }}" readonly/>
 											</div>
 										</div>
 
@@ -306,7 +315,7 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Phone Number</label>
-												<input type="text" class="form-control" name="phone_owner" autocomplete="off">
+												<input type="text" class="form-control" name="phone_owner" value="{{ $candidate->phone_number }}" readonly/>
 											</div>
 										</div>
 
@@ -321,7 +330,7 @@
 											<div class="form-group">
 												<label for="tf3">Site Location Map</label>
 												<div class="custom-file">
-													<input type="file" name="site_location_map" class="custom-file-input" id="tf31"> <label class="custom-file-label" for="tf3">Choose file</label>
+													<input type="file" name="site_location_map" class="custom-file-input" id="tf31" required/> <label class="custom-file-label" for="tf3">Choose file</label>
 												</div>
 											</div>
 										</div>
@@ -329,7 +338,7 @@
 											<div class="form-group">
 												<label for="tf3">Site Layout</label>
 												<div class="custom-file">
-													<input type="file" name="site_layout" class="custom-file-input" id="tf32"> <label class="custom-file-label" for="tf3">Choose file</label>
+													<input type="file" name="site_layout" class="custom-file-input" id="tf32" required/> <label class="custom-file-label" for="tf3">Choose file</label>
 												</div>
 											</div>
 										</div>
@@ -338,7 +347,7 @@
 											<div class="form-group">
 												<label for="tf3">Site Contour</label>
 												<div class="custom-file">
-													<input type="file" name="site_contour" class="custom-file-input" id="tf33"> <label class="custom-file-label" for="tf3">Choose file</label>
+													<input type="file" name="site_contour" class="custom-file-input" id="tf33" required/> <label class="custom-file-label" for="tf3">Choose file</label>
 												</div>
 											</div>
 										</div>

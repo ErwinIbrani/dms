@@ -18,8 +18,9 @@
 						</div>
 					@endif
 					{!! form_open(site_url('vendor/candidates/store/' . $project->id)) !!}
-					<input type="hidden" class="form-control" name="project_id" value="{{ $project->id }}">
+					<input type="hidden" class="form-control" name="project_id" value="{{ $project->project_id }}">
 					<input type="hidden" class="form-control" name="vendor_id" value="{{ $project->vendor_id }}">
+
 
 					<h5 class="h5 text-muted">Candidate</h5>
 					<div class="form-group">
