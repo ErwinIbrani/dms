@@ -23,12 +23,13 @@ class Candidates extends CI_Controller {
 		$this->form_validation->set_rules('address', 'Owner Address', 'required');
 	}
 
-	public function create($project_id)
+	public function create($project_id, $vendor_id)
 	{
 		$project = $this->Project_Model->findOne($project_id)->result();
 
 		return view('vendor.candidate.create', array(
-			'project' => $project[0]
+			'project' => $project[0],
+			'vendor_id' => $vendor_id
 		));
 	}
 
@@ -38,6 +39,7 @@ class Candidates extends CI_Controller {
 
 		if($this->form_validation->run()) {
 			$candidate = $this->Candidate_Model->storeData($this->input->post());
+			$this->Project_Model->update($project_id, array('status' => 'on process'));
 			$this->session->set_flashdata('success', 'Candidate was added, complete the following document for this candidate.');
 			return redirect("vendor/candidate/document/survey/index/" . $candidate, 'refresh');
 		} else {
