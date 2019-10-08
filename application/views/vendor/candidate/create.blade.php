@@ -35,7 +35,7 @@
 							</div>
 						</div>
 					@endif
-					{!! form_open(site_url('vendor/candidates/store/' . $project->id)) !!}
+					{!! form_open(site_url('vendor/candidates/store/' . $project->id. '/' . $vendor_id)) !!}
 					<input type="hidden" class="form-control" name="project_id" value="{{ $project->id }}">
 					<input type="hidden" class="form-control" name="vendor_id" value="{{ $vendor_id }}">
 

@@ -33,7 +33,7 @@ class Candidates extends CI_Controller {
 		));
 	}
 
-	public function store($project_id)
+	public function store($project_id, $vendor_id)
 	{
 		$this->validator();
 
@@ -43,7 +43,7 @@ class Candidates extends CI_Controller {
 			$this->session->set_flashdata('success', 'Candidate was added, complete the following document for this candidate.');
 			return redirect("vendor/candidate/document/survey/index/" . $candidate, 'refresh');
 		} else {
-			return $this->create($project_id);
+			return $this->create($project_id, $vendor_id);
 		}
 	}
 
