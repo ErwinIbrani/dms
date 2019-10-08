@@ -191,3 +191,7 @@ CREATE TABLE [dbo].[document_setting] (
 ALTER TABLE dbo.user_vendor ADD user_id INT NULL;
 =========
 
+==========
+ALTER TABLE dbo.candidate ADD city varchar(255) NULL;
+=========
+

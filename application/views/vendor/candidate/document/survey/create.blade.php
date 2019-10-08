@@ -24,7 +24,7 @@
 				<div class="card-header">
 					<ul class="nav nav-tabs card-header-tabs">
 						<li class="nav-item">
-							<a class="nav-link show active" href="{{ site_url('/vendor/candidate/document/survey/index/'.$candidate->id) }}">Document Survey</a>
+							<a class="nav-link show active" href="{{ site_url('/vendor/candidate/document/survey/create/'.$candidate->id) }}">Document Survey</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{{ site_url('/vendor/candidate/document/bap/add/'. $candidate->id) }}">BAP Document</a>
@@ -154,8 +154,8 @@
 
 										<div class="col-lg-6">
 											<div class="form-group">
-												<label for="tf1">Antena Height</label>
-												<input type="text" class="form-control" name="antena_height" autocomplete="off" required/>
+												<label for="tf1">Antena Height (m)</label>
+												<input type="number" class="form-control" name="antena_height" autocomplete="off" required/>
 											</div>
 										</div>
 										<hr style="border-top: 1px dashed #8c8b8b;background-color: #f0f0f0;width: 100%;">
@@ -186,26 +186,33 @@
 												<label for="tf1">Candidate Lat</label>
 												<input type="text" class="form-control" name="candidate_lat" value="<?= $candidate->lat ?>" readonly/>
 											</div>
+								     </div>
+
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="tf1">Site Address</label>
+											<input type="text" class="form-control" name="site_address" value="<?= $candidate->address ?>" readonly/>
 										</div>
+									</div>
+
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="tf1">City/Province</label>
+											<input type="text" class="form-control" name="city" value="<?= $candidate->city ?>" readonly/>
+										</div>
+									</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
-												<label for="tf1">Distance From Nom(m)</label>
-												<input type="text" class="form-control" name="distance_from_nom" autocomplete="off" required/>
+												<label for="tf1">Distance From Nom (m)</label>
+												<input type="number" class="form-control" name="distance_from_nom" autocomplete="off" required/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Azimuth (Degree)</label>
-												<input type="text" class="form-control" name="azimuth" autocomplete="off" required/>
-											</div>
-										</div>
-
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="tf1">Site Address</label>
-												<input type="text" class="form-control" name="site_address" value="<?= $candidate->address ?>" readonly/>
+												<input type="number" class="form-control" name="azimuth" autocomplete="off" required/>
 											</div>
 										</div>
 
@@ -239,35 +246,35 @@
 
 										<div class="col-lg-6">
 											<div class="form-group">
-												<label for="tf1">Building Height(m)</label>
-												<input type="text" class="form-control" name="building_height" autocomplete="off" required/>
+												<label for="tf1">Building Height (m)</label>
+												<input type="number" class="form-control" name="building_height" autocomplete="off" required/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
-												<label for="tf1">Floor No(fl)</label>
-												<input type="text" class="form-control" name="floor_no" autocomplete="off" required/>
+												<label for="tf1">Floor No (fl)</label>
+												<input type="number" class="form-control" name="floor_no" autocomplete="off" required/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Pole/Tower Height(m)</label>
-												<input type="text" class="form-control" name="tower_height" autocomplete="off" required/>
+												<input type="number" class="form-control" name="tower_height" autocomplete="off" required/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
-												<label for="tf1">Space Dimension(m)</label>
+												<label for="tf1">Space Dimension (m x m)</label>
 												<input type="text" class="form-control" name="space_dimension" autocomplete="off" required/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
-												<label for="tf1">Access Road(m)</label>
+												<label for="tf1">Access Road (m x m)</label>
 												<input type="text" class="form-control" name="access_road" autocomplete="off" required/>
 											</div>
 										</div>

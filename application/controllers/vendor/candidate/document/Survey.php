@@ -9,13 +9,23 @@ class Survey extends CI_Controller {
 		$this->load->model(['Candidate_Model', 'Project_Model', 'CandidateDocument_Model', 'User_Model', 'UserVendor_Model', 'Vendor_Model']);
 	}
 
-	public function index($candidate_id)
+	public function index()
+    {
+        return view('vendor.candidate.document.survey.index', array(
+            'candidate' => $candidate,
+            'project'   => $project,
+            'vendor'    => $vendor,
+            'pic'       => $vendorPIC,
+        ));
+    }
+
+	public function create($candidate_id)
 	{
 		$candidate = $this->Candidate_Model->getCandidateById($candidate_id)->row();
         $project   = $this->Project_Model->findOne($candidate->project_id)->row();
         $vendor    = $this->Vendor_Model->findOne($candidate->vendor_id)->row();
         $vendorPIC = $this->UserVendor_Model->getPIC($vendor->id)->row();
-        return view('vendor.candidate.document.survey', array(
+        return view('vendor.candidate.document.survey.create', array(
 			'candidate' => $candidate,
             'project'   => $project,
             'vendor'    => $vendor,
@@ -78,6 +88,7 @@ class Survey extends CI_Controller {
                     'distance_from_nom' => $this->input->post('distance_from_nom'),
                     'azimuth'           => $this->input->post('azimuth'),
                     'site_address'      => $this->input->post('site_address'),
+                    'city'              => $this->input->post('city'),
                     'site_location'     => $this->input->post('site_location'),
                     'tower_type'        => $this->input->post('tower_type'),
                     'building_height'   => $this->input->post('building_height'),
@@ -123,7 +134,7 @@ class Survey extends CI_Controller {
 
     public function testpdf()
     {
-        $model = $this->CandidateDocument_Model->findOne(117)->row_array();
+        $model = $this->CandidateDocument_Model->findOne(118)->row_array();
         return view('test_template.survey', ['model' => $model]);
     }
 

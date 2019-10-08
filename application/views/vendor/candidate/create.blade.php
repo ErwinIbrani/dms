@@ -46,6 +46,15 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<div class="form-label-group">
+									<input type="text" class="form-control" name="city" id="city" placeholder="Lat">
+									<label for="lat">City/Province</label>
+								</div>
+							</div>
+						</div>
+						
 					</div>
 						<div class="form-group">
 							<div class="form-label-group">
@@ -54,6 +63,7 @@
 								<label for="address">Address</label>
 							</div>
 						</div>
+
 
 					<h5 class="h5 text-muted">Owner Information</h5>
 					<div class="form-row">
