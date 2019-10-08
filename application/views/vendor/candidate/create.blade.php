@@ -45,7 +45,7 @@
 						<div class="form-label-group">
 							<input type="text" class="form-control" name="name" id="name" placeholder="Candidate name">
 							<label for="name">Candidate Name</label>
-=======
+
 					{!! form_open(site_url('vendor/candidates/store/' . $project->id. '/' . $vendor_id)) !!}
 					<input type="hidden" class="form-control" name="project_id" value="{{ $project->id }}">
 					<input type="hidden" class="form-control" name="vendor_id" value="{{ $vendor_id }}">
@@ -68,20 +68,21 @@
 								<input type="text" class="form-control" name="long" id="long" placeholder="Long">
 							</div>
 						</div>
+
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="lat">Lat</label>
 								<input type="text" class="form-control" name="lat" id="lat" placeholder="Lat">
 							</div>
 						</div>
+
 						<div class="col-md-4">
 							<div class="form-group">
-								<div class="form-label-group">
-									<input type="text" class="form-control" name="city" id="city" placeholder="Lat">
-									<label for="lat">City/Province</label>
-								</div>
+								<label for="lat">City/Province</label>
+								<input type="text" class="form-control" name="city" id="city" placeholder="Lat">
 							</div>
 						</div>
+
 						
 					</div>
 					<div class="form-group">

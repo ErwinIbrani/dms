@@ -5,17 +5,42 @@ class Survey extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('generatepdf');
+		$this->load->helper(['generatepdf', 'custom']);
+        $this->lang->load('auth');
 		$this->load->model(['Candidate_Model', 'Project_Model', 'CandidateDocument_Model', 'User_Model', 'UserVendor_Model', 'Vendor_Model']);
+        authentication($this->ion_auth->logged_in());
 	}
 
-	public function index()
+	public function index($rowno=0)
     {
+        $this->make_bread->add('Index');
+        $breadcrumb = $this->make_bread->output();
+        $search_text = "";
+        if($this->input->post('submit') != NULL ){
+            $search_text = $this->input->post('search');
+            $this->session->set_userdata(["search" => $search_text]);
+        }else{
+            if($this->session->userdata('search') != NULL){
+                $search_text = $this->session->userdata('search');
+            }
+        }
+        $rowperpage = 20;
+        if($rowno  != 0){
+            $rowno  = ($rowno-1) * $rowperpage;
+        }
+        $allcount             = $this->CandidateDocument_Model->getrecordCount($search_text);
+        $records              = $this->CandidateDocument_Model->getData($rowno, $rowperpage, $search_text);
+        $config['base_url']   = base_url().'vendor/candidate/document/survey/index';
+        $config['total_rows'] = $allcount;
+        $config['per_page']   = $rowperpage;
+        $this->pagination->initialize($config);
+        $pagination = $this->pagination->create_links();
+
         return view('vendor.candidate.document.survey.index', array(
-            'candidate' => $candidate,
-            'project'   => $project,
-            'vendor'    => $vendor,
-            'pic'       => $vendorPIC,
+            'pagination' => $pagination,
+            'candidates' => $records,
+            'search'     => $search_text,
+            'breadcrumb' => $breadcrumb,
         ));
     }
 
@@ -47,7 +72,7 @@ class Survey extends CI_Controller {
             if (!$this->upload->do_upload('site_location_map')) {
                 $error = ['error' => $this->upload->display_errors()];
                 $this->session->set_flashdata('error', $error['error']);
-                redirect("vendor/candidate/document/survey/index/" . $this->input->post('candidate_id'), 'refresh');
+                redirect("vendor/candidate/document/survey/index", 'refresh');
             }else{
                 $site_location_map = $this->upload->data();
             }
@@ -55,7 +80,7 @@ class Survey extends CI_Controller {
             if (!$this->upload->do_upload('site_layout')) {
                 $error = ['error' => $this->upload->display_errors()];
                 $this->session->set_flashdata('error', $error['error']);
-                redirect("vendor/candidate/document/survey/index/" . $this->input->post('candidate_id'), 'refresh');
+                redirect("vendor/candidate/document/survey/index", 'refresh');
             }else{
                 $site_layout  = $this->upload->data();
             }
@@ -63,7 +88,7 @@ class Survey extends CI_Controller {
             if (!$this->upload->do_upload('site_contour')) {
                 $error = ['error' => $this->upload->display_errors()];
                 $this->session->set_flashdata('error', $error['error']);
-                redirect("vendor/candidate/document/survey/index/" . $this->input->post('candidate_id'), 'refresh');
+                redirect("vendor/candidate/document/survey/index", 'refresh');
             }else{
                 $site_contour = $this->upload->data();
             }
@@ -111,7 +136,9 @@ class Survey extends CI_Controller {
                     'project_id'    => $this->input->post('project_id'),
                     'vendor_id'     => $this->input->post('vendor_id'),
                     'candidate_id'  => $this->input->post('candidate_id'),
-                    'name'          => $this->input->post('name'),
+                    'name'          => 'SURVEY',
+                    'code'          => 'FM-STP-019',
+                    'type'          => 'SITAC',
                     'status'        => 'submited',
                     'created_at'    => date('Y-m-d H:i:s'),
                     'attribute'     => json_encode($attribute), //nanti didecode
@@ -123,18 +150,29 @@ class Survey extends CI_Controller {
                     $template = $this->CandidateDocument_Model->findOne($data)->row_array();
                     generateSurvey($template);
                     $this->session->set_flashdata('success', 'Data Uploded');
-                    redirect("project/project/document/" . $this->input->post('project_id'), 'refresh');
+                    redirect("vendor/candidate/document/survey/index/", 'refresh');
                 }
              }else{
                 $error = ['error' => $this->upload->display_errors()];
                 $this->session->set_flashdata('error', $error['error']);
-                redirect("vendor/candidate/document/survey/index/" . $this->input->post('candidate_id'), 'refresh');
+                redirect("vendor/candidate/document/survey/index/", 'refresh');
             }
      }
 
+   public function download($file_name)
+   {
+       if(!empty($file_name)) {
+           $this->load->helper('download');
+           $file = 'uploads/surveysitac/' . $file_name . '';
+           force_download($file, NULL);
+       }
+       $this->session->set_flashdata('error', 'File Empty');
+       redirect("vendor/candidate/document/survey/index/", 'refresh');
+   }
+
     public function testpdf()
     {
-        $model = $this->CandidateDocument_Model->findOne(118)->row_array();
+        $model = $this->CandidateDocument_Model->findOne(119)->row_array();
         return view('test_template.survey', ['model' => $model]);
     }
 

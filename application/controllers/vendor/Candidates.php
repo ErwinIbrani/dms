@@ -23,6 +23,7 @@ class Candidates extends CI_Controller {
 		$this->form_validation->set_rules('address', 'Owner Address', 'required');
 	}
 
+
 	public function create($project_id, $vendor_id)
 	{
 		$project = $this->Project_assigment_model->findByProject($project_id)->row();

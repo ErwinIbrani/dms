@@ -187,7 +187,7 @@ echo $raw_html = '<!DOCTYPE html>
             <th><span style="font-weight:bold">SITE LOCATION / MAP</span><br></th>
         </tr>
         <tr>
-            <td style="text-align: center"><img src="'.base_url('uploads/attachment/survey/'.$contentImage['site_location_map'].'').'" width="100%" height="100%" alt=""/></td>
+            <td style="text-align: center"><img src="'.base_url('uploads/attachment/survey/'.$contentImage['site_location_map'].'').'" width="500" height="400" alt=""/></td>
         </tr>
     </table>
   </div>
@@ -198,7 +198,7 @@ echo $raw_html = '<!DOCTYPE html>
             <th><span style="font-weight:bold">SITE LAYOUT</span><br></th>
         </tr>
         <tr>
-            <td style="text-align: center"><img src="'.base_url('uploads/attachment/survey/'.$contentImage['site_layout'].'').'" width="100%" height="100%" alt=""/></td>
+            <td style="text-align: center"><img src="'.base_url('uploads/attachment/survey/'.$contentImage['site_layout'].'').'" width="500" height="400" alt=""/></td>
         </tr>
     </table>
 </div>
@@ -206,10 +206,10 @@ echo $raw_html = '<!DOCTYPE html>
 <div class="tg-wrap">
     <table border="1" style="width: 100%" class="tg">
         <tr>
-            <th><span style="font-weight:bold"><img src="'.base_url('uploads/attachment/survey/'.$contentImage['site_contour'].'').'" width="100%" height="100%" alt=""/></span><br></th>
+            <th><span style="font-weight:bold">Site Countour</span><br></th>
         </tr>
         <tr>
-            <td style="text-align: center">Gambar Site Layout</td>
+            <td style="text-align: center"><img src="'.base_url('uploads/attachment/survey/'.$contentImage['site_contour'].'').'"  width="500" height="400" alt=""/></td>
         </tr>
     </table>
 </div>
