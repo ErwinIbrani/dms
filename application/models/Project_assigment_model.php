@@ -8,6 +8,7 @@ class Project_assigment_model extends CI_Model
 		return $this->db->insert($this->table, $data);
 	}
 
+
 	public function multipleInsert()
 	{
 		
@@ -26,4 +27,5 @@ class Project_assigment_model extends CI_Model
     {
         return $this->db->get_where($this->table, ['vendor_id' => $vendor_id]);
     }
+
 }

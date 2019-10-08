@@ -70,5 +70,22 @@ class Project_Model extends CI_Model
 		return $this->db->get($this->table);
 	}
 
+	/**
+	 * @param string $select
+	 * @param $status
+	 * @param $deleted
+	 * @return mixed
+	 */
+	public function getAllByStatusAndVendor($select = '*', $status, $vendor_id,$deleted)
+	{
+		$this->db->select($select)
+			->from($this->table)
+			->join('project_assigment', 'project_assigment.project_id = project.id', 'inner')
+			->where('project.status', $status)
+			->where('project_assigment.vendor_id', $vendor_id)
+			->where('project.deleted_at IS NULL');
+		return $this->db->get();
+	}
+
 
 }

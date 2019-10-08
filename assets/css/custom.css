@@ -1,5 +1,6 @@
 /* put your own styles to customize and override the theme */
 label.error {
+	padding-top: 8px;
 	font-size: 12px;
 	color: #b76ba3;
 }
