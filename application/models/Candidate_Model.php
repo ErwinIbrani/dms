@@ -22,4 +22,12 @@ class Candidate_Model extends CI_Model
         $this->db->insert($this->table, $data);
         return $this->db->insert_id();
     }
+
+	public function getByProject($project_id, $vendor_id)
+	{
+		$this->db->from($this->table);
+		$this->db->where('project_id', $project_id);
+		$this->db->where('vendor_id', $vendor_id);
+		return $this->db->get();
+    }
 }

@@ -35,16 +35,6 @@
 							</div>
 						</div>
 					@endif
-					{!! form_open(site_url('vendor/candidates/store/' . $project->id)) !!}
-					<input type="hidden" class="form-control" name="project_id" value="{{ $project->project_id }}">
-					<input type="hidden" class="form-control" name="vendor_id" value="{{ $project->vendor_id }}">
-
-
-					<h5 class="h5 text-muted">Candidate</h5>
-					<div class="form-group">
-						<div class="form-label-group">
-							<input type="text" class="form-control" name="name" id="name" placeholder="Candidate name">
-							<label for="name">Candidate Name</label>
 
 					{!! form_open(site_url('vendor/candidates/store/' . $project->id. '/' . $vendor_id)) !!}
 					<input type="hidden" class="form-control" name="project_id" value="{{ $project->id }}">
@@ -79,7 +69,7 @@
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="lat">City/Province</label>
-								<input type="text" class="form-control" name="city" id="city" placeholder="Lat">
+								<input type="text" class="form-control" name="city" id="city">
 							</div>
 						</div>
 
@@ -96,7 +86,6 @@
 						<div class="form-group">
 							<span class="badge badge-secondary">Owner Information</span>
 						</div>
-					<h5 class="h5 text-muted">Owner Information</h5>
 					</div>
 					<div class="form-row">
 						<div class="col-md-4">

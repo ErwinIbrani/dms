@@ -81,6 +81,15 @@
 					</li><!-- /.menu-item -->
                     <?php endif ?>
 
+						<?php if ($CI->ion_auth->in_group('PIC Vendor')): ?>
+						<li class="menu-header">Vendor</li><!-- /.menu-header -->
+						<li class="menu-item">
+							<a href="{{ site_url('/vendor/project/index') }}" class="menu-link"><span
+									class="menu-icon fas fa-clipboard-check"></span> <span
+									class="menu-text">Projects</span></a>
+						</li><!-- /.menu-item -->
+						<?php endif?>
+
                     <?php if ($CI->ion_auth->in_group('Project Admin')): ?>
 						<li class="menu-header">Project Admin</li><!-- /.menu-header -->
 						<li class="menu-item">

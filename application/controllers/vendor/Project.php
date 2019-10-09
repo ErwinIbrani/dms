@@ -5,7 +5,7 @@ class Project extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('Project_Model'));
+		$this->load->model(array('Project_Model', 'Candidate_Model'));
 	}
 
 	public function index()
@@ -43,4 +43,22 @@ class Project extends CI_Controller
 			'vendor_id' => 1
 		));
 	}
+
+	public function details($project_id, $vendor_id)
+	{
+		$project = $this->Project_Model->findOne($project_id);
+		$candidates = $this->Candidate_Model->getByProject($project_id, $vendor_id);
+
+		//var_dump($project->result()[0]) or die;
+		return view('vendor.project.details.index', array(
+			'project' => $project->result()[0],
+			'candidates' => $candidates->result(),
+			'vendor_id' => $vendor_id
+		));
+	}
+
+	public function candidate($candidate) {
+
+	}
+
 }

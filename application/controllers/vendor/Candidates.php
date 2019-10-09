@@ -40,13 +40,14 @@ class Candidates extends CI_Controller {
 			$candidate = $this->Candidate_Model->storeData($this->input->post());
 			$this->Project_Model->update($project_id, array('status' => 'on process'));
 			$this->session->set_flashdata('success', 'Candidate was added, complete the following document for this candidate.');
-			return redirect("vendor/candidate/document/survey/index/" . $candidate, 'refresh');
+
+			return redirect("vendor/candidate/document/survey/create/" . $candidate, 'refresh');
 		} else {
 			return $this->create($project_id, $vendor_id);
 		}
 	}
 
-	public function documenta($candidate_id)
+	public function document($candidate_id)
 	{
 		return view('vendor.candidate.document', array(
 			'candidate' => $this->Candidate_Model->getCandidateById($candidate_id)->result()
