@@ -49,7 +49,8 @@
                                 <th> WBS ID </th>
                                 <th> Candidate Name</th>
                                 <th> Create At</th>
-                                <th style="width:100px; min-width:100px;"> Document(PDF) </th>
+                                <th> Status</th>
+                                <th style="width:100px; min-width:100px;">  </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -63,8 +64,12 @@
                                     <td class="align-middle"> {{ $candidate->wbs_id }} </td>
                                     <td class="align-middle"> {{ $candidate->candidate_name }} </td>
                                     <td class="align-middle"> {{ date('d-M-Y', strtotime($candidate->created_at)) }} </td>
+                                    <td class="align-middle"> {{ $candidate->status_revision }} </td>
                                     <td class="align-middle text-center">
-                                        <a target="_blank" href="<?= site_url("vendor/candidate/document/survey/download/".$candidate->path.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-file-upload"></i> <span class="sr-only">View</span></a>
+                                      @if(empty($candidate->status_revision))
+                                          <a href="<?= site_url("vendor/candidate/document/survey/choose/".$candidate->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-check" title="Choose Candidate" onClick="javascript:return confirm('Choose This Candidate ?');"></i> <span class="sr-only">Choose</span></a>
+                                      @endif
+                                          <a target="_blank" href="<?= site_url("vendor/candidate/document/survey/download/".$candidate->path.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-file-upload" title="Preview"></i> <span class="sr-only">Download</span></a>
                                     </td>
                                 </tr>
                             @endforeach

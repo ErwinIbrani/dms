@@ -7,7 +7,7 @@ class Survey extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(['generatepdf', 'custom']);
         $this->lang->load('auth');
-		$this->load->model(['Candidate_Model', 'Project_Model', 'CandidateDocument_Model', 'User_Model', 'UserVendor_Model', 'Vendor_Model']);
+		$this->load->model(['Document_Model','Candidate_Model', 'Project_Model', 'CandidateDocument_Model', 'User_Model', 'UserVendor_Model', 'Vendor_Model']);
         authentication($this->ion_auth->logged_in());
 	}
 
@@ -167,7 +167,30 @@ class Survey extends CI_Controller {
            force_download($file, NULL);
        }
        $this->session->set_flashdata('error', 'File Empty');
-       redirect("vendor/candidate/document/survey/index/", 'refresh');
+       redirect("vendor/candidate/document/survey/index", 'refresh');
+   }
+
+   public function choose($id)
+   {
+       $candidateModel = $this->CandidateDocument_Model->findOne($id)->row_array();
+       $candidate = $this->CandidateDocument_Model->update($id,  ['status_revision' => 'Choose']);
+       if($candidate == true){
+           $data = [
+               'project_id'      => $candidateModel['project_id'],
+               'vendor_id'       => $candidateModel['vendor_id'],
+               'name'            => $candidateModel['name'],
+               'code'            => $candidateModel['code'],
+               'type'            => $candidateModel['type'],
+               'attachment'      => $candidateModel['attachment'],
+               'path'            => $candidateModel['path'],
+               'attribute'       => $candidateModel['attribute'],
+               'created_at'      => $candidateModel['created_at'],
+               'status_revision' => $candidateModel['status_revision']
+           ];
+           $this->Document_Model->save($data);
+           $this->session->set_flashdata('success', 'Candidate Selected');
+           redirect("vendor/candidate/document/survey/index", 'refresh');
+       }
    }
 
     public function testpdf()

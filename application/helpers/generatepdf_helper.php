@@ -204,7 +204,7 @@ if (!function_exists('generate')) {
                                     <th><span style="font-weight:bold">SITE LAYOUT</span><br></th>
                                 </tr>
                                 <tr>
-                                    <td style="text-align: center"><img src="'.base_url('uploads/attachment/survey/'.$contentImage['site_layout'].'').'" width="500" height="400" alt=""/></td>
+                                    <td style="text-align: center"><img src="'.base_url('E:/laragon/www/dms.ibstower/uploads/attachment/survey/uploads/attachment/survey/'.$contentImage['site_layout'].'').'" width="500" height="400" alt=""/></td>
                                 </tr>
                             </table>
                         </div>
@@ -215,7 +215,7 @@ if (!function_exists('generate')) {
                                     <th><span style="font-weight:bold">Site Countour</span><br></th>
                                 </tr>
                                 <tr>
-                                    <td style="text-align: center"><img src="'.base_url('uploads/attachment/survey/'.$contentImage['site_contour'].'').'"  width="500" height="400" alt=""/></td>
+                                    <td style="text-align: center"><img src="http://homepages.cae.wisc.edu/~ece533/images/airplane.png"  width="500" height="400" alt=""/></td>
                                 </tr>
                             </table>
                         </div>

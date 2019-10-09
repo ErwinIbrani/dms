@@ -16,6 +16,7 @@ class CandidateDocument_Model extends CI_Model
         $this->db->select('document_candidate.id,
                            document_candidate.created_at,
                            document_candidate.path,
+                           document_candidate.status_revision,
                            candidate.name as candidate_name,
                            vendor.name as vendor_name,
                            project.wbs_id');
@@ -57,6 +58,6 @@ class CandidateDocument_Model extends CI_Model
     public function update($id, $update)
     {
         $this->db->where('id', $id);
-        $this->db->update($this->table, $update);
+        return $this->db->update($this->table, $update);
     }
 }
