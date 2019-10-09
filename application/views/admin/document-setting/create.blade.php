@@ -57,6 +57,7 @@
                             </table>
                         </div>
                       </div>
+
                     </div>
 
                         <div class="publisher-actions">
