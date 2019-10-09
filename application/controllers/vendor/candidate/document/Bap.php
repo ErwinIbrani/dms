@@ -156,6 +156,16 @@ class Bap extends CI_Controller
 		$template->saveAs($file_name);
 		$this->CandidateDocument_Model->update($document_id, array('path' => $file_name));
 
+		$objWriter = \PhpOffice\PhpWord\IOFactory::createReader('Word2007');
+		PhpOffice\PhpWord\Settings::setPdfRendererPath('vendor/dompdf/dompdf');
+		\PhpOffice\PhpWord\Settings::setPdfRendererName('DomPDF');
+		$phpWord = $objWriter->load($file_name);
+
+		$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'PDF');
+		$objWriter->save('helloTexr.pdf');
+
+
+
 		return view('vendor.candidate.document.preview', array(
 			'candidate' => $attribute->candidate[0],
 			'document' => $document_candidate
