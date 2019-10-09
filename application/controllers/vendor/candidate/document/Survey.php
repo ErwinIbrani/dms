@@ -170,7 +170,7 @@ class Survey extends CI_Controller {
        $this->session->set_flashdata('error', 'File Empty');
        redirect("vendor/candidate/document/survey/index", 'refresh');
    }
-   
+
     public function choose($id)
     {
         $candidateModel  = $this->CandidateDocument_Model->findOne($id)->row_array();

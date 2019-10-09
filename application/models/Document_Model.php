@@ -18,10 +18,6 @@ class Document_Model extends CI_Model
         return $this->db->update($this->table, $update);
     }
 
-    public function findCandidateSurveyDone($project_id)
-    {
-        return $this->db->get_where($this->table, array('project_id' => $project_id, 'name' => 'SURVEY', 'status_revision' => 'Done'));
-    }
 
 
 }
