@@ -36,6 +36,7 @@ class Survey extends CI_Controller {
         $this->pagination->initialize($config);
         $pagination = $this->pagination->create_links();
 
+
         return view('vendor.candidate.document.survey.index', array(
             'pagination' => $pagination,
             'candidates' => $records,
@@ -169,8 +170,19 @@ class Survey extends CI_Controller {
        $this->session->set_flashdata('error', 'File Empty');
        redirect("vendor/candidate/document/survey/index", 'refresh');
    }
+   
+    public function choose($id)
+    {
+        $candidateModel  = $this->CandidateDocument_Model->findOne($id)->row_array();
+        $this->CandidateDocument_Model->update($id,  ['status_revision' => 'Choose']);
+        $candidateChoose = $this->Candidate_Model->update($candidateModel['candidate_id'], ['has_selected' => 1]);
+        if($candidateChoose == true){
+            $this->session->set_flashdata('success', 'Candidate Selected');
+            redirect("vendor/candidate/document/survey/index", 'refresh');
+        }
+    }
 
-   public function choose($id)
+   /*public function choose($id)
    {
        $candidateModel = $this->CandidateDocument_Model->findOne($id)->row_array();
        $candidate = $this->CandidateDocument_Model->update($id,  ['status_revision' => 'Choose']);
@@ -191,7 +203,7 @@ class Survey extends CI_Controller {
            $this->session->set_flashdata('success', 'Candidate Selected');
            redirect("vendor/candidate/document/survey/index", 'refresh');
        }
-   }
+   }*/
 
     public function testpdf()
     {

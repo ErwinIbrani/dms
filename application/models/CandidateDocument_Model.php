@@ -58,6 +58,7 @@ class CandidateDocument_Model extends CI_Model
     public function update($id, $update)
     {
         $this->db->where('id', $id);
-        return $this->db->update($this->table, $update);
+        $this->db->update($this->table, $update);
     }
+
 }
