@@ -411,7 +411,7 @@
                                             <h2><label for="tf1" class="badge badge-secondary">Additional Information</label></h2>
                                         </div>
                                     </div>
-
+                                    
                                     <div class="col-lg-12">
                                         <div class="table-responsive">
                                             <table class="table table-bordered" id="dynamic_fields">
