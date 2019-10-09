@@ -32,16 +32,18 @@ class Bap extends CI_Controller
 		$this->attribute['candidate'] = $candidate;
 		$this->attribute['bap'] = $this->input->post();
 
+
 		$candidate_document = array(
+			'candidate_id' => $candidate_id,
 			'project_id' => $candidate[0]['project_id'],
 			'vendor_id' => $candidate[0]['vendor_id'],
 			'name' => 'BAP',
 			'code' => 'FM-SPA-006',
 			'type' => 'SITAC',
 			'attribute' => json_encode($this->attribute),
-			'status' => 'submited'
+			'status' => 'submitted',
+			'created_at' => date('Y-m-d H:i:s')
 		);
-
 
 		$document = $this->CandidateDocument_Model->save($candidate_document);
 		return redirect('/vendor/candidate/document/bap/preview/' . $document);
@@ -66,8 +68,35 @@ class Bap extends CI_Controller
 
 		$template = new TemplateProcessor(base_url('documents/sitac/BAP.docx'));
 
+		switch (date('N', strtotime($candidate_bap->offer_date))) {
+			case '1':
+				$day = 'Senin';
+				break;
+			case '2':
+				$day = 'Selasa';
+				break;
+			case '3':
+				$day = 'Rabu';
+				break;
+			case '4':
+				$day = 'Kamis';
+				break;
+			case '5':
+				$day = 'Jum\'at';
+				break;
+			case '6':
+				$day = 'Sabtu';
+				break;
+			case '7':
+				$day = 'Minggu';
+				break;
+
+
+		}
 
 		$template->setValue(array(
+			'day',
+			'date',
 			'site_id',
 			'site_name',
 			'long',
@@ -93,22 +122,24 @@ class Bap extends CI_Controller
 			'notary_fee',
 			'electricity_cost',
 			'note',), array(
+			$day,
+			date('d - m - Y', strtotime($candidate_bap->offer_date)),
 			$project->site_id_ibs,
 			$project->site_name,
 			$candidate->long,
 			$candidate->lat,
 			$project->address,
-			$candidate->owner_name,
+			ucwords($candidate->owner_name),
 			$candidate->id_card,
 			$candidate->phone_number,
-			$candidate->fax,
+			(!empty($candidate->fax)) ? $candidate->fax : '-',
 			$candidate->owner_address,
-			'',//$candidate_bap->authorized_name,
-			'',//$candidate_bap->authorized_id_card,
-			'',//$candidate_bap->authorized_phone,
-			'',//$candidate_bap->authorized_address,
+			(!empty($candidate_bap->authorized_name)) ? $candidate_bap->authorized_name : '-',
+			(!empty($candidate_bap->authorized_id_card)) ? $candidate_bap->authorized_id_card : '-',
+			(!empty($candidate_bap->authorized_phone)) ? $candidate_bap->authorized_phone : '-',
+			(!empty($candidate_bap->authorized_address)) ? $candidate_bap->authorized_address : '-',
 			$candidate_bap->building_type,
-			$candidate_bap->rent_price,
+			number_format($candidate_bap->rent_price, 0, ',', '.'),
 			$candidate_bap->rent_period,
 			$candidate_bap->space_dimension,
 			$candidate_bap->access_road,
@@ -119,14 +150,16 @@ class Bap extends CI_Controller
 			$candidate_bap->electricity_cost,
 			$candidate_bap->note));
 
-		$template->saveAs('uploads/BAP-'.$candidate->name.'.docx');
-		// Saving the document as HTML file...
 
-		var_dump($template) or die;
-//		return view('vendor.candidate.document.bap.preview', array(
-//			'candidate' => $attribute->candidate[0],
-//			'bap' => $attribute->bap
-//		));
+
+		$file_name = 'uploads/bap/BAP-'. str_slug($candidate->name) .'_'. time() .'.docx';
+		$template->saveAs($file_name);
+		$this->CandidateDocument_Model->update($document_id, array('path' => $file_name));
+
+		return view('vendor.candidate.document.preview', array(
+			'candidate' => $attribute->candidate[0],
+			'document' => $document_candidate
+		));
 	}
 
 }

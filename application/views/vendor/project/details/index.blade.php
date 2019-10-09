@@ -61,7 +61,7 @@
 
 											<td class="text-right">
 												<div class="list-group-item-figure">
-													<a href="{{ site_url('/vendor/project/details/' . $candidate->id . '/' . $vendor_id) }}" title="View details" class="btn btn-sm btn-icon btn-secondary stop-propagation"><i class="fas fa-ellipsis-h"></i></a>
+													<a href="{{ site_url('/vendor/candidate/detail/index/' . $candidate->id ) }}" title="View details" class="btn btn-sm btn-icon btn-secondary stop-propagation"><i class="fas fa-ellipsis-h"></i></a>
 												</div>
 											</td>
 										</tr>
