@@ -24,7 +24,7 @@
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
-                            <a class="nav-link show active" href="{{ site_url('/project/tsa/index') }}">Document Tsa</a>
+                            <a class="nav-link show active" href="{{ site_url('/project/tsa/index') }}">Document Tower Site Approval New Build</a>
                         </li>
                     </ul>
                 </div>
@@ -35,7 +35,7 @@
                             $data  = [
                                 'name' => 'candidate-form'
                             ];
-                            echo form_open_multipart('project/tsa/store', $data);
+                            echo form_open('project/tsa/store', $data);
                             ?>
                             <input type="hidden" class="form-control" name="candidate_id" value="<?= $candidate->id ?>">
                             <input type="hidden" class="form-control" name="project_id" value="<?= $project['id'] ?>">
@@ -91,14 +91,116 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Site ID IBS</label>
-                                            <input type="text" class="form-control" name="site_id_ibs" value="{{ $project['site_id_ibs'] }}" readonly/>
+                                            <input type="text" class="form-control is-valid" name="site_id_ibs" value="{{ $project['site_id_ibs'] }}" readonly/>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Site Name</label>
-                                            <input type="text" class="form-control" name="site_id_ibs" value="{{ $project['site_name'] }}" readonly/>
+                                            <input type="text" class="form-control is-valid" name="site_id_ibs" value="{{ $project['site_name'] }}" readonly/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tf1">Coordinates Longitude</label>
+                                            <input type="text" class="form-control is-valid" name="long" value="{{ $candidate->long }}" readonly/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tf1">Coordinates Latitude</label>
+                                            <input type="text" class="form-control is-valid" name="long" value="{{ $candidate->lat }}" readonly/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tf1">Region</label>
+                                            <input type="text" class="form-control is-valid" name="region" value="{{ $project['region'] }}" readonly/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tf1">Site Type</label>
+                                            <input type="text" class="form-control is-valid" name="site_type" value="{{ $project['site_type'] }}" readonly/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tf1">Tower Type</label>
+                                            <input type="text" class="form-control is-valid" name="tower_type" value="{{ $content['tower_type'] }}" readonly/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tf1">Tower/Pole Height</label>
+                                            <input type="text" class="form-control is-valid" name="tower_height" value="{{ $content['tower_height'] }} m" readonly/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tf1">Initial Price(BAP) Include PPh, Excl, PPN(Per Year)</label>
+                                            @php
+                                                $per_year = $content_bap['bap']['rent_price']/$content_bap['bap']['rent_period'];
+                                            @endphp
+                                            <input type="text" class="form-control is-valid" name="initil_price_peryear" value="{{ number_format($per_year) }}" readonly/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="tf1">Land Size (Meter2)</label>
+                                            @php
+                                                $land_size = $content_bap['bap']['space_dimension']/2;
+                                            @endphp
+                                            <input type="text" class="form-control is-valid" name="land_size" value="{{ $content_bap['bap']['space_dimension'] }}" readonly/><br/>
+                                        </div>
+                                     </div>
+
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                            <label for="tf1">Meter</label>
+                                            <input type="text" class="form-control is-valid"  value="{{ $land_size }} x {{ $land_size }}" readonly/>
+                                            </div>
+                                       </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="tf1">Access Road (Meter2)</label>
+                                            @php
+                                                $land_road = $content_bap['bap']['access_road']/2;
+                                            @endphp
+                                            <input type="text" class="form-control is-valid" name="access_road" value="{{ $content_bap['bap']['access_road'] }}" readonly/><br/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="tf1">Meter</label>
+                                            <input type="text" class="form-control is-valid"  value="{{ $land_road }} x {{ $land_road }}" readonly/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tf1">Ownen Name</label>
+                                            <input type="text" class="form-control is-valid" name="owner_name" value="{{ $candidate->owner_name }}" readonly/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tf1">Phone Number</label>
+                                            <input type="text" class="form-control is-valid" name="phone_number" value="{{ $candidate->phone_number }}" readonly/>
                                         </div>
                                     </div>
 
@@ -117,64 +219,8 @@
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="tf1">Coordinates Longitude</label>
-                                            <input type="text" class="form-control" name="long" value="{{ $candidate->long }}" readonly/>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="tf1">Coordinates Latitude</label>
-                                            <input type="text" class="form-control" name="long" value="{{ $candidate->lat }}" readonly/>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="tf1">Region</label>
-                                            <input type="text" class="form-control" name="region" value="{{ $project['region'] }}" readonly/>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="tf1">Ownen Name</label>
-                                            <input type="text" class="form-control" name="owner_name" value="{{ $candidate->owner_name }}" readonly/>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
                                             <label for="tf1">Contact Person</label>
                                             <input type="text" class="form-control" name="contact_person"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="tf1">Phone Number</label>
-                                            <input type="text" class="form-control" name="phone_number" value="{{ $candidate->phone_number }}" readonly/>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="tf1">Site Type</label>
-                                            <input type="text" class="form-control" name="site_type" value="{{ $project['site_type'] }}" readonly/>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="tf1">Tower Type</label>
-                                            <input type="text" class="form-control" name="tower_type" value="{{ $content['tower_type'] }}" readonly/>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="tf1">Tower/Pole Height</label>
-                                            <input type="text" class="form-control" name="tower_height" value="{{ $content['tower_height'] }} m" readonly/>
                                         </div>
                                     </div>
 
@@ -205,50 +251,6 @@
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="tf1">Initial Price(BAP) Include PPh, Excl, PPN(Per Year)</label>
-                                            @php
-                                                $per_year = $content_bap['bap']['rent_price']/$content_bap['bap']['rent_period'];
-                                            @endphp
-                                            <input type="text" class="form-control" name="initil_price_peryear" value="{{ number_format($per_year) }}" readonly/>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-3">
-                                        <div class="form-group">
-                                            <label for="tf1">Land Size (Meter2)</label>
-                                            @php
-                                                $land_size = $content_bap['bap']['space_dimension']/2;
-                                            @endphp
-                                            <input type="text" class="form-control" name="land_size" value="{{ $content_bap['bap']['space_dimension'] }}" readonly/><br/>
-                                        </div>
-                                     </div>
-
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                            <label for="tf1">Meter</label>
-                                            <input type="text" class="form-control"  value="{{ $land_size }} x {{ $land_size }}" readonly/>
-                                            </div>
-                                       </div>
-
-                                    <div class="col-lg-3">
-                                        <div class="form-group">
-                                            <label for="tf1">Access Road (Meter2)</label>
-                                            @php
-                                                $land_road = $content_bap['bap']['access_road']/2;
-                                            @endphp
-                                            <input type="text" class="form-control" name="access_road" value="{{ $content_bap['bap']['access_road'] }}" readonly/><br/>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-3">
-                                        <div class="form-group">
-                                            <label for="tf1">Meter</label>
-                                            <input type="text" class="form-control"  value="{{ $land_road }} x {{ $land_road }}" readonly/>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
                                             <label for="tf1">Time Access</label>
                                             <select class="form-control" name="time_access" required>
                                                 <option value="" selected="selected">.:Choose:.</option>
@@ -262,6 +264,45 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <h2><label for="tf1" class="badge badge-secondary">Site Acqusitions Information</label></h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tf1">Acquition Status (Year)</label>
+                                            <input type="text" class="form-control is-valid" name="acquition_status" value="{{ $content_bap['bap']['rent_period'] }}" readonly/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tf1">Final Price Per Year, Include PPh, Excl, PPN</label>
+                                            @php
+                                                $per_year = $content_bap['bap']['rent_price']/$content_bap['bap']['rent_period'];
+                                            @endphp
+                                            <input type="text" class="form-control is-valid" name="final_per_year" value="{{ number_format($per_year) }}" readonly/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tf1">Total Price, Include PPh, Excl, PPN</label>
+                                            <input type="text" class="form-control is-valid" name="total_price" value="{{ number_format($content_bap['bap']['rent_price']) }}" readonly/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tf1">Vendor PIC</label>
+                                            <input type="text" class="form-control is-valid" name="vendor_pic" value="{{ $vendorUser['name'] }}" readonly/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tf1">Vendor PIC Phone</label>
+                                            <input type="text" class="form-control is-valid" name="vendor_phone" value="{{ $vendorUser['phone'] }}" readonly/>
                                         </div>
                                     </div>
 
@@ -281,36 +322,12 @@
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="tf1">Acquition Status (Year)</label>
-                                            <input type="text" class="form-control" name="acquition_status" value="{{ $content_bap['bap']['rent_period'] }}" readonly/>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
                                             <label for="tf1">Purchased Option</label>
                                             <select class="form-control" name="purchased_option" required>
                                                 <option value="" selected="selected">.:Choose:.</option>
                                                 <option value="Yes">Yes</option>
                                                 <option value="No">No</option>
                                             </select>
-                                        </div>
-                                     </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="tf1">Final Price Per Year, Include PPh, Excl, PPN</label>
-                                            @php
-                                                $per_year = $content_bap['bap']['rent_price']/$content_bap['bap']['rent_period'];
-                                            @endphp
-                                            <input type="text" class="form-control" name="final_per_year" value="{{ number_format($per_year) }}" readonly/>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="tf1">Total Price, Include PPh, Excl, PPN</label>
-                                            <input type="text" class="form-control" name="total_price" value="{{ number_format($content_bap['bap']['rent_price']) }}" readonly/>
                                         </div>
                                     </div>
 
@@ -337,20 +354,6 @@
                                             </div>
                                         </div>
 
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="tf1">Vendor PIC</label>
-                                            <input type="text" class="form-control" name="vendor_pic" value="{{ $vendorUser['name'] }}" readonly/>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="tf1">Vendor PIC Phone</label>
-                                            <input type="text" class="form-control" name="vendor_phone" value="{{ $vendorUser['phone'] }}" readonly/>
-                                        </div>
-                                    </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
@@ -396,7 +399,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="form-group">
-                                                            <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
+                                                            <button type="button" name="add" id="add" class="btn btn-success">Add</button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -411,7 +414,7 @@
                                             <h2><label for="tf1" class="badge badge-secondary">Additional Information</label></h2>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-lg-12">
                                         <div class="table-responsive">
                                             <table class="table table-bordered" id="dynamic_fields">
@@ -436,7 +439,71 @@
                                                     </td>
                                                     <td>
                                                         <div class="form-group">
-                                                            <button type="button" name="adds" id="adds" class="btn btn-success">Add More</button>
+                                                            <button type="button" name="adds" id="adds" class="btn btn-success">Add</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <hr style="border-top: 1px dashed #8c8b8b;background-color: #f0f0f0;width: 100%;">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <h2><label for="tf1" class="badge badge-secondary">Site Historical</label></h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dynamic_fielded">
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <label for="tf1">Kandidat</label>
+                                                            <input type="text" class="form-control" name="kandidates[]" required/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <label for="tf1">E(Longitude)</label>
+                                                            <input type="text" class="form-control" name="e_longiude[]" required/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <label for="tf1">NS(Latitude)</label>
+                                                            <input type="text" class="form-control" name="ns_latitude[]" required/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <label for="tf1">Contact Person</label>
+                                                            <input type="text" class="form-control" name="contact_person[]" required/>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <label for="tf1">Masa Sewa</label>
+                                                            <input type="text" class="form-control" name="masa_sewa[]" required/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <label for="tf1">Harga Sewa</label>
+                                                            <input type="text" class="form-control" name="harga_sewa[]" required/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <label for="tf1">Cancelation Remarks</label>
+                                                            <input type="text" class="form-control" name="cancelation_remarks[]" required/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <button type="button" name="added" id="added" class="btn btn-success">Add</button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -466,39 +533,6 @@
     <script type="text/javascript">
         $(document).ready(function(){
             var i=1;
-            $('#adds').click(function(){
-                i++;
-                $('#dynamic_fields').append('<tr id="rows'+i+'" class="dynamic-addeds">' +
-                    '<td>' +
-                    ' <div class="form-group">\n' +
-                    ' <label for="tf1">Jarak dari Kandidat</label>\n' +
-                    ' <input type="text" class="form-control" name="jarak_dari_kandidat[]" required/>\n' +
-                    ' </div>' +
-                    '</td>' +
-                    '<td> ' +
-                    ' <div class="form-group">\n' +
-                    ' <label for="tf1">Tower Existing (Tenant)</label>\n' +
-                    ' <input type="text" class="form-control" name="tower_existing[]" required/>\n' +
-                    ' </div>' +
-                    '<td> ' +
-                    '<div class="form-group">\n' +
-                    '<label for="tf1">Potensi Market</label>\n' +
-                    '<input type="text" class="form-control" name="potensi_market[]" required/>\n' +
-                    '</div>' +
-                    '<td> ' +
-                    '<td><button type="button" name="removes" id="'+i+'" class="btn btn-danger btn_removes">X</button></td></tr>');
-            });
-
-            $(document).on('click', '.btn_removes', function(){
-                var button_id = $(this).attr("ids");
-                $('#rows'+button_id+'').remove();
-            });
-
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            var i=1;
             $('#add').click(function(){
                 i++;
                 $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added">' +
@@ -510,7 +544,7 @@
                     '</td>' +
                     '<td> ' +
                     '<div class="form-group">\n' +
-                    '     <label for="tf1">Percent</label>\n' +
+                    '     <label for="tf1">Percent(%)</label>\n' +
                     '     <input type="number" class="form-control" name="percent[]" required/>\n' +
                     '     </div>' +
                     '</td>' +
@@ -524,16 +558,116 @@
                     '<div class="form-group">\n' +
                     '     <label for="tf1">Description</label>\n' +
                     '     <input type="text" class="form-control" name="description[]" required/>\n' +
-                    '     </div>' +
+                    '</div>' +
                     '</td>' +
                     '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
             });
-
             $(document).on('click', '.btn_remove', function(){
                 var button_id = $(this).attr("id");
                 $('#row'+button_id+'').remove();
             });
+        });
+    </script>
 
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var i=1;
+            $('#adds').click(function(){
+                i++;
+                $('#dynamic_fields').append('<tr id="row'+i+'" class="dynamic-addeds">' +
+
+                    '<td>' +
+                    '<div class="form-group">\n' +
+                    '<label for="tf1">Kandidat</label>\n' +
+                    '<input type="text" class="form-control" name="kandidates[]" required/>\n' +
+                    '</div>'+
+                    '</td>' +
+
+                    '<td> ' +
+                    '<div class="form-group">\n' +
+                    '<label for="tf1">Tower Existing (Tenant)</label>\n' +
+                    '<input type="text" class="form-control" name="tower_existing[]" required/>\n' +
+                    '</div>' +
+                    '</td>' +
+
+                    '<td> ' +
+                    '<div class="form-group">\n' +
+                    '<label for="tf1">Potensi Market</label>\n' +
+                    '<input type="text" class="form-control" name="potensi_market[]" required/>\n' +
+                    '</div>' +
+                    '</td> ' +
+
+                    '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            });
+            $(document).on('click', '.btn_remove', function(){
+                var button_id = $(this).attr("id");
+                $('#rows'+button_id+'').remove();
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var i=1;
+            $('#added').click(function(){
+                i++;
+                $('#dynamic_fielded').append('<tr id="row'+i+'" class="dynamic-addeded">' +
+
+                    '<td>' +
+                    '<div class="form-group">\n' +
+                    '<label for="tf1">Jarak dari Kandidat</label>\n' +
+                    '<input type="text" class="form-control" name="jarak_dari_kandidat[]" required/>\n' +
+                    '</div>'+
+                    '</td>' +
+
+                    '<td> ' +
+                    '<div class="form-group">\n' +
+                    '<label for="tf1">E(Longitude)</label>\n' +
+                    '<input type="text" class="form-control" name="e_longiude[]" required/>\n' +
+                    '</div>' +
+                    '</td>' +
+
+                    '<td> ' +
+                    '<div class="form-group">\n' +
+                    '<label for="tf1">NS(Latitude)</label>\n' +
+                    '<input type="text" class="form-control" name="ns_latitude[]" required/>\n' +
+                    '</div>' +
+                    '</td> ' +
+
+                    '<td> ' +
+                    '<div class="form-group">\n' +
+                    '<label for="tf1">Contact Person</label>\n' +
+                    '<input type="text" class="form-control" name="contact_person[]" required/>\n' +
+                    '</div>' +
+                    '</td> ' +
+
+                    '<td> ' +
+                    '<div class="form-group">\n' +
+                    '<label for="tf1">Masa Sewa</label>\n' +
+                    '<input type="text" class="form-control" name="masa_sewa[]" required/>\n' +
+                    '</div>' +
+                    '</td> ' +
+
+                    '<td> ' +
+                    '<div class="form-group">\n' +
+                    '<label for="tf1">Harga Sewa</label>\n' +
+                    '<input type="text" class="form-control" name="harga_sewa[]" required/>\n' +
+                    '</div>' +
+                    '</td> ' +
+
+                    '<td> ' +
+                    '<div class="form-group">\n' +
+                    '<label for="tf1">Cancelation Remarks</label>\n' +
+                    '<input type="text" class="form-control" name="cancelation_remarks[]" required/>\n' +
+                    '</div>' +
+                    '</td> ' +
+
+                    '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            });
+            $(document).on('click', '.btn_remove', function(){
+                var button_id = $(this).attr("id");
+                $('#rows'+button_id+'').remove();
+            });
         });
     </script>
 @endsection

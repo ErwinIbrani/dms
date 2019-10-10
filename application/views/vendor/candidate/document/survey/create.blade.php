@@ -64,20 +64,20 @@
 								<div class="row">
 										<div class="col-lg-12">
 											<div class="form-group">
-												<label for="tf1" class="badge badge-secondary">
+												<h2><label for="tf1" class="badge badge-secondary">
 													@if($project->site_type == 'GF')
 														{{ 'Site Type : Green Field' }}
 												     @else
 														{{ 'Site Type : Roof Top' }}
 													@endif
-												</label>
+													</label></h2>
 											</div>
 							            </div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Contractor</label>
-												 <input type="text" class="form-control" name="contractor" value="{{ $vendor->name }}" readonly/>
+												 <input type="text" class="form-control is-valid" name="contractor" value="{{ $vendor->name }}" readonly/>
 												<input type="hidden" class="form-control" name="vendor_id" value="{{ $vendor->id }}">
 											</div>
 										</div>
@@ -85,7 +85,7 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Project Manager</label>
-												<input type="text" class="form-control" name="project_manger" value="{{ $pic->name }}" readonly/>
+												<input type="text" class="form-control is-valid" name="project_manger" value="{{ $pic->name }}" readonly/>
 											</div>
 										</div>
 
@@ -113,49 +113,49 @@
 										<hr style="border-top: 1px dashed #8c8b8b;background-color: #f0f0f0;width: 100%;">
 										<div class="col-lg-12">
 											<div class="form-group">
-												<label for="tf1" class="badge badge-secondary">Site Identification</label>
+												<h2><label for="tf1" class="badge badge-secondary">Site Identification</label></h2>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Site ID</label>
-												<input type="text" class="form-control" name="site_id" value="<?= $project->site_id_ibs ?>" readonly/>
+												<input type="text" class="form-control is-valid" name="site_id" value="<?= $project->site_id_ibs ?>" readonly/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Site Name</label>
-												<input type="text" class="form-control" name="site_name" value="<?= $project->site_name ?>" readonly/>
+												<input type="text" class="form-control is-valid" name="site_name" value="<?= $project->site_name ?>" readonly/>
 											</div>
 										</div>
 
 									<div class="col-lg-6">
 										<div class="form-group">
 											<label for="tf1">Regions</label>
-											<input type="text" class="form-control" name="region" value="<?= $project->region ?>" readonly/>
+											<input type="text" class="form-control is-valid" name="region" value="<?= $project->region ?>" readonly/>
 										</div>
 									</div>
 
 									<div class="col-lg-6">
 										<div class="form-group">
 											<label for="tf1">Site Type</label>
-											<input type="text" class="form-control" name="site_type" value="<?= $project->site_type ?>" readonly/>
+											<input type="text" class="form-control is-valid" name="site_type" value="<?= $project->site_type ?>" readonly/>
 										</div>
 									</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Nominal Long</label>
-												<input type="text" class="form-control" name="nominal_long" value="<?= $project->longitude ?>" readonly/>
+												<input type="text" class="form-control is-valid" name="nominal_long" value="<?= $project->longitude ?>" readonly/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Nominal Lat</label>
-												<input type="text" class="form-control" name="nominal_lat" value="<?= $project->latitude ?>" readonly/>
+												<input type="text" class="form-control is-valid" name="nominal_lat" value="<?= $project->latitude ?>" readonly/>
 											</div>
 										</div>
 
@@ -177,42 +177,42 @@
 
 										<div class="col-lg-12">
 											<div class="form-group">
-												<label for="tf1" class="badge badge-secondary">Candidate Information</label>
+												<h2><label for="tf1" class="badge badge-secondary">Candidate Information</label></h2>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Candidate</label>
-												<input type="text" class="form-control" name="candidate" value="<?= ucwords($candidate->name) ?>" readonly/>
+												<input type="text" class="form-control is-valid" name="candidate" value="<?= ucwords($candidate->name) ?>" readonly/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Candidate Long</label>
-												<input type="text" class="form-control" name="candidate_long" value="<?= $candidate->long ?>" readonly/>
+												<input type="text" class="form-control is-valid" name="candidate_long" value="<?= $candidate->long ?>" readonly/>
 											</div>
 										</div>
 
 									<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Candidate Lat</label>
-												<input type="text" class="form-control" name="candidate_lat" value="<?= $candidate->lat ?>" readonly/>
+												<input type="text" class="form-control is-valid" name="candidate_lat" value="<?= $candidate->lat ?>" readonly/>
 											</div>
 								     </div>
 
 									<div class="col-lg-6">
 										<div class="form-group">
 											<label for="tf1">Site Address</label>
-											<input type="text" class="form-control" name="site_address" value="<?= $candidate->address ?>" readonly/>
+											<input type="text" class="form-control is-valid" name="site_address" value="<?= $candidate->address ?>" readonly/>
 										</div>
 									</div>
 
 									<div class="col-lg-6">
 										<div class="form-group">
 											<label for="tf1">City/Province</label>
-											<input type="text" class="form-control" name="city" value="<?= $candidate->city ?>" readonly/>
+											<input type="text" class="form-control is-valid" name="city" value="<?= $candidate->city ?>" readonly/>
 										</div>
 									</div>
 
@@ -307,7 +307,7 @@
 										<hr style="border-top: 1px dashed #8c8b8b;background-color: #f0f0f0;width: 100%;">
 										<div class="col-lg-12">
 											<div class="form-group">
-												<label for="tf1" class="badge badge-secondary">Owner Information</label>
+												<h2><label for="tf1" class="badge badge-secondary">Owner Information</label></h2>
 											</div>
 										</div>
 
@@ -315,14 +315,14 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Owner(Institution)</label>
-												<input type="text" class="form-control" name="owner" value="{{ $candidate->owner_name }}" readonly/>
+												<input type="text" class="form-control is-valid" name="owner" value="{{ $candidate->owner_name }}" readonly/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Address(Owner)</label>
-												<input type="text" class="form-control" name="address_owner" value="{{ $candidate->owner_address }}" readonly/>
+												<input type="text" class="form-control is-valid" name="address_owner" value="{{ $candidate->owner_address }}" readonly/>
 											</div>
 										</div>
 
@@ -336,14 +336,14 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Phone Number</label>
-												<input type="text" class="form-control" name="phone_owner" value="{{ $candidate->phone_number }}" readonly/>
+												<input type="text" class="form-control is-valid" name="phone_owner" value="{{ $candidate->phone_number }}" readonly/>
 											</div>
 										</div>
 
 										<hr style="border-top: 1px dashed #8c8b8b;background-color: #f0f0f0;width: 100%;">
 										<div class="col-lg-12">
 											<div class="form-group">
-												<label for="tf1" class="badge badge-secondary">File Upload</label>
+												<h2><label for="tf1" class="badge badge-secondary">File Upload</label></h2>
 											</div>
 										</div>
 
