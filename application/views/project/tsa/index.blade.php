@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page_title', 'Candidates')
+@section('page_title', 'TOWER SITE APPROVAL')
 
 @section('content')
     <div class="page-inner">
@@ -13,8 +13,8 @@
 
                     <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
-                            <a href="<?= site_url("vendor/candidate/document/survey/index"); ?>" class="nav-link show active">
-                               Candidates TSSR
+                            <a href="<?= site_url("project/tsa/index"); ?>" class="nav-link show active">
+                                TOWER SITE APPROVAL : NEW BUILD
                             </a>
                         </li>
                     </ul><!-- /.nav-tabs -->
@@ -66,10 +66,7 @@
                                     <td class="align-middle"> {{ date('d-M-Y', strtotime($candidate->created_at)) }} </td>
                                     <td class="align-middle"> {{ $candidate->status_revision }} </td>
                                     <td class="align-middle text-center">
-                                      @if(empty($candidate->status_revision))
-                                          <a href="<?= site_url("vendor/candidate/document/survey/choose/".$candidate->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-check" title="Choose Candidate" onClick="javascript:return confirm('Choose This Candidate ?');"></i> <span class="sr-only">Choose</span></a>
-                                      @endif
-                                          <a target="_blank" href="<?= site_url("vendor/candidate/document/survey/download/".$candidate->path.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-file-upload" title="Preview"></i> <span class="sr-only">Download</span></a>
+                                          <a target="_blank" href="<?= site_url("project/tsa/download/".$candidate->path.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-file-upload" title="Preview"></i> <span class="sr-only">Download</span></a>
                                     </td>
                                 </tr>
                             @endforeach

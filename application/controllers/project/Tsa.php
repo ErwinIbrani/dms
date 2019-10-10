@@ -141,6 +141,17 @@ class Tsa extends CI_Controller
           }
     }
 
+    public function download($file_name)
+    {
+        if(!empty($file_name)) {
+            $this->load->helper('download');
+            $file = 'uploads/tsa/' . $file_name . '';
+            force_download($file, NULL);
+        }
+        $this->session->set_flashdata('error', 'File Empty');
+        redirect("project/tsa/index", 'refresh');
+    }
+
     public function testpdf()
     {
         $model = $this->CandidateDocument_Model->findOne(184)->row_array();
