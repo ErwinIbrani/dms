@@ -57,7 +57,7 @@
 						<div class="card-header">
 							<ul class="nav nav-tabs card-header-tabs">
 								<li class="nav-item">
-									<a class="nav-link active"
+									<a class="nav-link"
 									   href="{{ site_url('/vendor/candidate/document/iw/add/'.$candidate->id) }}">
 										Surat Persetujuan Lingkungan</a>
 								</li>
@@ -67,7 +67,7 @@
 										Denah Layout Izin Warga</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link"
+									<a class="nav-link active"
 									   href="{{ site_url('/vendor/candidate/document/iw/copyktp/'. $candidate->id) }}">
 										Foto Copy KTP Warga</a>
 								</li>
@@ -86,52 +86,17 @@
 							</ul>
 						</div>
 						<div class="card-body">
-							{!! form_open_multipart(site_url('/vendor/candidate/document/iw/persetujuan/' . $candidate->id)) !!}
+							{!! form_open_multipart(site_url('/vendor/candidate/document/iw/uploadcopyktp/' . $candidate->id)) !!}
 
 
 							<div class="form-group">
+								<label for="foto_copy_ktp_warga">Foto Copy KTP Warga</label>
 								<div class="custom-file">
-									<input type="file" class="custom-file-input" id="surat_persetujuan_lingkungan"
-										   name="surat_persetujuan_lingkungan">
-									<label class="custom-file-label" for="surat_persetujuan_lingkungan">Choose files</label>
+									<input type="file" class="custom-file-input" id="foto_copy_ktp_warga"
+										   name="foto_copy_ktp_warga">
+									<label class="custom-file-label" for="foto_copy_ktp_warga">Choose files</label>
 								</div>
 							</div>
-
-{{--							<div class="form-group">--}}
-{{--								<label for="authorized_address">Denah Layout Izin Warga</label>--}}
-{{--								<div class="custom-file">--}}
-{{--									<input type="file" class="custom-file-input" id="denah_layout_izin_warga"--}}
-{{--										   name="denah_layout_izin_warga">--}}
-{{--									<label class="custom-file-label" for="denah_layout_izin_warga">Choose files</label>--}}
-{{--								</div>--}}
-{{--							</div>--}}
-
-{{--							<div class="form-group">--}}
-{{--								<label for="foto_copy_ktp_warga">Foto Copy KTP Warga</label>--}}
-{{--								<div class="custom-file">--}}
-{{--									<input type="file" class="custom-file-input" id="foto_copy_ktp_warga"--}}
-{{--										   name="foto_copy_ktp_warga">--}}
-{{--									<label class="custom-file-label" for="foto_copy_ktp_warga">Choose files</label>--}}
-{{--								</div>--}}
-{{--							</div>--}}
-
-{{--							<div class="form-group">--}}
-{{--								<label for="rekomendasi_desa">Rekomendasi Desa</label>--}}
-{{--								<div class="custom-file">--}}
-{{--									<input type="file" class="custom-file-input" id="rekomendasi_desa"--}}
-{{--										   name="rekomendasi_desa">--}}
-{{--									<label class="custom-file-label" for="rekomendasi_desa">Choose files</label>--}}
-{{--								</div>--}}
-{{--							</div>--}}
-
-{{--							<div class="form-group">--}}
-{{--								<label for="rekomendasi_kecamatan">Rekomendasi Kecamatan</label>--}}
-{{--								<div class="custom-file">--}}
-{{--									<input type="file" class="custom-file-input" id="rekomendasi_kecamatan"--}}
-{{--										   name="rekomendasi_kecamatan">--}}
-{{--									<label class="custom-file-label" for="rekomendasi_kecamatan">Choose files</label>--}}
-{{--								</div>--}}
-{{--							</div>--}}
 
 							<p class="mt-5 text-muted">
 							<hr style="border-top: 1px dashed #8c8b8b;background-color: #f0f0f0;width: 100%;">
@@ -148,4 +113,5 @@
 		</div>
 	</div>
 @endsection
+
 

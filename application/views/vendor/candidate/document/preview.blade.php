@@ -43,7 +43,7 @@
 							<div class="invoice-footer"></div>
 						</div>
 						<div>
-							<iframe src="https://docs.google.com/gview?url={{ site_url($document->path) }}&embedded=true"></iframe>
+							<iframe src="{{site_url('/uploads/bap/BAP-dada-dada_1570622887.pdf')}}" width="100%" height="600"></iframe>
 						</div>
 					</div>
 				</div>
@@ -66,6 +66,8 @@
 									<h6 class="timeline-heading"> Document Created </h6>
 									<span class="timeline-date">{{ date('d/m/Y H:m:s', strtotime($document->created_at)) }}</span>
 								</div>
+								<a href="https://selectpdf.com/save-as-pdf/">Save as Pdf</a>
+
 							</li>
 						</ul>
 					</div>
