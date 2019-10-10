@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page_title', 'TOWER SITE APPROVAL')
+@section('page_title', 'Shortlisted Candidates')
 
 @section('content')
     <div class="page-inner">
@@ -13,15 +13,15 @@
 
                     <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
-                            <a href="<?= site_url("project/tsa/index"); ?>" class="nav-link show active">
-                                TOWER SITE APPROVAL : NEW BUILD
+                            <a href="<?= site_url("project/tsa/candidate"); ?>" class="nav-link show active">
+                                Shortlisted Candidates
                             </a>
                         </li>
                     </ul><!-- /.nav-tabs -->
                 </div><!-- /.card-header -->
                 <!-- .card-body -->
                 <div class="card-body">
-                    <form method='post' action="<?= base_url() ?>project/tsa/index">
+                    <form method='post' action="<?= base_url() ?>project/tsa/candidate">
                         <div class="input-group input-group-alt">
                             <!-- .input-group -->
                             <div class="input-group has-clearable">
@@ -66,7 +66,7 @@
                                     <td class="align-middle"> {{ date('d-M-Y', strtotime($candidate->created_at)) }} </td>
                                     <td class="align-middle"> {{ $candidate->status_revision }} </td>
                                     <td class="align-middle text-center">
-                                          <a target="_blank" href="<?= site_url("project/tsa/download/".$candidate->path.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-file-upload" title="Preview"></i> <span class="sr-only">Download</span></a>
+                                          <a  href="<?= site_url("project/tsa/create/".$candidate->candidate_id.""); ?>" class="btn btn-sm btn-icon btn-primary"><i class="fa fa-plus" title="Create TSA"></i> <span class="sr-only">Create TSA</span></a>
                                     </td>
                                 </tr>
                             @endforeach

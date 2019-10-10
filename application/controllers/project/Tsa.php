@@ -1,6 +1,5 @@
 <?php
 
-
 class Tsa extends CI_Controller
 {
     public function __construct()
@@ -10,6 +9,39 @@ class Tsa extends CI_Controller
         $this->lang->load('auth');
         $this->load->model(['Candidate_Model','Tsa_Model','CandidateDocument_Model','Project_Model', 'User_Model', 'UserVendor_Model', 'Vendor_Model']);
         authentication($this->ion_auth->logged_in());
+    }
+
+    public function candidate($rowno=0)
+    {
+        $this->make_bread->add('Index');
+        $breadcrumb = $this->make_bread->output();
+        $search_text = "";
+        if($this->input->post('submit') != NULL ){
+            $search_text = $this->input->post('search');
+            $this->session->set_userdata(["search" => $search_text]);
+        }else{
+            if($this->session->userdata('search') != NULL){
+                $search_text = $this->session->userdata('search');
+            }
+        }
+        $rowperpage = 20;
+        if($rowno  != 0){
+            $rowno  = ($rowno-1) * $rowperpage;
+        }
+        $allcount             = $this->CandidateDocument_Model->getrecordCountCandidateDone($search_text);
+        $records              = $this->CandidateDocument_Model->getDataCandidateDone($rowno, $rowperpage, $search_text);
+        $config['base_url']   = base_url().'project/tsa/candidate';
+        $config['total_rows'] = $allcount;
+        $config['per_page']   = $rowperpage;
+        $this->pagination->initialize($config);
+        $pagination = $this->pagination->create_links();
+
+        return view('project.tsa.index-candidate-done', array(
+            'pagination' => $pagination,
+            'candidates' => $records,
+            'search'     => $search_text,
+            'breadcrumb' => $breadcrumb,
+        ));
     }
 
     public function index($rowno=0)
