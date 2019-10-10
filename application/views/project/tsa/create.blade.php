@@ -98,7 +98,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Site Name</label>
-                                            <input type="text" class="form-control is-valid" name="site_id_ibs" value="{{ $project['site_name'] }}" readonly/>
+                                            <input type="text" class="form-control is-valid" name="site_name" value="{{ $project['site_name'] }}" readonly/>
                                         </div>
                                     </div>
 
@@ -112,7 +112,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Coordinates Latitude</label>
-                                            <input type="text" class="form-control is-valid" name="long" value="{{ $candidate->lat }}" readonly/>
+                                            <input type="text" class="form-control is-valid" name="lat" value="{{ $candidate->lat }}" readonly/>
                                         </div>
                                     </div>
 
@@ -144,7 +144,6 @@
                                             <input type="text" class="form-control is-valid" name="tower_height" value="{{ $content['tower_height'] }} m" readonly/>
                                         </div>
                                     </div>
-
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
@@ -206,6 +205,13 @@
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
+                                            <label for="tf1">Address</label>
+                                            <input type="text" class="form-control is-valid" name="address" value="{{ $content['site_address'] }}" readonly/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
                                             <label for="tf1">Topology</label>
                                             <select class="form-control" name="topology" required>
                                                 <option value="" selected="selected">.:Choose:.</option>
@@ -220,14 +226,14 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Contact Person</label>
-                                            <input type="text" class="form-control" name="contact_person"/>
+                                            <input type="text" class="form-control" name="contact_persons" required/>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Status Site</label>
-                                            <select class="form-control" name="topology" required>
+                                            <select class="form-control" name="status_site" required>
                                                 <option value="" selected="selected">.:Choose:.</option>
                                                 <option value="Ren">Rent</option>
                                                 <option value="Others">Others</option>
@@ -238,7 +244,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Land Status</label>
-                                            <select class="form-control" name="topology" required>
+                                            <select class="form-control" name="land_status" required>
                                                 <option value="" selected="selected">.:Choose:.</option>
                                                 <option value="SHM">SHM</option>
                                                 <option value="SHGB">SHGB</option>
