@@ -66,6 +66,8 @@
 									<h6 class="timeline-heading"> Document Created </h6>
 									<span class="timeline-date">{{ date('d/m/Y H:m:s', strtotime($document->created_at)) }}</span>
 								</div>
+								<a href="https://selectpdf.com/save-as-pdf/">Save as Pdf</a>
+
 							</li>
 						</ul>
 					</div>

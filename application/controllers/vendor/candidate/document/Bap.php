@@ -51,22 +51,45 @@ class Bap extends CI_Controller
 
 	public function preview($document_id)
 	{
+
+		$api_endpoint = "https://selectpdf.com/api2/convert/";
+		$key = '5db29d9c-4e55-4c2a-8adc-2cb1ed97669b';
+		$test_url = site_url('/vendor/candidate/document/bap/layout/'. $document_id);
+
+		$parameters = array ('key' => $key, 'url' => $test_url, 'web_page_width' => '816', 'page_numbers' => 'False');
+
+		$result = @file_get_contents("$api_endpoint?" . http_build_query($parameters));
+
+		if (!$result) {
+			echo "HTTP Response: " . $http_response_header[0] . "<br/>";
+
+			$error = error_get_last();
+			echo "Error Message: " . $error['message'];
+		}
+		else {
+			// set HTTP response headers
+			header("Content-Type: application/pdf");
+			header("Content-Disposition: attachment; filename=\"test.pdf\"");
+
+			echo ($result);
+		}
+
+
+		return false;
+		return view('vendor.candidate.document.preview', array(
+			'candidate' => $attribute->candidate[0],
+			'document' => $document_candidate
+		));
+	}
+
+	public function layout($document_id)
+	{
 		$document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
 		$attribute = json_decode($document_candidate->attribute);
-
-		$arrContextOptions = array(
-			"ssl" => array(
-				"verify_peer" => false,
-				"verify_peer_name" => false,
-			),
-		);
-		stream_context_set_default($arrContextOptions);
 
 		$candidate = $attribute->candidate[0];
 		$project = $this->Project_Model->findOne($candidate->project_id)->row();
 		$candidate_bap = $attribute->bap;
-
-		$template = new TemplateProcessor(base_url('documents/sitac/BAP.docx'));
 
 		switch (date('N', strtotime($candidate_bap->offer_date))) {
 			case '1':
@@ -90,85 +113,36 @@ class Bap extends CI_Controller
 			case '7':
 				$day = 'Minggu';
 				break;
-
-
 		}
 
-		$template->setValue(array(
-			'day',
-			'date',
-			'site_id',
-			'site_name',
-			'long',
-			'lat',
-			'site_address',
-			'owner_name',
-			'owner_id_card',
-			'owner_phone',
-			'owner_fax',
-			'owner_address',
-			'authorized_name',
-			'authorized_id_card',
-			'authorized_phone',
-			'authorized_address',
-			'type',
-			'rent_price',
-			'rent_period',
-			'space_dimension',
-			'access_road',
-			'access_road_type',
-			'ppn',
-			'pph',
-			'notary_fee',
-			'electricity_cost',
-			'note',), array(
-			$day,
-			date('d - m - Y', strtotime($candidate_bap->offer_date)),
-			$project->site_id_ibs,
-			$project->site_name,
-			$candidate->long,
-			$candidate->lat,
-			$project->address,
-			ucwords($candidate->owner_name),
-			$candidate->id_card,
-			$candidate->phone_number,
-			(!empty($candidate->fax)) ? $candidate->fax : '-',
-			$candidate->owner_address,
-			(!empty($candidate_bap->authorized_name)) ? $candidate_bap->authorized_name : '-',
-			(!empty($candidate_bap->authorized_id_card)) ? $candidate_bap->authorized_id_card : '-',
-			(!empty($candidate_bap->authorized_phone)) ? $candidate_bap->authorized_phone : '-',
-			(!empty($candidate_bap->authorized_address)) ? $candidate_bap->authorized_address : '-',
-			$candidate_bap->building_type,
-			number_format($candidate_bap->rent_price, 0, ',', '.'),
-			$candidate_bap->rent_period,
-			$candidate_bap->space_dimension,
-			$candidate_bap->access_road,
-			$candidate_bap->access_road_type,
-			$candidate_bap->ppn,
-			$candidate_bap->pph,
-			$candidate_bap->notary_fee,
-			$candidate_bap->electricity_cost,
-			$candidate_bap->note));
-
-
-
-		$file_name = 'uploads/bap/BAP-'. str_slug($candidate->name) .'_'. time() .'.docx';
-		$template->saveAs($file_name);
-		$this->CandidateDocument_Model->update($document_id, array('path' => $file_name));
-
-		$objWriter = \PhpOffice\PhpWord\IOFactory::createReader('Word2007');
-		PhpOffice\PhpWord\Settings::setPdfRendererPath('vendor/dompdf/dompdf');
-		\PhpOffice\PhpWord\Settings::setPdfRendererName('DomPDF');
-		$phpWord = $objWriter->load($file_name);
-
-		$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'PDF');
-		$objWriter->save('helloTexr.pdf');
-
-
-
-		return view('vendor.candidate.document.preview', array(
-			'candidate' => $attribute->candidate[0],
-			'document' => $document_candidate
+		return view('vendor.candidate.document.bap.layout', array(
+			'day' => $day,
+			'date' => date('d - m - Y', strtotime($candidate_bap->offer_date)),
+			'site_id' => $project->site_id_ibs,
+			'site_name' => $project->site_name,
+			'long' => $candidate->long,
+			'lat' => $candidate->lat,
+			'site_address' => $project->address,
+			'owner_name' => ucwords($candidate->owner_name),
+			'owner_id_card' => $candidate->id_card,
+			'owner_phone' => $candidate->phone_number,
+			'owner_fax' => (!empty($candidate->fax)) ? $candidate->fax : '-',
+			'owner_address' => $candidate->owner_address,
+			'authorized_name' => (!empty($candidate_bap->authorized_name)) ? $candidate_bap->authorized_name : '-',
+			'authorized_id_card' => (!empty($candidate_bap->authorized_id_card)) ? $candidate_bap->authorized_id_card : '-',
+			'authorized_phone' => (!empty($candidate_bap->authorized_phone)) ? $candidate_bap->authorized_phone : '-',
+			'authorized_address' => (!empty($candidate_bap->authorized_address)) ? $candidate_bap->authorized_address : '-',
+			'type' => $candidate_bap->building_type,
+			'rent_price' => number_format($candidate_bap->rent_price, 0, ',', '.'),
+			'rent_period' => $candidate_bap->rent_period,
+			'space_dimension' => $candidate_bap->space_dimension,
+			'access_road' => $candidate_bap->access_road,
+			'access_road_type' => $candidate_bap->access_road_type,
+			'ppn' => $candidate_bap->ppn,
+			'pph' => $candidate_bap->pph,
+			'notary_fee' => $candidate_bap->notary_fee,
+			'electricity_cost' => $candidate_bap->electricity_cost,
+			'note' => $candidate_bap->note
 		));
 	}
 
