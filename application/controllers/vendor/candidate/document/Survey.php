@@ -24,7 +24,7 @@ class Survey extends CI_Controller {
                 $search_text = $this->session->userdata('search');
             }
         }
-        
+
         $rowperpage = 20;
         if($rowno  != 0){
             $rowno  = ($rowno-1) * $rowperpage;
