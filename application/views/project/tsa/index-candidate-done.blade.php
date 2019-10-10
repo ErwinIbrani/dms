@@ -50,7 +50,7 @@
                                 <th> Candidate Name</th>
                                 <th> Create At</th>
                                 <th> Status</th>
-                                <th style="width:100px; min-width:100px;">  </th>
+                                <th style="width:100px; min-width:100px;">Create TSA</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -66,7 +66,7 @@
                                     <td class="align-middle"> {{ date('d-M-Y', strtotime($candidate->created_at)) }} </td>
                                     <td class="align-middle"> {{ $candidate->status_revision }} </td>
                                     <td class="align-middle text-center">
-                                          <a  href="<?= site_url("project/tsa/create/".$candidate->candidate_id.""); ?>" class="btn btn-sm btn-icon btn-primary"><i class="fa fa-plus" title="Create TSA"></i> <span class="sr-only">Create TSA</span></a>
+                                          <a  href="<?= site_url("project/tsa/create/".$candidate->candidate_id.""); ?>" class="btn btn-sm btn-icon btn-primary"><i class="fa fa-plus" title="Create TSA"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

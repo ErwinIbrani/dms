@@ -164,7 +164,11 @@
 						</ul><!-- /child menu -->
 						<li class="menu-item">
 							<a href="{{ site_url('project/tsa/candidate') }}" class="menu-link"><span
-										class="menu-icon oi oi-browser"></span> <span class="menu-text">Shortlisted Candidates</span></a>
+										class="menu-icon oi oi-bar-chart"></span> <span class="menu-text">Shortlisted Candidates</span></a>
+						</li>
+						<li class="menu-item">
+							<a href="{{ site_url('project/tsa/index') }}" class="menu-link"><span
+										class="menu-icon oi oi-list-rich"></span> <span class="menu-text">TSA Document</span></a>
 						</li>
 					</li><!-- /.menu-item -->
 
