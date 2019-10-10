@@ -28,8 +28,8 @@ class Survey extends CI_Controller {
         if($rowno  != 0){
             $rowno  = ($rowno-1) * $rowperpage;
         }
-        $allcount             = $this->CandidateDocument_Model->getrecordCount($search_text);
-        $records              = $this->CandidateDocument_Model->getData($rowno, $rowperpage, $search_text);
+        $allcount             = $this->CandidateDocument_Model->getrecordCountSurvey($search_text);
+        $records              = $this->CandidateDocument_Model->getDataSurvey($rowno, $rowperpage, $search_text);
         $config['base_url']   = base_url().'vendor/candidate/document/survey/index';
         $config['total_rows'] = $allcount;
         $config['per_page']   = $rowperpage;

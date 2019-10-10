@@ -11,7 +11,7 @@ class CandidateDocument_Model extends CI_Model
 		return $this->db->get_where($this->table, array('id' => $id));
 	}
 
-    public function getData($rowno,$rowperpage,$search="")
+    public function getDataSurvey($rowno,$rowperpage,$search="")
     {
         $this->db->select('document_candidate.id,
                            document_candidate.created_at,
@@ -24,6 +24,7 @@ class CandidateDocument_Model extends CI_Model
         $this->db->join('candidate','document_candidate.candidate_id = candidate.id','inner');
         $this->db->join('vendor','document_candidate.vendor_id = vendor.id','inner');
         $this->db->join('project','document_candidate.project_id = project.id','inner');
+        $this->db->where(['document_candidate.name' => 'SURVEY']);
         if($search != ''){
             $this->db->like('candidate.name', $search);
             $this->db->or_like('vendor.name', $search);
@@ -33,13 +34,14 @@ class CandidateDocument_Model extends CI_Model
         return $query->result();
     }
 
-    public function getrecordCount($search = '')
+    public function getrecordCountSurvey($search = '')
     {
         $this->db->select('count(*) as allcount');
         $this->db->from($this->table);
         $this->db->join('candidate','document_candidate.id = candidate.id','inner');
         $this->db->join('vendor','document_candidate.vendor_id = vendor.id','inner');
         $this->db->join('project','document_candidate.project_id = project.id','inner');
+        $this->db->where(['document_candidate.name' => 'SURVEY']);
         if($search != ''){
             $this->db->like('candidate.name', $search);
             $this->db->or_like('vendor.name', $search);

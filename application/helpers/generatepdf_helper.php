@@ -1,8 +1,7 @@
 <?php
 
-if (!function_exists('generate')) {
 
-    function generateSurvey($model)
+function generateSurvey($model)
     {
         $api_endpoint  = "https://selectpdf.com/api2/convert/";
         $key           = 'b53a60b8-7af2-4a9f-bf0c-c03fbde4911a';
@@ -581,6 +580,4 @@ if (!function_exists('generate')) {
             //echo($result);
         }
     }
-
-}
 
