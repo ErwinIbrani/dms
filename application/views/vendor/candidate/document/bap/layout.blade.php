@@ -131,13 +131,13 @@
 			<TR>
 				<TD class="tr3 td4"><P class="p3 ft2">1.</P></TD>
 				<TD colspan=2 class="tr3 td5"><P class="p5 ft2">Luas lahan</P></TD>
-				<TD class="tr3 td6"><P class="p6 ft7"><SPAN class="ft2">: $</SPAN>{space_dimension} m<SPAN class="ft6">2</SPAN></P></TD>
+				<TD class="tr3 td6"><P class="p6 ft7"><SPAN class="ft2">: </SPAN>{{$space_dimension}} m<SPAN class="ft6">2</SPAN></P></TD>
 				<TD class="tr3 td3"><P class="p3 ft5">&nbsp;</P></TD>
 			</TR>
 			<TR>
 				<TD class="tr4 td4"><P class="p3 ft2">2.</P></TD>
 				<TD colspan=2 class="tr4 td5"><P class="p5 ft2">Luas Akses Jalan</P></TD>
-				<TD colspan=2 class="tr4 td7"><P class="p6 ft7"><SPAN class="ft2">: $</SPAN>{access_road} m<SPAN class="ft6">2 </SPAN>({{$access_road_type}})</P></TD>
+				<TD colspan=2 class="tr4 td7"><P class="p6 ft7"><SPAN class="ft2">: </SPAN>{{$access_road}} m<SPAN class="ft6">2 </SPAN>({{$access_road_type}})</P></TD>
 			</TR>
 			<TR>
 				<TD class="tr5 td4"><P class="p3 ft2">3.</P></TD>
