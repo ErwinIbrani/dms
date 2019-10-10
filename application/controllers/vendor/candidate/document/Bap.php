@@ -61,21 +61,24 @@ class Bap extends CI_Controller
 		$result = @file_get_contents("$api_endpoint?" . http_build_query($parameters));
 
 		if (!$result) {
-			echo "HTTP Response: " . $http_response_header[0] . "<br/>";
+			//echo "HTTP Response: " . $http_response_header[0] . "<br/>";
 
 			$error = error_get_last();
-			echo "Error Message: " . $error['message'];
+//			echo "Error Message: " . $error['message'];
 		}
 		else {
 			// set HTTP response headers
 			header("Content-Type: application/pdf");
 			header("Content-Disposition: attachment; filename=\"test.pdf\"");
 
-			echo ($result);
+//			echo ($result);
 		}
+		$document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
+		$attribute = json_decode($document_candidate->attribute);
 
-
-		return false;
+		$candidate = $attribute->candidate[0];
+		$project = $this->Project_Model->findOne($candidate->project_id)->row();
+		$candidate_bap = $attribute->bap;
 		return view('vendor.candidate.document.preview', array(
 			'candidate' => $attribute->candidate[0],
 			'document' => $document_candidate
