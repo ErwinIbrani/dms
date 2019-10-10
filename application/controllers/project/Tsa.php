@@ -12,9 +12,38 @@ class Tsa extends CI_Controller
         authentication($this->ion_auth->logged_in());
     }
 
-    public function index()
+    public function index($rowno=0)
     {
+        $this->make_bread->add('Index');
+        $breadcrumb = $this->make_bread->output();
+        $search_text = "";
+        if($this->input->post('submit') != NULL ){
+            $search_text = $this->input->post('search');
+            $this->session->set_userdata(["search" => $search_text]);
+        }else{
+            if($this->session->userdata('search') != NULL){
+                $search_text = $this->session->userdata('search');
+            }
+        }
 
+        $rowperpage = 20;
+        if($rowno  != 0){
+            $rowno  = ($rowno-1) * $rowperpage;
+        }
+        $allcount             = $this->CandidateDocument_Model->getrecordCountTSA($search_text);
+        $records              = $this->CandidateDocument_Model->getDataTSA($rowno, $rowperpage, $search_text);
+        $config['base_url']   = base_url().'project/tsa/index';
+        $config['total_rows'] = $allcount;
+        $config['per_page']   = $rowperpage;
+        $this->pagination->initialize($config);
+        $pagination = $this->pagination->create_links();
+
+        return view('project.tsa.index', array(
+            'pagination' => $pagination,
+            'candidates' => $records,
+            'search'     => $search_text,
+            'breadcrumb' => $breadcrumb,
+        ));
     }
 
     public function create($candidate_id)
