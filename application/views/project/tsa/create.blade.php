@@ -235,7 +235,7 @@
                                             <label for="tf1">Status Site</label>
                                             <select class="form-control" name="status_site" required>
                                                 <option value="" selected="selected">.:Choose:.</option>
-                                                <option value="Ren">Rent</option>
+                                                <option value="Rent">Rent</option>
                                                 <option value="Others">Others</option>
                                             </select>
                                         </div>

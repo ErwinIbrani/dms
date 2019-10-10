@@ -114,7 +114,7 @@ class Tsa extends CI_Controller
 
     public function testpdf()
     {
-        $model = $this->CandidateDocument_Model->findOne(180)->row_array();
+        $model = $this->CandidateDocument_Model->findOne(184)->row_array();
         return view('test_template.tsa', ['model' => $model]);
     }
 
