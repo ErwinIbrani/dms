@@ -1,6 +1,7 @@
 <?php
 
-class Bak extends CI_Controller {
+class Bak extends CI_Controller
+{
 	public $attribute = [];
 
 	public function __construct()
@@ -41,7 +42,7 @@ class Bak extends CI_Controller {
 		);
 
 		$document_id = $this->CandidateDocument_Model->save($candidate_document);
-		return redirect('/vendor/candidate/document/bak/preview/' . $document_id);
+		return redirect('/vendor/candidate/document/bak/layout/' . $document_id);
 	}
 
 	public function preview($document_id)
@@ -49,35 +50,38 @@ class Bak extends CI_Controller {
 
 		$api_endpoint = "https://selectpdf.com/api2/convert/";
 		$key = '5db29d9c-4e55-4c2a-8adc-2cb1ed97669b';
-		$test_url = site_url('/vendor/candidate/document/bak/layout/'. $document_id);
+		$layout_url = site_url('/vendor/candidate/document/bak/layout/' . $document_id);
+		$local_file = '/uploads/bak/test.pdf';
 
-		$parameters = array ('key' => $key, 'url' => $test_url, 'web_page_width' => '816', 'page_numbers' => 'False');
+		$parameters = array('key' => $key, 'url' => $layout_url, 'web_page_width' => '816', 'page_numbers' => 'False');
 
 		$result = @file_get_contents("$api_endpoint?" . http_build_query($parameters));
 
 		if (!$result) {
-			echo "HTTP Response: " . $http_response_header[0] . "<br/>";
+			//echo "HTTP Response: " . $http_response_header[0] . "<br/>";
 
 			$error = error_get_last();
-			echo "Error Message: " . $error['message'];
-		}
-		else {
+			//echo "Error Message: " . $error['message'];
+		} else {
 			// set HTTP response headers
-			header("Content-Type: application/pdf");
-			header("Content-Disposition: attachment; filename=\"test.pdf\"");
+			file_put_contents($local_file, $result);
+//			header("Content-Type: application/pdf");
+//			header("Content-Disposition: attachment; filename=\"test.pdf\"");
 
-			echo ($result);
+			//echo($result);
+			$document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
+			$attribute = json_decode($document_candidate->attribute);
+
+			$candidate = $attribute->candidate[0];
+			$project = $this->Project_Model->findOne($candidate->project_id)->row();
+			$candidate_bap = $attribute->bap;
+
+			return view('vendor.candidate.document.preview', array(
+				'candidate' => $attribute->candidate[0],
+				'document' => $document_candidate
+			));
 		}
-		$document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
-		$attribute = json_decode($document_candidate->attribute);
 
-		$candidate = $attribute->candidate[0];
-		$project = $this->Project_Model->findOne($candidate->project_id)->row();
-		$candidate_bap = $attribute->bap;
-		return view('vendor.candidate.document.preview', array(
-			'candidate' => $attribute->candidate[0],
-			'document' => $document_candidate
-		));
 	}
 
 	public function layout($document_id)
@@ -113,7 +117,25 @@ class Bak extends CI_Controller {
 				break;
 		}
 
-		//var_dump($candidate_bak) or die;
+		if (property_exists($candidate_bak, 'pph')) {
+			$pph = true;
+		} else {
+			$pph = false;
+		}
+
+		if (property_exists($candidate_bak, 'non_pkp')) {
+			$non_pkp = true;
+		} else {
+			$non_pkp = false;
+		}
+
+		if (property_exists($candidate_bak, 'pkp')) {
+			$pkp = true;
+		} else {
+			$pkp = false;
+		}
+
+
 		return view('vendor.candidate.document.bak.layout', array(
 			'negotiation_by' => $candidate_bak->negotiation_by,
 			'day' => $day,
@@ -125,7 +147,6 @@ class Bak extends CI_Controller {
 			'site_id' => $project->site_id_ibs,
 			'site_name' => $project->site_name,
 			'owner_name' => ucwords($candidate->owner_name),
-			//'owner_id_card' => $candidate->id_card,
 			'owner_type' => $candidate_bak->owner_type,
 			'owner_phone_number' => $candidate->phone_number,
 			'owner_address' => $candidate->owner_address,
@@ -145,13 +166,13 @@ class Bak extends CI_Controller {
 			'phase_1_nominal' => number_format($candidate_bak->phase_1_nominal, 0, ',', '.'),
 			'pahase_2_percent' => $candidate_bak->phase_2_percent,
 			'phase_2_nominal' => number_format($candidate_bak->phase_2_nominal, 0, ',', '.'),
-			'note' => (!empty($candidate_bak->note)) ?$candidate_bak->note: '-',
+			'note' => (!empty($candidate_bak->note)) ? $candidate_bak->note : '-',
 			'bumi' => $candidate_bak->bumi,
 			'bangunan' => $candidate_bak->bangunan,
 			'space_dimension' => 12,
 			'access_road' => 12,
-			'non_pkp' => $candidate_bak->non_pkp,
-			'pph' => $candidate_bak->pph,
+			'non_pkp' => $non_pkp,
+			'pph' => $pph,
 			'rent_object_status' => $candidate_bak->rent_object_status,
 			'rent_object_status' => $candidate_bak->rent_object_status,
 			'status_hak_object' => $candidate_bak->status_hak_object,
@@ -161,13 +182,6 @@ class Bak extends CI_Controller {
 			'user_ibs_position' => $candidate_bak->user_ibs_position,
 			'saksi_1_name' => $candidate_bak->saksi_1_name,
 			'saksi_2_name' => $candidate_bak->saksi_2_name,
-
-//			'access_road_type' => $candidate_bak->access_road_type,
-//			'ppn' => $candidate_bak->ppn,
-//			'pph' => $candidate_bak->pph,
-//			'notary_fee' => $candidate_bak->notary_fee,
-//			'electricity_cost' => $candidate_bak->electricity_cost,
-//			'note' => $candidate_bak->note
 		));
 	}
 }
