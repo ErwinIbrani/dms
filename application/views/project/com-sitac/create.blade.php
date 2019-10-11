@@ -24,9 +24,10 @@
                         <legend>COM SITAC</legend>
 
                     <div class="row">
-                        <input type="hidden" name="project_id" value="<?= $id_project ?>">
+                        <input type="hidden" name="project_id" value="<?= $project_id ?>">
+                        <input type="hidden" name="vendor_id" value="<?= $vendor_id ?>">
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                            <div class="form-group">
                             <label for="tf3">Upload File (xls)</label>
                             <div class="custom-file">

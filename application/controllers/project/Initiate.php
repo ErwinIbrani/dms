@@ -9,7 +9,7 @@ class Initiate extends CI_Controller
 		authentication($this->ion_auth->logged_in());
 	}
 
-	public function index()
+	public function create()
 	{
 		return view('project.initiate.index', array(
 
