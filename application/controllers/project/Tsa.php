@@ -152,6 +152,7 @@ class Tsa extends CI_Controller
           $this->attribute['masa_sewa']           = $this->input->post('masa_sewa[]');
           $this->attribute['harga_sewa']          = $this->input->post('harga_sewa[]');
           $this->attribute['cancelation_remarks'] = $this->input->post('cancelation_remarks[]');
+          $this->attribute['contact_person']      = $this->input->post('contact_person[]');
 
         $data = [
             'project_id'    => $this->input->post('project_id'),
@@ -186,7 +187,7 @@ class Tsa extends CI_Controller
 
     public function testpdf()
     {
-        $model = $this->CandidateDocument_Model->findOne(184)->row_array();
+        $model = $this->CandidateDocument_Model->findOne(200)->row_array();
         return view('test_template.tsa', ['model' => $model]);
     }
 
