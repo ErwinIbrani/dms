@@ -435,8 +435,9 @@
 								<select class="form-control" id="status_hak_object"
 										name="status_hak_object">
 									<option value="">Select</option>
-									<option value="Sertifikat Hank Milik">Sertifikat Hak Milik</option>
+									<option value="Sertifikat Hak Milik">Sertifikat Hak Milik</option>
 									<option value="Guna Bangunan">Guna Bangunan</option>
+									<option value="Lainnya">Others</option>
 								</select>
 							</div>
 						</div>
