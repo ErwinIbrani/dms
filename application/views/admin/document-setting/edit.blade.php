@@ -28,7 +28,7 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="tf1">Document Name</label>
-                                    <input type="text" class="form-control" name="document_name" value="<?= $model->document_name ?>" readonly="readonly"/>
+                                    <input type="text" class="form-control is-valid" name="document_name" value="<?= $model->document_name ?>" readonly="readonly"/>
                                 </div>
                             </div>
 

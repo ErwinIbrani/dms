@@ -25,12 +25,34 @@
 
                     <div class="row">
 
-                      <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="tf1">Document Name</label>
-                            <input type="text" class="form-control" name="document_name" autocomplete="off" required="">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="tf1">Document Name</label>
+                                <select class="form-control" name="document_name" required>
+                                    <option value="" selected="selected">.:Choose:.</option>
+                                    <option value="KOM SITAC">KOM SITAC</option>
+                                    <option value="SITAC SURVEY">SITAC SURVEY</option>
+                                    <option value="SITAC BAP">SITAC BAP</option>
+                                    <option value="SITAC TSA">SITAC TSA</option>
+                                    <option value="SITAC BAK">SITAC BAK</option>
+                                    <option value="SITAC IW">SITAC IW</option>
+                                    <option value="SITAC IW">SITAC LAST CHECKLIST</option>
+                                    <option value="PKS">PKS</option>
+                                    <option value="KOM CME">KOM CME</option>
+                                    <option value="FOUNDATION and ERECTION">FOUNDATION and ERECTION</option>
+                                    <option value="ME">ME</option>
+                                    <option value="PLN">PLN</option>
+                                    <option value="FENCE">FENCE</option>
+                                    <option value="CME IMPLEMENTATION">CME IMPLEMENTATION</option>
+                                    <option value="RFI">RFI</option>
+                                    <option value="PAT">PAT</option>
+                                    <option value="ADD REDUCE">ADD REDUCE</option>
+                                    <option value="ABD">ABD</option>
+                                    <option value="HAND OVER">HAND OVER</option>
+                                    <option value="BAST">BAST</option>
+                                </select>
+                            </div>
                         </div>
-                       </div>
 
                       <div class="col-lg-12">
                         <div class="table-responsive">
