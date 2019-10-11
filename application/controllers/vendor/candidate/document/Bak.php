@@ -41,46 +41,42 @@ class Bak extends CI_Controller
 			'created_at' => date('Y-m-d H:i:s')
 		);
 
+
 		$document_id = $this->CandidateDocument_Model->save($candidate_document);
-		return redirect('/vendor/candidate/document/bak/layout/' . $document_id);
+
+		$api_endpoint = "https://selectpdf.com/api2/convert/";
+		$key = 'c47ec71b-a145-4814-ba08-8769c4c0f45f';
+		$layout_url = site_url('/vendor/candidate/document/bak/layout/' . $document_id);
+		$parameters = array('key' => $key, 'url' => $layout_url, 'web_page_width' => '816', 'page_numbers' => 'False');
+		$result = @file_get_contents("$api_endpoint?" . http_build_query($parameters));
+		if (!$result) {
+			echo "HTTP Response: " . $http_response_header[0] . "<br/>";
+
+			$error = error_get_last();
+			echo "Error Message: " . $error['message'];
+		} else {
+			// set HTTP response headers
+			$local_file = './uploads/bak/BAK'.time().'.pdf';
+			file_put_contents($local_file, $result);
+			$this->CandidateDocument_Model->update($document_id, array('path' => $local_file));
+			return redirect('/vendor/candidate/document/bak/preview/' . $document_id);
+		}
 	}
+
 
 	public function preview($document_id)
 	{
+		$document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
+		$attribute = json_decode($document_candidate->attribute);
 
-		$api_endpoint = "https://selectpdf.com/api2/convert/";
-		$key = '5db29d9c-4e55-4c2a-8adc-2cb1ed97669b';
-		$layout_url = site_url('/vendor/candidate/document/bak/layout/' . $document_id);
-		$local_file = '/uploads/bak/test.pdf';
+		$candidate = $attribute->candidate[0];
+		$project = $this->Project_Model->findOne($candidate->project_id)->row();
+		$candidate_bap = $attribute->bak;
 
-		$parameters = array('key' => $key, 'url' => $layout_url, 'web_page_width' => '816', 'page_numbers' => 'False');
-
-		$result = @file_get_contents("$api_endpoint?" . http_build_query($parameters));
-
-		if (!$result) {
-			//echo "HTTP Response: " . $http_response_header[0] . "<br/>";
-
-			$error = error_get_last();
-			//echo "Error Message: " . $error['message'];
-		} else {
-			// set HTTP response headers
-			file_put_contents($local_file, $result);
-//			header("Content-Type: application/pdf");
-//			header("Content-Disposition: attachment; filename=\"test.pdf\"");
-
-			//echo($result);
-			$document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
-			$attribute = json_decode($document_candidate->attribute);
-
-			$candidate = $attribute->candidate[0];
-			$project = $this->Project_Model->findOne($candidate->project_id)->row();
-			$candidate_bap = $attribute->bap;
-
-			return view('vendor.candidate.document.preview', array(
-				'candidate' => $attribute->candidate[0],
-				'document' => $document_candidate
-			));
-		}
+		return view('vendor.candidate.document.preview', array(
+			'candidate' => $attribute->candidate[0],
+			'document' => $document_candidate
+		));
 
 	}
 
@@ -172,8 +168,8 @@ class Bak extends CI_Controller
 			'space_dimension' => 12,
 			'access_road' => 12,
 			'non_pkp' => $non_pkp,
+			'pkp' => $pkp,
 			'pph' => $pph,
-			'rent_object_status' => $candidate_bak->rent_object_status,
 			'rent_object_status' => $candidate_bak->rent_object_status,
 			'status_hak_object' => $candidate_bak->status_hak_object,
 			'status_hak_object_nomor' => $candidate_bak->status_hak_object_nomor,
