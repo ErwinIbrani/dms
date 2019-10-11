@@ -5,7 +5,6 @@ class ComSitac_Model extends CI_Model
     protected $table       = 'document_project';
     protected $primaryKey  = 'id';
 
-
     public function getData($rowno,$rowperpage,$search="")
     {
         $this->db->select('project_assigment.id,
@@ -20,11 +19,12 @@ class ComSitac_Model extends CI_Model
         $this->db->from('project_assigment');
         $this->db->join('project','project_assigment.project_id = project.id','inner');
         $this->db->join('vendor','project_assigment.vendor_id = vendor.id','inner');
-        $this->db->where(['project_assigment.status' => 1]);
-        $this->db->where(['project_assigment.assignment_type' => 'SITAC']);
+        $this->db->where('project_assigment.status = 1');
+        $this->db->where('project_assigment.assignment_type', 'SITAC');
+
         if($search != ''){
-            $this->db->like('project.name', $search);
-            $this->db->or_like('vendor.name', $search);
+          //  $this->db->like('project.wbs_id', $search);
+            $this->db->like('vendor.name', $search);
         }
         $this->db->limit($rowperpage, $rowno);
         $query = $this->db->get();
@@ -37,11 +37,11 @@ class ComSitac_Model extends CI_Model
         $this->db->from('project_assigment');
         $this->db->join('project','project_assigment.project_id = project.id','inner');
         $this->db->join('vendor','project_assigment.vendor_id = vendor.id','inner');
-        $this->db->where(['project_assigment.status' => 1]);
-        $this->db->where(['project_assigment.assignment_type' => 'SITAC']);
+        $this->db->where('project_assigment.status = 1');
+        $this->db->where('project_assigment.assignment_type', 'SITAC');
         if($search != ''){
-            $this->db->like('project.name', $search);
-            $this->db->or_like('vendor.name', $search);
+           // $this->db->like('project.wbs_id', $search);
+            $this->db->like('vendor.name', $search);
         }
         $query = $this->db->get();
         $result = $query->result_array();
@@ -53,14 +53,17 @@ class ComSitac_Model extends CI_Model
         $this->db->insert($this->table, $data);
     }
 
-    public function findOne($id)
-    {
-        return $this->db->get_where($this->table, [$this->primaryKey => $id, 'name' => 'COM SITAC']);
-    }
-
     public function status($project_id, $vendor_id)
     {
         return $this->db->get_where($this->table, ['project_id' => $project_id, 'vendor_id' => $vendor_id, 'name' => 'COM SITAC', 'status' => 'Done']);
+    }
+
+
+
+
+    public function findOne($id)
+    {
+        return $this->db->get_where($this->table, [$this->primaryKey => $id, 'name' => 'COM SITAC']);
     }
 
     public function update($id, $update)

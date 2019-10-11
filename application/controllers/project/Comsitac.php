@@ -6,7 +6,7 @@ class Comsitac extends CI_Controller
     public function __Construct()
     {
         parent::__construct();
-        $this->load->model(['Project_Model', 'ComSitac_Model', 'Project_assigment_model']);
+        $this->load->model(['Project_Model', 'ComSitac_Model']);
         $this->load->helper('custom');
         authentication($this->ion_auth->logged_in());
     }
@@ -86,6 +86,11 @@ class Comsitac extends CI_Controller
                redirect("project/comsitac/index", 'refresh');
          }
     }
+
+
+
+
+    /*kode dibawah tidak digunakan*/
 
     public function recreate($projectID = 0, $documenntID = 0)
     {

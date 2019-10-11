@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page_title', 'Project')
+@section('page_title', 'COM SITAC')
 
 @section('content')
     <div class="page-inner">
@@ -29,7 +29,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><span class="oi oi-magnifying-glass"></span></span>
                                 </div>
-                                <input type='text' name='search' value='<?= $search ?>' class='form-control' placeholder='Search Project Name or Vendor Name' autocomplete="off">
+                                <input type='text' name='search' value='<?= $search ?>' class='form-control' placeholder='Search Vendor Name' autocomplete="off">
                             </div><!-- /.input-group -->
                             <!-- .input-group-append -->
                             <div class="input-group-append">
