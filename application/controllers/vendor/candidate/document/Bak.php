@@ -50,35 +50,38 @@ class Bak extends CI_Controller
 
 		$api_endpoint = "https://selectpdf.com/api2/convert/";
 		$key = '5db29d9c-4e55-4c2a-8adc-2cb1ed97669b';
-		$test_url = site_url('/vendor/candidate/document/bak/layout/' . $document_id);
+		$layout_url = site_url('/vendor/candidate/document/bak/layout/' . $document_id);
+		$local_file = '/uploads/bak/test.pdf';
 
-		$parameters = array('key' => $key, 'url' => $test_url, 'web_page_width' => '816', 'page_numbers' => 'False');
+		$parameters = array('key' => $key, 'url' => $layout_url, 'web_page_width' => '816', 'page_numbers' => 'False');
 
 		$result = @file_get_contents("$api_endpoint?" . http_build_query($parameters));
 
 		if (!$result) {
-			echo "HTTP Response: " . $http_response_header[0] . "<br/>";
+			//echo "HTTP Response: " . $http_response_header[0] . "<br/>";
 
 			$error = error_get_last();
-			echo "Error Message: " . $error['message'];
+			//echo "Error Message: " . $error['message'];
 		} else {
 			// set HTTP response headers
-			header("Content-Type: application/pdf");
-			header("Content-Disposition: attachment; filename=\"test.pdf\"");
+			file_put_contents($local_file, $result);
+//			header("Content-Type: application/pdf");
+//			header("Content-Disposition: attachment; filename=\"test.pdf\"");
 
-			echo($result);
+			//echo($result);
+			$document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
+			$attribute = json_decode($document_candidate->attribute);
+
+			$candidate = $attribute->candidate[0];
+			$project = $this->Project_Model->findOne($candidate->project_id)->row();
+			$candidate_bap = $attribute->bap;
+
+			return view('vendor.candidate.document.preview', array(
+				'candidate' => $attribute->candidate[0],
+				'document' => $document_candidate
+			));
 		}
-		$document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
-		$attribute = json_decode($document_candidate->attribute);
 
-		$candidate = $attribute->candidate[0];
-		$project = $this->Project_Model->findOne($candidate->project_id)->row();
-		$candidate_bap = $attribute->bap;
-
-		return view('vendor.candidate.document.preview', array(
-			'candidate' => $attribute->candidate[0],
-			'document' => $document_candidate
-		));
 	}
 
 	public function layout($document_id)
