@@ -61,7 +61,7 @@
                         <tr>
                             <td class="align-middle"> {{ $i++ }} </td>
                             <td class="align-middle"> {{ $document->document_name }} </td>
-                            <td class="align-middle"> {{ $document->document_role }} </td>
+                            <td class="align-middle"> {{ $document->group_name }} </td>
                             <td class="align-middle"> {{ $document->document_type }} </td>
                             <td class="align-middle text-right">
                                 <a href="<?= site_url("admin/documentsetting/edit/".$document->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a>

@@ -11,8 +11,14 @@ class Initiate extends CI_Controller
 
 	public function create()
 	{
-		return view('project.initiate.index', array(
-
+        $this->make_bread->add('Index');
+        $breadcrumb = $this->make_bread->output();
+        $projects   = $this->Project_Model->project()->result();
+        $users_pic  = $this->User_Model->UserIBS()->result();
+		return view('project.initiate.create', array(
+           'projects'    => $projects,
+           'users_pic'   => $users_pic,
+           'breadcrumb'  => $breadcrumb
 		));
 
 	}

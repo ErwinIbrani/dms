@@ -37,12 +37,12 @@
                                     <table class="table table-bordered" id="dynamic_field">
                                         <tr>
                                             <td>
-                                                <select name="document_role" class="custom-select js-example-basic-single" required="">
+                                                <select name="group_id" class="custom-select js-example-basic-single" required="">
                                                     <option value="" selected="selected">Select Role</option>
                                                     <?php
                                                     foreach ($roles as $role) {
-                                                        echo "<option value='$role->name'";
-                                                        echo (string)$model->document_role ===   (string)$role->name ? 'selected': '';
+                                                        echo "<option value='$role->id'";
+                                                        echo (int)$model->group_id ===   (int)$role->id ? 'selected': '';
                                                         echo ">$role->name </option>";
                                                     }
                                                     ?>
