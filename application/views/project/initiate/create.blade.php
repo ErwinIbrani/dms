@@ -1,50 +1,31 @@
 @extends('layouts.app')
-@section('page_title', 'Project')
+@section('page_title', 'Initiate')
 
+@section('header')
+	<link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/select2/select2.css">
+@endsection
 @section('content')
 	<div class="page-inner">
-		<div style="text-align: right"><?= $breadcrumb ?></div>
-		<br/>
-		<div id="stepper" class="bs-stepper">
-			<!-- .card -->
-			<div class="card">
-				<!-- .card-header -->
-				<div class="card-header">
-					<!-- .steps -->
-					<div class="steps steps-" role="tablist">
-						<ul>
-							<li class="step active" data-target="#test-l-1">
-								<a href="#" class="step-trigger" tabindex="-1" aria-selected="true"><span class="step-indicator step-indicator-icon"><i class="oi oi-project"></i></span> <span class="d-none d-sm-inline">Project Name</span></a>
-							</li>
-							<li class="step" data-target="#test-l-2">
-								<a href="#" class="step-trigger" tabindex="-1" aria-selected="false"><span class="step-indicator step-indicator-icon"><i class="oi oi-person"></i></span> <span class="d-none d-sm-inline">PIC IBS</span></a>
-							</li>
-							<li class="step" data-target="#test-l-3">
-								<a href="#" class="step-trigger" tabindex="-1" aria-selected="false"><span class="step-indicator step-indicator-icon"><i class="oi oi-layers"></i></span> <span class="d-none d-sm-inline">IBS Approval</span></a>
-							</li>
-						</ul>
-					</div><!-- /.steps -->
-				</div><!-- /.card-header -->
+		<div class="page-section">
+			<div id="base-style" class="card">
 				<!-- .card-body -->
-
 				<div class="card-body">
+					<!-- .form -->
                 <?php
                 $data  = [
-                    'class' => 'p-lg-4 p-sm-3 p-0',
-                    'id'    => 'stepper-form',
-                    'name'  => 'stepperForm',
+                    'class' => 'null'
                 ];
-                echo form_open('procurement/project/store',$data);
+                echo form_open('admin/city/store',$data);
                 ?>
-				<!-- .content -->
-					<div id="test-l-1" class="content fade active dstepper-block">
-						<!-- fieldset -->
-						<fieldset>
-							<legend>Project</legend>
-							<div class="row">
+				<!-- .fieldset -->
+					<fieldset>
+						<legend>Initiate</legend>
 
-								<div class="col-md-12 mb-4">
-									<select name="project_id" id="state" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="fieldset01" required="">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label for="tf1">Project Name</label>
+									<select name="project_id" id="state" class="custom-select select2" required>
 										<option value="" selected="selected">Select Project Name</option>
                                         <?php
                                         foreach ($projects as $project) {
@@ -55,25 +36,10 @@
 								</div>
 							</div>
 
-							<hr class="mt-5">
-							<!-- .d-flex -->
-							<div class="d-flex">
-								{{--    <p>Next </p>--}}
-								<button type="button" class="next btn btn-primary ml-auto" data-validate="fieldset01">Next step</button>
-							</div><!-- /.d-flex -->
-						</fieldset><!-- /fieldset -->
-					</div><!-- /.content -->
-					<!-- .content -->
-
-
-					<div id="test-l-2" class="content fade dstepper-none">
-						<!-- fieldset -->
-						<fieldset>
-							<legend>PIC IBS</legend>
-
-							<div class="row">
-								<div class="col-md-12 mb-4">
-									<select name="user_id" id="state" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="fieldset02" required="">
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label  for="selDefault">PIC Project</label>
+									<select name="pic_id" id="state" class="custom-select select2" required>
 										<option value="" selected="selected">Select PIC IBS</option>
                                         <?php
                                         foreach ($users_pic as $user_pic) {
@@ -84,71 +50,75 @@
 								</div>
 							</div>
 
+							<hr style="border-top: 1px dashed #8c8b8b;background-color: #f0f0f0;width: 100%;">
 
-							<hr class="mt-5">
-							<div class="d-flex">
-								<button type="button" class="prev btn btn-secondary">Previous</button> <button type="button" class="next btn btn-primary ml-auto" data-validate="fieldset02">Next step</button>
-							</div>
-						</fieldset><!-- /fieldset -->
-					</div><!-- /.content -->
-					<!-- .content -->
-					<div id="test-l-3" class="content fade dstepper-none">
-						<!-- fieldset -->
-						<fieldset>
-							<legend>User IBS</legend> <!-- .card -->
-							<div class="row">
-								<!-- grid column -->
+							<div class="col-lg-12">
 								<div class="table-responsive">
 									<table class="table table-bordered" id="dynamic_field">
 										<tr>
 											<td>
-												<select name="addmore[][user_ibs_id]" id="statess" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="agreement" required="">
-													<option value="" selected="selected">Select User IBS</option>
-                                                    <?php
-                                                    foreach ($userIbs as $user) {
-                                                        echo"<option value=".$user->id."> $user->email </option>";
-                                                    }
-                                                    ?>
-												</select>
+												<div class="form-group">
+													<label for="tf1">User Approval/Review/Submit</label>
+													<select name="addmore[][approval_id]" id="statess" class="custom-select select2"  required="">
+														<option value="" selected="selected">Select Approval User IBS</option>
+                                                        <?php
+                                                        foreach ($users_pic as $user_pic) {
+                                                            echo"<option value='$user_pic->id'> $user_pic->email </option>";
+                                                        }
+                                                        ?>
+													</select>
+												</div>
 											</td>
 											<td>
-												<select name="addmore[][role_ibs_id]" id="statess" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="agreement" required="">
-													<option value="" selected="selected">Select Role</option>
-                                                    <?php
-                                                    foreach ($ibs_users as $role) {
-                                                        echo"<option value='$role->id'> $role->name </option>";
-                                                    }
-                                                    ?>
-												</select>
-											</td>
-											<td>
-												<select  name="addmore[][layer]" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="agreement" required="">
-													<option value="" selected="selected">Layer</option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-													<option value="4">4</option>
-													<option value="5">5</option>
-													<option value="6">6</option>
-												</select>
+												<div class="form-group">
+													<label for="tf1">Document Approval/Review/Submit</label>
+													<select name="addmore[][document_setting_id]" id="statess" class="custom-select select2" required="">
+														<option value="" selected="selected">Select Document </option>
+                                                        <?php
+                                                        foreach ($document_settings as $role) {
+                                                            echo"<option value='$role->id'> $role->document_name  / $role->group_name /  $role->document_type</option>";
+                                                        }
+                                                        ?>
+													</select>
+												</div>
 											</td>
 
-											<td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+											<td>
+												<div class="form-group">
+													<label for="tf1">Layer</label>
+													<select  name="addmore[][layer]" class="custom-select select2"  required="">
+														<option value="" selected="selected">Layer</option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+													</select>
+												</div>
+											</td>
+											<td>
+												<div class="form-group">
+													<button type="button" name="add" id="add" class="btn btn-success">Add</button>
+												</div>
+											</td>
 										</tr>
 									</table>
 								</div>
+							</div>
+						</div>
 
+						<div class="publisher-actions">
+							<!-- .publisher-tools -->
+							<div class="publisher-tools mr-auto">
 							</div>
-							<hr class="mt-5">
-							<div class="d-flex">
-								<button type="button" class="prev btn btn-secondary">Previous</button>
-								<button type="submit" class="submit btn btn-primary ml-auto">Submit</button>
-							</div>
-						</fieldset><!-- /fieldset -->
-					</div><!-- /.content -->
-                <?php echo form_close();?><!-- /form -->
+							<!-- /.publisher-tools -->
+							<button type="submit" class="btn btn-primary">Save</button>
+						</div>
+					</fieldset>
+                    <?php echo form_close();?>
 				</div><!-- /.card-body -->
-			</div><!-- /.card -->
+			</div>
 		</div>
 	</div>
 @endsection
@@ -160,17 +130,17 @@
             $('#add').click(function(){
                 i++;
                 $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added">' +
-                    '<td>' + '<select name="addmore[][user_ibs_id]" id="statess" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="agreement" required="">\n' +
+                    '<td>' + '<select name="addmore[][user_ibs_id]" id="statess" class="custom-select select2" required>\n' +
                     '<option value="" selected="selected">Select User IBS</option> <?php foreach ($userIbs as $user) {
                         echo"<option value=".$user->id."> $user->email </option>";
                     }
                         ?></select></td>' +
-                    '<td><select name="addmore[][role_ibs_id]" id="statess" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="agreement" required="">\n' +
+                    '<td><select name="addmore[][role_ibs_id]" id="statess" class="custom-select select2" required>\n' +
                     '<option value="" selected="selected">Select Role</option><?php foreach ($ibs_users as $role) {
                         echo "<option value=".$role->id."> $role->name </option>";
                     }
                         ?></select></td>' +
-                    '<td><select  name="addmore[][layer]" class="custom-select custom-select-lg d-block w-100 js-example-basic-single" data-parsley-group="agreement" required="">\n' +
+                    '<td><select  name="addmore[][layer]" class="custom-select select2" required>\n' +
                     '    <option value="" selected="selected">Layer</option>\n' +
                     '    <option value="1">1</option>\n' +
                     '    <option value="2">2</option>\n' +
@@ -187,6 +157,13 @@
                 $('#row'+button_id+'').remove();
             });
 
+        });
+	</script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/select2/select2.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/select2/select2.min.js"></script>
+	<script type="text/javascript">
+        $(document).ready(function() {
+            $(".select2").select2();
         });
 	</script>
 @endsection

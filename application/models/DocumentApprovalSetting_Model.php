@@ -1,27 +1,24 @@
 <?php
 
-class DocumentSetting_Model extends CI_Model
+class DocumentApprovalSetting_Model extends CI_Model
 {
-    protected $table       = 'document_setting';
+    protected $table       = 'document_approval_setting';
     protected $primaryKey  = 'id';
 
     public function documentsetting()
     {
-        $this->db->select('document_setting.id,
-                           document_setting.document_name, 
-                           document_setting.document_type,
-                           groups.name as group_name,
-                           groups.id as group_id');
+        $this->db->select('*');
         $this->db->from($this->table);
-        $this->db->join('groups','document_setting.group_id = groups.id','inner'); //inner //Right
         $this->db->where('document_setting.deleted_at IS NULL', null, false);
         return $this->db->get();
     }
 
     public function getData($rowno,$rowperpage,$search="")
     {
-        $this->db->select('document_setting.id,
-                           document_setting.document_name, 
+        $this->db->select('*');
+        $this->db->select('project.wbs_id,
+                           project.iro_number,
+                           project.site_id_ibs, 
                            document_setting.document_type,
                            groups.name as group_name,
                            groups.id as group_id');

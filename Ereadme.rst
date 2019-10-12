@@ -180,7 +180,7 @@ Create Setting Document
 CREATE TABLE [dbo].[document_setting] (
   [id] int IDENTITY(1,1) NOT NULL,
   [document_name] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-  [document_role] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [group_id] INT NULL,
   [document_type] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
   [created_at] datetime NULL,
   [updated_at] datetime NULL,
@@ -198,3 +198,21 @@ ALTER TABLE dbo.candidate ADD city varchar(255) NULL;
 ==========
 ALTER TABLE dbo.document_candidate ADD attachment_api text NULL;
 =========
+
+==========
+Change Table documentSetting column document_role to group_id
+=========
+
+===========
+Create Document Approval Setting
+==========
+CREATE TABLE [dbo].[document_approval_setting] (
+  [id] int IDENTITY(1,1) NOT NULL,
+  [project_id] int NOT NULL,
+  [pic_id] int NOT NULL, to user table
+  [approval_id] int NOT NULL, to user table
+  [document_setting_id] int NOT NULL,
+  [layer] int NULL,
+  [created_at] datetime NULL,
+  [updated_at] datetime NULL,
+);
