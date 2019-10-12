@@ -97,9 +97,9 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="negotiation_by">Negotiation By</label>
+								<label for="negotiation_by">Negotiation By <abbr title="Required">*</abbr></label>
 								<select class="form-control" id="negotiation_by"
-										name="negotiation_by">
+										name="negotiation_by" required>
 									<option value="">Select</option>
 									<option value="telepon">Phone</option>
 									<option value="kunjungan">Visit</option>
@@ -108,16 +108,16 @@
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
-								<label for="negotiation_at">Negotiation at</label>
-								<input id="flatpickr01" type="text" name="negotiation_at" class="form-control flatpickr-input"
-									   data-toggle="flatpickr">
+								<label for="negotiation_at">Negotiation at <abbr title="Required">*</abbr></label>
+								<input id="flatpickr01" type="date" name="negotiation_at" class="form-control flatpickr-input"
+									   data-toggle="flatpickr" required>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
-								<label for="land_type">Land Type</label>
+								<label for="land_type">Land Type <abbr title="Required">*</abbr></label>
 								<select class="form-control" id="land_type"
-										name="land_type">
+										name="land_type" required>
 									<option value="">Select</option>
 									<option value="tanah">Tanah</option>
 									<option value="bangunan">Bangunan</option>
@@ -138,14 +138,14 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="first_person">First Person</label>
-								<input type="text" class="form-control" name="first_person" id="first_person"/>
+								<label for="first_person">First Person <abbr title="Required">*</abbr></label>
+								<input type="text" class="form-control" name="first_person" id="first_person" required/>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="second_person">Second Person</label>
-								<input type="text" class="form-control" name="second_person" id="second_person"/>
+								<label for="second_person">Second Person <abbr title="Required">*</abbr></label>
+								<input type="text" class="form-control" name="second_person" id="second_person" required/>
 							</div>
 						</div>
 					</div>
@@ -160,8 +160,8 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="owner_type">Owner Type</label>
-								<select type="text" class="form-control" id="owner_type" name="owner_type">
+								<label for="owner_type">Owner Type <abbr title="Required">*</abbr></label>
+								<select type="text" class="form-control" id="owner_type" name="owner_type" required>
 									<option value="">Select</option>
 									<option value="pribadi">Private (Pribadi)</option>
 									<option value="perusahaan">Corporate (Perusahaan)</option>
@@ -180,14 +180,14 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="authorized_name">Authorized Name</label>
+								<label for="authorized_name">Authorized Name <span class="badge badge-secondary"><em>Optional</em></span></label>
 								<input type="text" class="form-control" id="authorized_name"
 									   name="authorized_name">
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="authorized_id_card">KTP Number</label>
+								<label for="authorized_id_card">KTP Number <span class="badge badge-secondary"><em>Optional</em></span></label>
 								<input type="text" class="form-control" id="authorized_id_card"
 									   name="authorized_id_card">
 							</div>
@@ -196,14 +196,14 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="authorized_phone_number">Phone Number</label>
+								<label for="authorized_phone_number">Phone Number <span class="badge badge-secondary"><em>Optional</em></span></label>
 								<input type="text" class="form-control" id="authorized_phone_number"
 									   name="authorized_phone_number">
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="authorized_address">Address</label>
+						<label for="authorized_address">Address <span class="badge badge-secondary"><em>Optional</em></span></label>
 						<input type="text" class="form-control" id="authorized_address"
 							   name="authorized_address">
 					</div>
@@ -218,21 +218,21 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="total_price_rent">Total Price Rent</label>
+								<label for="total_price_rent">Total Price Rent <abbr title="Required">*</abbr></label>
 								<div class="input-group">
 									<div class="input-group-prepend" for="total_price_rent">
 										<span class="badge">Rp.</span>
 									</div>
-									<input type="text" class="form-control" id="total_price_rent" name="total_price_rent">
+									<input type="number" class="form-control" id="total_price_rent" name="total_price_rent" required>
 								</div>
 							</div>
 						</div>
 
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="be_regarded">be regarded</label>
+								<label for="be_regarded">be regarded <abbr title="Required">*</abbr></label>
 								<input type="text" class="form-control" id="be_regarded"
-									   name="be_regarded">
+									   name="be_regarded" required>
 							</div>
 						</div>
 					</div>
@@ -240,9 +240,9 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="rental_period">Rental Period</label>
-								<input type="text" class="form-control" id="rental_period"
-									   name="rental_period">
+								<label for="rental_period">Rental Period <abbr title="Required">*</abbr></label>
+								<input type="number" class="form-control" id="rental_period"
+									   name="rental_period" required>
 							</div>
 						</div>
 					</div>
@@ -257,9 +257,9 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="payment_type">Payment Type</label>
+								<label for="payment_type">Payment Type <abbr title="Required">*</abbr></label>
 								<select class="form-control" id="payment_type"
-										name="payment_type">
+										name="payment_type" required>
 									<option value="">Select</option>
 									<option value="tunai">Cash (Tunai)</option>
 									<option value="giro">Giro</option>
@@ -271,33 +271,33 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="bank_name">Bank Name</label>
+								<label for="bank_name">Bank Name <abbr title="Required">*</abbr></label>
 								<input type="text" class="form-control" id="bank_name"
-										name="bank_name" />
+										name="bank_name" required />
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="account_number">Account Number (No. Rek)</label>
+								<label for="account_number">Account Number (No. Rek) <abbr title="Required">*</abbr></label>
 								<input type="text" class="form-control" id="account_number"
-									   name="account_number" />
+									   name="account_number" required />
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="account_name">Account Name (Atas Nama)</label>
+								<label for="account_name">Account Name (Atas Nama) <abbr title="Required">*</abbr></label>
 								<input type="text" class="form-control" id="account_name"
-									   name="account_name" />
+									   name="account_name" required/>
 							</div>
 						</div>
 					</div>
 
 					<div class="form-row">
-						<div class="col-md-12 pb-1">Phase 1</div>
+						<div class="col-md-12 pb-1">Phase 1 <abbr title="Required">*</abbr></div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<div class="input-group input-group-alt">
-									<input type="text" class="form-control" id="phase_1_percent" name="phase_1_percent">
+									<input type="text" class="form-control" id="phase_1_percent" name="phase_1_percent" required>
 									<div class="input-group-append">
 										<span class="input-group-text">%</span>
 									</div>
@@ -310,18 +310,18 @@
 									<div class="input-group-prepend" for="phase_1_nominal">
 										<span class="badge">Rp.</span>
 									</div>
-									<input type="text" class="form-control" id="phase_1_nominal" name="phase_1_nominal">
+									<input type="text" class="form-control" id="phase_1_nominal" name="phase_1_nominal" required>
 								</div>
 							</div>
 						</div>
 					</div>
 
 					<div class="form-row">
-						<div class="col-md-12 pb-1">Phase 2</div>
+						<div class="col-md-12 pb-1">Phase 2 <abbr title="Required">*</abbr></div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<div class="input-group input-group-alt">
-									<input type="text" class="form-control" id="phase_2_percent" name="phase_2_percent">
+									<input type="text" class="form-control" id="phase_2_percent" name="phase_2_percent" required>
 									<div class="input-group-append">
 										<span class="input-group-text">%</span>
 									</div>
@@ -334,7 +334,7 @@
 									<div class="input-group-prepend" for="phase_2_nominal">
 										<span class="badge">Rp.</span>
 									</div>
-									<input type="text" class="form-control" id="phase_2_nominal" name="phase_2_nominal">
+									<input type="text" class="form-control" id="phase_2_nominal" name="phase_2_nominal" required>
 								</div>
 							</div>
 						</div>
@@ -357,9 +357,9 @@
 
 						<div class="col-md-4">
 							<div class="form-group">
-								<label>Bumi</label>
+								<label>Bumi <abbr title="Required">*</abbr></label>
 								<div class="input-group input-group-alt">
-									<input type="text" class="form-control" id="bumi" name="bumi">
+									<input type="text" class="form-control" id="bumi" name="bumi" required>
 									<div class="input-group-append">
 										<span class="input-group-text">m <sup>2</sup></span>
 									</div>
@@ -369,9 +369,9 @@
 
 						<div class="col-md-4">
 							<div class="form-group">
-								<label>Bangunan</label>
+								<label>Bangunan <abbr title="Required">*</abbr></label>
 								<div class="input-group input-group-alt">
-									<input type="text" class="form-control" id="bangunan" name="bangunan">
+									<input type="text" class="form-control" id="bangunan" name="bangunan" required>
 									<div class="input-group-append">
 										<span class="input-group-text">m <sup>2</sup></span>
 									</div>
@@ -412,11 +412,11 @@
 					<div class="form-group">
 						<label>Payment method</label>
 						<div class="custom-control custom-radio">
-							<input type="radio" class="custom-control-input" id="dijaminkan" name="rent_object_status">
+							<input type="radio" class="custom-control-input" id="dijaminkan" value="ijaminkan" name="rent_object_status">
 							<label class="custom-control-label" for="dijaminkan">Dijaminkan</label>
 						</div>
 						<div class="custom-control custom-radio">
-							<input type="radio" class="custom-control-input" name="rent_object_status" id="tidak_dijaminkan">
+							<input type="radio" class="custom-control-input" name="rent_object_status" value="Tidak Dijaminkan" id="tidak_dijaminkan">
 							<label class="custom-control-label" for="tidak_dijaminkan">Tidak Dijaminkan</label>
 						</div>
 					</div>
@@ -431,9 +431,9 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="status_hak_object">Status Hak Objek Sewa</label>
+								<label for="status_hak_object">Status Hak Objek Sewa <abbr title="Required">*</abbr></label>
 								<select class="form-control" id="status_hak_object"
-										name="status_hak_object">
+										name="status_hak_object" required>
 									<option value="">Select</option>
 									<option value="Sertifikat Hak Milik">Sertifikat Hak Milik</option>
 									<option value="Guna Bangunan">Guna Bangunan</option>
@@ -444,8 +444,8 @@
 
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="status_hak_object_nomor">Nomor</label>
-								<input type="text" class="form-control" name="status_hak_object_nomor" id="status_hak_object_nomor">
+								<label for="status_hak_object_nomor">Nomor <abbr title="Required">*</abbr></label>
+								<input type="text" class="form-control" name="status_hak_object_nomor" id="status_hak_object_nomor" required>
 							</div>
 						</div>
 
@@ -490,15 +490,15 @@
 					<div class="form-row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="saksi_1_name">Saksi 1 Name</label>
-								<input type="text" class="form-control" name="saksi_1_name" id="saksi_1_name">
+								<label for="saksi_1_name">Saksi 1 <abbr title="Required">*</abbr></label>
+								<input type="text" class="form-control" name="saksi_1_name" id="saksi_1_name" required>
 							</div>
 						</div>
 
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="saksi_2_name">Saksi 2</label>
-								<input type="text" class="form-control" name="saksi_2_name" id="saksi_2_name">
+								<label for="saksi_2_name">Saksi 2 <abbr title="Required">*</abbr></label>
+								<input type="text" class="form-control" name="saksi_2_name" id="saksi_2_name" required>
 							</div>
 						</div>
 					</div>

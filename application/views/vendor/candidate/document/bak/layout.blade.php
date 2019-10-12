@@ -1121,13 +1121,13 @@
 			<TD class="tr6 td5"><P class="p17 ft7">2.</P></TD>
 			<TD class="tr6 td6"><P class="p18 ft7">Cara Pembayaran</P></TD>
 			<TD class="tr6 td7"><P class="p19 ft7">:</P></TD>
-			<TD class="tr6 td8"><P class="p20 ft7"><input type="checkbox" checked>{{$payment_type}}</P></TD>
+			<TD class="tr6 td8"><P class="p20 ft7"><input type="checkbox" checked disabled>{{$payment_type}}</P></TD>
 		</TR>
 		<TR>
 			<TD class="tr10 td5"><P class="p8 ft10">&nbsp;</P></TD>
 			<TD class="tr10 td6"><P class="p8 ft10">&nbsp;</P></TD>
 			<TD class="tr10 td7"><P class="p8 ft10">&nbsp;</P></TD>
-			<TD class="tr10 td8"><P class="p21 ft7"><input type="checkbox" checked> Transfer ke Bank {{$bank_name}}</P></TD>
+			<TD class="tr10 td8"><P class="p21 ft7"><input type="checkbox" {{($bank_name) ? 'checked' : ''}}> Transfer ke Bank {{$bank_name}}</P></TD>
 		</TR>
 		<TR>
 			<TD class="tr10 td5"><P class="p8 ft10">&nbsp;</P></TD>
@@ -1200,31 +1200,25 @@
 				</P>
 			</TD>
 			<TD class="tr7 td7"><P class="p19 ft7">:</P></TD>
-			<TD class="tr7 td8"><P class="p22 ft7"><input type="checkbox" checked> Non PKP</P></TD>
+			<TD class="tr7 td8"><P class="p22 ft7"><input type="checkbox" {{$non_pkp ? 'checked' : ''}}> Non PKP</P></TD>
 		</TR>
 		<TR>
 			<TD class="tr14 td5"><P class="p8 ft10">&nbsp;</P></TD>
 			<TD class="tr14 td6"><P class="p8 ft10">&nbsp;</P></TD>
 			<TD class="tr14 td7"><P class="p8 ft10">&nbsp;</P></TD>
-			<TD class="tr14 td8"><P class="p22 ft7"><input type="checkbox" checked> PKP (PPN 10% ditanggung oleh IBS)</P></TD>
+			<TD class="tr14 td8"><P class="p22 ft7"><input type="checkbox" {{$pkp ? 'checked' : ''}}> PKP (PPN 10% ditanggung oleh IBS)</P></TD>
 		</TR>
 		<TR>
 			<TD class="tr5 td5"><P class="p8 ft10">&nbsp;</P></TD>
 			<TD class="tr5 td6"><P class="p8 ft10">&nbsp;</P></TD>
 			<TD class="tr5 td7"><P class="p8 ft10">&nbsp;</P></TD>
-			<TD class="tr5 td8"><P class="p22 ft7"><input type="checkbox" checked> dipotong PPh 10%</P></TD>
+			<TD class="tr5 td8"><P class="p22 ft7"><input type="checkbox" {{$pph ? 'checked' : ''}}> dipotong PPh 10%</P></TD>
 		</TR>
 		<TR>
 			<TD class="tr15 td5"><P class="p17 ft7">6.</P></TD>
 			<TD class="tr15 td6"><P class="p18 ft7">Status Objek Sewa</P></TD>
 			<TD class="tr15 td7"><P class="p19 ft7">:</P></TD>
-			<TD class="tr15 td8"><P class="p22 ft7"><input type="checkbox" checked> Dijaminkan</P></TD>
-		</TR>
-		<TR>
-			<TD class="tr5 td5"><P class="p8 ft10">&nbsp;</P></TD>
-			<TD class="tr5 td6"><P class="p8 ft10">&nbsp;</P></TD>
-			<TD class="tr5 td7"><P class="p8 ft10">&nbsp;</P></TD>
-			<TD class="tr5 td8"><P class="p22 ft7"><input type="checkbox" checked> Tidak Dijaminkan</P></TD>
+			<TD class="tr15 td8"><P class="p22 ft7"><input type="checkbox" checked> {{$rent_object_status}}</P></TD>
 		</TR>
 		<TR>
 			<TD class="tr5 td5"><P class="p17 ft7">7.</P></TD>

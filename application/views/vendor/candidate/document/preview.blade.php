@@ -31,7 +31,7 @@
 								<button type="button" class="btn btn-lg btn-secondary rounded-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-caret-down"></span></button>
 								<div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: top, left; top: 45px; left: 44px;">
 									<div class="dropdown-arrow mr-1"></div>
-									<button type="button" id="download-pdf" class="dropdown-item">Download PDF</button>
+									<a href="{{site_url($document->path)}}" id="download-pdf" class="dropdown-item">Download PDF</a>
 								</div>
 							</div>
 						</div>
@@ -43,7 +43,7 @@
 							<div class="invoice-footer"></div>
 						</div>
 						<div>
-							<iframe src="{{site_url('/uploads/bap/BAP-dada-dada_1570622887.pdf')}}" width="100%" height="600"></iframe>
+							<iframe src="{{site_url($document->path)}}" width="100%" height="600"></iframe>
 						</div>
 					</div>
 				</div>
@@ -66,7 +66,6 @@
 									<h6 class="timeline-heading"> Document Created </h6>
 									<span class="timeline-date">{{ date('d/m/Y H:m:s', strtotime($document->created_at)) }}</span>
 								</div>
-								<a href="https://selectpdf.com/save-as-pdf/">Save as Pdf</a>
 
 							</li>
 						</ul>
