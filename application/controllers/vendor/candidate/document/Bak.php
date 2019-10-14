@@ -56,7 +56,7 @@ class Bak extends CI_Controller
 			echo "Error Message: " . $error['message'];
 		} else {
 			// set HTTP response headers
-			$local_file = './uploads/bak/BAK'.time().'.pdf';
+			$local_file = './uploads/bak/BAK-'.time().'.pdf';
 			file_put_contents($local_file, $result);
 			$this->CandidateDocument_Model->update($document_id, array('path' => $local_file));
 			return redirect('/vendor/candidate/document/bak/preview/' . $document_id);
@@ -71,7 +71,7 @@ class Bak extends CI_Controller
 
 		$candidate = $attribute->candidate[0];
 		$project = $this->Project_Model->findOne($candidate->project_id)->row();
-		$candidate_bap = $attribute->bak;
+		$candidate_bak = $attribute->bak;
 
 		return view('vendor.candidate.document.preview', array(
 			'candidate' => $attribute->candidate[0],
