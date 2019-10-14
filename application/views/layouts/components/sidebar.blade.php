@@ -81,29 +81,29 @@
 					</li><!-- /.menu-item -->
                     <?php endif ?>
 
-						<?php if ($CI->ion_auth->in_group('PIC Vendor')): ?>
-						<li class="menu-header">Vendor</li><!-- /.menu-header -->
-						<li class="menu-item">
-							<a href="{{ site_url('/vendor/project/index') }}" class="menu-link"><span
-									class="menu-icon fas fa-clipboard-check"></span> <span
-									class="menu-text">Projects</span></a>
-						</li><!-- /.menu-item -->
-						<?php endif?>
+                    <?php if ($CI->ion_auth->in_group('PIC Vendor')): ?>
+					<li class="menu-header">Vendor</li><!-- /.menu-header -->
+					<li class="menu-item">
+						<a href="{{ site_url('/vendor/project/index') }}" class="menu-link"><span
+								class="menu-icon fas fa-clipboard-check"></span> <span
+								class="menu-text">Projects</span></a>
+					</li><!-- /.menu-item -->
+                    <?php endif?>
 
                     <?php if ($CI->ion_auth->in_group('Project Admin')): ?>
-						<li class="menu-header">Project Admin</li><!-- /.menu-header -->
-						<li class="menu-item">
-							<a href="{{ site_url('project/initiate') }}" class="menu-link"><span
-									class="menu-icon fas fa-clipboard-check"></span> <span
-									class="menu-text">Dashboard</span></a>
-						</li><!-- /.menu-item -->
-						<!-- .menu-item -->
-						<li class="menu-item">
-							<a href="{{ site_url('project/initiate') }}" class="menu-link"><span
-									class="menu-icon fas fa-clipboard-check"></span> <span
-									class="menu-text">Start Project</span></a>
-						</li><!-- /.menu-item -->
-					<?php endif?>
+					<li class="menu-header">Project Admin</li><!-- /.menu-header -->
+					<li class="menu-item">
+						<a href="{{ site_url('project/initiate') }}" class="menu-link"><span
+								class="menu-icon fas fa-clipboard-check"></span> <span
+								class="menu-text">Dashboard</span></a>
+					</li><!-- /.menu-item -->
+					<!-- .menu-item -->
+					<li class="menu-item">
+						<a href="{{ site_url('project/initiate') }}" class="menu-link"><span
+								class="menu-icon fas fa-clipboard-check"></span> <span
+								class="menu-text">Start Project</span></a>
+					</li><!-- /.menu-item -->
+                    <?php endif?>
 
                     <?php if($CI->ion_auth->in_group('Procurement')): ?>
 					<li class="menu-header">Procurement</li><!-- /.menu-header -->
@@ -162,14 +162,16 @@
 									Rejected</a>
 							</li>
 						</ul><!-- /child menu -->
-						<li class="menu-item">
-							<a href="{{ site_url('project/tsa/candidate') }}" class="menu-link"><span
-										class="menu-icon oi oi-bar-chart"></span> <span class="menu-text">Shortlisted Candidates</span></a>
-						</li>
-						<li class="menu-item">
-							<a href="{{ site_url('project/tsa/index') }}" class="menu-link"><span
-										class="menu-icon oi oi-list-rich"></span> <span class="menu-text">TSA Document</span></a>
-						</li>
+					<li class="menu-item">
+						<a href="{{ site_url('project/tsa/candidate') }}" class="menu-link"><span
+								class="menu-icon oi oi-bar-chart"></span> <span
+								class="menu-text">Shortlisted Candidates</span></a>
+					</li>
+					<li class="menu-item">
+						<a href="{{ site_url('project/tsa/index') }}" class="menu-link"><span
+								class="menu-icon oi oi-list-rich"></span> <span
+								class="menu-text">TSA Document</span></a>
+					</li>
 					</li><!-- /.menu-item -->
 
                     <?php endif?>
