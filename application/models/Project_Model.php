@@ -87,5 +87,15 @@ class Project_Model extends CI_Model
 		return $this->db->get();
 	}
 
+	public function getWithSelectedVendor($project_id)
+	{
+		$this->db->select('*')
+			->from($this->table)
+			->join('candidate', 'candidate.project_id = project.id', 'inner')
+			->where('project.id', $project_id)
+			->where('candidate.has_selected = 1');
+		return $this->db->get();
+	}
+
 
 }
