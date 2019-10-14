@@ -52,7 +52,7 @@
 			<div class="col-md-8">
 				<div class="card card-fluid">
 					<div class="card-header">
-						Surat Persetujuan Lingkunagn
+						ADP Site
 					</div>
 					<div class="card-body">
 						{!! form_open_multipart(site_url('/project/adp/uploadsite/'. $project->id)) !!}
