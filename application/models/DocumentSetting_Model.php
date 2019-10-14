@@ -7,20 +7,30 @@ class DocumentSetting_Model extends CI_Model
 
     public function documentsetting()
     {
-        $this->db->select('*');
+        $this->db->select('document_setting.id,
+                           document_setting.document_name, 
+                           document_setting.document_type,
+                           groups.name as group_name,
+                           groups.id as group_id');
         $this->db->from($this->table);
+        $this->db->join('groups','document_setting.group_id = groups.id','inner'); //inner //Right
         $this->db->where('document_setting.deleted_at IS NULL', null, false);
         return $this->db->get();
     }
 
     public function getData($rowno,$rowperpage,$search="")
     {
-        $this->db->select('*');
+        $this->db->select('document_setting.id,
+                           document_setting.document_name, 
+                           document_setting.document_type,
+                           groups.name as group_name,
+                           groups.id as group_id');
         $this->db->from($this->table);
+        $this->db->join('groups','document_setting.group_id = groups.id','inner'); //inner //Right
         $this->db->where('document_setting.deleted_at IS NULL', null, false);
         if($search != ''){
-            $this->db->like('document_name', $search);
-            $this->db->or_like('document_role', $search);
+            $this->db->like('document_setting.document_name', $search);
+            $this->db->or_like('groups.name', $search);
         }
         $this->db->limit($rowperpage, $rowno);
         $query = $this->db->get();
@@ -31,10 +41,11 @@ class DocumentSetting_Model extends CI_Model
     {
         $this->db->select('count(*) as allcount');
         $this->db->from($this->table);
+        $this->db->join('groups','document_setting.group_id = groups.id','inner'); //inner //Right
         $this->db->where('document_setting.deleted_at IS NULL', null, false);
         if($search != ''){
-            $this->db->like('document_name', $search);
-            $this->db->or_like('document_role', $search);
+            $this->db->like('document_setting.document_name', $search);
+            $this->db->or_like('groups.name', $search);
         }
         $query = $this->db->get();
         $result = $query->result_array();

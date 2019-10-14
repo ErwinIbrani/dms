@@ -59,10 +59,10 @@
                             <table class="table table-bordered" id="dynamic_field">
                                 <tr>
                                     <td>
-                                        <select name="document_role[]" class="custom-select js-example-basic-single" required="">
+                                        <select name="group_id[]" class="custom-select js-example-basic-single" required="">
                                             <option value="" selected="selected">Select Role</option>
                                             @foreach ($roles as $role)
-                                                 <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
@@ -102,10 +102,10 @@
             $('#add').click(function(){
                 i++;
                 $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added">' +
-                    '<td>' + '<select name="document_role[]" class="custom-select" required="">\n' +
+                    '<td>' + '<select name="group_id[]" class="custom-select" required="">\n' +
                     '<option value="" selected="selected">Select Role</option>' +
                     @foreach ($roles as $role)
-                       '<option value="{{ $role->name }}"> {{ $role->name }} </option>'+
+                       '<option value="{{ $role->id }}"> {{ $role->name }} </option>'+
                     @endforeach
                     '</select></td>' +
                     '<td><select  name="document_type[]" class="custom-select" required="">\n' +

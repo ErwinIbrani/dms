@@ -60,11 +60,11 @@ class Documentsetting extends CI_Controller
     public function store()
     {
        $data   = [];
-       $count = count($this->input->post('document_role'));
+       $count = count($this->input->post('document_type'));
         for($i=0; $i<$count; $i++) {
             $data[$i] = [
                 'document_name' => $this->input->post('document_name'),
-                'document_role' => $this->input->post('document_role')[$i],
+                'group_id'      => $this->input->post('group_id')[$i],
                 'document_type' => $this->input->post('document_type')[$i],
                 'created_at'    => date('Y-m-d H:i:s'),
                 'updated_at'    => date('Y-m-d H:i:s'),
@@ -90,7 +90,7 @@ class Documentsetting extends CI_Controller
     public function update()
     {
       $update = [
-                'document_role'   => $this->input->post('document_role'),
+                'group_id'        => $this->input->post('group_id'),
                 'document_type'   => $this->input->post('document_type'),
                 'updated_at'      => date('Y-m-d H:i:s')
        ];
