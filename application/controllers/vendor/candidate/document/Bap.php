@@ -45,15 +45,10 @@ class Bap extends CI_Controller
 			'created_at' => date('Y-m-d H:i:s')
 		);
 
-		$document = $this->CandidateDocument_Model->save($candidate_document);
-		return redirect('/vendor/candidate/document/bap/preview/' . $document);
-	}
-
-	public function preview($document_id)
-	{
+		$document_id = $this->CandidateDocument_Model->save($candidate_document);
 
 		$api_endpoint = "https://selectpdf.com/api2/convert/";
-		$key = '5db29d9c-4e55-4c2a-8adc-2cb1ed97669b';
+		$key = 'c47ec71b-a145-4814-ba08-8769c4c0f45f';
 		$test_url = site_url('/vendor/candidate/document/bap/layout/'. $document_id);
 
 		$parameters = array ('key' => $key, 'url' => $test_url, 'web_page_width' => '816', 'page_numbers' => 'False');
@@ -67,12 +62,16 @@ class Bap extends CI_Controller
 			echo "Error Message: " . $error['message'];
 		}
 		else {
-			// set HTTP response headers
-			header("Content-Type: application/pdf");
-			header("Content-Disposition: attachment; filename=\"test.pdf\"");
-
-			echo ($result);
+			$local_file = './uploads/bap/BAP-'.time().'.pdf';
+			file_put_contents($local_file, $result);
+			$this->CandidateDocument_Model->update($document_id, array('path' => $local_file));
+			return redirect('/vendor/candidate/document/bap/preview/' . $document_id);
 		}
+
+	}
+
+	public function preview($document_id)
+	{
 		$document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
 		$attribute = json_decode($document_candidate->attribute);
 

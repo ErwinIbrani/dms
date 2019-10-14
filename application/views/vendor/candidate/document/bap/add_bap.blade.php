@@ -140,15 +140,15 @@
 							<div class="form-row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label" for="flatpickr01">Offer Date</label>
+										<label class="control-label" for="flatpickr01">Offer Date <abbr title="Required">*</abbr></label>
 										<input id="flatpickr01" type="text" name="offer_date" class="form-control flatpickr-input"
-											   data-toggle="flatpickr">
+											   data-toggle="flatpickr" required>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="fls1">Type</label>
-										<select class="form-control" id="building_type" name="building_type">
+										<label for="fls1">Type <abbr title="Required">*</abbr></label>
+										<select class="form-control" id="building_type" name="building_type" required>
 											<option value=""> Choose...</option>
 											<option value="Lahan"> Lahan</option>
 											<option value="Ruko"> Ruko</option>
@@ -159,21 +159,21 @@
 
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="rent_price">Rent Price</label>
+										<label for="rent_price">Rent Price <abbr title="Required">*</abbr></label>
 										<div class="input-group">
 											<div class="input-group-prepend" for="rent_price">
 												<span class="badge">Rp.</span>
 											</div>
-											<input type="text" class="form-control" id="rent_price" name="rent_price">
+											<input type="text" class="form-control" id="rent_price" name="rent_price" required>
 										</div>
 									</div>
 								</div>
 
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="rent_period">Rent Period</label>
+										<label for="rent_period">Rent Period <abbr title="Required">*</abbr></label>
 										<div class="input-group input-group-alt">
-											<input type="text" class="form-control" id="rent_period" name="rent_period">
+											<input type="number" class="form-control" id="rent_period" name="rent_period" required>
 											<div class="input-group-append">
 												<span class="input-group-text"> / Year</span>
 											</div>
@@ -192,9 +192,9 @@
 							<div class="form-row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="space_dimension">Space Dimension (m<sup>2</sup>)</label>
+										<label for="space_dimension">Space Dimension (m<sup>2</sup>) <abbr title="Required">*</abbr></label>
 										<div class="input-group">
-											<input type="text" class="form-control" id="space_dimension" name="space_dimension">
+											<input type="number" class="form-control" id="space_dimension" name="space_dimension" required>
 										</div>
 {{--										<small id="space_dimension" class="form-text text-muted">--}}
 {{--											Fill with m x m = m<sup>2</sup>--}}
@@ -204,13 +204,13 @@
 
 								<div class="col-md-12">
 									<div class="form-group">
-										<label for="access_road">Access Road (m<sup>2</sup>)</label>
+										<label for="access_road">Access Road (m<sup>2</sup>) <abbr title="Required">*</abbr></label>
 										<div class="input-group">
-											<input type="text" class="form-control" id="access_road" name="access_road">
+											<input type="number" class="form-control" id="access_road" name="access_road" required>
 										</div>
 										<div class="mt-1">
 											<div class="custom-control custom-control-inline custom-radio">
-												<input type="radio" class="custom-control-input" value="Termasuk harga sewa" name="access_road_type" id="rd1">
+												<input type="radio" class="custom-control-input" value="Termasuk harga sewa" name="access_road_type" id="rd1" required>
 												<label class="custom-control-label" for="rd1">Include Rent</label>
 											</div>
 											<div class="custom-control custom-control-inline custom-radio">
@@ -234,7 +234,7 @@
 									<div class="form-group">
 										<label class="d-block">PPN</label>
 										<div class="custom-control custom-control-inline custom-radio">
-											<input type="radio" class="custom-control-input" value="Termasuk" name="ppn" id="ppn1"> <label class="custom-control-label" for="ppn1">Include</label>
+											<input type="radio" class="custom-control-input" value="Termasuk" name="ppn" id="ppn1" required> <label class="custom-control-label" for="ppn1">Include</label>
 										</div>
 										<div class="custom-control custom-control-inline custom-radio">
 											<input type="radio" class="custom-control-input" value="Tidak termasuk" name="ppn" id="ppn2"> <label class="custom-control-label" for="ppn2">Not Included</label>
@@ -245,7 +245,7 @@
 									<div class="form-group">
 										<label class="d-block">PPh</label>
 										<div class="custom-control custom-control-inline custom-radio">
-											<input type="radio" class="custom-control-input" value="Termasuk" name="pph" id="pph1"> <label class="custom-control-label" for="pph1">Include</label>
+											<input type="radio" class="custom-control-input" value="Termasuk" name="pph" id="pph1" required> <label class="custom-control-label" for="pph1">Include</label>
 										</div>
 										<div class="custom-control custom-control-inline custom-radio">
 											<input type="radio" class="custom-control-input" value="Tidak termasuk"  name="pph" id="pph2"> <label class="custom-control-label" for="pph2">Not Included</label>
@@ -256,7 +256,7 @@
 									<div class="form-group">
 										<label class="d-block">Notary Fee</label>
 										<div class="custom-control custom-control-inline custom-radio">
-											<input type="radio" class="custom-control-input" value="Termasuk" name="notary_fee" id="nf1"> <label class="custom-control-label" for="nf1">Include</label>
+											<input type="radio" class="custom-control-input" value="Termasuk" name="notary_fee" id="nf1" required> <label class="custom-control-label" for="nf1">Include</label>
 										</div>
 										<div class="custom-control custom-control-inline custom-radio">
 											<input type="radio" class="custom-control-input" value="Tidak termasuk" name="notary_fee" id="nf2"> <label class="custom-control-label" for="nf2">Not Included</label>
@@ -267,7 +267,7 @@
 									<div class="form-group">
 										<label class="d-block">Electricity cost.</label>
 										<div class="custom-control custom-control-inline custom-radio">
-											<input type="radio" class="custom-control-input" value="Termasuk" name="electricity_cost" id="ec1"> <label class="custom-control-label" for="ec1">Include</label>
+											<input type="radio" class="custom-control-input" value="Termasuk" name="electricity_cost" id="ec1" required> <label class="custom-control-label" for="ec1">Include</label>
 										</div>
 										<div class="custom-control custom-control-inline custom-radio">
 											<input type="radio" class="custom-control-input" value="Tidak termasuk" name="electricity_cost" id="ec2"> <label class="custom-control-label" for="ec2">Not Included</label>
