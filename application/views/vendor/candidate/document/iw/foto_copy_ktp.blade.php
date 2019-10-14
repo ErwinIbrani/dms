@@ -45,45 +45,48 @@
 						</li>
 					</ul>
 				</div>
-				<div class="card-body">
-					<div class="text-muted">
-						<hr style="border-top: 1px dashed #8c8b8b;background-color: #f0f0f0;width: 100%;">
-						<div class="form-group">
-							<span class="badge badge-secondary">Document IW</span>
-						</div>
-					</div>
+			</div>
 
-					<div class="card">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card card-fluid">
+						<h6 class="card-header"> Document IW </h6><!-- .nav -->
+
+						<ul class="nav nav-tabs flex-column border-0">
+							<li class="nav-item">
+								<a class="nav-link"
+								   href="{{ site_url('/vendor/candidate/document/iw/add/'.$candidate->id) }}">
+									Surat Persetujuan Lingkungan</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link"
+								   href="{{ site_url('/vendor/candidate/document/iw/izinwarga/'. $candidate->id) }}">
+									Denah Layout Izin Warga</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active"
+								   href="{{ site_url('/vendor/candidate/document/iw/copyktp/'. $candidate->id) }}">
+									Foto Copy KTP Warga</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link"
+								   href="{{ site_url('/vendor/candidate/document/iw/rekdesa/'. $candidate->id) }}">
+									Surat Rekomendasi Desa
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link"
+								   href="{{ site_url('/vendor/candidate/document/iw/rekkecamatan/'. $candidate->id) }}">
+									Surat Rekomendasi Kecamatan
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="card card-fluid">
 						<div class="card-header">
-							<ul class="nav nav-tabs card-header-tabs">
-								<li class="nav-item">
-									<a class="nav-link"
-									   href="{{ site_url('/vendor/candidate/document/iw/add/'.$candidate->id) }}">
-										Surat Persetujuan Lingkungan</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link"
-									   href="{{ site_url('/vendor/candidate/document/iw/izinwarga/'. $candidate->id) }}">
-										Denah Layout Izin Warga</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link active"
-									   href="{{ site_url('/vendor/candidate/document/iw/copyktp/'. $candidate->id) }}">
-										Foto Copy KTP Warga</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link"
-									   href="{{ site_url('/vendor/candidate/document/iw/rekdesa/'. $candidate->id) }}">
-										Surat Rekomendasi Desa
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link"
-									   href="{{ site_url('/vendor/candidate/document/iw/rekkecamatan/'. $candidate->id) }}">
-										Surat Rekomendasi Kecamatan
-									</a>
-								</li>
-							</ul>
+							Foto Copy KTP Warga
 						</div>
 						<div class="card-body">
 							{!! form_open_multipart(site_url('/vendor/candidate/document/iw/uploadcopyktp/' . $candidate->id)) !!}
@@ -107,7 +110,6 @@
 							{!! form_close() !!}
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>

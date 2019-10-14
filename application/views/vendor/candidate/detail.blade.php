@@ -33,6 +33,9 @@
 							<a class="nav-link" data-toggle="tab" href="#card-iw">IMB</a>
 						</li>
 						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#card-legal">LEGAL</a>
+						</li>
+						<li class="nav-item">
 							<a class="nav-link" data-toggle="tab" href="#card-cme">CME</a>
 						</li>
 						<li class="nav-item">
@@ -96,6 +99,25 @@
 							</div>
 
 							<p class="card-text mt-3"> The document above is a list of IMB documents, </p>
+						</div>
+						<div class="tab-pane fade" id="card-legal">
+							<h5 class="card-title"> DOCUMENT IMB </h5>
+							<div class="list-group-item">
+								<div class="list-group-item-figure">
+									<a href="#" class="tile tile-circle bg-info"><span class="fa fa-file-image"></span></a>
+								</div>
+								<div class="list-group-item-body">
+									<h4 class="list-group-item-title">
+										<a href="#">Surat ijin kecamatan</a>
+									</h4>
+									<p class="list-group-item-text"> Jan 12, 2018 </p>
+								</div>
+								<div class="list-group-item-figure">
+									<button class="btn btn-sm btn-icon btn-light"><i class="oi oi-data-transfer-download"></i></button>
+								</div>
+							</div>
+
+							<p class="card-text mt-3"> The document above is a list of legal documents, </p>
 						</div>
 						<div class="tab-pane fade" id="card-cme">
 							<h5 class="card-title"> DOCUMENT CME </h5>
