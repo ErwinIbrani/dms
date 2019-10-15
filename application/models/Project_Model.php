@@ -67,7 +67,7 @@ class Project_Model extends CI_Model
 
     public function getAll()
 	{
-		return $this->db->get($this->table);
+		return $this->db->get_where($this->table, 'status = \'New\' AND deleted_at is null');
 	}
 
 	/**

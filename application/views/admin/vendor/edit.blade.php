@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label for="tf1">Group Name</label>
                             <input type="hidden" class="form-control" name="id" value="<?= $model->id?>">
-                            <input type="text" class="form-control" name="group_name" autocomplete="off" value="<?= $model->group_name ?>" required="">
+                            <input type="text" class="form-control" name="name" autocomplete="off" value="<?= $model->name ?>" required="">
                         </div><!-- /.form-group -->
                         <div class="publisher-actions">
                             <!-- .publisher-tools -->

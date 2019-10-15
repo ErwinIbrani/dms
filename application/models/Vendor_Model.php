@@ -19,13 +19,13 @@ class Vendor_Model extends CI_Model
 
         $this->db->select('created.id as created_id, created.username as created_username ,created.email as created_email,
                            updated.id as updated_id, updated.username as updated_username ,updated.email as updated_email,
-                           vendor.id, vendor.group_name');
+                           vendor.id, vendor.name');
         $this->db->from($this->table);
         $this->db->join('users as created','created.id = vendor.created_by','inner'); //inner //Right
         $this->db->join('users as updated','updated.id = vendor.updated_by','Left');
         $this->db->where('vendor.deleted_at IS NULL', null, false);
         if($search != ''){
-            $this->db->like('vendor.group_name', $search);
+            $this->db->like('vendor.name', $search);
         }
         $this->db->limit($rowperpage, $rowno);
         $query = $this->db->get();
@@ -40,7 +40,7 @@ class Vendor_Model extends CI_Model
         $this->db->join('users as updated','updated.id = vendor.updated_by','Left');
         $this->db->where('vendor.deleted_at IS NULL', null, false);
         if($search != ''){
-            $this->db->like('vendor.group_name', $search);
+            $this->db->like('vendor.name', $search);
         }
         $query = $this->db->get();
         $result = $query->result_array();
@@ -71,6 +71,6 @@ class Vendor_Model extends CI_Model
 
 	public function getAll()
 	{
-		return $this->db->get($this->table);
+		return $this->db->get_where($this->table, 'deleted_at is null');
     }
 }

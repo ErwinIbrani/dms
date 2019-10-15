@@ -26,7 +26,7 @@ class UserVendor_Model extends CI_Model
                            user_vendor.city_id as vendor_city_id,
                            user_vendor.created_by as vendor_created_by,
                            user_vendor.updated_by as vendor_updated_by,
-                           vendor.group_name as group_name,
+                           vendor.name as group_name,
                            region.name as region_name,
                            region.code as region_code,
                            region.char as region_char,

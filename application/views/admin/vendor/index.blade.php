@@ -66,7 +66,7 @@
                     @foreach($groups as $key => $group)
                         <tr>
                             <td class="align-middle"> {{ $i++ }} </td>
-                            <td class="align-middle"> {{ $group->group_name }} </td>
+                            <td class="align-middle"> {{ $group->name }} </td>
                             <td class="align-middle"> {{ $group->created_email }} </td>
                             <td class="align-middle"> {{ $group->updated_email }} </td>
                             <td class="align-middle text-right">

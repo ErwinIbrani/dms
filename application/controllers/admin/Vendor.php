@@ -58,12 +58,12 @@ class Vendor extends CI_Controller
     public  function store()
     {
           $data = [
-                    'group_name'   => $this->input->post('group_name'),
+                    'name'   => $this->input->post('name'),
                     'created_by'   => $this->ion_auth->user()->row()->id,
                     'created_at'   => date('Y-m-d H:i:s')
             ];
             $this->Vendor_Model->save($data);
-            $this->session->set_flashdata('success', 'Data Inserted');
+            $this->session->set_flashdata('success', 'Vendor successfully added.');
             redirect("admin/vendor/index", 'refresh');
 
     }

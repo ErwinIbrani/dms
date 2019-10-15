@@ -31,7 +31,7 @@
                                     <option value="" selected="selected">Select Group Name</option>
                                     <?php
                                     foreach ($groupvendors as $groupvendor) {
-                                        echo"<option value='$groupvendor->id'> $groupvendor->group_name </option>";
+                                        echo"<option value='$groupvendor->id'> $groupvendor->name </option>";
                                     }
                                     ?>
                                 </select>

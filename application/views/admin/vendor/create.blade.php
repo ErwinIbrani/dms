@@ -23,7 +23,7 @@
                         <!-- .form-group -->
                         <div class="form-group">
                             <label for="tf1">Vendor Name</label>
-                            <input type="text" class="form-control" name="group_name" autocomplete="off" required="">
+                            <input type="text" class="form-control" name="name" autocomplete="off" required="">
                         </div><!-- /.form-group -->
                         <div class="publisher-actions">
                             <!-- .publisher-tools -->
