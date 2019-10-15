@@ -40,7 +40,7 @@
                     </form>
                     <br/>
                     <a href="<?= site_url("procurement/project/create"); ?>" class="btn btn-primary">
-                        Create New
+                        Register WBS ID
                     </a>
                     <!-- .table-responsive -->
                     <div class="table-responsive">

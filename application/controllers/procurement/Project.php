@@ -62,7 +62,7 @@ class Project extends CI_Controller
     {
        $cek = $this->Project_Model->duplicate($this->input->post('wbs_id'));
          if($cek->num_rows() > 0){
-            $this->session->set_flashdata('error', 'Data Duplicate');
+            $this->session->set_flashdata('error', 'This WBS ID has already registered.');
              redirect("procurement/project/create", 'refresh');
             }else {
                 $getData = $this->Tmplanning_Model->findByWBS($this->input->post('wbs_id'))->row_array();
