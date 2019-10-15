@@ -11,6 +11,7 @@ class UserGroup extends CI_Controller
     {
         parent::__construct();
         $this->load->model('UserGroup_Model');
+		authentication($this->ion_auth->logged_in());
     }
 
 	/**

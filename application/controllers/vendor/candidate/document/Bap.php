@@ -11,6 +11,7 @@ class Bap extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model(array('Candidate_Model', 'Project_Model', 'CandidateDocument_Model'));
+		authentication($this->ion_auth->logged_in());
 	}
 
 	public function add($candidate_id)

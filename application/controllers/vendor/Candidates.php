@@ -8,6 +8,7 @@ class Candidates extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model(array('Candidate_Model', 'Project_Model', 'Project_assigment_model'));
+		authentication($this->ion_auth->logged_in());
 	}
 
 	protected function validator()

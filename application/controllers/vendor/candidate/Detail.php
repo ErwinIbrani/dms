@@ -6,6 +6,7 @@ class Detail extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model(array('Project_Model', 'Candidate_Model'));
+		authentication($this->ion_auth->logged_in());
 	}
 
 	public function index($candidate_id)
