@@ -61,7 +61,7 @@ class Comsitac extends CI_Controller
     {
         $config = [];
         $config['upload_path']   = './uploads/comsitac/';
-        $config['allowed_types'] = 'xlsx|xls|';
+        $config['allowed_types'] = 'xlsx|xls';
         $config['max_size']      = '2000';
         $config['encrypt_name']  = TRUE;
         $this->load->library('upload', $config);

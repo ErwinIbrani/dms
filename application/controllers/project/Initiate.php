@@ -47,13 +47,15 @@ class Initiate extends Project_Controller
 	{
         $this->make_bread->add('Index', 'project/initiate/index', TRUE);
         $this->make_bread->add('Create');
-        $breadcrumb = $this->make_bread->output();
-        $projects   = $this->Project_Model->project()->result();
-        $users_pic  = $this->User_Model->UserIBS()->result();
+        $breadcrumb    = $this->make_bread->output();
+        $projects      = $this->Project_Model->project()->result();
+        $users_pic     = $this->User_Model->UserIBS()->result();
+        $users_groups  = $this->User_Model->UserGroup()->result();
         $document_setting = $this->DocumentSetting_Model->documentsetting()->result();
 		return view('project.initiate.create', array(
            'projects'          => $projects,
            'users_pic'         => $users_pic,
+           'users_groups'      => $users_groups,
            'document_settings' => $document_setting,
            'breadcrumb'        => $breadcrumb
 		));
@@ -89,6 +91,7 @@ class Initiate extends Project_Controller
         $model        = $this->DocumentApprovalSetting_Model->findOne($id)->row();
         $projects   = $this->Project_Model->project()->result();
         $users_pic  = $this->User_Model->UserIBS()->result();
+
         $document_setting = $this->DocumentSetting_Model->documentsetting()->result();
         return view('project.initiate.edit', [
             'model'            => $model,

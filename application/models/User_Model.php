@@ -40,6 +40,19 @@ class User_Model extends CI_Model {
         return $this->db->get_where($this->table, ['type' => 'internal']);
     }
 
+    public function UserGroup()
+    {
+        $this->db->select('users.id,
+                           users.email,
+                           groups.id as group_id,
+                           groups.name');
+        $this->db->from('users_groups');
+        $this->db->join('users','users_groups.user_id   = users.id','inner');
+        $this->db->join('groups','users_groups.group_id = groups.id','inner');
+        $this->db->where(['users.type' => 'internal']);
+        return $this->db->get();
+    }
+
 
 
 }

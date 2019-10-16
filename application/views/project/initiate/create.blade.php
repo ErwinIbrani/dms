@@ -59,12 +59,12 @@
 
 											<td>
 												<div class="form-group">
-													<label for="tf1">Document Approval/Review/Submit</label>
+													<label for="tf1">Type</label>
 													<select name="document_setting_id[]" id="statess" class="custom-select select2" required="">
 														<option value="" selected="selected">Select Document </option>
                                                         <?php
                                                         foreach ($document_settings as $role) {
-                                                            echo"<option value='$role->id'> $role->document_name  / $role->group_name /  $role->document_type</option>";
+                                                            echo"<option value='$role->id'> $role->document_name  / $role->document_type / $role->group_name </option>";
                                                         }
                                                         ?>
 													</select>
@@ -73,12 +73,12 @@
 
 											<td>
 												<div class="form-group">
-													<label for="tf1">User Approval/Review/Submit</label>
+													<label for="tf1">User</label>
 													<select name="approval_id[]" id="statess" class="custom-select select2"  required="">
 														<option value="" selected="selected">Select Approval User IBS</option>
                                                         <?php
-                                                        foreach ($users_pic as $user_pic) {
-                                                            echo"<option value='$user_pic->id'> $user_pic->email </option>";
+                                                        foreach ($users_groups as $users_group) {
+                                                            echo"<option  value='$users_group->id'> $users_group->email  AS  $users_group->name </option>";
                                                         }
                                                         ?>
 													</select>
@@ -132,30 +132,32 @@
                 $('#add').click(function(){
                     i++;
                     $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added">' +
+                        '<td>' +
+                        '<div class="form-group">'+
+                        '<label for="tf1">Type</label>'+
+                        '<select name="document_setting_id[]" class="custom-select select2" required="">\n' +
+                        '<option value="" selected="selected">Select Role</option>' +
+							@foreach ($document_settings as $role)
+                                '<option value="{{ $role->id }}"> {{ $role->document_name  }} / {{  $role->document_type }} / {{ $role->group_name }}</option>'+
+							@endforeach
+                                '</select>' +
+                        '</div>' +
+                        '</td>' +
 
                         '<td>' +
 					    '<div class="form-group">'+
-						'<label for="tf1">User Approval/Review/Submit</label>'+
+						'<label for="tf1">User</label>'+
 						'<select name="approval_id[]" class="custom-select select2" required="">\n' +
                         '<option value="" selected="selected">Select Role</option>' +
-							@foreach ($users_pic as $user_pic)
-                                '<option value="{{ $user_pic->id }}"> {{ $user_pic->email }} </option>'+
+							@foreach ($users_groups as $users_group)
+                                '<option value="{{ $users_group->id }}"> {{ $users_group->email }} AS {{ $users_group->name }} </option>'+
 							@endforeach
                         '</select>' +
                         '</div>' +
 						'</td>' +
 
-                        '<td>' +
-                        '<div class="form-group">'+
-                        '<label for="tf1">Document Approval/Review/Submit</label>'+
-                        '<select name="document_setting_id[]" class="custom-select select2" required="">\n' +
-                        '<option value="" selected="selected">Select Role</option>' +
-							@foreach ($document_settings as $role)
-                                '<option value="{{ $role->id }}"> {{ $role->document_name  }} / {{ $role->group_name }} / {{  $role->document_type }}</option>'+
-							@endforeach
-                                '</select>' +
-                        '</div>' +
-                        '</td>' +
+
+
 
                         '<td>' +
 						'<div class="form-group">\n' +
@@ -171,7 +173,6 @@
                         '</select>\n' +
                         '</div>' +
 						'</td>' +
-
                         '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
                 });
 
@@ -182,29 +183,4 @@
 
             });
 	</script>
-	<script type="text/javascript">
-            $(document).ready(function(){
-                $('#category').change(function(){
-                    var id=$(this).val();
-                    $.ajax({
-                        url : "<?php echo site_url('project/Initiate/');?>",
-                        method : "POST",
-                        data : {id: id},
-                        async : true,
-                        dataType : 'json',
-                        success: function(data){
-                            var html = '';
-                            var i;
-                            for(i=0; i<data.length; i++){
-                                html += '<option value='+data[i].subcategory_id+'>'+data[i].subcategory_name+'</option>';
-                            }
-                            $('#sub_category').html(html);
-
-                        }
-                    });
-                    return false;
-                });
-
-            });
-		</script>
 @endsection
