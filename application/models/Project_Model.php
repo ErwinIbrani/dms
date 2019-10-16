@@ -102,10 +102,9 @@ class Project_Model extends CI_Model
 	{
 		$this->db->select('*')
 			->from($this->table)
-			->join('document_approval_setting', 'document_approval_setting.pic_id = project.id', 'inner')
-			->where('project.status', $status)
-			->where('project_assigment.vendor_id', $vendor_id)
-			->where('project.deleted_at IS NULL');
+			->where('pic_project_id', $pic_id)
+			->where('status', $status);
+
 		return $this->db->get();
 	}
 

@@ -1,3 +1,4 @@
+<?php $CI = &get_instance(); ?>
 @extends('layouts.app')
 @section('page_title', 'Candidate Document')
 
@@ -64,7 +65,9 @@
 								<p class="card-text mt-3"> The document above is a list of TSSR documents, if not found document click the button below to generate new document. </p>
 							@endif
 
+                            <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
 							<a href="{{ site_url('/vendor/candidate/document/survey/create/'.$candidate->id) }}" class="btn btn-danger">Generate TSSR Document</a>
+							<?php endif?>
 
 						</div>
 						<div class="tab-pane fade" id="card-bap">
@@ -93,7 +96,9 @@
 								<p class="card-text mt-3"> The document above is a list of IMB documents, </p>
 							@endif
 
+                            <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
 							<a href="{{ site_url('/vendor/candidate/document/bap/add/'.$candidate->id) }}" class="btn btn-danger">Generate BAP Document</a>
+							<?php endif?>
 						</div>
 					</div>
 				</div>

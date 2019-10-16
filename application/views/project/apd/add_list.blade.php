@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page_title', 'Add ADP Site')
+@section('page_title', 'Add APD List')
 
 @section('content')
 	<div class="page-inner">
@@ -15,7 +15,7 @@
 
 			<!-- title and toolbar -->
 			<div class="d-md-flex align-items-md-start">
-				<h1 class="page-title mr-sm-auto"> ADP Site </h1><!-- .btn-toolbar -->
+				<h1 class="page-title mr-sm-auto"> APD </h1><!-- .btn-toolbar -->
 			</div><!-- /title and toolbar -->
 		</header>
 
@@ -24,7 +24,7 @@
 				<ul class="nav nav-tabs card-header-tabs">
 					<li class="nav-item">
 						<a class="nav-link active"
-						   href="#">ADP Document</a>
+						   href="#">APD Document</a>
 					</li>
 				</ul>
 			</div>
@@ -33,18 +33,18 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card card-fluid">
-					<h6 class="card-header"> ADP Document </h6><!-- .nav -->
+					<h6 class="card-header"> APD Document </h6><!-- .nav -->
 
 					<ul class="nav nav-tabs flex-column border-0">
 						<li class="nav-item">
-							<a class="nav-link"
-							   href="{{ site_url('/project/adp/addlist/'.$project->id) }}">
-								ADP List</a>
+							<a class="nav-link active"
+							   href="{{ site_url('/project/apd/addlist/'.$project->id) }}">
+								APD List</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link active"
-							   href="{{ site_url('/project/adp/addsite/'.$project->id) }}">
-								ADP Site</a>
+							<a class="nav-link"
+							   href="{{ site_url('/project/apd/addsite/'.$project->id) }}">
+								APD Site</a>
 						</li>
 					</ul>
 				</div>
@@ -52,19 +52,18 @@
 			<div class="col-md-8">
 				<div class="card card-fluid">
 					<div class="card-header">
-						ADP Site
+						APD List Document
 					</div>
 					<div class="card-body">
-						{!! form_open_multipart(site_url('/project/adp/uploadsite/'. $project->id)) !!}
+						{!! form_open_multipart(site_url('/project/apd/uploadlist/'. $project->id)) !!}
 
 
 						<div class="form-group">
-							<label for="adp_site">Upload ADP List Document </label>
-
+							<label for="apd_list">Upload APD List Document </label>
 							<div class="custom-file">
-								<input type="file" class="custom-file-input" id="adp_site"
-									   name="adp_site">
-								<label class="custom-file-label" for="adp_site">Choose
+								<input type="file" class="custom-file-input" id="apd_list"
+									   name="apd_list">
+								<label class="custom-file-label" for="apd_list">Choose
 									files</label>
 							</div>
 						</div>

@@ -6,7 +6,7 @@ class Project extends CI_Controller
     public function __Construct()
     {
         parent::__construct();
-        $this->load->model(['Project_Model', 'Vendor_Model', 'User_Model', 'ComSitac_Model']);
+        $this->load->model(['Project_Model', 'Vendor_Model', 'User_Model', 'Candidate_Model', 'ComSitac_Model']);
         $this->lang->load('auth');
         $this->load->helper('custom');
         authentication($this->ion_auth->logged_in());
@@ -67,15 +67,50 @@ class Project extends CI_Controller
         ]);
     }
 
-    public function project()
+    public function new()
 	{
 		$projects = $this->Project_Model
-			->getAllByStatusAndVendor('project.id,project.wbs_id, project.iro_number, project.site_id_ibs, project.site_name, 
-			project.status, project_assigment.assignment_type', 'New', 1, false);
+			->getPicProjects($this->ion_auth->user()->row()->id, 'New');
 
-		return view('vendor.project.new_project', array(
+
+		return view('project.project.list.new_project', array(
 			'projects' => $projects->result(),
 			'vendor_id' => 1
+		));
+	}
+
+	public function onprocess()
+	{
+		$projects = $this->Project_Model
+			->getPicProjects($this->ion_auth->user()->row()->id, 'on process');
+
+
+		return view('project.project.list.on_process_project', array(
+			'projects' => $projects->result(),
+			'vendor_id' => 1
+		));
+	}
+
+	public function done()
+	{
+		$projects = $this->Project_Model
+			->getPicProjects($this->ion_auth->user()->row()->id, 'done');
+
+
+		return view('project.project.list.done_project', array(
+			'projects' => $projects->result(),
+			'vendor_id' => 1
+		));
+	}
+
+	public function detail($project_id)
+	{
+		$project = $this->Project_Model->findOne($project_id);
+		$candidates = $this->Candidate_Model->getByProject($project_id, null);
+
+		return view('project.project.detail', array(
+			'project' => $project->row(),
+			'candidates' => $candidates->result()
 		));
 	}
 

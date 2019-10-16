@@ -77,6 +77,8 @@ class Initiate extends ProjectAdmin_Controller
                 'updated_at'          => date('Y-m-d H:i:s'),
             ];
         }
+
+        $this->Project_Model->save($this->input->post('project_id'), array('pic_project_id' => $this->input->post('pic_id')));
         $this->DocumentApprovalSetting_Model->saveMultiple($data);
         $this->session->set_flashdata('success', 'Data Inserted');
         redirect("project/initiate/index", 'refresh');

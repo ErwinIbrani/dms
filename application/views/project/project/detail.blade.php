@@ -31,10 +31,14 @@
 									Candidates
 								</a>
 							</li>
+							<li class="nav-item">
+								<a href="{{ site_url('/project/apd/addsite/'.$project->id) }}" class="nav-link">
+									APD
+								</a>
+							</li>
 						</ul>
 					</div>
 					<div class="card-body">
-						<a href="{{ site_url('/vendor/candidates/create/' . $project->id . '/' . $vendor_id) }}"  class="btn btn-danger">Add new candidate</a>
 						<div class="table-responsive">
 							<div class="table-responsive">
 								<!-- .table -->
@@ -57,6 +61,7 @@
 											<td>{{ $candidate->owner_name }}</td>
 											<td class="text-right">
 												<div class="list-group-item-figure">
+													<a href="{{site_url('/vendor/candidate/document/survey/choose/'.$candidate->id)}}" class="btn btn-sm btn-icon btn-secondary mr-2"><i class="fa fa-check" title="Choose Candidate" onclick="javascript:return confirm('Choose This Candidate ?');"></i> <span class="sr-only">Choose</span></a>
 													<a href="{{ site_url('/vendor/candidate/detail/index/' . $candidate->id ) }}" title="View details" class="btn btn-sm btn-icon btn-secondary stop-propagation"><i class="fas fa-ellipsis-h"></i></a>
 												</div>
 											</td>

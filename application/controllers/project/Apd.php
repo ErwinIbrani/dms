@@ -2,9 +2,9 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Adp extends CI_Controller
+class Apd extends CI_Controller
 {
-	const UPLOAD_PATH = 'uploads/adp/';
+	const UPLOAD_PATH = 'uploads/apd/';
 
 	public function __construct()
 	{
@@ -27,7 +27,7 @@ class Adp extends CI_Controller
 	{
 		$project = $this->findProject($project_id);
 
-		return view('project.adp.add_list', array(
+		return view('project.apd.add_list', array(
 			'project' => $project
 		));
 	}
@@ -36,17 +36,17 @@ class Adp extends CI_Controller
 	{
 		$config = [];
 		$config['upload_path'] = self::UPLOAD_PATH . 'list/';
-		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp|pdf';
 		$config['max_size'] = '2000';
 		$config['encrypt_name'] = TRUE;
 
 		$this->load->library('upload', $config);
 
-		$project = $this->Project_Model->getWithSelectedVendor($project_id)->result()[0];
+		$project = $this->Project_Model->getWithSelectedVendor($project_id)->row();
 
-		if (!$this->upload->do_upload('adp_list')) {
+		if (!$this->upload->do_upload('apd_list')) {
 			$error = array('error' => $this->upload->display_errors());
-			redirect("project/adp/addlist/" . $project_id, 'refresh');
+			redirect("project/apd/addlist/" . $project_id, 'refresh');
 		} else {
 			$data = $this->upload->data();
 			$file_name = self::UPLOAD_PATH . 'list/'.$project_id .'-'.$data['raw_name'] . $data['file_ext'];
@@ -54,7 +54,7 @@ class Adp extends CI_Controller
 			$project_document = array(
 				'project_id' => $project->project_id,
 				'vendor_id' => $project->vendor_id,
-				'name' => 'ADP LIST',
+				'name' => 'APD LIST',
 				'code' => '',
 				'type' => 'SITAC',
 				'path' => $file_name,
@@ -64,14 +64,14 @@ class Adp extends CI_Controller
 
 			$document = $this->Document_Model->save($project_document);
 			$this->session->set_flashdata('success', 'Success upload document');
-			redirect("/project/adp/addsite/" . $project_id, 'refresh');
+			redirect("/project/apd/addsite/" . $project_id, 'refresh');
 		}
 	}
 
 	public function addsite($project_id)
 	{
 		$project = $this->findProject($project_id);
-		return view('project.adp.add_site',  array(
+		return view('project.apd.add_site',  array(
 			'project' => $project
 		));
 	}
@@ -80,17 +80,18 @@ class Adp extends CI_Controller
 	{
 		$config = [];
 		$config['upload_path'] = self::UPLOAD_PATH . 'site/';
-		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp|pdf';
 		$config['max_size'] = '2000';
 		$config['encrypt_name'] = TRUE;
 
 		$this->load->library('upload', $config);
 
-		$project = $this->Project_Model->getWithSelectedVendor($project_id)->result()[0];
+		$project = $this->Project_Model->getWithSelectedVendor($project_id)->row();
 
-		if (!$this->upload->do_upload('adp_site')) {
+		if (!$this->upload->do_upload('apd_site')) {
 			$error = array('error' => $this->upload->display_errors());
-			redirect("project/adp/addsite/" . $project_id, 'refresh');
+			var_dump($error) or die;
+			redirect("project/apd/addsite/" . $project_id, 'refresh');
 		} else {
 			$data = $this->upload->data();
 			$file_name = self::UPLOAD_PATH . 'site/' .$project_id .'-'. $data['raw_name'] . $data['file_ext'];
@@ -98,7 +99,7 @@ class Adp extends CI_Controller
 			$project_document = array(
 				'project_id' => $project->project_id,
 				'vendor_id' => $project->vendor_id,
-				'name' => 'ADP LIST',
+				'name' => 'APD LIST',
 				'code' => '',
 				'type' => 'SITAC',
 				'path' => $file_name,
@@ -108,7 +109,7 @@ class Adp extends CI_Controller
 
 			$document = $this->Document_Model->save($project_document);
 			$this->session->set_flashdata('success', 'Success upload document');
-			redirect("/project/adp/addsite/" . $project_id, 'refresh');
+			redirect("/project/apd/addsite/" . $project_id, 'refresh');
 		}
 	}
 
