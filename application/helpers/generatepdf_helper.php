@@ -8,7 +8,7 @@ function generateSurvey($model)
         $contentImage  = json_decode($model['attachment'], true);
         $contentText   = json_decode($model['attribute'], true);
         $raw_html      = '<!DOCTYPE html>
-                         <html>
+                  <html>
                          <head>
                             <title>SITAC SURVEY</title>
                             <style type="text/css">
@@ -69,9 +69,9 @@ function generateSurvey($model)
                                 <td></td>
                             </tr>
                         </table>
-                        
+
                         <br/>
-                        
+
                         <div class="tg-wrap">
                             <table border="1" style="width: 100%" class="tg">
                                 <tr>
@@ -101,7 +101,7 @@ function generateSurvey($model)
                             </table>
                           </div>
                         <br/>
-                        
+
                         <div class="tg-wrap">
                                <table border="1" style="width: 100%" class="tg">
                                 <tr>
@@ -186,6 +186,14 @@ function generateSurvey($model)
                             </table>
                           </div>
                         <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
                         <div class="tg-wrap">
                             <table border="1" style="width: 100%" class="tg">
                                 <tr>
@@ -203,7 +211,7 @@ function generateSurvey($model)
                                     <th><span style="font-weight:bold">SITE LAYOUT</span><br></th>
                                 </tr>
                                 <tr>
-                                    <td style="text-align: center"><img src="'.base_url('E:/laragon/www/dms.ibstower/uploads/attachment/survey/uploads/attachment/survey/'.$contentImage['site_layout'].'').'" width="500" height="400" alt=""/></td>
+                                    <td style="text-align: center"><img src="'.base_url('uploads/attachment/survey/'.$contentImage['site_layout'].'').'" width="500" height="400" alt=""/></td>
                                 </tr>
                             </table>
                         </div>
@@ -214,7 +222,7 @@ function generateSurvey($model)
                                     <th><span style="font-weight:bold">Site Countour</span><br></th>
                                 </tr>
                                 <tr>
-                                    <td style="text-align: center"><img src="http://homepages.cae.wisc.edu/~ece533/images/airplane.png"  width="500" height="400" alt=""/></td>
+                                    <td style="text-align: center"><img src="'.base_url('uploads/attachment/survey/'.$contentImage['site_contour'].'').'"  width="500" height="400" alt=""/></td>
                                 </tr>
                             </table>
                         </div>

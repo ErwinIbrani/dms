@@ -1,12 +1,11 @@
 <?php
 
-class Initiate extends CI_Controller
+class Initiate extends Project_Controller
 {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('Project_Model', 'Vendor_Model', 'User_Model','DocumentSetting_Model', 'DocumentApprovalSetting_Model'));
-		authentication($this->ion_auth->logged_in());
+        $this->load->model(array('Project_Model', 'Vendor_Model', 'User_Model','DocumentSetting_Model', 'DocumentApprovalSetting_Model'));
 	}
 
 

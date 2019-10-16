@@ -72,7 +72,6 @@
                             <td class="align-middle"> {{ $document->document_type }} </td>
                             <td class="align-middle"> {{ $document->layer }} </td>
                             <td class="align-middle text-right">
-                                <a href="<?= site_url("project/initiate/edit/".$document->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a>
                                 <a href="<?= site_url("project/initiate/destroy/".$document->id.""); ?>" class="btn btn-sm btn-icon btn-secondary" onClick="javascript:return confirm('Delete this row ?');"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
                             </td>
                         </tr>
