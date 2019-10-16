@@ -81,6 +81,8 @@
 					</li><!-- /.menu-item -->
                     <?php endif ?>
 
+
+
                     <?php if ($CI->ion_auth->in_group('PIC Vendor')): ?>
 					<li class="menu-header">Vendor</li><!-- /.menu-header -->
 					<li class="menu-item">
@@ -89,6 +91,8 @@
 								class="menu-text">Projects</span></a>
 					</li><!-- /.menu-item -->
                     <?php endif?>
+
+
 
                     <?php if ($CI->ion_auth->in_group('Project Admin')): ?>
 					<li class="menu-header">Project Admin</li><!-- /.menu-header -->
@@ -103,6 +107,8 @@
 								class="menu-text">Initiate Projects</span></a>
 					</li><!-- /.menu-item -->
                     <?php endif?>
+
+
 
                     <?php if($CI->ion_auth->in_group('Procurement')): ?>
 					<li class="menu-header">Procurement</li><!-- /.menu-header -->
@@ -134,12 +140,12 @@
 				<!-- .menu-item -->
 					<li class="menu-header">Project</li><!-- /.menu-header -->
 					<!-- .menu-item -->
-
 					<li class="menu-item">
-							<a href="{{ site_url('project/survey') }}" class="menu-link"><span
-										class="menu-icon fas fa-check-double"></span> <span
-										class="menu-text">Choose Candidate</span></a>
+							<a href="{{ site_url('project/survey') }}" class="menu-link">
+								<span class="menu-icon fas fa-check-double"></span> <span
+								class="menu-text">Choose Candidate</span></a>
 					</li>
+
 					<li class="menu-item">
 						<a href="{{ site_url('project/tsa/candidate') }}" class="menu-link"><span
 								class="menu-icon oi oi-bar-chart"></span> <span
@@ -150,6 +156,7 @@
 								class="menu-icon oi oi-list-rich"></span> <span
 								class="menu-text">TSA Document</span></a>
 					</li>
+
 
                     <?php endif?>
 

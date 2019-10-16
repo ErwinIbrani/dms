@@ -27,105 +27,73 @@
 				<div class="card-header">
 					<ul class="nav nav-tabs card-header-tabs">
 						<li class="nav-item">
-							<a class="nav-link show active" data-toggle="tab" href="#card-sitac">SITAC</a>
+							<a class="nav-link show active" data-toggle="tab" href="#card-survey">TSSR (Survey)</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#card-iw">IMB</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#card-legal">LEGAL</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#card-cme">CME</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#card-cme">PLN</a>
+							<a class="nav-link" data-toggle="tab" href="#card-bap">BAP</a>
 						</li>
 					</ul>
 				</div>
 				<div class="card-body">
 					<div id="myTabCard" class="tab-content">
-						<div class="tab-pane show active" id="card-sitac">
-							<h5 class="card-title"> DOCUMENT SITAC </h5>
+						<div class="tab-pane show active" id="card-survey">
 
-							<div class="list-group-item">
-								<div class="list-group-item-figure">
-									<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+							<h5 class="card-title"> DOCUMENT SURVEY </h5>
+							@foreach($document_tssr as $tssr)
+								<div class="list-group-item">
+									<div class="list-group-item-figure">
+										<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+									</div>
+									<div class="list-group-item-body">
+										<h4 class="list-group-item-title">
+											<a href="#">TSSR - {{ $tssr->name }}</a>
+										</h4>
+										<p class="list-group-item-text"> {{ date('M d, Y', strtotime($tssr->created_at)) }}</p>
+									</div>
+									<div class="list-group-item-figure">
+										<a href="{{ site_url('uploads/surveysitac/'.$tssr->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
+											<i class="oi oi-data-transfer-download"></i>
+										</a>
+									</div>
 								</div>
-								<div class="list-group-item-body">
-									<h4 class="list-group-item-title">
-										<a href="#">TSSR</a>
-									</h4>
-									<p class="list-group-item-text"> Jan 28, 2018 </p>
-								</div>
-								<div class="list-group-item-figure">
-									<button class="btn btn-sm btn-icon btn-light"><i class="oi oi-data-transfer-download"></i></button>
-								</div>
-							</div>
+							@endforeach
 
-							<div class="list-group-item">
-								<div class="list-group-item-figure">
-									<a href="#" class="tile tile-circle bg-info"><span class="fa fa-file-image"></span></a>
-								</div>
-								<div class="list-group-item-body">
-									<h4 class="list-group-item-title">
-										<a href="#">BAP</a>
-									</h4>
-									<p class="list-group-item-text"> Jan 12, 2018 </p>
-								</div>
-								<div class="list-group-item-figure">
-									<button class="btn btn-sm btn-icon btn-light"><i class="oi oi-data-transfer-download"></i></button>
-								</div>
-							</div>
+							@if(count($document_tssr) === 0 || is_null($document_tssr))
+								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
+							@else
+								<p class="card-text mt-3"> The document above is a list of TSSR documents, if not found document click the button below to generate new document. </p>
+							@endif
 
-							<p class="card-text mt-3"> The document above is a list of sitac documents, if not complete click the button below to upload or generate documents. </p><a href="#" class="btn btn-danger">Go somewhere</a>
+							<a href="{{ site_url('/vendor/candidate/document/survey/create/'.$candidate->id) }}" class="btn btn-danger">Generate TSSR Document</a>
 
 						</div>
-						<div class="tab-pane fade" id="card-iw">
-							<h5 class="card-title"> DOCUMENT IMB </h5>
-							<div class="list-group-item">
-								<div class="list-group-item-figure">
-									<a href="#" class="tile tile-circle bg-info"><span class="fa fa-file-image"></span></a>
+						<div class="tab-pane fade" id="card-bap">
+							<h5 class="card-title"> DOCUMENT BAP </h5>
+							@foreach($document_bap as $bap)
+								<div class="list-group-item">
+									<div class="list-group-item-figure">
+										<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+									</div>
+									<div class="list-group-item-body">
+										<h4 class="list-group-item-title">
+											<a href="#">TSSR - {{ $bap->name }}</a>
+										</h4>
+										<p class="list-group-item-text"> {{ date('M d, Y', strtotime($bap->created_at)) }}</p>
+									</div>
+									<div class="list-group-item-figure">
+										<a href="{{ site_url('uploads/surveysitac/'.$bap->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
+											<i class="oi oi-data-transfer-download"></i>
+										</a>
+									</div>
 								</div>
-								<div class="list-group-item-body">
-									<h4 class="list-group-item-title">
-										<a href="#">Surat ijin kecamatan</a>
-									</h4>
-									<p class="list-group-item-text"> Jan 12, 2018 </p>
-								</div>
-								<div class="list-group-item-figure">
-									<button class="btn btn-sm btn-icon btn-light"><i class="oi oi-data-transfer-download"></i></button>
-								</div>
-							</div>
+							@endforeach
+							@if(count($document_bap) === 0)
+								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
+							@else
+								<p class="card-text mt-3"> The document above is a list of IMB documents, </p>
+							@endif
 
-							<p class="card-text mt-3"> The document above is a list of IMB documents, </p>
-						</div>
-						<div class="tab-pane fade" id="card-legal">
-							<h5 class="card-title"> DOCUMENT IMB </h5>
-							<div class="list-group-item">
-								<div class="list-group-item-figure">
-									<a href="#" class="tile tile-circle bg-info"><span class="fa fa-file-image"></span></a>
-								</div>
-								<div class="list-group-item-body">
-									<h4 class="list-group-item-title">
-										<a href="#">Surat ijin kecamatan</a>
-									</h4>
-									<p class="list-group-item-text"> Jan 12, 2018 </p>
-								</div>
-								<div class="list-group-item-figure">
-									<button class="btn btn-sm btn-icon btn-light"><i class="oi oi-data-transfer-download"></i></button>
-								</div>
-							</div>
-
-							<p class="card-text mt-3"> The document above is a list of legal documents, </p>
-						</div>
-						<div class="tab-pane fade" id="card-cme">
-							<h5 class="card-title"> DOCUMENT CME </h5>
-							<p class="card-text"> With supporting text below as a natural lead-in to additional content. </p><a href="#" class="btn btn-danger">Go somewhere</a>
-						</div>
-						<div class="tab-pane fade" id="card-pln">
-							<h5 class="card-title"> DOCUMENT PLN </h5>
-							<p class="card-text"> With supporting text below as a natural lead-in to additional content. </p><a href="#" class="btn btn-danger">Go somewhere</a>
+							<a href="{{ site_url('/vendor/candidate/document/bap/add/'.$candidate->id) }}" class="btn btn-danger">Generate BAP Document</a>
 						</div>
 					</div>
 				</div>

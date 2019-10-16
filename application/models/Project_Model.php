@@ -9,7 +9,7 @@ class Project_Model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from($this->table);
-		$this->db->where('status = \'on process\' AND deleted_at IS NULL');
+		$this->db->where('status = \'New\' AND deleted_at IS NULL');
         return $this->db->get();
     }
 
@@ -77,7 +77,7 @@ class Project_Model extends CI_Model
 	 * @param $deleted
 	 * @return mixed
 	 */
-	public function getAllByStatusAndVendor($select = '*', $status, $vendor_id,$deleted)
+	public function getAllByStatusAndVendor($select = '*', $status, $vendor_id, $deleted)
 	{
 		$this->db->select($select)
 			->from($this->table)
@@ -95,6 +95,17 @@ class Project_Model extends CI_Model
 			->join('candidate', 'candidate.project_id = project.id', 'inner')
 			->where('project.id', $project_id)
 			->where('candidate.has_selected = 1');
+		return $this->db->get();
+	}
+
+	public function getPicProjects($pic_id, $status)
+	{
+		$this->db->select('*')
+			->from($this->table)
+			->join('document_approval_setting', 'document_approval_setting.pic_id = project.id', 'inner')
+			->where('project.status', $status)
+			->where('project_assigment.vendor_id', $vendor_id)
+			->where('project.deleted_at IS NULL');
 		return $this->db->get();
 	}
 

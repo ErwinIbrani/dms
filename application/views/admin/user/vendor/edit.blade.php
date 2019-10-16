@@ -98,7 +98,7 @@
 									<select name="vendor" id="vendor" class="custom-select">
 										<option value="" selected="selected">Select Vendor</option>
 										@foreach($vendors as $vendor)
-											<option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+											<option value="{{ $vendor->id }}" {{ $user->vendor ===  $vendor->id ? 'selected' : '' }}>{{ $vendor->name }}</option>
 										@endforeach
 									</select>
 								</div>
