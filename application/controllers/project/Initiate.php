@@ -1,6 +1,6 @@
 <?php
 
-class Initiate extends Project_Controller
+class Initiate extends ProjectAdmin_Controller
 {
 	public function __construct()
 	{
