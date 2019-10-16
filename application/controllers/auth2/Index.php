@@ -15,6 +15,10 @@ class Index extends CI_Controller
       $this->load->view('login', $data);
     }
 
+    public function logout() {
+    	var_dump(1ss) or die;
+	}
+
     public function login_user()
     {  
 		if(isset($_POST['username']) && isset($_POST['password'])){
