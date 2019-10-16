@@ -64,9 +64,9 @@
                                     <td class="align-middle"> {{ $candidate->wbs_id }} </td>
                                     <td class="align-middle"> {{ $candidate->candidate_name }} </td>
                                     <td class="align-middle"> {{ date('d-M-Y', strtotime($candidate->created_at)) }} </td>
-                                    <td class="align-middle"> {{ $candidate->status_revision }} </td>
+                                    <td class="align-middle"> {{ $candidate->status }} </td>
                                     <td class="align-middle text-center">
-                                          <a target="_blank" href="<?= site_url("project/tsa/download/".$candidate->path.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-file-upload" title="Preview"></i> <span class="sr-only">Download</span></a>
+                                          <a href="<?= site_url("project/tsa/view/".$candidate->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-eye" title="Preview"></i> <span class="sr-only">View</span></a>
                                     </td>
                                 </tr>
                             @endforeach

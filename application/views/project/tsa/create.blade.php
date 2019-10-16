@@ -485,7 +485,7 @@
                                                     <td>
                                                         <div class="form-group">
                                                             <label for="tf1">Contact Person</label>
-                                                            <input type="text" class="form-control" name="contact_personcontact_person[]" required/>
+                                                            <input type="text" class="form-control" name="contact_person[]" required/>
                                                         </div>
                                                     </td>
 

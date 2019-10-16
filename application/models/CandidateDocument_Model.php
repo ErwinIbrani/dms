@@ -17,6 +17,7 @@ class CandidateDocument_Model extends CI_Model
                            document_candidate.created_at,
                            document_candidate.path,
                            document_candidate.status_revision,
+                           document_candidate.status,
                            candidate.name as candidate_name,
                            vendor.name as vendor_name,
                            project.wbs_id');
@@ -57,6 +58,7 @@ class CandidateDocument_Model extends CI_Model
                            document_candidate.created_at,
                            document_candidate.path,
                            document_candidate.status_revision,
+                           document_candidate.status,
                            candidate.name as candidate_name,
                            vendor.name as vendor_name,
                            project.wbs_id');
@@ -151,12 +153,12 @@ class CandidateDocument_Model extends CI_Model
 
     public function findCandidateSurveyDone($candidate_id)
     {
-        return $this->db->get_where($this->table, array('candidate_id' => $candidate_id, 'name' => 'SURVEY', 'status_revision' => 'Done'));
+        return $this->db->get_where($this->table, array('candidate_id' => $candidate_id, 'name' => 'SURVEY', 'status' => 'choose'));
     }
 
     public function findCandidateBapDone($candidate_id)
     {
-        return $this->db->get_where($this->table, array('candidate_id' => $candidate_id, 'name' => 'BAP', 'status_revision' => 'Done'));
+        return $this->db->get_where($this->table, array('candidate_id' => $candidate_id, 'name' => 'BAP', 'status' => 'submitted'));
     }
 
 	public function getCandidateDocument($project_id, $candidate_id, $document_name)

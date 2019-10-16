@@ -168,10 +168,25 @@ class Tsa extends CI_Controller
         $data  =  $this->CandidateDocument_Model->save($data);
         if(!empty($data)) {
               $template = $this->CandidateDocument_Model->findOne($data)->row_array();
-              generateTsa($template);
+              $test = generateTsa($template);
+              var_dump($test);
+              exit();
               $this->session->set_flashdata('success', 'Data Uploded');
               redirect("project/tsa/index/", 'refresh');
           }
+    }
+
+    public function view($document_id)
+    {
+        $document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
+        $attribute = json_decode($document_candidate->attribute);
+        $project = $this->Project_Model->findOne($document_candidate->project_id)->row();
+
+        return view('project/tsa/preview', array(
+            'candidate' => $attribute,
+            'document'  => $document_candidate,
+            'project'   => $project
+        ));
     }
 
     public function download($file_name)
