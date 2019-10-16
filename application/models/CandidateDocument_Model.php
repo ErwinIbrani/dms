@@ -159,4 +159,14 @@ class CandidateDocument_Model extends CI_Model
         return $this->db->get_where($this->table, array('candidate_id' => $candidate_id, 'name' => 'BAP', 'status_revision' => 'Done'));
     }
 
+	public function getCandidateDocument($project_id, $candidate_id, $document_name)
+	{
+		$this->db->from($this->table)
+		->where('project_id', $project_id)
+			->where('candidate_id', $candidate_id)
+			->where('name', $document_name);
+
+		return $this->db->get();
+    }
+
 }

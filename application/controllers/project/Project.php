@@ -67,4 +67,16 @@ class Project extends CI_Controller
         ]);
     }
 
+    public function project()
+	{
+		$projects = $this->Project_Model
+			->getAllByStatusAndVendor('project.id,project.wbs_id, project.iro_number, project.site_id_ibs, project.site_name, 
+			project.status, project_assigment.assignment_type', 'New', 1, false);
+
+		return view('vendor.project.new_project', array(
+			'projects' => $projects->result(),
+			'vendor_id' => 1
+		));
+	}
+
 }

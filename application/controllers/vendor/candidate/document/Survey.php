@@ -152,7 +152,7 @@ class Survey extends CI_Controller {
                     $template = $this->CandidateDocument_Model->findOne($data)->row_array();
                     generateSurvey($template);
                     $this->session->set_flashdata('success', 'Data Uploded');
-                    redirect("vendor/candidate/document/survey/index/", 'refresh');
+                    redirect("/vendor/candidate/detail/index/".$this->input->post('candidate_id'), 'refresh');
                 }
              }else{
                 $error = ['error' => $this->upload->display_errors()];
