@@ -66,9 +66,12 @@ class UserGroup_Model extends CI_Model {
 	 * @param $id
 	 * @return bool
 	 */
-	public function deleteData($id) {
+	public function deleteData($id)
+    {
 		$this->db->where('id', $id);
 		return	$this->db->delete($this->table);
 	}
+
+	
 
 }

@@ -21,4 +21,6 @@ class Role_Model extends CI_Model
         $this->db->where($this->primaryKey, $id);
         $this->db->update($this->table, $update);
     }
+
+
 }

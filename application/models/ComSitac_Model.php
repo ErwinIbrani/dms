@@ -59,8 +59,6 @@ class ComSitac_Model extends CI_Model
     }
 
 
-
-
     public function findOne($id)
     {
         return $this->db->get_where($this->table, [$this->primaryKey => $id, 'name' => 'COM SITAC']);

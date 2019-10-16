@@ -68,7 +68,7 @@ class Comsitac extends CI_Controller
         if (!$this->upload->do_upload('path')) {
                 $error = ['error' => $this->upload->display_errors()];
                 $this->session->set_flashdata('error', $error['error']);
-                redirect("project/project/document/" . $this->input->post('project_id'), 'refresh');
+                redirect("project/comsitac/index", 'refresh');
             } else {
                 $upload = $this->upload->data();
                 $data = [
@@ -83,9 +83,12 @@ class Comsitac extends CI_Controller
                     'updated_at' => date('Y-m-d H:i:s')
                 ];
                $this->ComSitac_Model->save($data);
+               $this->session->set_flashdata('success', 'COM SITAC Uploaded');
                redirect("project/comsitac/index", 'refresh');
          }
     }
+
+
 
 
 

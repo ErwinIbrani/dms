@@ -79,4 +79,10 @@ class DocumentSetting_Model extends CI_Model
         return $this->db->insert_batch($this->table, $data);
     }
 
+    public function findInGroupID($group_id)
+    {
+        $this->db->where_in('group_id', $group_id);
+        return $this->db->get($this->table);
+    }
+
 }
