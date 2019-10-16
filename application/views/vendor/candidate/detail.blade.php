@@ -33,6 +33,12 @@
 						<li class="nav-item">
 							<a class="nav-link" data-toggle="tab" href="#card-bap">BAP</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#card-bak">BAK</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#card-iw">IW</a>
+						</li>
 					</ul>
 				</div>
 				<div class="card-body">
@@ -99,6 +105,66 @@
                             <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
 							<a href="{{ site_url('/vendor/candidate/document/bap/add/'.$candidate->id) }}" class="btn btn-danger">Generate BAP Document</a>
 							<?php endif?>
+						</div>
+						<div class="tab-pane fade" id="card-bak">
+							<h5 class="card-title"> DOCUMENT BAP </h5>
+							@foreach($document_bak as $bak)
+								<div class="list-group-item">
+									<div class="list-group-item-figure">
+										<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+									</div>
+									<div class="list-group-item-body">
+										<h4 class="list-group-item-title">
+											<a href="#">TSSR - {{ $bak->name }}</a>
+										</h4>
+										<p class="list-group-item-text"> {{ date('M d, Y', strtotime($bak->created_at)) }}</p>
+									</div>
+									<div class="list-group-item-figure">
+										<a href="{{ site_url('uploads/surveysitac/'.$bak->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
+											<i class="oi oi-data-transfer-download"></i>
+										</a>
+									</div>
+								</div>
+							@endforeach
+							@if(count($document_bak) === 0)
+								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
+							@else
+								<p class="card-text mt-3"> The document above is a list of IMB documents, </p>
+							@endif
+
+                            <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
+							<a href="{{ site_url('/vendor/candidate/document/bak/add/'.$candidate->id) }}" class="btn btn-danger">Generate BAK Document</a>
+                            <?php endif?>
+						</div>
+						<div class="tab-pane fade" id="card-iw">
+							<h5 class="card-title"> DOCUMENT BAP </h5>
+							@foreach($document_iw as $iw)
+								<div class="list-group-item">
+									<div class="list-group-item-figure">
+										<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+									</div>
+									<div class="list-group-item-body">
+										<h4 class="list-group-item-title">
+											<a href="#">TSSR - {{ $iw->name }}</a>
+										</h4>
+										<p class="list-group-item-text"> {{ date('M d, Y', strtotime($iw->created_at)) }}</p>
+									</div>
+									<div class="list-group-item-figure">
+										<a href="{{ site_url('uploads/surveysitac/'.$iw->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
+											<i class="oi oi-data-transfer-download"></i>
+										</a>
+									</div>
+								</div>
+							@endforeach
+							@if(count($document_iw) === 0)
+								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
+							@else
+								<p class="card-text mt-3"> The document above is a list of IMB documents, </p>
+							@endif
+
+                            <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
+							<a href="{{ site_url('/vendor/candidate/document/bap/add/'.$candidate->id) }}" class="btn btn-danger">Upload IW Document</a>
+                            <?php endif?>
 						</div>
 					</div>
 				</div>

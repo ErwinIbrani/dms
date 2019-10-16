@@ -32,7 +32,7 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="{{ site_url('/project/apd/addsite/'.$project->id) }}" class="nav-link">
+								<a href="{{ site_url('/project/apd/addlist/'.$project->id) }}" class="nav-link">
 									APD
 								</a>
 							</li>
