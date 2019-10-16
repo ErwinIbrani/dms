@@ -175,7 +175,7 @@ class Survey extends CI_Controller {
     public function choose($id)
     {
         $candidateModel  = $this->CandidateDocument_Model->findOne($id)->row_array();
-        $this->CandidateDocument_Model->update($id,  ['status_revision' => 'Choose']);
+        $this->CandidateDocument_Model->update($id,  ['status' => 'choose']);
         $candidateChoose = $this->Candidate_Model->update($candidateModel['candidate_id'], ['has_selected' => 1]);
         if($candidateChoose == true){
             $this->session->set_flashdata('success', 'Candidate Selected');

@@ -1,6 +1,6 @@
 <?php
 
-class Comsitac extends CI_Controller
+class Comsitac extends ProjectAdmin_Controller
 {
 
     public function __Construct()

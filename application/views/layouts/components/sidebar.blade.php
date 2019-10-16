@@ -92,6 +92,10 @@
 
                     <?php if ($CI->ion_auth->in_group('Project Admin')): ?>
 					<li class="menu-header">Project Admin</li><!-- /.menu-header -->
+						<li class="menu-item">
+							<a href="{{ site_url('project/comsitac/index') }}" class="menu-link"><span
+										class="menu-icon oi oi-browser"></span> <span class="menu-text">COM SITAC</span></a>
+						</li><!-- /.menu-item -->
 					<!-- .menu-item -->
 					<li class="menu-item">
 						<a href="{{ site_url('project/initiate') }}" class="menu-link"><span
@@ -130,25 +134,12 @@
 				<!-- .menu-item -->
 					<li class="menu-header">Project</li><!-- /.menu-header -->
 					<!-- .menu-item -->
+
 					<li class="menu-item">
-						<a href="{{ site_url('project/comsitac/index') }}" class="menu-link"><span
-								class="menu-icon oi oi-browser"></span> <span class="menu-text">COM SITAC</span></a>
-					</li><!-- /.menu-item -->
-					<li class="menu-item has-child">
-						<a href="#" class="menu-link">
-							<span class="menu-icon fas fa-check-double"></span>
-							<span class="menu-text">Document Approval</span>
-						</a> <!-- child menu -->
-						<ul class="menu">
-							<li class="menu-item">
-								<a href="{{ site_url("admin/user-management/internal") }}" class="menu-link">Approval
-									Required</a>
-							</li>
-							<li class="menu-item">
-								<a href="{{ site_url("admin/user-management/internal") }}" class="menu-link">Approval
-									Rejected</a>
-							</li>
-						</ul><!-- /child menu -->
+							<a href="{{ site_url('project/survey') }}" class="menu-link"><span
+										class="menu-icon fas fa-check-double"></span> <span
+										class="menu-text">Choose Candidate</span></a>
+					</li>
 					<li class="menu-item">
 						<a href="{{ site_url('project/tsa/candidate') }}" class="menu-link"><span
 								class="menu-icon oi oi-bar-chart"></span> <span
@@ -159,7 +150,6 @@
 								class="menu-icon oi oi-list-rich"></span> <span
 								class="menu-text">TSA Document</span></a>
 					</li>
-					</li><!-- /.menu-item -->
 
                     <?php endif?>
 
@@ -184,7 +174,6 @@
 						</ul><!-- /child menu -->
 					</li><!-- /.menu-item -->
                     <?php endif; ?>
-
 				</ul><!-- /.menu -->
 			</nav><!-- /.stacked-menu -->
 
