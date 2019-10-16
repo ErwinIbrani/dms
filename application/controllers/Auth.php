@@ -20,9 +20,6 @@ class Auth extends CI_Controller
 
 		$this->lang->load('auth');
 
-        if($this->ion_auth->logged_in()) {
-            redirect('/', 'refresh');
-        }
 	}
 
 	/**
@@ -68,7 +65,9 @@ class Auth extends CI_Controller
 	 */
 	public function login()
 	{
-
+        if($this->ion_auth->logged_in()) {
+            redirect('/', 'refresh');
+        }
 		$this->data['title'] = $this->lang->line('login_heading');
 
 		// validate form input
