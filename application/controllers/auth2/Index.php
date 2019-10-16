@@ -17,7 +17,10 @@ class Index extends CI_Controller
 
     public function logout() {
     	var_dump(1) or die;
-	}
+
+      $this->data['judul'] = 'Login User';
+      $this->load->view('login', $this->data);
+    }
 
     public function login_user()
     {  
