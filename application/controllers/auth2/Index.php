@@ -11,12 +11,12 @@ class Index extends CI_Controller
 
     public function login()
     {
-      $this->$data['judul'] = 'Login User';
-      $this->load->view('login', $data);
+      $this->data['judul'] = 'Login User';
+      $this->load->view('login', $this->data);
     }
 
     public function logout() {
-    	var_dump(1ss) or die;
+    	var_dump('test') or die;
 	}
 
     public function login_user()
