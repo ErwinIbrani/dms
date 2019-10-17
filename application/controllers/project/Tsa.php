@@ -169,8 +169,8 @@ class Tsa extends CI_Controller
         if(!empty($data)) {
               $template = $this->CandidateDocument_Model->findOne($data)->row_array();
               $test = generateTsa($template);
-              var_dump($test);
-              exit();
+           /*   var_dump($test);
+              exit();*/
               $this->session->set_flashdata('success', 'Data Uploded');
               redirect("project/tsa/index/", 'refresh');
           }
