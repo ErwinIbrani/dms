@@ -100,6 +100,8 @@
 
                     <?php if ($CI->ion_auth->in_group('Project Admin')): ?>
 
+					<li class="menu-header">Project Admin</li><!-- /.menu-header -->
+
 					<!-- .menu-item -->
 					<li class="menu-item">
 						<a href="{{ site_url('project/initiate') }}" class="menu-link"><span
@@ -144,6 +146,10 @@
 						</li><!-- /.menu-item -->
 				<!-- .menu-item -->
 					<li class="menu-header">Project</li><!-- /.menu-header -->
+					<li class="menu-item">
+							<a href="{{ site_url('project/comsitac/index') }}" class="menu-link"><span
+										class="menu-icon oi oi-browser"></span> <span class="menu-text">COM SITAC</span></a>
+					</li>
 					<!-- .menu-item -->
 					<li class="menu-item">
 							<a href="{{ site_url('project/survey') }}" class="menu-link">
@@ -161,9 +167,16 @@
 								class="menu-icon oi oi-list-rich"></span> <span
 								class="menu-text">TSA Document</span></a>
 					</li>
-
-
                     <?php endif?>
+
+                 <?php if($CI->ion_auth->in_group('Regional Project Manager')): ?>
+				  <li class="menu-header">Regional Project Manager</li>
+					<li class="menu-item">
+				 	 <a href="{{ site_url('project/tsa_approval/index') }}" class="menu-link"><span
+										class="menu-icon oi oi-list-rich"></span> <span
+										class="menu-text">TSA Document Approval</span></a>
+					</li>
+                 <?php endif?>
 
                     <?php if($CI->ion_auth->in_group('Vendor')): ?>
 					<li class="menu-header">Vendor</li><!-- /.menu-header -->
