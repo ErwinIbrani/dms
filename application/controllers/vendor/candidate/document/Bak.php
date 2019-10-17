@@ -46,7 +46,7 @@ class Bak extends CI_Controller
 		$document_id = $this->CandidateDocument_Model->save($candidate_document);
 
 		$api_endpoint = "https://selectpdf.com/api2/convert/";
-		$key = 'c47ec71b-a145-4814-ba08-8769c4c0f45f';
+		$key = 'd4ca505b-0ca6-4f33-a075-afce3e313e82';
 		$layout_url = site_url('/vendor/candidate/document/bak/layout/' . $document_id);
 		$parameters = array('key' => $key, 'url' => $layout_url, 'web_page_width' => '816', 'page_numbers' => 'False');
 		$result = @file_get_contents("$api_endpoint?" . http_build_query($parameters));

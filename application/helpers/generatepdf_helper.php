@@ -4,7 +4,7 @@
 function generateSurvey($model)
     {
         $api_endpoint  = "https://selectpdf.com/api2/convert/";
-        $key           = 'b53a60b8-7af2-4a9f-bf0c-c03fbde4911a';
+        $key           = 'd4ca505b-0ca6-4f33-a075-afce3e313e82';
         $contentImage  = json_decode($model['attachment'], true);
         $contentText   = json_decode($model['attribute'], true);
         $raw_html      = '<!DOCTYPE html>
@@ -374,7 +374,7 @@ function generateSurvey($model)
     function generateTsa($model)
     {
         $api_endpoint       = "https://selectpdf.com/api2/convert/";
-        $key                = 'b53a60b8-7af2-4a9f-bf0c-c03fbde4911a';
+        $key                = 'd4ca505b-0ca6-4f33-a075-afce3e313e82';
         $contentText        = json_decode($model['attribute'], true);
         $other_condition = '';
         foreach($contentText['other_condition'] as $index => $key){
