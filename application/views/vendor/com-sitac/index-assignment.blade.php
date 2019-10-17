@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@section('page_title', 'Candidates')
+@section('page_title', 'COM SITAC')
 
 @section('content')
     <div class="page-inner">
-        <div style="text-align: right"><?= $breadcrumb ?></div>
+        <div style="text-align: right"><?/*= $breadcrumb */?></div>
         <br/>
         <div class="page-section">
             <div class="card card-fluid">
@@ -13,15 +13,15 @@
 
                     <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
-                            <a href="<?= site_url("project/survey/index"); ?>" class="nav-link show active">
-                               Candidates TSSR
+                            <a href="<?= site_url("vendor/comsitac/index"); ?>" class="nav-link show active">
+                             COM SITAC UPLOAD
                             </a>
                         </li>
                     </ul><!-- /.nav-tabs -->
                 </div><!-- /.card-header -->
                 <!-- .card-body -->
                 <div class="card-body">
-                    <form method='post' action="<?= base_url() ?>vendor/candidate/document/survey/index">
+                    <form method='post' action="<?= base_url() ?>vendor/comsitac/index">
                         <div class="input-group input-group-alt">
                             <!-- .input-group -->
                             <div class="input-group has-clearable">
@@ -29,7 +29,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><span class="oi oi-magnifying-glass"></span></span>
                                 </div>
-                                <input type='text' name='search' value='<?= $search ?>' class='form-control' placeholder='Search Candidate Name' autocomplete="off">
+                                <input type='text' name='search' value='<?= $search ?>' class='form-control' placeholder='Search Vendor Name' autocomplete="off">
                             </div><!-- /.input-group -->
                             <!-- .input-group-append -->
                             <div class="input-group-append">
@@ -45,11 +45,10 @@
                             <thead>
                             <tr>
                                 <th> No </th>
-                                <th> Vendor Name </th>
                                 <th> WBS ID </th>
-                                <th> Candidate Name</th>
-                                <th> Create At</th>
-                                <th> Status</th>
+                                <th> IRO Number </th>
+                                <th> Site ID</th>
+                                <th> Vendor Name </th>
                                 <th style="width:100px; min-width:100px;">  </th>
                             </tr>
                             </thead>
@@ -57,19 +56,15 @@
                             @php
                                 $i = 1;
                             @endphp
-                            @foreach($candidates as $key => $candidate)
+                            @foreach($projects as $key => $project)
                                 <tr>
                                     <td class="align-middle"> {{ $i++ }} </td>
-                                    <td class="align-middle"> {{ $candidate->vendor_name }} </td>
-                                    <td class="align-middle"> {{ $candidate->wbs_id }} </td>
-                                    <td class="align-middle"> {{ $candidate->candidate_name }} </td>
-                                    <td class="align-middle"> {{ date('d-M-Y', strtotime($candidate->created_at)) }} </td>
-                                    <td class="align-middle"> {{ $candidate->status }} </td>
+                                    <td class="align-middle"> {{ $project->wbs_id }} </td>
+                                    <td class="align-middle"> {{ $project->iro_number }} </td>
+                                    <td class="align-middle"> {{ $project->site_id_ibs }} </td>
+                                    <td class="align-middle"> {{ $project->vendor_name }} </td>
                                     <td class="align-middle text-center">
-                                      @if(empty($candidate->status))
-                                          <a href="<?= site_url("project/survey/choose/".$candidate->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-check" title="Choose Candidate" onClick="javascript:return confirm('Choose This Candidate ?');"></i> <span class="sr-only">Choose</span></a>
-                                      @endif
-                                          <a href="<?= site_url("project/survey/view/".$candidate->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-eye" title="Preview"></i> <span class="sr-only">Download</span></a>
+                                        <a  href="<?= site_url("vendor/comsitac/view/".$project->project_id.""); ?>" class="btn btn-sm btn-icon btn-default"><i class="fa fa-eye" title="View COM SITAC"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

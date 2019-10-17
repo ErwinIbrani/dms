@@ -61,6 +61,9 @@
 										<a href="{{ site_url('uploads/surveysitac/'.$tssr->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
 											<i class="oi oi-data-transfer-download"></i>
 										</a>
+										<a href="{{ site_url('/vendor/candidate/document/survey/view/'.$tssr->id) }}" class="btn btn-sm btn-icon btn-light">
+											<i class="fa fa-eye"></i>
+										</a>
 									</div>
 								</div>
 							@endforeach

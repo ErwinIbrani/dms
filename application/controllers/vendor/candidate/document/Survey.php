@@ -172,39 +172,18 @@ class Survey extends CI_Controller {
        redirect("vendor/candidate/document/survey/index", 'refresh');
    }
 
-    public function choose($id)
+    public function view($document_id)
     {
-        $candidateModel  = $this->CandidateDocument_Model->findOne($id)->row_array();
-        $this->CandidateDocument_Model->update($id,  ['status' => 'choose']);
-        $candidateChoose = $this->Candidate_Model->update($candidateModel['candidate_id'], ['has_selected' => 1]);
-        if($candidateChoose == true){
-            $this->session->set_flashdata('success', 'Candidate Selected');
-            redirect("vendor/candidate/document/survey/index", 'refresh');
-        }
-    }
+        $document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
+        $attribute = json_decode($document_candidate->attribute);
+        $project = $this->Project_Model->findOne($document_candidate->project_id)->row();
 
-   /*public function choose($id)
-   {
-       $candidateModel = $this->CandidateDocument_Model->findOne($id)->row_array();
-       $candidate = $this->CandidateDocument_Model->update($id,  ['status_revision' => 'Choose']);
-       if($candidate == true){
-           $data = [
-               'project_id'      => $candidateModel['project_id'],
-               'vendor_id'       => $candidateModel['vendor_id'],
-               'name'            => $candidateModel['name'],
-               'code'            => $candidateModel['code'],
-               'type'            => $candidateModel['type'],
-               'attachment'      => $candidateModel['attachment'],
-               'path'            => $candidateModel['path'],
-               'attribute'       => $candidateModel['attribute'],
-               'created_at'      => $candidateModel['created_at'],
-               'status_revision' => $candidateModel['status_revision']
-           ];
-           $this->Document_Model->save($data);
-           $this->session->set_flashdata('success', 'Candidate Selected');
-           redirect("vendor/candidate/document/survey/index", 'refresh');
-       }
-   }*/
+        return view('vendor.candidate.document.survey.preview', array(
+            'candidate' => $attribute,
+            'document'  => $document_candidate,
+            'project'   => $project
+        ));
+    }
 
     public function testpdf()
     {
