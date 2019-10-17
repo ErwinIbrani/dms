@@ -95,11 +95,7 @@
 
 
                     <?php if ($CI->ion_auth->in_group('Project Admin')): ?>
-					<li class="menu-header">Project Admin</li><!-- /.menu-header -->
-						<li class="menu-item">
-							<a href="{{ site_url('project/comsitac/index') }}" class="menu-link"><span
-										class="menu-icon oi oi-browser"></span> <span class="menu-text">COM SITAC</span></a>
-						</li><!-- /.menu-item -->
+
 					<!-- .menu-item -->
 					<li class="menu-item">
 						<a href="{{ site_url('project/initiate') }}" class="menu-link"><span
@@ -137,6 +133,11 @@
                     <?php endif; ?>
 
                     <?php if($CI->ion_auth->in_group('Project')): ?>
+						<li class="menu-header">Project Admin</li><!-- /.menu-header -->
+						<li class="menu-item">
+							<a href="{{ site_url('project/comsitac/index') }}" class="menu-link"><span
+									class="menu-icon oi oi-browser"></span> <span class="menu-text">COM SITAC</span></a>
+						</li><!-- /.menu-item -->
 				<!-- .menu-item -->
 					<li class="menu-header">Project</li><!-- /.menu-header -->
 					<!-- .menu-item -->
