@@ -122,14 +122,14 @@
 					<li class="menu-header">Assignment</li><!-- /.menu-header -->
 					<!-- .menu-item -->
 					<li class="menu-item">
-						<a href="{{ site_url('procurement/assigntovendor/add') }}" class="menu-link"><span
+						<a href="{{ site_url('procurement/assignToVendor/add') }}" class="menu-link"><span
 								class="menu-icon fas fa-clipboard-check"></span> <span
 								class="menu-text">Vendor to Project</span></a>
 					</li><!-- /.menu-item -->
 
 					<!-- .menu-item -->
 					<li class="menu-item">
-						<a href="{{ site_url('procurement/assigntoproject/add') }}" class="menu-link"><span
+						<a href="{{ site_url('procurement/assignToProject/add') }}" class="menu-link"><span
 								class="menu-icon fas fa-clipboard-check"></span> <span
 								class="menu-text">Project to vendor</span></a>
 					</li><!-- /.menu-item -->
