@@ -7,7 +7,7 @@ class Tsa extends CI_Controller
         parent::__construct();
         $this->load->helper(['generatepdf', 'custom']);
         $this->lang->load('auth');
-        $this->load->model(['Candidate_Model','Tsa_Model','CandidateDocument_Model','Project_Model', 'User_Model', 'UserVendor_Model', 'Vendor_Model']);
+        $this->load->model(['DocumentApproval_Model', 'Candidate_Model','Tsa_Model','CandidateDocument_Model','Project_Model', 'User_Model', 'UserVendor_Model', 'Vendor_Model']);
         authentication($this->ion_auth->logged_in());
     }
 
@@ -84,6 +84,7 @@ class Tsa extends CI_Controller
         $candidate_document  = $this->CandidateDocument_Model->findCandidateSurveyDone($candidate->id)->row_array();
         $bap                 = $this->CandidateDocument_Model->findCandidateBapDone($candidate->id)->row_array();
         $project             = $this->Project_Model->findOne($candidate_document['project_id'])->row_array();
+        $picProject          = $this->User_Model->findOne($project['pic_project_id'])->row_array();
         $vendor              = $this->Vendor_Model->findOne($candidate_document['vendor_id'])->row_array();
         $vendorUser          = $this->UserVendor_Model->getPIC($vendor['id'])->row_array();
         $content_bap         = json_decode($bap['attribute'], true);
@@ -96,7 +97,8 @@ class Tsa extends CI_Controller
            'vendor'              => $vendor,
            'bap'                 => $bap,
            'content_bap'         => $content_bap,
-           'vendorUser'          => $vendorUser
+           'vendorUser'          => $vendorUser,
+           'picProject'          => $picProject,
          ));
     }
 
@@ -137,6 +139,7 @@ class Tsa extends CI_Controller
             'purchased_option'      => $this->input->post('purchased_option'),
             'ibs_pic'               => $this->input->post('ibs_pic'),
             'location_site'         => $this->input->post('location_site'),
+            'note'                  => $this->input->post('note'),
         ];
           $this->attribute['other_condition']     =  $this->input->post('other_condition[]');
           $this->attribute['phase']               = $this->input->post('phase[]');
@@ -167,10 +170,14 @@ class Tsa extends CI_Controller
         ];
         $data  =  $this->CandidateDocument_Model->save($data);
         if(!empty($data)) {
+              $this->DocumentApproval_Model->save([
+                                                   'project_id'     => $this->input->post('project_id'),
+                                                   'document_id'    => $data,
+                                                   'approved_id'    => $this->ion_auth->user()->row()->id,
+                                                   'approved_at'    => date("Y-m-d H:i:s"),
+                                                   'status_approval'=> 'submit']);
               $template = $this->CandidateDocument_Model->findOne($data)->row_array();
-              $test = generateTsa($template);
-           /*   var_dump($test);
-              exit();*/
+              generateTsa($template);
               $this->session->set_flashdata('success', 'Data Uploded');
               redirect("project/tsa/index/", 'refresh');
           }
@@ -202,7 +209,7 @@ class Tsa extends CI_Controller
 
     public function testpdf()
     {
-        $model = $this->CandidateDocument_Model->findOne(200)->row_array();
+        $model = $this->CandidateDocument_Model->findOne(2260)->row_array();
         return view('test_template.tsa', ['model' => $model]);
     }
 

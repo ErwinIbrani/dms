@@ -227,5 +227,5 @@ CREATE TABLE [dbo].[document_approval] (
   [approved_id] int NOT NULL,
   [approved_at] datetime NULL,
   [status_approval] text NOT NULL,
-  [note] text NOT NULL,
+  [note] text NULL,
 );

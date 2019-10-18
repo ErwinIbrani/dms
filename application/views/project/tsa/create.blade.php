@@ -364,9 +364,16 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">IBST Sitac PIC</label>
-                                            <input type="text" class="form-control" name="ibs_pic" />
+                                            <input type="text" class="form-control is-valid" name="ibs_pic" value="{{ $picProject['username'] }}" readonly/>
                                         </div>
                                     </div>
+
+                                  <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="note">Note</label>
+                                        <textarea name="note" id="note" cols="30" rows="5" class="form-control"></textarea>
+                                    </div>
+                                  </div>
 
                                     <hr style="border-top: 1px dashed #8c8b8b;background-color: #f0f0f0;width: 100%;">
                                     <div class="col-lg-12">
