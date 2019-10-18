@@ -61,6 +61,7 @@ class Bap extends CI_Controller
 
 			$error = error_get_last();
 			echo "Error Message: " . $error['message'];
+			var_dump($error) or die;
 		}
 		else {
 			$local_file = '/uploads/bap/BAP-'.time().'.pdf';
