@@ -50,7 +50,7 @@ class Bap extends CI_Controller
 
 		$api_endpoint = "https://selectpdf.com/api2/convert/";
 		$key = 'd4ca505b-0ca6-4f33-a075-afce3e313e82';
-		$test_url = site_url('/vendor/candidate/document/bap/layout/'. $document_id);
+		$test_url = site_url('/public/layout/bap/'. $document_id);
 
 		$parameters = array ('key' => $key, 'url' => $test_url, 'web_page_width' => '816', 'page_numbers' => 'False');
 
