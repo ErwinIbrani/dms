@@ -165,6 +165,12 @@
 					<li class="menu-header">Project</li><!-- /.menu-header -->
 					<!-- .menu-item -->
 					<li class="menu-item">
+							<a href="{{ site_url('project/comsitac/index') }}" class="menu-link"><span
+										class="menu-icon fas fa-clipboard-check"></span> <span
+										class="menu-text">COM SITAC</span></a>
+					</li>
+
+					<li class="menu-item">
 							<a href="{{ site_url('project/survey') }}" class="menu-link">
 								<span class="menu-icon fas fa-check-double"></span> <span
 								class="menu-text">Choose Candidate</span></a>
@@ -185,7 +191,7 @@
                  <?php if($CI->ion_auth->in_group('Regional Project Manager')): ?>
 				  <li class="menu-header">Regional Project Manager</li>
 					<li class="menu-item">
-				 	 <a href="{{ site_url('project/tsa_approval/index') }}" class="menu-link"><span
+				 	 <a href="{{ site_url('approval/tsa/index') }}" class="menu-link"><span
 										class="menu-icon oi oi-list-rich"></span> <span
 										class="menu-text">TSA Document Approval</span></a>
 					</li>
