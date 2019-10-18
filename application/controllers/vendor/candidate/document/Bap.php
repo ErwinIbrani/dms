@@ -63,7 +63,7 @@ class Bap extends CI_Controller
 			echo "Error Message: " . $error['message'];
 		}
 		else {
-			$local_file = './uploads/bap/BAP-'.time().'.pdf';
+			$local_file = '/uploads/bap/BAP-'.time().'.pdf';
 			file_put_contents($local_file, $result);
 			$this->CandidateDocument_Model->update($document_id, array('path' => $local_file));
 			return redirect('/vendor/candidate/document/bap/preview/' . $document_id);
