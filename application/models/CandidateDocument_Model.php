@@ -171,4 +171,14 @@ class CandidateDocument_Model extends CI_Model
 		return $this->db->get();
     }
 
+	public function getWhereType($project_id, $candidate_id, $type)
+	{
+		$this->db->from($this->table)
+			->where('project_id', $project_id)
+			->where('candidate_id', $candidate_id)
+			->where('type', $type);
+
+		return $this->db->get();
+    }
+
 }

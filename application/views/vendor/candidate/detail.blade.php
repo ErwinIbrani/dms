@@ -93,7 +93,7 @@
 										<p class="list-group-item-text"> {{ date('M d, Y', strtotime($bap->created_at)) }}</p>
 									</div>
 									<div class="list-group-item-figure">
-										<a href="{{ site_url('uploads/surveysitac/'.$bap->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
+										<a href="{{ site_url('uploads/bap/'.$bap->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
 											<i class="oi oi-data-transfer-download"></i>
 										</a>
 									</div>
@@ -110,7 +110,7 @@
 							<?php endif?>
 						</div>
 						<div class="tab-pane fade" id="card-bak">
-							<h5 class="card-title"> DOCUMENT BAP </h5>
+							<h5 class="card-title"> DOCUMENT BAK </h5>
 							@foreach($document_bak as $bak)
 								<div class="list-group-item">
 									<div class="list-group-item-figure">
@@ -118,12 +118,12 @@
 									</div>
 									<div class="list-group-item-body">
 										<h4 class="list-group-item-title">
-											<a href="#">TSSR - {{ $bak->name }}</a>
+											<a href="#">{{ $bak->name }}</a>
 										</h4>
 										<p class="list-group-item-text"> {{ date('M d, Y', strtotime($bak->created_at)) }}</p>
 									</div>
 									<div class="list-group-item-figure">
-										<a href="{{ site_url('uploads/surveysitac/'.$bak->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
+										<a href="{{ site_url('uploads/bak/'.$bak->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
 											<i class="oi oi-data-transfer-download"></i>
 										</a>
 									</div>
@@ -132,7 +132,7 @@
 							@if(count($document_bak) === 0)
 								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
 							@else
-								<p class="card-text mt-3"> The document above is a list of IMB documents, </p>
+								<p class="card-text mt-3"> The document above is a list of IW documents, </p>
 							@endif
 
                             <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
@@ -140,7 +140,7 @@
                             <?php endif?>
 						</div>
 						<div class="tab-pane fade" id="card-iw">
-							<h5 class="card-title"> DOCUMENT BAP </h5>
+							<h5 class="card-title"> DOCUMENT IW </h5>
 							@foreach($document_iw as $iw)
 								<div class="list-group-item">
 									<div class="list-group-item-figure">
@@ -148,12 +148,12 @@
 									</div>
 									<div class="list-group-item-body">
 										<h4 class="list-group-item-title">
-											<a href="#">TSSR - {{ $iw->name }}</a>
+											<a href="#">{{ $iw->name }}</a>
 										</h4>
 										<p class="list-group-item-text"> {{ date('M d, Y', strtotime($iw->created_at)) }}</p>
 									</div>
 									<div class="list-group-item-figure">
-										<a href="{{ site_url('uploads/surveysitac/'.$iw->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
+										<a href="{{ site_url('/uploads/iw/'.$iw->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
 											<i class="oi oi-data-transfer-download"></i>
 										</a>
 									</div>
