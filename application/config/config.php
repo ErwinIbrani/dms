@@ -27,6 +27,7 @@ date_default_timezone_set('Asia/Jakarta');
 $config['base_url'] = 'https://dms.ibstower.test/';   //https://dms.ibstower.test/
 
 
+$config['pdf_key'] = 'd4ca505b-0ca6-4f33-a075-afce3e313e82';
 /*
 |--------------------------------------------------------------------------
 | Index File

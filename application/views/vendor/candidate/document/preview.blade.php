@@ -43,7 +43,7 @@
 							<div class="invoice-footer"></div>
 						</div>
 						<div>
-							<iframe src="{{site_url($document->path)}}" width="100%" height="600"></iframe>
+							<iframe src="{{site_url($path_document)}}" width="100%" height="600"></iframe>
 						</div>
 					</div>
 				</div>

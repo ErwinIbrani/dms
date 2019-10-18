@@ -71,8 +71,8 @@
 
 											<td class="text-right">
 												<div class="list-group-item-figure">
-													@if($project->status === 'New' && $project->assignment_type === 'SITAC')
-														<a href="{{ site_url('/vendor/candidates/create/' . $project->id . '/' . $vendor_id) }}" class="btn btn-sm btn-icon btn-secondary stop-propagation"><i class="fas fa-ellipsis-h"></i></a>
+													@if($project->status === 'new' && $project->assignment_type === 'SITAC')
+														<a href="{{ site_url('/vendor/candidates/create/' . $project->id . '/' . $vendor_id) }}" class="btn btn-sm btn-icon btn-secondary stop-propagation"><i class="fas fa-user-plus"></i></a>
 													@endif
 												</div>
 											</td>
