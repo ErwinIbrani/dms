@@ -89,11 +89,33 @@
 {{--							<a href="{{ site_url('vendor/comsitac/index') }}" class="menu-link"><span--}}
 {{--										class="menu-icon oi oi-browser"></span> <span class="menu-text">COM SITAC</span></a>--}}
 {{--						</li>--}}
-					<li class="menu-item">
+					<li class="menu-item has-child active has-open">
 						<a href="{{ site_url('/vendor/project/index') }}" class="menu-link"><span
 								class="menu-icon fas fa-clipboard-check"></span> <span
 								class="menu-text">Projects</span></a>
+						<ul class="menu">
+							<li class="menu-item">
+								<a href="{{ site_url('/vendor/project/index') }}" class="menu-link">
+
+									<span class="menu-text">New Project</span></a>
+								</a>
+							</li>
+							<li class="menu-item">
+								<a href="{{ site_url("/vendor/project/onProcess") }}" class="menu-link">
+
+									<span class="menu-text">Running Project</span></a>
+								</a>
+							</li>
+							<li class="menu-item">
+								<a href="{{ site_url("/vendor/project/done") }}" class="menu-link">
+
+									<span class="menu-text">Project Done</span></a>
+								</a>
+							</li>
+						</ul>
 					</li><!-- /.menu-item -->
+
+
                     <?php endif?>
 
 
@@ -178,24 +200,12 @@
                     <?php if($CI->ion_auth->in_group('Vendor')): ?>
 					<li class="menu-header">Vendor</li><!-- /.menu-header -->
 
-					<li class="menu-item has-child">
+					<li class="menu-item">
 						<a href="#" class="menu-link">
 							<span class="menu-icon fas fa-file-invoice"></span>
 							<span class="menu-text">Project</span>
 						</a> <!-- child menu -->
-						<ul class="menu">
-							<li class="menu-item">
-								<a href="{{ site_url("admin/user-management/internal") }}" class="menu-link">Project</a>
-							</li>
-							<li class="menu-item">
-								<a href="{{ site_url("admin/user-management/internal") }}" class="menu-link">Running</a>
-							</li>
-							<li class="menu-item">
-								<a href="{{ site_url("admin/user/groups") }}" class="menu-link">Done</a>
-							</li>
-						</ul><!-- /child menu -->
 					</li><!-- /.menu-item -->
-
 
                     <?php endif; ?>
 				</ul><!-- /.menu -->
