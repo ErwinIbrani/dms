@@ -66,7 +66,7 @@
                                     <td class="align-middle"> {{ date('d-M-Y', strtotime($candidate->created_at)) }} </td>
                                     <td class="align-middle"> {{ $candidate->status }} </td>
                                     <td class="align-middle text-center">
-                                      @if(empty($candidate->status_revision))
+                                      @if($candidate->status == 'submited')
                                           <a href="<?= site_url("project/survey/choose/".$candidate->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-check" title="Choose Candidate" onClick="javascript:return confirm('Choose This Candidate ?');"></i> <span class="sr-only">Choose</span></a>
                                       @endif
                                           <a href="<?= site_url("project/survey/view/".$candidate->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-eye" title="Preview"></i> <span class="sr-only">Download</span></a>

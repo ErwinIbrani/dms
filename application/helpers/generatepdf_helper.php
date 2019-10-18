@@ -2,13 +2,11 @@
 
 
 function generateSurvey($model)
-    {
-        $api_endpoint  = "https://selectpdf.com/api2/convert/";
-        $key           = 'd4ca505b-0ca6-4f33-a075-afce3e313e82';
+{
         $contentImage  = json_decode($model['attachment'], true);
         $contentText   = json_decode($model['attribute'], true);
         $raw_html      = '<!DOCTYPE html>
-                  <html>
+                         <html>
                          <head>
                             <title>SITAC SURVEY</title>
                             <style type="text/css">
@@ -343,6 +341,8 @@ function generateSurvey($model)
                         </body>
                         </html>';
 
+         $api_endpoint  = "https://selectpdf.com/api2/convert/";
+         $key           = 'd4ca505b-0ca6-4f33-a075-afce3e313e82';
          $local_file = './uploads/surveysitac/' . $model['project_id'] . 'SITAC_SURVEY'.$model['id'].'_'.$model['vendor_id'] . '.pdf';
          $parameters = array('key' => $key, 'html' => $raw_html);
          $options    = array(
@@ -373,9 +373,7 @@ function generateSurvey($model)
 
     function generateTsa($model)
     {
-        $api_endpoint       = "https://selectpdf.com/api2/convert/";
-        $key                = 'f5e79b45-5886-4ef4-b6ff-7c349c47b292';
-        $contentText        = json_decode($model['attribute'], true);
+        $contentText    = json_decode($model['attribute'], true);
         $other_condition = '';
         foreach($contentText['other_condition'] as $index => $key){
             $other_condition  .= '<br/>'.$key;
@@ -454,7 +452,7 @@ function generateSurvey($model)
             $cancelation_remarks  .= '<br/>'.$key;
         }
 
-        $raw_html           ='<!DOCTYPE html>
+        $raw_html  ='<!DOCTYPE html>
                             <html>
                             <head>
                             <meta charset="UTF-8">
@@ -740,8 +738,19 @@ function generateSurvey($model)
                               </tr>
                             </table>
                             </div>
+                            <br/>
+                            <table width="100%">
+                             <tr  style="text-align:left">
+                                <th colspan="6">Notes</th>
+                              </tr>
+                              <tr>
+                                <td colspan="6">'.$contentText['note'].'</td>
+                              </tr>
+                            </table>
                             </html>';
 
+        $api_endpoint  = "https://selectpdf.com/api2/convert/";
+        $key           = 'd4ca505b-0ca6-4f33-a075-afce3e313e82';
         $local_file = './uploads/tsa/' . $model['project_id'] . 'SITAC_TSA'.$model['id'].'_'.$model['vendor_id'] . '.pdf';
         $parameters = array('key' => $key, 'html' => $raw_html);
         $options    = array(
@@ -759,7 +768,7 @@ function generateSurvey($model)
             echo "Error Message: " . $error['message'];
         } else {
             file_put_contents($local_file, $result);
-            $CI = get_instance();
+            $CI =& get_instance();
             $CI->load->model(['CandidateDocument_Model']);
             $CI->CandidateDocument_Model->update($model['id'], [
                 'path' => $model['project_id'] . 'SITAC_TSA'.$model['id'].'_'.$model['vendor_id'] . '.pdf']);
