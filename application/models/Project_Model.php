@@ -9,7 +9,7 @@ class Project_Model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from($this->table);
-		$this->db->where('status = \'New\' AND deleted_at IS NULL');
+		//$this->db->where('status = \'New\' AND deleted_at IS NULL');
         return $this->db->get();
     }
 
