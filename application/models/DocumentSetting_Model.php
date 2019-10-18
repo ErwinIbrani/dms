@@ -23,6 +23,7 @@ class DocumentSetting_Model extends CI_Model
         $this->db->select('document_setting.id,
                            document_setting.document_name, 
                            document_setting.document_type,
+                           document_setting.step,
                            groups.name as group_name,
                            groups.id as group_id');
         $this->db->from($this->table);

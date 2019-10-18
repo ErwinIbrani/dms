@@ -66,7 +66,7 @@
                                     <td class="align-middle"> {{ date('d-M-Y', strtotime($candidate->created_at)) }} </td>
                                     <td class="align-middle"> {{ $candidate->status }} </td>
                                     <td class="align-middle text-center">
-                                          <a href="<?= site_url("regional-project-manager/tsa/view/".$candidate->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-eye" title="Preview"></i> <span class="sr-only">View</span></a>
+                                          <a href="<?= site_url("approval/tsa/view/".$candidate->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-eye" title="Preview"></i> <span class="sr-only">View</span></a>
                                     </td>
                                 </tr>
                             @endforeach

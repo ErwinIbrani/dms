@@ -220,12 +220,17 @@ CREATE TABLE [dbo].[document_approval_setting] (
 ===========
 Create Document Approval
 ==========
-CREATE TABLE [dbo].[document_approval] (
+CREATE TABLE [dbo].[document_approval_history] (
   [id] int IDENTITY(1,1) NOT NULL,
   [project_id] int NOT NULL,
   [document_id] int NOT NULL,
   [approved_id] int NOT NULL,
   [approved_at] datetime NULL,
-  [status_approval] text NOT NULL,
+  [status_approval] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [path] text NULL,
   [note] text NULL,
 );
+
+=====
+ALTER TABLE [dbo].document_setting ADD step int NULL;
+=====
