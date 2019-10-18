@@ -47,18 +47,15 @@ class Bap extends CI_Controller
 		);
 
 		$document_id = $this->CandidateDocument_Model->save($candidate_document);
-
-		$api_endpoint = "https://selectpdf.com/api2/convert/";
-		$key = 'd4ca505b-0ca6-4f33-a075-afce3e313e82';
 		$test_url = site_url('/vendor/candidate/document/bap/layout/'. $document_id);
 
+        $api_endpoint  = "https://selectpdf.com/api2/convert/";
+        $key           = 'd4ca505b-0ca6-4f33-a075-afce3e313e82';
 		$parameters = array ('key' => $key, 'url' => $test_url, 'web_page_width' => '816', 'page_numbers' => 'False');
 
 		$result = @file_get_contents("$api_endpoint?" . http_build_query($parameters));
-
 		if (!$result) {
 			echo "HTTP Response: " . $http_response_header[0] . "<br/>";
-
 			$error = error_get_last();
 			echo "Error Message: " . $error['message'];
 		}
