@@ -61,12 +61,12 @@ class Bap extends CI_Controller
 
 			$error = error_get_last();
 			echo "Error Message: " . $error['message'];
-			var_dump($error) or die;
 		}
 		else {
-			$local_file = './uploads/bap/BAP-'.time().'.pdf';
+			$filename = 'BAP-'.time().'.pdf';
+			$local_file = './uploads/bap/'.$filename;
 			file_put_contents($local_file, $result);
-			$this->CandidateDocument_Model->update($document_id, array('path' => $local_file));
+			$this->CandidateDocument_Model->update($document_id, array('path' => $filename));
 			return redirect('/vendor/candidate/document/bap/preview/' . $document_id);
 		}
 
@@ -80,9 +80,11 @@ class Bap extends CI_Controller
 		$candidate = $attribute->candidate[0];
 		$project = $this->Project_Model->findOne($candidate->project_id)->row();
 		$candidate_bap = $attribute->bap;
+		$path_document = '/uploads/bap/' . $document_candidate->path;
 		return view('vendor.candidate.document.preview', array(
 			'candidate' => $attribute->candidate[0],
-			'document' => $document_candidate
+			'document' => $document_candidate,
+			'path_document' => $path_document
 		));
 	}
 
