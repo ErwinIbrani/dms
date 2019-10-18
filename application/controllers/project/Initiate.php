@@ -78,43 +78,9 @@ class Initiate extends ProjectAdmin_Controller
             ];
         }
 
-        $this->Project_Model->save($this->input->post('project_id'), array('pic_project_id' => $this->input->post('pic_id')));
+        $this->Project_Model->update($this->input->post('project_id'), array('pic_project_id' => $this->input->post('pic_id')));
         $this->DocumentApprovalSetting_Model->saveMultiple($data);
         $this->session->set_flashdata('success', 'Data Inserted');
-        redirect("project/initiate/index", 'refresh');
-    }
-
-
-    public function edit($id)
-    {
-        $this->make_bread->add('Index', 'project/initiate/index', TRUE);
-        $this->make_bread->add('Update');
-        $breadcrumb   = $this->make_bread->output();
-        $model        = $this->DocumentApprovalSetting_Model->findOne($id)->row();
-        $projects   = $this->Project_Model->project()->result();
-        $users_pic  = $this->User_Model->UserIBS()->result();
-
-        $document_setting = $this->DocumentSetting_Model->documentsetting()->result();
-        return view('project.initiate.edit', [
-            'model'            => $model,
-            'breadcrumb'       => $breadcrumb,
-            'projects'         => $projects,
-            'users_pic'        => $users_pic,
-            'document_settings' => $document_setting]);
-    }
-
-    public function update()
-    {
-        $update = [
-            'project_id'          => $this->input->post('project_id'),
-            'pic_id'              => $this->input->post('pic_id'),
-            'document_setting_id' => $this->input->post('document_setting_id'),
-            'approval_id'         => $this->input->post('approval_id'),
-            'layer'               => $this->input->post('layer'),
-            'updated_at'          => date('Y-m-d H:i:s'),
-        ];
-        $this->DocumentApprovalSetting_Model->update($this->input->post('id'), $update);
-        $this->session->set_flashdata('success', 'Data Edited');
         redirect("project/initiate/index", 'refresh');
     }
 

@@ -222,6 +222,7 @@ Create Document Approval
 ==========
 CREATE TABLE [dbo].[document_approval] (
   [id] int IDENTITY(1,1) NOT NULL,
+  [project_id] int NOT NULL,
   [document_id] int NOT NULL,
   [approved_id] int NOT NULL,
   [approved_at] datetime NULL,
