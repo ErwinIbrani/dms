@@ -66,6 +66,7 @@ class Documentsetting extends CI_Controller
                 'document_name' => $this->input->post('document_name'),
                 'group_id'      => $this->input->post('group_id')[$i],
                 'document_type' => $this->input->post('document_type')[$i],
+                'step'          => $this->input->post('step')[$i],
                 'created_at'    => date('Y-m-d H:i:s'),
                 'updated_at'    => date('Y-m-d H:i:s'),
              ];
@@ -92,6 +93,7 @@ class Documentsetting extends CI_Controller
       $update = [
                 'group_id'        => $this->input->post('group_id'),
                 'document_type'   => $this->input->post('document_type'),
+                'step'            => $this->input->post('step'),
                 'updated_at'      => date('Y-m-d H:i:s')
        ];
        $this->DocumentSetting_Model->update($this->input->post('id'), $update);

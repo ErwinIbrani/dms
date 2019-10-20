@@ -2,7 +2,7 @@
 
 class DocumentApproval_Model extends CI_Model
 {
-    protected $table       = 'document_approval';
+    protected $table       = 'document_approval_history';
     protected $primaryKey  = 'id';
 
     public function save($data)

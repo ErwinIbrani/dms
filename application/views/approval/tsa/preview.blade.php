@@ -78,7 +78,7 @@
                         ?>
 						<div class="form-group">
 							<label for="lbl3"><span class="badge badge-secondary"><em>Select Type</em></span></label>
-							<select class="custom-select d-block w-100" id="state" required="">
+							<select class="custom-select d-block w-100" id="state" required>
 								<option value=""> Choose... </option>
 								<option value="Accept"> Accept </option>
 						    	<option value="Reject"> Reject </option>
@@ -87,7 +87,7 @@
 
 							<div class="form-group">
 								<label for="lbl3"><span class="badge badge-secondary"><em>Comments</em></span></label>
-								<textarea class="form-control" id="lbl3" rows="3"></textarea>
+								<textarea class="form-control" id="lbl3" rows="3" required></textarea>
 							</div>
 
 							<div class="form-actions">

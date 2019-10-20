@@ -52,20 +52,16 @@
                                                 <select  name="document_type" class="custom-select js-example-basic-single" required="">
                                                     <option value="" selected="selected">Document Type</option>
                                                     <?php
-                                                    if ($model->document_type == 'Submiter')
-                                                        echo "<option value='Submiter' selected> Submiter </option>";
-                                                    else echo "<option value='Submiter'> Submiter </option>";
-
-                                                    if ($model->document_type == 'Review')
-                                                        echo "<option value='Review' selected> Review </option>";
-                                                    else echo "<option value='Review'> Review </option>";
-
+                                                        
                                                     if ($model->document_type == 'Approval')
                                                         echo "<option value='Approval' selected> Approval </option>";
                                                     else echo "<option value='Approval'> Approval </option>";
 
                                                     ?>
                                                 </select>
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control" name="step" autocomplete="off" value="{{ $model->step }}" required=""/>
                                             </td>
                                         </tr>
                                     </table>

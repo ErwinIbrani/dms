@@ -69,10 +69,11 @@
                                     <td>
                                         <select  name="document_type[]" class="custom-select js-example-basic-single" required="">
                                             <option value="" selected="selected">Document Type</option>
-                                            <option value="Submiter">Submiter</option>
-                                            <option value="Review">Review</option>
                                             <option value="Approval">Approval</option>
                                         </select>
+                                    </td>
+                                    <td>
+                                        <input type="number" class="form-control" name="step[]" autocomplete="off" placeholder="Step" required=""/>
                                     </td>
                                     <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                                 </tr>
@@ -110,10 +111,9 @@
                     '</select></td>' +
                     '<td><select  name="document_type[]" class="custom-select" required="">\n' +
                     '    <option value="" selected="selected">Document Type</option>\n' +
-                    '    <option value="Submiter">Submiter</option>\n' +
-                    '    <option value="Review">Review</option>\n' +
                     '    <option value="Approval">Approval</option>\n' +
                     '    </select></td>' +
+                    '<td><input type="number" class="form-control" name="step[]" autocomplete="off" placeholder="Step" required=""/></td>' +
                     '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
             });
 
