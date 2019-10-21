@@ -37,13 +37,13 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="{{ site_url('/project/rfc/imb/'.$project->id) }}" class="nav-link">
-									RFC
+								<a href="{{ site_url('/project/apd/addlist/'.$project->id) }}" class="nav-link">
+									APD
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="{{ site_url('/project/apd/addlist/'.$project->id) }}" class="nav-link">
-									APD
+								<a href="{{ site_url('/project/rfc/imb/'.$project->id) }}" class="nav-link">
+									RFC
 								</a>
 							</li>
 						</ul>
