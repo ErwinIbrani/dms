@@ -52,11 +52,10 @@
 									<tr>
 										<th> WBS ID </th>
 										<th> IRO Number </th>
-										<th>Assigment Type</th>
 										<th>Site ID</th>
 										<th>Site Name</th>
 										<th>Status</th>
-										<th style="width:100px; min-width:100px;"> &nbsp; </th>
+										<th style="width:200px; min-width:100px;"> &nbsp; </th>
 									</tr>
 									</thead>
 									<tbody>
@@ -69,8 +68,11 @@
 											<td>{{ $project->status }}</td>
 
 											<td class="text-right">
+												<a  href="{{ site_url("project/comsitac/create/".$project->id) }}" class="btn btn-subtle-primary">Upload COM SITAC</a>
 												<div class="list-group-item-figure">
-													<a href="{{ site_url('/project/project/detail/' . $project->id) }}" class="btn btn-sm btn-icon btn-secondary stop-propagation"><i class="fas fa-ellipsis-h"></i></a>
+
+
+{{--													<a href="{{ site_url('/project/project/detail/' . $project->id) }}" class="btn btn-sm btn-icon btn-secondary stop-propagation"><i class="fas fa-ellipsis-h"></i></a>--}}
 												</div>
 											</td>
 										</tr>

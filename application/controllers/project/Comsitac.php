@@ -45,14 +45,15 @@ class Comsitac extends CI_Controller
         ]);
     }
 
-    public function create($project_id, $vendor_id)
+    //public function create($project_id, $vendor_id)
+    public function create($project_id)
     {
         $this->make_bread->add('Index', 'project/comsitac/index', TRUE);
         $this->make_bread->add('Create');
         $breadcrumb = $this->make_bread->output();
         return view('project/com-sitac/create', [
             'breadcrumb'   => $breadcrumb,
-            'vendor_id'    => $vendor_id,
+            //'vendor_id'    => $vendor_id,
             'project_id'   => $project_id,
         ]);
     }
@@ -84,7 +85,7 @@ class Comsitac extends CI_Controller
                 ];
                $this->ComSitac_Model->save($data);
                $this->session->set_flashdata('success', 'COM SITAC Uploaded');
-               redirect("project/comsitac/index", 'refresh');
+               redirect("/project/project/onprocess", 'refresh');
          }
     }
 
