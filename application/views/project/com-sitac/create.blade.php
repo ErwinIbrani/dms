@@ -25,7 +25,7 @@
 
                     <div class="row">
                         <input type="hidden" name="project_id" value="<?= $project_id ?>">
-                        <input type="hidden" name="vendor_id" value="<?= $vendor_id ?>">
+                        <!-- <input type="hidden" name="vendor_id" value="<?php //$vendor_id ?>"/> -->
 
                         <div class="col-lg-12">
                            <div class="form-group">

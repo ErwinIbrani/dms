@@ -14,7 +14,7 @@ class Rfc extends CI_Controller
 		$project = $project = $this->findProject($project_id);
 		$documents = $this->Imb_Model->getByWbsId($project->wbs_id)->result();
 
-		return view('vendor.rfc.imb', array(
+		return view('project.rfc.imb', array(
 			'documents' => $documents,
 			'project' => $project
 		));
@@ -25,7 +25,7 @@ class Rfc extends CI_Controller
 		$project = $project = $this->findProject($project_id);
 		$documents = $this->Legal_Model->getByWbsId($project->wbs_id)->result();
 
-		return view('vendor.rfc.legal', array(
+		return view('project.rfc.legal', array(
 			'documents' => $documents,
 			'project' => $project
 		));

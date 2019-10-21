@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page_title', 'RFC Legal')
+@section('page_title', 'RFC - IMB')
 
 @section('content')
 	<div class="page-inner">
@@ -15,7 +15,7 @@
 
 			<!-- title and toolbar -->
 			<div class="d-md-flex align-items-md-start">
-				<h1 class="page-title mr-sm-auto"> RFC </h1><!-- .btn-toolbar -->
+				<h1 class="page-title mr-sm-auto"> RFC: {{ $project->wbs_id }} </h1><!-- .btn-toolbar -->
 			</div><!-- /title and toolbar -->
 		</header>
 
@@ -37,13 +37,13 @@
 
 					<ul class="nav nav-tabs flex-column border-0">
 						<li class="nav-item">
-							<a class="nav-link"
-							   href="{{ site_url('/vendor/rfc/imb/'.$project->id) }}">
+							<a class="nav-link active"
+							   href="{{ site_url('/project/rfc/imb/'.$project->id) }}">
 								IMB</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link active"
-							   href="{{ site_url('/vendor/rfc/legal/'.$project->id) }}">
+							<a class="nav-link "
+							   href="{{ site_url('/project/rfc/legal/'.$project->id) }}">
 								Legal</a>
 						</li>
 					</ul>
@@ -52,8 +52,9 @@
 			<div class="col-md-8">
 				<div class="card card-fluid">
 					<div class="card-header">
-						Document Legal
+						Document IMB
 					</div>
+
 					<div class="card-body">
 						@if(count($documents) !== 0)
 							<p>This documents bellow is IMS Document for project with WBS ID {{$project->wbs_id}}</p>
@@ -76,7 +77,7 @@
 						@endforeach
 						@if(count($documents) === 0)
 							<p class="text-center text-muted mt-5">No document found, or document not uploaded yet.</p>
-							<p class="text-center text-muted mb-5"><small>Please complete document at Legal App.</small></p>
+							<p class="text-center text-muted mb-5"><small>Please complete document at SITAC2 App.</small></p>
 						@endif
 					</div>
 				</div>

@@ -32,6 +32,16 @@
 								</a>
 							</li>
 							<li class="nav-item">
+								<a href="{{ site_url('/project/tsa/create/'. $project->candidate_selected) }}" class="nav-link">
+									TSA
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{ site_url('/project/rfc/imb/'.$project->id) }}" class="nav-link">
+									RFC
+								</a>
+							</li>
+							<li class="nav-item">
 								<a href="{{ site_url('/project/apd/addlist/'.$project->id) }}" class="nav-link">
 									APD
 								</a>
@@ -49,20 +59,32 @@
 										<th>Long/Lat</th>
 										<th>Address</th>
 										<th>Owner Name</th>
-										<th style="width:100px; min-width:100px;"> &nbsp; </th>
+										<th style="width:100px; min-width:100px;"> &nbsp;</th>
 									</tr>
 									</thead>
 									<tbody>
 									@foreach($candidates as $candidate)
 										<tr>
-											<td>{{ $candidate->name }}</td>
+											<td>{{ $candidate->name }}
+												@if($project->candidate_selected === $candidate->id)
+													<span class="badge badge-warning mr-2">Candidate Selected</span>
+												@endif</td>
 											<td>{{ $candidate->long . '/' . $candidate->lat }}</td>
 											<td>{{ $candidate->address }}</td>
 											<td>{{ $candidate->owner_name }}</td>
 											<td class="text-right">
 												<div class="list-group-item-figure">
-													<a href="{{site_url('/vendor/candidate/document/survey/choose/'.$candidate->id)}}" class="btn btn-sm btn-icon btn-secondary mr-2"><i class="fa fa-check" title="Choose Candidate" onclick="javascript:return confirm('Choose This Candidate ?');"></i> <span class="sr-only">Choose</span></a>
-													<a href="{{ site_url('/vendor/candidate/detail/index/' . $candidate->id ) }}" title="View details" class="btn btn-sm btn-icon btn-secondary stop-propagation"><i class="fas fa-ellipsis-h"></i></a>
+													@if(is_null($project->candidate_selected))
+														<a href="{{site_url('/project/candidate/select/'. $project->id .'/'.$candidate->id)}}"
+														   class="btn btn-sm btn-icon btn-secondary mr-2"><i
+																class="fa fa-check" title="Choose Candidate"
+																onclick="confirm('Are you sure want to select this candidate ?');"></i>
+															<span class="sr-only">Select</span></a>
+													@endif
+													<a href="{{ site_url('/vendor/candidate/detail/index/' . $candidate->id ) }}"
+													   title="View details"
+													   class="btn btn-sm btn-icon btn-secondary stop-propagation"><i
+															class="fas fa-ellipsis-h"></i></a>
 												</div>
 											</td>
 										</tr>
@@ -86,7 +108,8 @@
 				<div class="card-body">
 					<h4 class="card-title"> Progress </h4>
 					<div class="progress progress-sm rounded-0 mb-1">
-						<div class="progress-bar bg-success w-25" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+						<div class="progress-bar bg-success w-25" role="progressbar" aria-valuenow="15"
+							 aria-valuemin="0" aria-valuemax="100"></div>
 					</div>
 					<p class="text-muted text-weight-bolder small"> 15% of 100% </p>
 				</div><!-- .card-body -->

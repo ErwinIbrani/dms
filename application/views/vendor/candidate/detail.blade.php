@@ -166,7 +166,7 @@
 							@endif
 
                             <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
-							<a href="{{ site_url('/vendor/candidate/document/bap/add/'.$candidate->id) }}" class="btn btn-danger">Upload IW Document</a>
+							<a href="{{ site_url('/vendor/candidate/document/iw/add/'.$candidate->id) }}" class="btn btn-danger">Upload IW Document</a>
                             <?php endif?>
 						</div>
 					</div>
