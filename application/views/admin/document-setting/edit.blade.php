@@ -52,7 +52,7 @@
                                                 <select  name="document_type" class="custom-select js-example-basic-single" required="">
                                                     <option value="" selected="selected">Document Type</option>
                                                     <?php
-                                                        
+
                                                     if ($model->document_type == 'Approval')
                                                         echo "<option value='Approval' selected> Approval </option>";
                                                     else echo "<option value='Approval'> Approval </option>";
