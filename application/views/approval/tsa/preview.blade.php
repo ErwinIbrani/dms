@@ -74,7 +74,7 @@
                         $data  = [
                             'name' => 'candidate-form'
                         ];
-                        echo form_open('project/tsa/store', $data);
+                        echo form_open('approval/tsa/store', $data);
                         ?>
 						<div class="form-group">
 							<label for="lbl3"><span class="badge badge-secondary"><em>Select Type</em></span></label>

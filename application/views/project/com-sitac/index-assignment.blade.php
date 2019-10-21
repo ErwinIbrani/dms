@@ -74,7 +74,6 @@
                                         else:
                                             echo 'Upload Done';
                                         endif;
-
                                         ?>
                                     </td>
                                     <td class="align-middle text-center">

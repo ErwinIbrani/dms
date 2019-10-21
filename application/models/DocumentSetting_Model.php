@@ -86,4 +86,18 @@ class DocumentSetting_Model extends CI_Model
         return $this->db->get($this->table);
     }
 
+    public function getApproverTSA()
+    {
+        $this->db->select('document_setting.id,
+                           document_setting.document_name, 
+                           document_setting.document_type,
+                           groups.name as group_name,
+                           groups.id as group_id');
+        $this->db->from($this->table);
+        $this->db->join('groups','document_setting.group_id = groups.id','inner');
+        $this->db->where(['document_setting.document_name' => 'SITAC TSA']);
+        $this->db->order_by("document_setting.step", "asc");
+        return $this->db->get();
+    }
+
 }

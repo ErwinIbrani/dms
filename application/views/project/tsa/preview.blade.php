@@ -53,22 +53,36 @@
 				<div class="card card-reflow">
 					<div class="card-body"></div>
 					<div class="card-body border-top">
-						<h4 class="card-title"> History </h4>
+						<h4 class="card-title"> Uploaded </h4>
 						<ul class="timeline timeline-dashed-line">
 
 							<li class="timeline-item">
-
 								<div class="timeline-figure">
 									<span class="tile tile-circle tile-xs bg-success"><i class="fa fa-check"></i></span>
 								</div>
-
 								<div class="timeline-body">
 									<h6 class="timeline-heading"> Document Created </h6>
 									<span class="timeline-date">{{ date('d/m/Y H:m:s', strtotime($document->created_at)) }}</span>
 								</div>
-
 							</li>
 						</ul>
+
+					<h4 class="card-title"> Approvals </h4>
+						<ul class="timeline timeline-dashed-line">
+						@foreach($tsa_models as $ApproverTSA)
+							<li class="timeline-item">
+								<div class="timeline-figure">
+									<span class="tile tile-circle tile-xs bg-success"><i class="fa fa-circle"></i></span>
+								</div>
+								<div class="timeline-body">
+									<h6 class="timeline-heading"> {{ $ApproverTSA['group_name'] }} </h6>
+
+								</div>
+							</li>
+						@endforeach
+						</ul>
+
+
 					</div>
 				</div>
 			</div>

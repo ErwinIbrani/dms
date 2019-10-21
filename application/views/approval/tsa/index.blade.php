@@ -13,7 +13,7 @@
 
                     <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
-                            <a href="<?= site_url("project/tsa/index"); ?>" class="nav-link show active">
+                            <a href="<?= site_url("approval/tsa/index"); ?>" class="nav-link show active">
                                 TOWER SITE APPROVAL : NEW BUILD
                             </a>
                         </li>
@@ -21,7 +21,7 @@
                 </div><!-- /.card-header -->
                 <!-- .card-body -->
                 <div class="card-body">
-                    <form method='post' action="<?= base_url() ?>project/tsa/index">
+                    <form method='post' action="<?= base_url() ?>approval/tsa/index">
                         <div class="input-group input-group-alt">
                             <!-- .input-group -->
                             <div class="input-group has-clearable">
