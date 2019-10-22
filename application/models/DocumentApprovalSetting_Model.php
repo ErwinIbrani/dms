@@ -5,14 +5,6 @@ class DocumentApprovalSetting_Model extends CI_Model
     protected $table       = 'document_approval_setting';
     protected $primaryKey  = 'id';
 
-    public function documentsetting()
-    {
-        $this->db->select('*');
-        $this->db->from($this->table);
-        $this->db->where('document_setting.deleted_at IS NULL', null, false);
-        return $this->db->get();
-    }
-
     public function getData($rowno,$rowperpage,$search="")
     {
         $this->db->select('*');
@@ -58,7 +50,6 @@ class DocumentApprovalSetting_Model extends CI_Model
         $result = $query->result_array();
         return $result[0]['allcount'];
     }
-
 
     public function findOne($id)
     {

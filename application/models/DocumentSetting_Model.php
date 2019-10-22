@@ -23,7 +23,6 @@ class DocumentSetting_Model extends CI_Model
         $this->db->select('document_setting.id,
                            document_setting.document_name, 
                            document_setting.document_type,
-                           document_setting.step,
                            groups.name as group_name,
                            groups.id as group_id');
         $this->db->from($this->table);
@@ -96,7 +95,6 @@ class DocumentSetting_Model extends CI_Model
         $this->db->from($this->table);
         $this->db->join('groups','document_setting.group_id = groups.id','inner');
         $this->db->where(['document_setting.document_name' => 'SITAC TSA']);
-        $this->db->order_by("document_setting.step", "asc");
         return $this->db->get();
     }
 
