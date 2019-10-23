@@ -30,20 +30,9 @@
                                 <label for="tf1">Document Name</label>
                                 <select class="form-control" name="document_name" required>
                                     <option value="" selected="selected">.:Choose:.</option>
-                                    <option value="KOM SITAC">KOM SITAC</option>
-                                    <option value="SITAC SURVEY">SITAC SURVEY</option>
-                                    <option value="SITAC BAP">SITAC BAP</option>
                                     <option value="SITAC TSA">SITAC TSA</option>
-                                    <option value="SITAC BAK">SITAC BAK</option>
-                                    <option value="SITAC IW">SITAC IW</option>
-                                    <option value="SITAC IW">SITAC LAST CHECKLIST</option>
-                                    <option value="PKS">PKS</option>
-                                    <option value="KOM CME">KOM CME</option>
                                     <option value="FOUNDATION and ERECTION">FOUNDATION and ERECTION</option>
-                                    <option value="ME">ME</option>
-                                    <option value="PLN">PLN</option>
                                     <option value="FENCE">FENCE</option>
-                                    <option value="CME IMPLEMENTATION">CME IMPLEMENTATION</option>
                                     <option value="RFI">RFI</option>
                                     <option value="PAT">PAT</option>
                                     <option value="ADD REDUCE">ADD REDUCE</option>
@@ -68,12 +57,15 @@
                                     </td>
                                     <td>
                                         <select  name="document_type[]" class="custom-select js-example-basic-single" required="">
-                                            <option value="" selected="selected">Document Type</option>
-                                            <option value="Approval">Approval</option>
+                                            <option value="" selected="selected">Type</option>
+                                            <option value="Prepared">Prepared</option>
+                                            <option value="Acknowledge">Acknowledge</option>
+                                            <option value="Acknowledge">Approved</option>
+                                            <option value="Reviewed & Supervised">Reviewed & Supervised</option>
+                                            <option value="Handed Over">Handed Over</option>
+                                            <option value="Checked">Checked</option>
+                                            <option value="Review">Review</option>
                                         </select>
-                                    </td>
-                                    <td>
-                                        <input type="number" class="form-control" name="step[]" autocomplete="off" placeholder="Step" required=""/>
                                     </td>
                                     <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                                 </tr>
@@ -110,10 +102,15 @@
                     @endforeach
                     '</select></td>' +
                     '<td><select  name="document_type[]" class="custom-select" required="">\n' +
-                    '    <option value="" selected="selected">Document Type</option>\n' +
-                    '    <option value="Approval">Approval</option>\n' +
+                    '    <option value="" selected="selected">Type</option>\n' +
+                    '    <option value="Prepared">Prepared</option>\n' +
+                    '    <option value="Acknowledge">Acknowledge</option>\n' +
+                    '    <option value="Approved">Approved</option>\n' +
+                    '    <option value="Reviewed & Supervised">Reviewed & Supervised</option>\n' +
+                    '    <option value="Handed Over">Handed Over</option>\n' +
+                    '    <option value="Checked">Checked</option>\n' +
+                    '    <option value="Review">Review</option>\n' +
                     '    </select></td>' +
-                    '<td><input type="number" class="form-control" name="step[]" autocomplete="off" placeholder="Step" required=""/></td>' +
                     '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
             });
 

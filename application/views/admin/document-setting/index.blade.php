@@ -49,8 +49,7 @@
                         <th> No </th>
                         <th> Document Name</th>
                         <th> Document Role </th>
-                        <th> Document Type </th>
-                        <th> Step </th>
+                        <th> Type </th>
                         <th style="width:100px; min-width:100px;"> &nbsp; </th>
                     </tr>
                     </thead>
@@ -64,7 +63,6 @@
                             <td class="align-middle"> {{ $document->document_name }} </td>
                             <td class="align-middle"> {{ $document->group_name }} </td>
                             <td class="align-middle"> {{ $document->document_type }} </td>
-                            <td class="align-middle"> {{ $document->step }} </td>
                             <td class="align-middle text-right">
                                 <a href="<?= site_url("admin/documentsetting/edit/".$document->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a>
                                 <a href="<?= site_url("admin/documentsetting/destroy/".$document->id.""); ?>" class="btn btn-sm btn-icon btn-secondary" onClick="javascript:return confirm('Delete this row ?');"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></a>
