@@ -59,12 +59,14 @@ class Tsa extends CI_Controller
         $document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
         $attribute          = json_decode($document_candidate->attribute);
         $project            = $this->Project_Model->findOne($document_candidate->project_id)->row();
+        $docuemntStatus     = $this->DocumentApprovalSetting_Model->findApprovalTSA($document_candidate->project_id, $this->ion_auth->user()->row()->id)->row();
 
         return view('approval/tsa/preview', array(
-            'candidate'     => $attribute,
-            'document'      => $document_candidate,
-            'project'       => $project,
-            'status'        => $status
+            'candidate'      => $attribute,
+            'document'       => $document_candidate,
+            'project'        => $project,
+            'status'         => $status,
+            'docuemntStatus' => $docuemntStatus
 
         ));
     }

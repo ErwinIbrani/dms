@@ -59,7 +59,8 @@
                                         @php
                                             $ci =& get_instance();
                                             $ci->load->Model('User_Model');
-                                            $user =  $ci->User_Model->findOne($candidate->user_id)->row();
+                                            $note =  $ci->DocumentApprovalHistory_Model->getLastApprove($candidate->document_candidate_id)->row();
+                                            $user =  $ci->User_Model->findOne($note->approved_id)->row();
                                         @endphp
                                         {{ $user->email }}
                                     </td>

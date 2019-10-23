@@ -14,7 +14,7 @@ class DocumentSetting_Model extends CI_Model
                            groups.id as group_id');
         $this->db->from($this->table);
         $this->db->join('groups','document_setting.group_id = groups.id','inner'); //inner //Right
-        $this->db->where('document_setting.deleted_at IS NULL', null, false);
+      //  $this->db->where('document_setting.deleted_at IS NULL', null, false);
         return $this->db->get();
     }
 
@@ -27,7 +27,7 @@ class DocumentSetting_Model extends CI_Model
                            groups.id as group_id');
         $this->db->from($this->table);
         $this->db->join('groups','document_setting.group_id = groups.id','inner'); //inner //Right
-        $this->db->where('document_setting.deleted_at IS NULL', null, false);
+        //$this->db->where('document_setting.deleted_at IS NULL', null, false);
         if($search != ''){
             $this->db->like('document_setting.document_name', $search);
             $this->db->or_like('groups.name', $search);
@@ -42,7 +42,7 @@ class DocumentSetting_Model extends CI_Model
         $this->db->select('count(*) as allcount');
         $this->db->from($this->table);
         $this->db->join('groups','document_setting.group_id = groups.id','inner'); //inner //Right
-        $this->db->where('document_setting.deleted_at IS NULL', null, false);
+        //$this->db->where('document_setting.deleted_at IS NULL', null, false);
         if($search != ''){
             $this->db->like('document_setting.document_name', $search);
             $this->db->or_like('groups.name', $search);
