@@ -53,10 +53,6 @@ class Approval_Model extends CI_Model
         }
 
 
-        public function save($data)
-        {
-            $this->db->insert('document_approval_history', $data);
-        }
 
 
 

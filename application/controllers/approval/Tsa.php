@@ -11,13 +11,6 @@ class Tsa extends CI_Controller
         authentication($this->ion_auth->logged_in());
     }
 
-    public function test()
-    {
-        echo date('Y-m-d', strtotime('2019-10-22 10:41:39.000'));
-        echo '<br/>';
-        echo date('Y-m-d', strtotime('+1 day', strtotime('2019-10-22 10:41:39.000')));
-    }
-
     public function index($rowno=0)
     {
         $this->make_bread->add('Index');
@@ -55,13 +48,13 @@ class Tsa extends CI_Controller
 
     public function view($document_id)
     {
-        $status             = $this->DocumentApprovalHistory_Model->findStatus($document_id)->row();
+        $status             = $this->DocumentApprovalHistory_Model->getLastApprove($document_id)->row();
         $document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
         $attribute          = json_decode($document_candidate->attribute);
         $project            = $this->Project_Model->findOne($document_candidate->project_id)->row();
         $docuemntStatus     = $this->DocumentApprovalSetting_Model->findApprovalTSA($document_candidate->project_id, $this->ion_auth->user()->row()->id)->row();
 
-        return view('approval/tsa/preview', array(
+        return view('approval/tsa/view', array(
             'candidate'      => $attribute,
             'document'       => $document_candidate,
             'project'        => $project,

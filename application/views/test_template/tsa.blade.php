@@ -1,6 +1,5 @@
 <?php
-$api_endpoint  = "https://selectpdf.com/api2/convert/";
-$key           = 'df8c24f3-2fd0-4114-a60c-45e06eda3963';
+
 $contentText    = json_decode($model['attribute'], true);
 $other_condition = '';
 foreach($contentText['other_condition'] as $index => $key){
@@ -31,6 +30,7 @@ $jarak_dari_kandidat = '';
 foreach($contentText['jarak_dari_kandidat'] as $index => $key){
     $jarak_dari_kandidat  .= '<br/>'.$key;
 }
+
 
 $tower_existing = '';
 foreach($contentText['tower_existing'] as $index => $key){
@@ -80,9 +80,31 @@ foreach($contentText['cancelation_remarks'] as $index => $key){
     $cancelation_remarks  .= '<br/>'.$key;
 }
 
-$raw_html  ='<!DOCTYPE html>
+
+
+$approval_document = '';
+if(empty($approvals)):
+    $approval_document .= '<tr>
+                            <td class="tg-on52"><span style="font-weight:700"></span><br></td>
+                            <td class="tg-7j3r"></td>
+                            <td class="tg-on52"></td>
+                            <td class="tg-on52"></td>
+                          </tr>';
+else:
+    foreach ($approvals as $index => $approval):
+        $approval_document .= '<tr>
+                                    <td class="tg-on52"><span style="font-weight:700">'.$approval->document_type.'</span><br></td>
+                                    <td class="tg-7j3r">'.$approval->role_name.'</td>
+                                    <td class="tg-on52">'.$approval->email.'</td>
+                                    <td class="tg-on52">'.date('d-M-Y', strtotime($approval->approved_at)).'</td>
+                                  </tr>';
+    endforeach;
+endif;
+
+echo $raw_html  ='<!DOCTYPE html>
                             <html>
                             <head>
+                            <meta charset="UTF-8">
                             <title>Title of the document</title>
                             <style type="text/css">
                             .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}
@@ -137,9 +159,19 @@ $raw_html  ='<!DOCTYPE html>
                             .tg .tg-73oq{border-color:#000000;text-align:left;vertical-align:top}
                             @media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}}
                             </style>
+                            <style type="text/css">
+                            .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+                            .tg td{font-family:Arial, sans-serif;font-size:14px;padding:20px 20px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+                            .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:20px 20px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+                            .tg .tg-a255{background-color:#f9f9f9;color:#333333;border-color:#000000;text-align:left;vertical-align:top}
+                            .tg .tg-a5n9{font-weight:bold;font-size:16px;color:#333333;border-color:#000000;text-align:center;vertical-align:top}
+                            .tg .tg-tlzq{background-color:#f9f9f9;font-weight:bold;color:#333333;border-color:#000000;text-align:left;vertical-align:top}
+                            .tg .tg-on52{color:#333333;border-color:#000000;text-align:left;vertical-align:top}
+                            .tg .tg-7j3r{font-weight:bold;color:#333333;border-color:#000000;text-align:left;vertical-align:top}
+                            @media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;}}
+                            </style>
                             </head>
                             <body>
-
                             <div class="tg-wrap">
                             <table class="tg" width="100%">
                               <tr>
@@ -226,8 +258,10 @@ $raw_html  ='<!DOCTYPE html>
                               <tr>
                                 <td class="tg-i817">Tower Type</td>
                                 <td class="tg-i817">'.$contentText['tower_type'].'</td>
-                                <td class="tg-i817">Due Date Land Payment</td>
-                                <td class="tg-i817">25 hari setelah PKS Signed dan invoice/Doc diterima dengan lengkap dan benar (Untuk proses pembayaran pertama)</td>
+
+                                <td class="tg-i817"><b>Due Date Land Payment</b></td>
+                                <td class="tg-i817"><b>25 hari setelah PKS Signed dan invoice/Doc diterima dengan lengkap dan benar (Untuk proses pembayaran pertama)</b></td>
+
                               </tr>
                               <tr>
                                 <td class="tg-73oq">Tower/Pole Height</td>
@@ -329,41 +363,20 @@ $raw_html  ='<!DOCTYPE html>
                             </div>
                             <br/>
                             <div class="tg-wrap">
-                            <table class="tg" style="width: 100%;">
-                              <tr>
-                                <th class="tg-mqa1">Prepared By</th>
-                                <th class="tg-mqa1">Acknowledge By, </th>
-                                <th class="tg-mqa1" colspan="3">Approved By,</th>
-                              </tr>
-                              <tr>
-                                <td class="tg-i817">ttd</td>
-                                <td class="tg-i817">ttd<br></td>
-                                <td class="tg-i817">ttd<br></td>
-                                <td class="tg-i817">ttd<br></td>
-                                <td class="tg-i817">ttd<br></td>
-                              </tr>
-                              <tr>
-                                <td class="tg-mqa1">Regional Project Manager</td>
-                                <td class="tg-mqa1">Budget</td>
-                                <td class="tg-mqa1">Regional Head</td>
-                                <td class="tg-mqa1">CFO</td>
-                                <td class="tg-mqa1">CEO</td>
-                              </tr>
-                              <tr>
-                                <td class="tg-i817">Name :</td>
-                                <td class="tg-i817">Name :</td>
-                                <td class="tg-i817">Name :</td>
-                                <td class="tg-i817">Name :</td>
-                                <td class="tg-i817">Name :</td>
-                              </tr>
-                              <tr>
-                                <td class="tg-73oq">Date :</td>
-                                <td class="tg-73oq">Date :</td>
-                                <td class="tg-73oq">Date :</td>
-                                <td class="tg-73oq">Date :</td>
-                                <td class="tg-73oq">Date :</td>
-                              </tr>
-                            </table>
+                            <!--approval disini-->
+                            <table class="tg" width="100%">
+                                  <tr>
+                                    <th class="tg-a5n9" colspan="4">Approval</th>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-tlzq">Type</td>
+                                    <td class="tg-tlzq">Role</td>
+                                    <td class="tg-a255">Name</td>
+                                    <td class="tg-a255">Date</td>
+                                  </tr>
+                              '.$approval_document.'
+                              </table>
+                            <!--end-->
                             </div>
                             <br/>
                             <table width="100%">
@@ -376,29 +389,4 @@ $raw_html  ='<!DOCTYPE html>
                             </table>
                             </html>';
 
-$local_file = './uploads/tsa/' . $model['project_id'] . 'SITAC_TSA'.$model['id'].'_'.$model['vendor_id'] . '.pdf';
-$parameters = array('key' => $key, 'html' => $raw_html);
-$options    = array(
-    'http' => array(
-        'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-        'method' => 'POST',
-        'content' => http_build_query($parameters),
-    ),
-);
-$context = stream_context_create($options);
-$result = @file_get_contents($api_endpoint, false, $context);
-if (!$result) {
-    echo "HTTP Response: " . $http_response_header[0] . "<br/>";
-    $error = error_get_last();
-    echo "Error Message: " . $error['message'];
-} else {
-    file_put_contents($local_file, $result);
-    $CI =& get_instance();
-    $CI->load->model(['CandidateDocument_Model']);
-    $CI->CandidateDocument_Model->update($model['id'], [
-        'path' => $model['project_id'] . 'SITAC_TSA'.$model['id'].'_'.$model['vendor_id'] . '.pdf']);
-//echo "HTTP Response: " . $http_response_header[0] . "<br/>";
-//echo($result);}
-
-  }
  ?>

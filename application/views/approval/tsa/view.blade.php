@@ -69,8 +69,7 @@
 
 							</li>
 						</ul>
-
-						@if($docuemntStatus->layer == 1 && date('d/m/Y', strtotime($document->created_at)) == date('d/m/Y'))
+						@if($docuemntStatus->layer == 1 && date('d/m/Y', strtotime($document->created_at)) == date('d/m/Y') && $status->status_approval == 'Submit')
                         <?php
                         $data  = [
                             'name' => 'candidate-form'
@@ -98,7 +97,7 @@
 							</div>
                         <?php echo form_close();?>
 
-					     @elseif($docuemntStatus->layer == 2 && date('d/m/Y', strtotime('+1 day', strtotime($document->created_at))) == date('d/m/Y'))
+					     @elseif($docuemntStatus->layer == 2 && date('d/m/Y', strtotime('+1 day', strtotime($document->created_at))) == date('d/m/Y') && $status->status_approval == 'Submit')
                             <?php
                             $data  = [
                                 'name' => 'candidate-form'
@@ -126,8 +125,61 @@
 							</div>
                             <?php echo form_close();?>
 
-                         @endif
+						@elseif($docuemntStatus->layer == 3 && date('d/m/Y', strtotime('+2 day', strtotime($document->created_at))) == date('d/m/Y') && $status->status_approval == 'Submit')
+                            <?php
+                            $data  = [
+                                'name' => 'candidate-form'
+                            ];
+                            echo form_open('approval/approval/store', $data);
+                            ?>
+							<input type="hidden" value="{{ $status->project_id }}" name="project_id">
+							<input type="hidden" value="{{ $status->document_id }}" name="document_id">
+							<div class="form-group">
+								<label for="lbl3"><span class="badge badge-secondary"><em>Select Type</em></span></label>
+								<select class="custom-select d-block w-100" id="state" name="status_approval" required>
+									<option value=""> Choose... </option>
+									<option value="Accept"> Accept </option>
+									<option value="Reject"> Reject </option>
+								</select>
+							</div>
 
+							<div class="form-group">
+								<label for="lbl3"><span class="badge badge-secondary"><em>Comments</em></span></label>
+								<textarea class="form-control" id="lbl3" rows="3" name="note" required></textarea>
+							</div>
+
+							<div class="form-actions">
+								<button class="btn btn-primary" type="submit">Submit</button>
+							</div>
+                            <?php echo form_close();?>
+
+						  @elseif($status->status_approval == 'Accept')
+							<div class="list-group list-group-bordered list-group-reflow">
+								<div class="list-group-item justify-content-between align-items-center">
+									<span><i class="fas fa-square text-indigo mr-2"></i> Accepted By</span> <span class="text-muted">
+										@php
+										  $ci =& get_instance();
+                                          $ci->load->Model('User_Model');
+                                          $user =  $ci->User_Model->findOne($status->approved_id)->row();
+										@endphp
+										{{ $user->email }}
+									</span>
+								</div>
+							</div>
+						 @elseif($status->status_approval == 'Reject')
+							<div class="list-group list-group-bordered list-group-reflow">
+								<div class="list-group-item justify-content-between align-items-center">
+									<span><i class="fas fa-square text-pink mr-2"></i> Rejected By</span> <span class="text-muted">
+										@php
+											$ci =& get_instance();
+                                            $ci->load->Model('User_Model');
+                                            $user =  $ci->User_Model->findOne($status->approved_id)->row();
+										@endphp
+										{{ $user->email }}
+									</span>
+								</div>
+							</div>
+                         @endif
 					</div>
 				</div>
 			</div>
