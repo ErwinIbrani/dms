@@ -7,7 +7,7 @@ class Tsa extends CI_Controller
         parent::__construct();
         $this->load->helper(['generatepdf', 'custom']);
         $this->lang->load('auth');
-        $this->load->model(['DocumentSetting_Model', 'DocumentApproval_Model', 'Candidate_Model','Tsa_Model','CandidateDocument_Model','Project_Model', 'User_Model', 'UserVendor_Model', 'Vendor_Model']);
+        $this->load->model(['DocumentApprovalHistory_Model', 'DocumentSetting_Model', 'DocumentApproval_Model', 'Candidate_Model','Tsa_Model','CandidateDocument_Model','Project_Model', 'User_Model', 'UserVendor_Model', 'Vendor_Model']);
         authentication($this->ion_auth->logged_in());
     }
 
@@ -176,8 +176,10 @@ class Tsa extends CI_Controller
                                                    'approved_id'    => $this->ion_auth->user()->row()->id,
                                                    'approved_at'    => date("Y-m-d H:i:s"),
                                                    'status_approval'=> 'submit']);
-              $template = $this->CandidateDocument_Model->findOne($data)->row_array();
-              generateTsa($template);
+              $template     = $this->CandidateDocument_Model->findOne($data)->row_array();
+              $approvals    = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA')->result();
+              $modelHistory = $this->DocumentApprovalHistory_Model->save($data);
+              generateTsa($template, $approvals, $modelHistory);
               $this->session->set_flashdata('success', 'Data Uploded');
               redirect("/project/project/detail/".$data['project_id'], 'refresh');
           }
@@ -210,8 +212,9 @@ class Tsa extends CI_Controller
 
     public function testpdf()
     {
-        $model = $this->CandidateDocument_Model->findOne(2260)->row_array();
-        return view('test_template.tsa', ['model' => $model]);
+        $model     = $this->CandidateDocument_Model->findOne(2294)->row_array();
+        $approvals = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA')->result();
+        return view('test_template.tsa', ['model' => $model, 'approvals' => $approvals]);
     }
 
 
