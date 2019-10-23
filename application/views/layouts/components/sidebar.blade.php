@@ -163,29 +163,54 @@
                     <?php if($CI->ion_auth->in_group('Project')): ?>
 
 					<li class="menu-header">Project</li><!-- /.menu-header -->
+						<li class="menu-item has-child active has-open">
+							<a href="{{ site_url('/vendor/project/index') }}" class="menu-link"><span
+									class="menu-icon fas fa-clipboard-check"></span> <span
+									class="menu-text">Projects</span></a>
+							<ul class="menu">
+								<li class="menu-item">
+									<a href="{{ site_url('/project/project/new') }}" class="menu-link">
+
+										<span class="menu-text">New Project</span></a>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a href="{{ site_url("/project/project/onprocess") }}" class="menu-link">
+
+										<span class="menu-text">Running Project</span></a>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a href="{{ site_url("/project/project/done") }}" class="menu-link">
+
+										<span class="menu-text">Project Done</span></a>
+									</a>
+								</li>
+							</ul>
+						</li><!-- /.menu-item -->
 					<!-- .menu-item -->
-					<li class="menu-item">
-							<a href="{{ site_url('project/comsitac/index') }}" class="menu-link"><span
-										class="menu-icon fas fa-clipboard-check"></span> <span
-										class="menu-text">COM SITAC</span></a>
-					</li>
+{{--					<li class="menu-item">--}}
+{{--							<a href="{{ site_url('project/comsitac/index') }}" class="menu-link"><span--}}
+{{--										class="menu-icon fas fa-clipboard-check"></span> <span--}}
+{{--										class="menu-text">COM SITAC</span></a>--}}
+{{--					</li>--}}
 
-					<li class="menu-item">
-							<a href="{{ site_url('project/survey') }}" class="menu-link">
-								<span class="menu-icon fas fa-check-double"></span> <span
-								class="menu-text">Choose Candidate</span></a>
-					</li>
+{{--					<li class="menu-item">--}}
+{{--							<a href="{{ site_url('project/survey') }}" class="menu-link">--}}
+{{--								<span class="menu-icon fas fa-check-double"></span> <span--}}
+{{--								class="menu-text">Choose Candidate</span></a>--}}
+{{--					</li>--}}
 
-					<li class="menu-item">
-						<a href="{{ site_url('project/tsa/candidate') }}" class="menu-link"><span
-								class="menu-icon oi oi-bar-chart"></span> <span
-								class="menu-text">Shortlisted Candidates</span></a>
-					</li>
-					<li class="menu-item">
-						<a href="{{ site_url('project/tsa/index') }}" class="menu-link"><span
-								class="menu-icon oi oi-list-rich"></span> <span
-								class="menu-text">TSA Document</span></a>
-					</li>
+{{--					<li class="menu-item">--}}
+{{--						<a href="{{ site_url('project/tsa/candidate') }}" class="menu-link"><span--}}
+{{--								class="menu-icon oi oi-bar-chart"></span> <span--}}
+{{--								class="menu-text">Shortlisted Candidates</span></a>--}}
+{{--					</li>--}}
+{{--					<li class="menu-item">--}}
+{{--						<a href="{{ site_url('project/tsa/index') }}" class="menu-link"><span--}}
+{{--								class="menu-icon oi oi-list-rich"></span> <span--}}
+{{--								class="menu-text">TSA Document</span></a>--}}
+{{--					</li>--}}
                     <?php endif?>
 
                  <?php if($CI->ion_auth->in_group('Regional Project Manager')): ?>
