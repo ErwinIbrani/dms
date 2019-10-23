@@ -7,7 +7,7 @@ class Tsa extends CI_Controller
         parent::__construct();
         $this->load->helper(['generatepdf', 'custom']);
         $this->lang->load('auth');
-        $this->load->model(['DocumentApproval_Model', 'Candidate_Model','Tsa_Model','CandidateDocument_Model','Project_Model', 'User_Model', 'UserVendor_Model', 'Vendor_Model']);
+        $this->load->model(['DocumentSetting_Model', 'DocumentApproval_Model', 'Candidate_Model','Tsa_Model','CandidateDocument_Model','Project_Model', 'User_Model', 'UserVendor_Model', 'Vendor_Model']);
         authentication($this->ion_auth->logged_in());
     }
 
@@ -186,13 +186,14 @@ class Tsa extends CI_Controller
     public function view($document_id)
     {
         $document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
-        $attribute = json_decode($document_candidate->attribute);
-        $project = $this->Project_Model->findOne($document_candidate->project_id)->row();
-
+        $attribute          = json_decode($document_candidate->attribute);
+        $project            = $this->Project_Model->findOne($document_candidate->project_id)->row();
+        $ApproverTSA        = $this->DocumentSetting_Model->getApproverTSA()->result_array();
         return view('project/tsa/preview', array(
-            'candidate' => $attribute,
-            'document'  => $document_candidate,
-            'project'   => $project
+            'candidate'     => $attribute,
+            'document'      => $document_candidate,
+            'project'       => $project,
+            'tsa_models'   => $ApproverTSA
         ));
     }
 

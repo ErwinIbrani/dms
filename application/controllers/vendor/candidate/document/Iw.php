@@ -26,7 +26,7 @@ class Iw extends CI_Controller
 	{
 		$config = [];
 		$config['upload_path'] = './uploads/iw/';
-		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp|pdf';
 		$config['max_size'] = '2000';
 		$config['encrypt_name'] = TRUE;
 
@@ -36,6 +36,7 @@ class Iw extends CI_Controller
 //		&& !$this->upload->do_upload('denah_layout_izin_warga') && !$this->upload->do_upload('foto_copy_ktp_warga') && !$this->upload->do_upload('rekomendasi_desa') && !$this->upload->do_upload('rekomendasi_kecamatan')
 		if (!$this->upload->do_upload('surat_persetujuan_lingkungan')) {
 			$error = array('error' => $this->upload->display_errors());
+			$this->session->set_flashdata('error', $error['error']);
 			redirect("vendor/candidate/document/iw/add/" . $candidate_id, 'refresh');
 		} else {
 			$data = $this->upload->data();
@@ -47,7 +48,7 @@ class Iw extends CI_Controller
 				'vendor_id' => $candidate->vendor_id,
 				'name' => 'Surat Persetujuan Lingkungan',
 				'code' => 'FM-STP-018',
-				'type' => 'SITAC',
+				'type' => 'IW',
 				'path' => $file_name,
 				'status' => 'submitted',
 				'created_at' => date('Y-m-d H:i:s')
@@ -76,7 +77,7 @@ class Iw extends CI_Controller
 	{
 		$config = [];
 		$config['upload_path'] = './uploads/iw/';
-		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp|pdf';
 		$config['max_size'] = '2000';
 		$config['encrypt_name'] = TRUE;
 
@@ -85,6 +86,7 @@ class Iw extends CI_Controller
 
 		if (!$this->upload->do_upload('denah_layout_izin_warga')) {
 			$error = array('error' => $this->upload->display_errors());
+			$this->session->set_flashdata('error', $error['error']);
 			redirect("vendor/candidate/document/iw/izinwarga/" . $candidate_id, 'refresh');
 		} else {
 			$data = $this->upload->data();
@@ -96,7 +98,7 @@ class Iw extends CI_Controller
 				'vendor_id' => $candidate->vendor_id,
 				'name' => 'Denah Layout Izin Warga',
 				'code' => 'FM-STP-018',
-				'type' => 'SITAC',
+				'type' => 'IW',
 				'path' => $file_name,
 				'status' => 'submitted',
 				'created_at' => date('Y-m-d H:i:s')
@@ -124,7 +126,7 @@ class Iw extends CI_Controller
 	{
 		$config = [];
 		$config['upload_path'] = './uploads/iw/';
-		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp|pdf';
 		$config['max_size'] = '2000';
 		$config['encrypt_name'] = TRUE;
 
@@ -133,6 +135,7 @@ class Iw extends CI_Controller
 
 		if (!$this->upload->do_upload('foto_copy_ktp_warga')) {
 			$error = array('error' => $this->upload->display_errors());
+			$this->session->set_flashdata('error', $error['error']);
 			redirect("vendor/candidate/document/iw/copyktp/" . $candidate_id, 'refresh');
 		} else {
 			$data = $this->upload->data();
@@ -144,7 +147,7 @@ class Iw extends CI_Controller
 				'vendor_id' => $candidate->vendor_id,
 				'name' => 'Foto copy KTP Warga',
 				'code' => '',
-				'type' => 'SITAC',
+				'type' => 'IW',
 				'path' => $file_name,
 				'status' => 'submitted',
 				'created_at' => date('Y-m-d H:i:s')
@@ -172,7 +175,7 @@ class Iw extends CI_Controller
 	{
 		$config = [];
 		$config['upload_path'] = './uploads/iw/';
-		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp|pdf';
 		$config['max_size'] = '2000';
 		$config['encrypt_name'] = TRUE;
 
@@ -181,6 +184,7 @@ class Iw extends CI_Controller
 
 		if (!$this->upload->do_upload('rekomendasi_desa')) {
 			$error = array('error' => $this->upload->display_errors());
+			$this->session->set_flashdata('error', $error['error']);
 			redirect("vendor/candidate/document/iw/rekdesa/" . $candidate_id, 'refresh');
 		} else {
 			$data = $this->upload->data();
@@ -192,7 +196,7 @@ class Iw extends CI_Controller
 				'vendor_id' => $candidate->vendor_id,
 				'name' => 'Rekomendasi Desa',
 				'code' => '',
-				'type' => 'SITAC',
+				'type' => 'IW',
 				'path' => $file_name,
 				'status' => 'submitted',
 				'created_at' => date('Y-m-d H:i:s')
@@ -220,7 +224,7 @@ class Iw extends CI_Controller
 	{
 		$config = [];
 		$config['upload_path'] = './uploads/iw/';
-		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp|pdf';
 		$config['max_size'] = '2000';
 		$config['encrypt_name'] = TRUE;
 
@@ -229,6 +233,7 @@ class Iw extends CI_Controller
 
 		if (!$this->upload->do_upload('rekomendasi_kecamatan')) {
 			$error = array('error' => $this->upload->display_errors());
+			$this->session->set_flashdata('error', $error['error']);
 			redirect("vendor/candidate/document/iw/rekkecamatan/" . $candidate_id, 'refresh');
 		} else {
 			$data = $this->upload->data();
@@ -240,7 +245,7 @@ class Iw extends CI_Controller
 				'vendor_id' => $candidate->vendor_id,
 				'name' => 'Rekomendasi Kecamatan',
 				'code' => '',
-				'type' => 'SITAC',
+				'type' => 'IW',
 				'path' => $file_name,
 				'status' => 'submitted',
 				'created_at' => date('Y-m-d H:i:s')

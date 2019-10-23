@@ -13,7 +13,7 @@
 
                     <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
-                            <a href="<?= site_url("project/tsa/index"); ?>" class="nav-link show active">
+                            <a href="<?= site_url("approval/tsa/index"); ?>" class="nav-link show active">
                                 TOWER SITE APPROVAL : NEW BUILD
                             </a>
                         </li>
@@ -21,26 +21,10 @@
                 </div><!-- /.card-header -->
                 <!-- .card-body -->
                 <div class="card-body">
-                    <form method='post' action="<?= base_url() ?>project/tsa/index">
-                        <div class="input-group input-group-alt">
-                            <!-- .input-group -->
-                            <div class="input-group has-clearable">
-                                <button id="clear-search" type="button" class="close" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times-circle"></i></span></button>
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><span class="oi oi-magnifying-glass"></span></span>
-                                </div>
-                                <input type='text' name='search' value='<?= $search ?>' class='form-control' placeholder='Search Candidate Name' autocomplete="off">
-                            </div><!-- /.input-group -->
-                            <!-- .input-group-append -->
-                            <div class="input-group-append">
-                                <button class="btn btn-secondary" type='submit' name='submit' value='Cari'>Filter</button>
-                            </div><!-- /.input-group-append -->
-                        </div>
-                    </form>
                     <br/>
                     <!-- .table-responsive -->
                     <div class="table-responsive">
-                        <!-- .table -->
+
                         <table class="table">
                             <thead>
                             <tr>
@@ -48,8 +32,8 @@
                                 <th> Vendor Name </th>
                                 <th> WBS ID </th>
                                 <th> Candidate Name</th>
-                                <th> Create At</th>
-                                <th> Status</th>
+                                <th> Status Approval</th>
+                                <th> By</th>
                                 <th style="width:100px; min-width:100px;">  </th>
                             </tr>
                             </thead>
@@ -62,16 +46,32 @@
                                     <td class="align-middle"> {{ $i++ }} </td>
                                     <td class="align-middle"> {{ $candidate->vendor_name }} </td>
                                     <td class="align-middle"> {{ $candidate->wbs_id }} </td>
-                                    <td class="align-middle"> {{ $candidate->candidate_name }} </td>
-                                    <td class="align-middle"> {{ date('d-M-Y', strtotime($candidate->created_at)) }} </td>
-                                    <td class="align-middle"> {{ $candidate->status }} </td>
+                                    <td class="align-middle"> {{ $candidate->candidate_name }}</td>
+                                    <td class="align-middle">
+                                        @php
+                                        $ci =& get_instance();
+                                        $ci->load->Model('DocumentApprovalHistory_Model');
+                                        $note =  $ci->DocumentApprovalHistory_Model->getLastApprove($candidate->document_candidate_id)->row();
+                                        @endphp
+                                        {{ $note->status_approval }}
+                                    </td>
+                                    <td class="align-middle">
+                                        @php
+                                            $ci =& get_instance();
+                                            $ci->load->Model('User_Model');
+                                            $note =  $ci->DocumentApprovalHistory_Model->getLastApprove($candidate->document_candidate_id)->row();
+                                            $user =  $ci->User_Model->findOne($note->approved_id)->row();
+                                        @endphp
+                                        {{ $user->email }}
+                                    </td>
                                     <td class="align-middle text-center">
-                                          <a href="<?= site_url("approval/tsa/view/".$candidate->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-eye" title="Preview"></i> <span class="sr-only">View</span></a>
+                                          <a href="<?= site_url("approval/tsa/view/".$candidate->document_candidate_id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-eye" title="Preview"></i> <span class="sr-only">View</span></a>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
+
                         <div class="dataTables_paginate paging_simple_numbers" id="myTable_paginate">
                             <?= $pagination; ?>
                         </div>
