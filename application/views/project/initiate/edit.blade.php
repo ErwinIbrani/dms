@@ -115,22 +115,7 @@
                                                         if ($model->layer == 3)
                                                             echo "<option value='3' selected> 3 </option>";
                                                         else echo "<option value='3'> 3 </option>";
-
-                                                        if ($model->layer == 4)
-                                                            echo "<option value='4' selected> 4 </option>";
-                                                        else echo "<option value='4'> 4 </option>";
-
-                                                        if ($model->layer == 5)
-                                                            echo "<option value='5' selected> 5 </option>";
-                                                        else echo "<option value='5'> 5 </option>";
-
-                                                        if ($model->layer == 6)
-                                                            echo "<option value='6' selected> 6 </option>";
-                                                        else echo "<option value='6'> 6 </option>";
-
-
-
-                                                        ?>
+                                                       ?>
                                                     </select>
                                                 </div>
                                             </td>

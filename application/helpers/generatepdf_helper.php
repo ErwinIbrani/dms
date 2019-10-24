@@ -452,27 +452,28 @@ function generateSurvey($model)
             $cancelation_remarks  .= '<br/>'.$key;
         }
 
-        $approval_document = '';
+       $approval_document = '';
         if(empty($approvals)):
-            $approval_document .= '<tr>
+             $approval_document .= '<tr>
                             <td class="tg-on52"><span style="font-weight:700"></span><br></td>
                             <td class="tg-7j3r"></td>
                             <td class="tg-on52"></td>
                             <td class="tg-on52"></td>
                           </tr>';
         else:
-            foreach ($approvals as $index => $approval):
-                $approval_document .= '<tr>
-                                    <td class="tg-on52"><span style="font-weight:700">'.$approval->document_type.'</span><br></td>
-                                    <td class="tg-7j3r">'.$approval->role_name.'</td>
-                                    <td class="tg-on52">'.$approval->email.'</td>
-                                    <td class="tg-on52">'.date('d-M-Y', strtotime($approval->approved_at)).'</td>
-                                  </tr>';
+            foreach ($approvals as $approval):
+               $approval_document .= '<tr>
+                                        <td class="tg-on52"><span style="font-weight:700">'.$approval->document_type.'</span><br></td>
+                                        <td class="tg-7j3r">'.$approval->role_name.'</td>
+                                        <td class="tg-on52">'.$approval->email.'</td>
+                                        <td class="tg-on52">'.date('d-M-Y', strtotime($approval->approved_at)).'</td>
+                                      </tr>';
             endforeach;
         endif;
 
+
         $raw_html  = '<!DOCTYPE html>
-                            <html>
+                      <html>
                             <head>
                             <meta charset="UTF-8">
                             <title>Title of the document</title>

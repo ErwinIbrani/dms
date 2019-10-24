@@ -84,7 +84,7 @@ foreach($contentText['cancelation_remarks'] as $index => $key){
 
 $approval_document = '';
 if(empty($approvals)):
-    $approval_document .= '<tr>
+     $approval_document .= '<tr>
                             <td class="tg-on52"><span style="font-weight:700"></span><br></td>
                             <td class="tg-7j3r"></td>
                             <td class="tg-on52"></td>
@@ -92,7 +92,7 @@ if(empty($approvals)):
                           </tr>';
 else:
     foreach ($approvals as $index => $approval):
-        $approval_document .= '<tr>
+       $approval_document .= '<tr>
                                     <td class="tg-on52"><span style="font-weight:700">'.$approval->document_type.'</span><br></td>
                                     <td class="tg-7j3r">'.$approval->role_name.'</td>
                                     <td class="tg-on52">'.$approval->email.'</td>
@@ -101,8 +101,8 @@ else:
     endforeach;
 endif;
 
-echo $raw_html  ='<!DOCTYPE html>
-                            <html>
+$raw_html  ='<!DOCTYPE html>
+                  <html>
                             <head>
                             <meta charset="UTF-8">
                             <title>Title of the document</title>
@@ -389,4 +389,27 @@ echo $raw_html  ='<!DOCTYPE html>
                             </table>
                             </html>';
 
+$api_endpoint  = "https://selectpdf.com/api2/convert/";
+$key           = 'd4ca505b-0ca6-4f33-a075-afce3e313e82';
+$helper =& get_instance();
+$helper->load->helper('string');
+$file_name  =  $model['project_id'] . 'SITAC_TSA'.$model['id'].'_'.$model['vendor_id'].'_'.random_string('alnum', 16).'.pdf';
+$local_file = 'tes' .$file_name;
+$parameters = array('key' => $key, 'html' => $raw_html);
+$options    = array(
+    'http' => array(
+        'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method' => 'POST',
+        'content' => http_build_query($parameters),
+    ),
+);
+$context = stream_context_create($options);
+$result = @file_get_contents($api_endpoint, false, $context);
+if (!$result) {
+    echo "HTTP Response: " . $http_response_header[0] . "<br/>";
+    $error = error_get_last();
+    echo "Error Message: " . $error['message'];
+} else {
+    file_put_contents($local_file, $result);
+}
  ?>

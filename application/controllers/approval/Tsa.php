@@ -60,7 +60,6 @@ class Tsa extends CI_Controller
             'project'        => $project,
             'status'         => $status,
             'docuemntStatus' => $docuemntStatus
-
         ));
     }
 
