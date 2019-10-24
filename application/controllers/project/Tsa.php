@@ -211,7 +211,7 @@ class Tsa extends CI_Controller
 
     public function testpdf()
     {
-        $model     = $this->CandidateDocument_Model->findOne(2294)->row_array();
+        $model     = $this->CandidateDocument_Model->findOne(3282)->row_array();
         $approvals = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA')->result();
         return view('test_template.tsa', ['model' => $model, 'approvals' => $approvals]);
     }
