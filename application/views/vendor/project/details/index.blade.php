@@ -31,6 +31,11 @@
 									Candidates
 								</a>
 							</li>
+							<li class="nav-item">
+								<a href="{{ site_url('/vendor/comcme/letter/'.$project->id) }}" class="nav-link">
+									CME
+								</a>
+							</li>
 						</ul>
 					</div>
 					<div class="card-body">
