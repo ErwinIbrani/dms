@@ -1,6 +1,4 @@
 <?php
-$api_endpoint  = "https://selectpdf.com/api2/convert/";
-$key           = 'd4ca505b-0ca6-4f33-a075-afce3e313e82';
 $contentImage  = json_decode($model['attachment'], true);
 $contentText   = json_decode($model['attribute'], true);
 $raw_html      ='<!DOCTYPE html>
@@ -339,6 +337,8 @@ $raw_html      ='<!DOCTYPE html>
                         </body>
                         </html>';
 
+$api_endpoint  = "https://selectpdf.com/api2/convert/";
+$key           = 'd4ca505b-0ca6-4f33-a075-afce3e313e82';
 $local_file = 'document' . $model['project_id'] . 'SITAC_SURVEY'.$model['id'].'_'.$model['vendor_id'] . '.pdf';
 $parameters = array('key' => $key, 'html' => $raw_html);
 $options    = array(
