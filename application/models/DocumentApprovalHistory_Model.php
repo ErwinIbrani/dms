@@ -48,6 +48,16 @@ class DocumentApprovalHistory_Model extends CI_Model
         $this->db->update($this->table, $update);
     }
 
+    public function duplicate($document_id, $approved_id)
+    {
+        $this->db->select('document_approval_history.document_id,
+                           document_approval_history.approved_id');
+        $this->db->from($this->table);
+        $this->db->where(['document_approval_history.document_id' => $document_id]);
+        $this->db->where(['document_approval_history.approved_id' => $approved_id]);
+        return $this->db->get();
+    }
+
 
 
 

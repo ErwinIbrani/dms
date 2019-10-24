@@ -83,8 +83,8 @@ class DocumentApprovalSetting_Model extends CI_Model
                            document_setting.document_name,
                            document_setting.document_type,
                            document_approval_setting.layer,
-                           document_approval_setting.status,
-                           groups.name as group_name');
+                           groups.name as group_name,
+                           groups.id as group_id');
         $this->db->from($this->table);
         $this->db->join('project','document_approval_setting.project_id = project.id','inner');
         $this->db->join('users as pic','document_approval_setting.pic_id = pic.id','inner');
