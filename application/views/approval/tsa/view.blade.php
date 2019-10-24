@@ -43,7 +43,7 @@
 							<div class="invoice-footer"></div>
 						</div>
 						<div>
-							<embed src="{{base_url('uploads/tsa/'.$document->path.'')}}" type="application/pdf" width="800px" height="2100px" />
+							<embed src="{{base_url('uploads/tsa/'.$document->path.'')}}" type="application/pdf" width="100%" height="2100px" />
 						</div>
 					</div>
 				</div>
