@@ -138,7 +138,7 @@
                     $('#submit-button').html('Saving...');
 
                     $.ajax({
-						url: "{{ base_url('/procurement/assigntovendor/store') }}",
+						url: "{{ base_url('/procurement/assignToVendor/store') }}",
 						method: "POST",
 						data: $('#add-form').serialize(),
 						dataType: "json",
