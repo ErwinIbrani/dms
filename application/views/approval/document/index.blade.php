@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page_title', 'TOWER SITE APPROVAL')
+@section('page_title', 'Documents Approval')
 
 @section('content')
     <div class="page-inner">
@@ -13,8 +13,8 @@
 
                     <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
-                            <a href="<?= site_url("approval/tsa/index"); ?>" class="nav-link show active">
-                                TOWER SITE APPROVAL : NEW BUILD
+                            <a href="<?= site_url("approval/document/index"); ?>" class="nav-link show active">
+                               Documents Approval
                             </a>
                         </li>
                     </ul><!-- /.nav-tabs -->
@@ -29,6 +29,7 @@
                             <thead>
                             <tr>
                                 <th> No </th>
+                                <th> Document Name </th>
                                 <th> Vendor Name </th>
                                 <th> WBS ID </th>
                                 <th> Candidate Name</th>
@@ -44,6 +45,7 @@
                             @foreach($candidates as $key => $candidate)
                                 <tr>
                                     <td class="align-middle"> {{ $i++ }} </td>
+                                    <td class="align-middle"> {{ $candidate->document_name }}</td>
                                     <td class="align-middle"> {{ $candidate->vendor_name }} </td>
                                     <td class="align-middle"> {{ $candidate->wbs_id }} </td>
                                     <td class="align-middle"> {{ $candidate->candidate_name }}</td>
@@ -65,7 +67,7 @@
                                         {{ $user->email }}
                                     </td>
                                     <td class="align-middle text-center">
-                                          <a href="<?= site_url("approval/tsa/view/".$candidate->document_candidate_id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-eye" title="Preview"></i> <span class="sr-only">View</span></a>
+                                          <a href="<?= site_url("approval/document/view/".$candidate->document_candidate_id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-eye" title="Preview"></i> <span class="sr-only">View</span></a>
                                     </td>
                                 </tr>
                             @endforeach

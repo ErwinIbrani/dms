@@ -96,20 +96,18 @@
 						<ul class="menu">
 							<li class="menu-item">
 								<a href="{{ site_url('/vendor/project/index') }}" class="menu-link">
-
-									<span class="menu-text">New Project</span></a>
+									<span class="menu-text">New Project</span>
 								</a>
 							</li>
 							<li class="menu-item">
 								<a href="{{ site_url("/vendor/project/onProcess") }}" class="menu-link">
 
-									<span class="menu-text">Running Project</span></a>
+									<span class="menu-text">Running Project</span>
 								</a>
 							</li>
 							<li class="menu-item">
 								<a href="{{ site_url("/vendor/project/done") }}" class="menu-link">
-
-									<span class="menu-text">Project Done</span></a>
+									<span class="menu-text">Project Done</span>
 								</a>
 							</li>
 						</ul>
@@ -214,13 +212,37 @@
                     <?php endif?>
 
                  <?php if($CI->ion_auth->in_group('Regional Project Manager')): ?>
-				  <li class="menu-header">Regional Project Manager</li>
-					<li class="menu-item">
-				 	 <a href="{{ site_url('approval/tsa/index') }}" class="menu-link"><span
-										class="menu-icon oi oi-list-rich"></span> <span
-										class="menu-text">TSA Document Approval</span></a>
-					</li>
+						<li class="menu-header">Regional Project Manager</li>
+						<li class="menu-item has-child active has-open">
+							<a href="javascript:void(0)" class="menu-link"><span
+										class="menu-icon fas fa-clipboard-check"></span> <span
+										class="menu-text">Approval</span></a>
+							<ul class="menu">
+								<li class="menu-item">
+									<a href="{{ site_url('approval/document/index') }}" class="menu-link">
+										<span class="menu-text">Documents Approval</span>
+									</a>
+								</li>
+							</ul>
+						</li>
                  <?php endif?>
+
+                 <?php if($CI->ion_auth->in_group('Budget')): ?>
+						<li class="menu-header">Budget</li>
+						<li class="menu-item has-child active has-open">
+							<a href="javascript:void(0)" class="menu-link"><span
+										class="menu-icon fas fa-clipboard-check"></span> <span
+										class="menu-text">Approval</span></a>
+							<ul class="menu">
+								<li class="menu-item">
+									<a href="{{ site_url('approval/document/index') }}" class="menu-link">
+										<span class="menu-text">Documents Approval</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+                 <?php endif?>
+
 
                     <?php if($CI->ion_auth->in_group('Vendor')): ?>
 					<li class="menu-header">Vendor</li><!-- /.menu-header -->

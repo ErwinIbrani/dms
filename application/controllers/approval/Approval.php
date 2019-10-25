@@ -22,6 +22,7 @@ class Approval extends CI_Controller
                'approved_at'     => date('Y-m-d H:i:s'),
                'status_approval' => $this->input->post('status_approval'),
                'note'            => $this->input->post('note'),
+               'group_id'        => $this->ion_auth->get_users_groups()->row()->id
            ];
            $cek   = $this->DocumentApprovalHistory_Model->duplicate($this->input->post('document_id'), $this->ion_auth->user()->row()->id);
            if($cek->num_rows() > 0){

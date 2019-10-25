@@ -70,34 +70,24 @@
 							</li>
 						</ul>
 
-		     			@if($docuemntStatus->layer == 1 && date('d/m/Y', strtotime($document->created_at)) == date('d/m/Y') && $docuemntStatus->document_type == 'Prepared')
+		     			@if(empty($docuemntStatus))
 							@php
-							view('approval.tsa._form', ['status' => $status]);
+							view('approval.document._form', ['status' => $status]);
 							@endphp
-					    @elseif($docuemntStatus->layer == 2 && date('d/m/Y', strtotime('+1 day', strtotime($document->created_at))) == date('d/m/Y') && $docuemntStatus->document_type == 'Prepared')
-							@php
-								view('approval.tsa._form', ['status' => $status]);
-							@endphp
-						@elseif($docuemntStatus->layer == 3 && date('d/m/Y', strtotime('+2 day', strtotime($document->created_at))) == date('d/m/Y') && $docuemntStatus->document_type == 'Prepared')
-							@php
-								view('approval.tsa._form', ['status' => $status]);
-							@endphp
-						@elseif($docuemntStatus->layer == 1 && date('d/m/Y', strtotime($document->created_at)) == date('d/m/Y') && $docuemntStatus->document_type == 'Acknowledge')
-							@php
-								view('approval.tsa._form', ['status' => $status]);
-							@endphp
-						@elseif($docuemntStatus->layer == 2 && date('d/m/Y', strtotime('+1 day', strtotime($document->created_at))) == date('d/m/Y') && $docuemntStatus->document_type == 'Acknowledge')
-							@php
-								view('approval.tsa._form', ['status' => $status]);
-							@endphp
-						@elseif($docuemntStatus->layer == 3 && date('d/m/Y', strtotime('+2 day', strtotime($document->created_at))) == date('d/m/Y') && $docuemntStatus->document_type == 'Acknowledge')
-							@php
-								view('approval.tsa._form', ['status' => $status]);
-							@endphp
+						@elseif($status->status_approval == 'Accept')
+							<div class="list-group list-group-bordered list-group-reflow">
+								<div class="list-group-item justify-content-between align-items-center">
+									<span><i class="fas fa-square text-indigo mr-2"></i> Accepted By</span>
+									<span class="text-muted">@php
+										                     $ci = get_instance();
+										                     $ci->load->Model('User_Model');
+										                     $user = $ci->User_Model->findOne($status->approved_id)->row();
+										                     echo $user->email;
+									               			@endphp
+									</span>
+								</div>
+							</div>
                          @endif
-
-
-
 
 					</div>
 				</div>
