@@ -38,18 +38,21 @@ class Document extends CI_Controller
 
     public function view($document_id)
     {
-        $statusLastApprove  = $this->DocumentApprovalHistory_Model->getLastApprove($document_id)->row();
-        $document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
-        $attribute          = json_decode($document_candidate->attribute);
-        $project            = $this->Project_Model->findOne($document_candidate->project_id)->row();
-        $docuemntStatus     = $this->Approval_Model->findApproval($document_id, $this->ion_auth->user()->row()->id, $this->ion_auth->get_users_groups()->row()->id)->row();
+        $getLastApprove  = $this->DocumentApprovalHistory_Model->getLastApprove($document_id)->row();
+        $getDocument     = $this->CandidateDocument_Model->findOne($document_id)->row();
+        $getAttribute    = json_decode($getDocument->attribute);
+        $getProject      = $this->Project_Model->findOne($getDocument->project_id)->row();
+        $getGroups       = $this->Approval_Model->byGroup($document_id, $this->ion_auth->get_users_groups()->row()->id)->row();
+
+        $getLayer        = $this->Approval_Model->byLayer($document_id, $this->ion_auth->user()->row()->id)->row();
 
         return view('approval.document.view', array(
-            'candidate'      => $attribute,
-            'document'       => $document_candidate,
-            'project'        => $project,
-            'status'         => $statusLastApprove,
-            'docuemntStatus' => $docuemntStatus
+            'candidate'      => $getAttribute,
+            'document'       => $getDocument,
+            'project'        => $getProject,
+            'status'         => $getLastApprove,
+            'docuemntStatus' => $getGroups,
+            'layer'          => $getLayer
         ));
     }
 

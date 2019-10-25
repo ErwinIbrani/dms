@@ -31,7 +31,9 @@ class Approval extends CI_Controller
            }else {
                $template     = $this->CandidateDocument_Model->findOne($this->input->post('document_id'))->row_array();
                $modelHistory = $this->DocumentApprovalHistory_Model->save($data);
+               /*besok ini*/
                $approvals    = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA')->result();
+               /*ini*/
                if(!empty($modelHistory)) {
                  generateTsa($template, $approvals, $modelHistory);
                }
@@ -39,15 +41,10 @@ class Approval extends CI_Controller
                redirect_back();
            }
        }else{
-         $this->reject();
-         $this->session->set_flashdata('success', 'Document Accepted');
-         redirect_back();
+          $this->session->set_flashdata('success', 'Document Rejected');
+          redirect_back();
        }
     }
 
-    protected function reject()
-    {
-        //buat document baru
-        var_dump('Ditolak');
-    }
+
 }

@@ -53,18 +53,25 @@ class Approval_Model extends CI_Model
             return $result[0]['allcount'];
         }
 
-        public function findApproval($document_id, $user_id, $group_id)
+        public function byGroup($document_id, $group_id)
         {
-            $this->db->select('document_approval_setting.layer');
+            $this->db->select('*');
             $this->db->from($this->table);
-            $this->db->join('document_approval_history', 'document_approval_setting.approval_id = document_approval_history.approved_id','inner');
-            $this->db->join('document_setting', 'document_approval_setting.document_setting_id = document_setting.id','inner');
-
+            $this->db->join('document_setting', ' document_approval_setting.document_setting_id = document_setting.id','inner');
+            $this->db->join('document_approval_history', ' document_approval_setting.project_id = document_approval_history.project_id','inner');
             $this->db->where(['document_approval_history.document_id' => $document_id]);
-            $this->db->where(['document_setting.group_id' => $group_id]);
-            $this->db->where(['document_approval_setting.approval_id' => $user_id]);
+            $this->db->where(['document_approval_history.group_id'    => $group_id]);
             return $this->db->get();
+        }
 
-
+        public function byLayer($document_id, $user_id)
+        {
+            $this->db->select('*');
+            $this->db->from($this->table);
+            $this->db->join('document_setting', ' document_approval_setting.document_setting_id = document_setting.id','inner');
+            $this->db->join('document_candidate', ' document_candidate.type = document_setting.document_name','inner');
+            $this->db->where(['document_approval_setting.approval_id' => $user_id]);
+            $this->db->where(['document_candidate.id' => $document_id]);
+            return $this->db->get();
         }
 }

@@ -70,28 +70,60 @@
 							</li>
 						</ul>
 
-		     			@if(empty($docuemntStatus))
-							@php
-							view('approval.document._form', ['status' => $status]);
-							@endphp
-						@elseif($status->status_approval == 'Accept')
+                      {{--Jika Belum Diapprove Oleh Siapapun Group By Role Group--}}
+		     		  @if(empty($docuemntStatus) && $layer->layer == 1 && date('d/m/Y', strtotime($layer->created_at)) == date('d/m/Y'))
+				   	   @php
+						 view('approval.document._form', ['status' => $status]);
+					   @endphp
+					  @elseif(empty($docuemntStatus) && $layer->layer == 2 && date('d/m/Y', strtotime('+1 day', strtotime($document->created_at))) == date('d/m/Y'))
+						@php
+						view('approval.document._form', ['status' => $status]);
+						@endphp
+					  @elseif(empty($docuemntStatus) && $layer->layer == 3 && date('d/m/Y', strtotime('+2 day', strtotime($document->created_at))) == date('d/m/Y'))
+						@php
+					    view('approval.document._form', ['status' => $status]);
+					   @endphp
+
+					  {{--Jika Sudah  Diapprove Group  By Role Group--}}
+					  @elseif(!empty($docuemntStatus) && $layer->layer == 1 && date('d/m/Y', strtotime($layer->created_at)) == date('d/m/Y'))
+					    @php
+						view('approval.document._form', ['status' => $status]);
+					    @endphp
+					  @elseif(!empty($docuemntStatus) && $layer->layer == 2 && date('d/m/Y', strtotime('+1 day', strtotime($document->created_at))) == date('d/m/Y'))
+						@php
+						view('approval.document._form', ['status' => $status]);
+				  	    @endphp
+                  	 @elseif(!empty($docuemntStatus) && $layer->layer == 3 && date('d/m/Y', strtotime('+2 day', strtotime($document->created_at))) == date('d/m/Y'))
+                       @php
+						view('approval.document._form', ['status' => $status]);
+				  	   @endphp
+
+					 @elseif($status->status_approval == 'Reject')
+							 <div class="list-group list-group-bordered list-group-reflow">
+								 <div class="list-group-item justify-content-between align-items-center">
+									 <span><i class="fas fa-square text-indigo mr-2"></i> Rejected By</span>
+									 <span class="text-muted">@php
+											 $ci = get_instance();
+											 $ci->load->Model('User_Model');
+											 $user = $ci->User_Model->findOne($status->approved_id)->row();
+											 echo $user->email;
+										 @endphp
+									 </span>
+								 </div>
+							 </div>
+				  	@else
 							<div class="list-group list-group-bordered list-group-reflow">
 								<div class="list-group-item justify-content-between align-items-center">
-									<span><i class="fas fa-square text-indigo mr-2"></i> Accepted By</span>
-									<span class="text-muted">@php
-										                     $ci = get_instance();
-										                     $ci->load->Model('User_Model');
-										                     $user = $ci->User_Model->findOne($status->approved_id)->row();
-										                     echo $user->email;
-									               			@endphp
-									</span>
+									<span><i class="fas fa-square text-indigo mr-2"></i> Status</span>
+									<span class="text-muted">
+										Waiting
+								 </span>
 								</div>
 							</div>
-                         @endif
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+					 @endif
+                </div>
+            </div>
+       </div>
+     </div>
+</div>
 @endsection
