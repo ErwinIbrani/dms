@@ -31,16 +31,60 @@ class Approval extends CI_Controller
            }else {
                $template     = $this->CandidateDocument_Model->findOne($this->input->post('document_id'))->row_array();
                $modelHistory = $this->DocumentApprovalHistory_Model->save($data);
-               /*besok ini*/
-               $approvals    = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA')->result();
-               /*ini*/
-               if(!empty($modelHistory)) {
-                 generateTsa($template, $approvals, $modelHistory);
+              if(!empty($modelHistory)) {
+                   if($template['type'] == 'SITAC TSA') {
+                       $approvals = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA', $this->input->post('document_id'))->result();
+                       generateTsa($template, $approvals, $modelHistory);
+                   }
+                   elseif ($template['type'] == 'FOUNDATION and ERECTION'){
+                       $approvals = $this->DocumentApprovalHistory_Model->findStatusApproval('FOUNDATION and ERECTION', $this->input->post('document_id'))->result();
+                       generateFoundationErection($template, $approvals, $modelHistory);
+                   }
+                   elseif ($template['type'] == 'FENCE'){
+                       $approvals = $this->DocumentApprovalHistory_Model->findStatusApproval('FENCE', $this->input->post('document_id'))->result();
+                       generateFence($template, $approvals, $modelHistory);
+                   }
+                   elseif ($template['type'] == 'RFI'){
+                       $approvals = $this->DocumentApprovalHistory_Model->findStatusApproval('RFI', $this->input->post('document_id'))->result();
+                       generateRfi($template, $approvals, $modelHistory);
+                   }
+                   elseif ($template['type'] == 'PAT'){
+                       $approvals = $this->DocumentApprovalHistory_Model->findStatusApproval('PAT', $this->input->post('document_id'))->result();
+                       generatePat($template, $approvals, $modelHistory);
+                   }
+                   elseif ($template['type'] == 'ADD REDUCE'){
+                       $approvals = $this->DocumentApprovalHistory_Model->findStatusApproval('ADD REDUCE', $this->input->post('document_id'))->result();
+                       generateAddReduce($template, $approvals, $modelHistory);
+                   }
+                   elseif ($template['type'] == 'ABD'){
+                       $approvals = $this->DocumentApprovalHistory_Model->findStatusApproval('ABD', $this->input->post('document_id'))->result();
+                       generateAbd($template, $approvals, $modelHistory);
+                   }
+                   elseif ($template['type'] == 'HAND OVER'){
+                       $approvals = $this->DocumentApprovalHistory_Model->findStatusApproval('HAND OVER', $this->input->post('document_id'))->result();
+                       generateHandOver($template, $approvals, $modelHistory);
+                   }
+                   elseif ($template['type'] == 'BAST'){
+                       $approvals = $this->DocumentApprovalHistory_Model->findStatusApproval('BAST', $this->input->post('document_id'))->result();
+                       generateBast($template, $approvals, $modelHistory);
+                   }
                }
                $this->session->set_flashdata('success', 'Document Accepted');
                redirect_back();
            }
        }else{
+          $update = $this->CandidateDocument_Model->update($this->input->post('document_id'), ['status_revision'=> 1]);
+          if($update == TRUE)
+              $data = [
+                   'project_id'      => $this->input->post('project_id'),
+                   'document_id'     => $this->input->post('document_id'),
+                   'approved_id'     => $this->ion_auth->user()->row()->id,
+                   'approved_at'     => date('Y-m-d H:i:s'),
+                   'status_approval' => $this->input->post('status_approval'),
+                   'note'            => $this->input->post('note'),
+                   'group_id'        => $this->ion_auth->get_users_groups()->row()->id
+               ];
+          $this->DocumentApprovalHistory_Model->save($data);
           $this->session->set_flashdata('success', 'Document Rejected');
           redirect_back();
        }

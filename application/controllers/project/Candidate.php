@@ -5,7 +5,7 @@ class Candidate extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('Candidate_Model', 'Project_Model'));
+		$this->load->model(array('Candidate_Model', 'Project_Model', 'CandidateDocument_Model'));
 	}
 
 	public function select($project_id, $candidate_id)

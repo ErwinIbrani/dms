@@ -225,9 +225,12 @@ CREATE TABLE [dbo].[document_approval_history] (
   [project_id] int NOT NULL,
   [document_id] int NOT NULL,
   [approved_id] int NOT NULL,
+  [group_id] int NOT NULL,
   [approved_at] datetime NULL,
-  [status_approval] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+  [attachment] text NULL,
+  [attribute] text NULL,
   [path] text NULL,
+  [status_approval] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
   [note] text NULL,
 );
 

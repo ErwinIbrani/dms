@@ -15,7 +15,7 @@ class DocumentApprovalHistory_Model extends CI_Model
         return $this->db->get_where($this->table, ['document_id' => $document_id]);
     }
 
-    public function findStatusApproval($type)
+    public function findStatusApproval($type, $document_id)
     {
         $this->db->select('document_approval_history.id,
                            document_approval_history.approved_at,
@@ -26,13 +26,12 @@ class DocumentApprovalHistory_Model extends CI_Model
                            users.email,
                            groups.name as role_name');
         $this->db->from($this->table);
+        $this->db->join('document_candidate','document_candidate.id = document_approval_history.document_id','inner');
         $this->db->join('users','document_approval_history.approved_id = users.id','inner');
-        $this->db->join('document_approval_setting','document_approval_history.approved_id = document_approval_setting.approval_id','inner');
-        $this->db->join('document_setting','document_setting.id = document_approval_setting.document_setting_id','inner');
+        $this->db->join('document_setting','document_setting.group_id = document_approval_history.group_id','inner');
         $this->db->join('groups','document_setting.group_id = groups.id','inner');
-        $this->db->where(['document_setting.document_name' => $type]);
-       /* $this->db->where(['document_setting.group_id' => $group_id]);
-        $this->db->where(['document_approval_setting.approval_id' => $user_id]);*/
+        $this->db->where(['document_candidate.type' => $type]);
+        $this->db->where(['document_candidate.id'   => $document_id]);
         return $this->db->get();
     }
 

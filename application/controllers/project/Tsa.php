@@ -162,9 +162,9 @@ class Tsa extends CI_Controller
             'vendor_id'     => $this->input->post('vendor_id'),
             'name'          => 'TSA',
             'code'          => 'FM-SPA-005',
-            'type'          => 'SITAC',
+            'type'          => 'SITAC TSA',
             'candidate_id'  => $this->input->post('candidate_id'),
-            'status'        => 'submited',
+            'status'        => 'submitted',
             'created_at'    => date('Y-m-d H:i:s'),
             'attribute'     => json_encode($this->attribute),
         ];
@@ -174,10 +174,13 @@ class Tsa extends CI_Controller
                                                    'project_id'     => $this->input->post('project_id'),
                                                    'document_id'    => $row,
                                                    'approved_id'    => $this->ion_auth->user()->row()->id,
+                                                   'group_id'       => $this->ion_auth->get_users_groups()->row()->id,
                                                    'approved_at'    => date("Y-m-d H:i:s"),
-                                                   'status_approval'=> 'submit']);
+                                                   'attribute'      => json_encode($this->attribute),
+                                                   'status_approval'=> 'Submitted',
+                                                   'note'           => 'Document Submitted']);
               $template     = $this->CandidateDocument_Model->findOne($row)->row_array();
-              $approvals    = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA')->result();
+              $approvals    = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA', $row)->result();
               generateTsa($template, $approvals, $modelHistory);
               $this->session->set_flashdata('success', 'Data Uploded');
               redirect("/project/project/detail/".$data['project_id'], 'refresh');
