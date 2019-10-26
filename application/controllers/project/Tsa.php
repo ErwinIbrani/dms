@@ -170,6 +170,7 @@ class Tsa extends CI_Controller
         ];
         $row  =  $this->CandidateDocument_Model->save($data);
         if(!empty($row)) {
+            
             $modelHistory = $this->DocumentApprovalHistory_Model->save([
                                                    'project_id'     => $this->input->post('project_id'),
                                                    'document_id'    => $row,
@@ -179,6 +180,7 @@ class Tsa extends CI_Controller
                                                    'attribute'      => json_encode($this->attribute),
                                                    'status_approval'=> 'Submitted',
                                                    'note'           => 'Document Submitted']);
+
               $template     = $this->CandidateDocument_Model->findOne($row)->row_array();
               $approvals    = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA', $row)->result();
               generateTsa($template, $approvals, $modelHistory);
