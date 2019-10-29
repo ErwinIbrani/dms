@@ -1,14 +1,15 @@
 $(document).ready(function () {
 	let i = 1;
-	let limit = 3;
+	let limit = 100;
 	let childLength = 0;
 	let confirmationText = 'Are you sure want to delete this item?';
-	let elementRemoveBtn = '<span class="btn mt-2 btn-subtle-danger" id="dynamic-delete-action">Delete</span>';
-
+	let elementRemoveBtn = '<span class="btn btn-subtle-danger" id="dynamic-delete-action">Delete</span>';
+	console.log(123123);
 	$('#dynamic-add-button').on('click', function () {
 		i++;
 		childLength = $('#child-node').children().length;
 
+		console.log(childLength);
 		if (childLength < limit) {
 			$('#parent-node').clone()
 				.attr('id', 'child-node-' + i)
