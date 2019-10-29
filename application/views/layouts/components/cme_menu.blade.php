@@ -10,7 +10,8 @@
 			   href="{{ site_url('/vendor/comcme/letter/' . $project_id) }}">COM CME</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="#">Foundation</a>
+			<a class="nav-link {{ ($CI->uri->segment(2)=="foundation") ? 'active': '' }}"
+			   href="{{ site_url('/vendor/foundation/index/' . $project_id) }}">Foundation</a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link" href="#">Tower Erection</a>
