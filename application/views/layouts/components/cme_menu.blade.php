@@ -14,7 +14,8 @@
 			   href="{{ site_url('/vendor/foundation/index/' . $project_id) }}">Foundation & Tower Erection</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="#">Mechanical Electrical</a>
+			<a class="nav-link {{ ($CI->uri->segment(2)=="me") ? 'active': '' }}"
+			   href="{{ site_url('/vendor/me/index/' . $project_id) }}">Mechanical Electrical</a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link" href="#">PLN</a>
