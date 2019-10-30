@@ -15,14 +15,16 @@ class Approval extends CI_Controller
     {
        if($this->input->post('status_approval') == 'Accept')
        {
+           $modelData = $this->CandidateDocument_Model->findOne($this->input->post('document_id'))->row_array();
            $data = [
                'project_id'      => $this->input->post('project_id'),
                'document_id'     => $this->input->post('document_id'),
                'approved_id'     => $this->ion_auth->user()->row()->id,
+               'group_id'        => $this->ion_auth->get_users_groups()->row()->id,
                'approved_at'     => date('Y-m-d H:i:s'),
+               'attribute'       => $modelData['attribute'],
                'status_approval' => $this->input->post('status_approval'),
                'note'            => $this->input->post('note'),
-               'group_id'        => $this->ion_auth->get_users_groups()->row()->id
            ];
            $cek   = $this->DocumentApprovalHistory_Model->duplicate($this->input->post('document_id'), $this->ion_auth->user()->row()->id);
            if($cek->num_rows() > 0){
@@ -73,16 +75,19 @@ class Approval extends CI_Controller
                redirect_back();
            }
        }else{
-          $update = $this->CandidateDocument_Model->update($this->input->post('document_id'), ['status_revision'=> 1]);
+          $update    = $this->CandidateDocument_Model->update($this->input->post('document_id'), ['status_revision'=> 1]);
+          $modelData = $this->CandidateDocument_Model->findOne($this->input->post('document_id'))->row_array();
           if($update == TRUE)
               $data = [
                    'project_id'      => $this->input->post('project_id'),
                    'document_id'     => $this->input->post('document_id'),
                    'approved_id'     => $this->ion_auth->user()->row()->id,
+                   'group_id'        => $this->ion_auth->get_users_groups()->row()->id,
                    'approved_at'     => date('Y-m-d H:i:s'),
+                   'attribute'       => $modelData['attribute'],
+                   'path'            => $modelData['path'],
                    'status_approval' => $this->input->post('status_approval'),
                    'note'            => $this->input->post('note'),
-                   'group_id'        => $this->ion_auth->get_users_groups()->row()->id
                ];
           $this->DocumentApprovalHistory_Model->save($data);
           $this->session->set_flashdata('success', 'Document Rejected');

@@ -35,6 +35,58 @@ class DocumentApprovalHistory_Model extends CI_Model
         return $this->db->get();
     }
 
+    public function getAllStatusApproval($rowno,$rowperpage,$search="", $type)
+    {
+        $this->db->select('document_candidate.id,
+                           document_approval_history.approved_at,
+                           document_approval_history.status_approval,
+                           document_approval_history.path,
+                           document_approval_history.note,
+                           users.email,
+                           groups.name as role_name,
+                           document_candidate.name,
+                           document_candidate.status_revision,
+                           document_candidate.status,
+                           candidate.name as candidate_name,
+                           vendor.name as vendor_name,
+                           project.wbs_id');
+        $this->db->from($this->table);
+        $this->db->join('document_candidate','document_candidate.id = document_approval_history.document_id','right');
+        $this->db->join('candidate','document_candidate.candidate_id = candidate.id','inner');
+        $this->db->join('vendor','document_candidate.vendor_id = vendor.id','inner');
+        $this->db->join('project','document_candidate.project_id = project.id','inner');
+        $this->db->join('users','document_approval_history.approved_id = users.id','inner');
+        $this->db->join('groups','document_approval_history.group_id = groups.id','inner');
+        $this->db->where(['document_candidate.type' => $type]);
+        $this->db->where('document_approval_history.id = (SELECT MAX(document_approval_history.id) FROM document_approval_history)');
+        if($search != ''){
+            $this->db->like('candidate.name', $search);
+        }
+        $this->db->limit($rowperpage, $rowno);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getrecordCountAllStatusApproval($search = '', $type)
+    {
+        $this->db->select('count(*) as allcount');
+        $this->db->from($this->table);
+        $this->db->join('document_candidate','document_candidate.id = document_approval_history.document_id','inner');
+        $this->db->join('candidate','document_candidate.candidate_id = candidate.id','inner');
+        $this->db->join('vendor','document_candidate.vendor_id = vendor.id','inner');
+        $this->db->join('project','document_candidate.project_id = project.id','inner');
+        $this->db->join('users','document_approval_history.approved_id = users.id','inner');
+        $this->db->join('groups','document_approval_history.group_id = groups.id','inner');
+        $this->db->where(['document_candidate.type' => $type]);
+        $this->db->where('document_approval_history.id = (SELECT MAX(document_approval_history.id) FROM document_approval_history)');
+        if($search != ''){
+            $this->db->like('candidate.name', $search);
+        }
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result[0]['allcount'];
+    }
+
     public function save($data)
     {
         $this->db->insert($this->table, $data);

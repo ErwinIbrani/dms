@@ -48,8 +48,9 @@
                                 <th> Vendor Name </th>
                                 <th> WBS ID </th>
                                 <th> Candidate Name</th>
-                                <th> Create At</th>
                                 <th> Status</th>
+                                <th> By</th>
+                                <th> Note</th>
                                 <th style="width:100px; min-width:100px;">  </th>
                             </tr>
                             </thead>
@@ -63,10 +64,14 @@
                                     <td class="align-middle"> {{ $candidate->vendor_name }} </td>
                                     <td class="align-middle"> {{ $candidate->wbs_id }} </td>
                                     <td class="align-middle"> {{ $candidate->candidate_name }} </td>
-                                    <td class="align-middle"> {{ date('d-M-Y', strtotime($candidate->created_at)) }} </td>
-                                    <td class="align-middle"> {{ $candidate->status }} </td>
+                                    <td class="align-middle"> {{ $candidate->status_approval }} </td>
+                                    <td class="align-middle"> {{ $candidate->email }} /     {{ $candidate->role_name }} </td>
+                                    <td class="align-middle"> {{ $candidate->note }} </td>
                                     <td class="align-middle text-center">
                                           <a href="<?= site_url("project/tsa/view/".$candidate->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-eye" title="Preview"></i> <span class="sr-only">View</span></a>
+                                          @if($candidate->status_approval == 'Reject')
+                                          <a href="<?= site_url("project/tsa/edit/".$candidate->id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-edit" title="Update"></i> <span class="sr-only">Update</span></a>
+                                          @endif
                                     </td>
                                 </tr>
                             @endforeach

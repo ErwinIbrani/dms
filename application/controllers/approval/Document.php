@@ -43,7 +43,6 @@ class Document extends CI_Controller
         $getAttribute    = json_decode($getDocument->attribute);
         $getProject      = $this->Project_Model->findOne($getDocument->project_id)->row();
         $getGroups       = $this->Approval_Model->byGroup($document_id, $this->ion_auth->get_users_groups()->row()->id)->row();
-
         $getLayer        = $this->Approval_Model->byLayer($document_id, $this->ion_auth->user()->row()->id)->row();
 
         return view('approval.document.view', array(

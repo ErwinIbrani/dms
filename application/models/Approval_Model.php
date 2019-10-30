@@ -61,6 +61,7 @@ class Approval_Model extends CI_Model
             $this->db->join('document_approval_history', ' document_approval_setting.project_id = document_approval_history.project_id','inner');
             $this->db->where(['document_approval_history.document_id' => $document_id]);
             $this->db->where(['document_approval_history.group_id'    => $group_id]);
+            $this->db->where(['document_approval_history.status_approval' => 'Accept']);
             return $this->db->get();
         }
 
