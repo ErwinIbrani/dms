@@ -11,10 +11,7 @@
 		</li>
 		<li class="nav-item">
 			<a class="nav-link {{ ($CI->uri->segment(2)=="foundation") ? 'active': '' }}"
-			   href="{{ site_url('/vendor/foundation/index/' . $project_id) }}">Foundation</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#">Tower Erection</a>
+			   href="{{ site_url('/vendor/foundation/index/' . $project_id) }}">Foundation & Tower Erection</a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link" href="#">Mechanical Electrical</a>
