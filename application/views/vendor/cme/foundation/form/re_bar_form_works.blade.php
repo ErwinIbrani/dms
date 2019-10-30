@@ -761,11 +761,7 @@
 												</div>
 											</div>
 										</div>
-
-
-
-
-
+										
 
 										<div class="form-group">
 											<label for="rebar_note">8. Notes</label>
