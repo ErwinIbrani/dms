@@ -32,7 +32,7 @@
 								<ul class="nav nav-tabs card-header-tabs">
 									<li class="nav-item">
 										<a href="#" class="nav-link active">
-											Document Foundation
+											Document Mechanical Electrical
 										</a>
 									</li>
 								</ul>
@@ -40,11 +40,11 @@
 							</div>
 							<div class="card-body">
 								<div class="mb-4">
-									<a href="{{ site_url('/vendor/foundation/sitepreparation/'. $project->id) }}" class="btn btn-secondary">Form Greenfield</a>
+									<a href="{{ site_url('/vendor/foundation/sitepreparation/'. $project->id) }}" class="btn btn-secondary">Form ME</a>
 								</div>
 
 								<div class="">
-									<h5 class="card-title"> Document Foundation </h5>
+									<h5 class="card-title"> Document ME </h5>
 									<div>
 
 									</div>
