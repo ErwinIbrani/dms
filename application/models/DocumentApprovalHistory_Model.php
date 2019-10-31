@@ -109,6 +109,13 @@ class DocumentApprovalHistory_Model extends CI_Model
         return $this->db->get();
     }
 
+    public function continueApprove($document_id, $type)
+    {
+        $this->db->where('document_id', $document_id);
+        $this->db->where('status_approval', $type);
+        $this->db->delete($this->table);
+    }
+
 
 
 
