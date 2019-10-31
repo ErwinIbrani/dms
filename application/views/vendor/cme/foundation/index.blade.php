@@ -46,7 +46,38 @@
 								<div class="">
 									<h5 class="card-title"> Document Foundation </h5>
 									<div>
-
+										<div class="list-group-item">
+											<div class="list-group-item-figure">
+												<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+											</div>
+											<div class="list-group-item-body">
+												<h4 class="list-group-item-title">
+													<a href="#">Greenfield Inspection Report</a>
+												</h4>
+												<p class="list-group-item-text"> {{ date('M d, Y') }}</p>
+											</div>
+											<div class="list-group-item-figure">
+												<a href="#" target="_blank" class="btn btn-sm btn-icon btn-light">
+													<i class="oi oi-data-transfer-download"></i>
+												</a>
+											</div>
+										</div>
+										<div class="list-group-item">
+											<div class="list-group-item-figure">
+												<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+											</div>
+											<div class="list-group-item-body">
+												<h4 class="list-group-item-title">
+													<a href="#">Roof Top Inspection Report</a>
+												</h4>
+												<p class="list-group-item-text"> {{ date('M d, Y') }}</p>
+											</div>
+											<div class="list-group-item-figure">
+												<a href="#" target="_blank" class="btn btn-sm btn-icon btn-light">
+													<i class="oi oi-data-transfer-download"></i>
+												</a>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
