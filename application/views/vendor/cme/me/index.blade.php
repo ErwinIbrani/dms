@@ -3,7 +3,7 @@
 @section('content')
 	<div class="page">
 		<div class="page-message" role="alert">
-			<span class="mr-5">Sorry, Form ME not ready for NOW. This page just display list of ME document</span>
+			<span class="mr-5">Sorry, Form ME not ready for NOW. This page just display list of ME document. (dummy)</span>
 		</div>
 
 		<div class="page-inner">
