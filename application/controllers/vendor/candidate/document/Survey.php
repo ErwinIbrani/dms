@@ -140,8 +140,8 @@ class Survey extends CI_Controller {
                     'candidate_id'  => $this->input->post('candidate_id'),
                     'name'          => 'SURVEY',
                     'code'          => 'FM-STP-019',
-                    'type'          => 'SITAC',
-                    'status'        => 'submited',
+                    'type'          => 'SITAC SURVEY',
+                    'status'        => 'submitted',
                     'created_at'    => date('Y-m-d H:i:s'),
                     'attribute'     => json_encode($attribute), //nanti didecode
                     'attachment'    => json_encode($attachment)

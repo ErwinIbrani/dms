@@ -49,7 +49,7 @@
 								<!-- .dropdown-item -->
 								<a href="#" class="dropdown-item unread">
 									<div class="user-avatar">
-										<img src="assets/images/avatars/uifaces15.jpg" alt="">
+										<img src="/assets/images/avatars/uifaces15.jpg" alt="">
 									</div>
 									<div class="dropdown-item-body">
 										<p class="text"> Jeffrey Wells created a schedule </p><span class="date">Just now</span>
@@ -58,7 +58,7 @@
 								<!-- .dropdown-item -->
 								<a href="#" class="dropdown-item unread">
 									<div class="user-avatar">
-										<img src="assets/images/avatars/uifaces16.jpg" alt="">
+										<img src="/assets/images/avatars/uifaces16.jpg" alt="">
 									</div>
 									<div class="dropdown-item-body">
 										<p class="text"> Anna Vargas logged a chat </p><span
@@ -68,7 +68,7 @@
 								<!-- .dropdown-item -->
 								<a href="#" class="dropdown-item">
 									<div class="user-avatar">
-										<img src="assets/images/avatars/uifaces17.jpg" alt="">
+										<img src="/assets/images/avatars/uifaces17.jpg" alt="">
 									</div>
 									<div class="dropdown-item-body">
 										<p class="text"> Sara Carr invited to Stilearn Admin </p><span class="date">5 hours ago</span>
@@ -77,7 +77,7 @@
 								<!-- .dropdown-item -->
 								<a href="#" class="dropdown-item">
 									<div class="user-avatar">
-										<img src="assets/images/avatars/uifaces18.jpg" alt="">
+										<img src="/assets/images/avatars/uifaces18.jpg" alt="">
 									</div>
 									<div class="dropdown-item-body">
 										<p class="text"> Arthur Carroll updated a project </p><span class="date">1 day ago</span>
@@ -86,7 +86,7 @@
 								<!-- .dropdown-item -->
 								<a href="#" class="dropdown-item">
 									<div class="user-avatar">
-										<img src="assets/images/avatars/uifaces19.jpg" alt="">
+										<img src="/assets/images/avatars/uifaces19.jpg" alt="">
 									</div>
 									<div class="dropdown-item-body">
 										<p class="text"> Hannah Romero created a task </p><span
@@ -96,7 +96,7 @@
 								<!-- .dropdown-item -->
 								<a href="#" class="dropdown-item">
 									<div class="user-avatar">
-										<img src="assets/images/avatars/uifaces20.jpg" alt="">
+										<img src="/assets/images/avatars/uifaces20.jpg" alt="">
 									</div>
 									<div class="dropdown-item-body">
 										<p class="text"> Angela Peterson assign a task to you </p><span class="date">2 days ago</span>
@@ -105,7 +105,7 @@
 								<!-- .dropdown-item -->
 								<a href="#" class="dropdown-item">
 									<div class="user-avatar">
-										<img src="assets/images/avatars/uifaces21.jpg" alt="">
+										<img src="/assets/images/avatars/uifaces21.jpg" alt="">
 									</div>
 									<div class="dropdown-item-body">
 										<p class="text"> Shirley Mason and 3 others followed you </p><span class="date">2 days ago</span>
@@ -135,7 +135,7 @@
 								<!-- .dropdown-item -->
 								<a href="#" class="dropdown-item unread">
 									<div class="user-avatar">
-										<img src="assets/images/avatars/team1.jpg" alt="">
+										<img src="/assets/images/avatars/team1.jpg" alt="">
 									</div>
 									<div class="dropdown-item-body">
 										<p class="subject"> Stilearning </p>
@@ -146,7 +146,7 @@
 								<!-- .dropdown-item -->
 								<a href="#" class="dropdown-item">
 									<div class="user-avatar">
-										<img src="assets/images/avatars/team3.png" alt="">
+										<img src="/assets/images/avatars/team3.png" alt="">
 									</div>
 									<div class="dropdown-item-body">
 										<p class="subject"> Openlane </p>
@@ -175,7 +175,7 @@
 								<!-- .dropdown-item -->
 								<a href="#" class="dropdown-item">
 									<div class="user-avatar">
-										<img src="assets/images/avatars/team2.png" alt="">
+										<img src="/assets/images/avatars/team2.png" alt="">
 									</div>
 									<div class="dropdown-item-body">
 										<p class="subject"> Creative Division </p>
@@ -244,7 +244,7 @@
 				<div class="dropdown d-flex">
 					<button class="btn-account d-none d-md-flex" type="button" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"><span class="user-avatar user-avatar-md"><img
-								src="assets/images/avatars/profile.jpg" alt=""></span> <span
+								src="/assets/images/avatars/profile.jpg" alt=""></span> <span
 							class="account-summary pr-lg-4 d-none d-lg-block"><span
 								class="account-name">Beni Arisandi</span> <span class="account-description">Marketing Manager</span></span>
 					</button> <!-- .dropdown-menu -->

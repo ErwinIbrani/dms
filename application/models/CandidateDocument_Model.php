@@ -148,12 +148,12 @@ class CandidateDocument_Model extends CI_Model
     public function update($id, $update)
     {
         $this->db->where('id', $id);
-        $this->db->update($this->table, $update);
+       return  $this->db->update($this->table, $update);
     }
 
     public function findCandidateSurveyDone($candidate_id)
     {
-        return $this->db->get_where($this->table, array('candidate_id' => $candidate_id, 'name' => 'SURVEY', 'status' => 'choose'));
+        return $this->db->get_where($this->table, array('candidate_id' => $candidate_id, 'name' => 'SURVEY', 'status' => 'submitted'));
     }
 
     public function findCandidateBapDone($candidate_id)

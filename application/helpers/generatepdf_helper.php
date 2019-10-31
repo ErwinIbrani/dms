@@ -789,3 +789,43 @@ function generateSurvey($model)
         }
     }
 
+    function generateFoundationErection($template, $approvals, $modelHistory)
+    {
+
+    }
+
+    function generateFence($template, $approvals, $modelHistory)
+    {
+
+    }
+
+    function generateRfi($template, $approvals, $modelHistory)
+    {
+
+    }
+
+    function generatePat($template, $approvals, $modelHistory)
+    {
+
+    }
+
+    function generateAddReduce($template, $approvals, $modelHistory)
+    {
+
+    }
+
+    function generateAbd($template, $approvals, $modelHistory)
+    {
+
+    }
+
+    function generateHandOver($template, $approvals, $modelHistory)
+    {
+
+    }
+
+    function generateBast($template, $approvals, $modelHistory)
+    {
+
+    }
+

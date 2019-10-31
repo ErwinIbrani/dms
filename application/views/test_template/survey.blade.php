@@ -338,7 +338,7 @@ $raw_html      ='<!DOCTYPE html>
                         </html>';
 
 $api_endpoint  = "https://selectpdf.com/api2/convert/";
-$key           = '7aa5b5e4-c3a2-44fb-998d-27820afb49be';
+$key           = 'd4ca505b-0ca6-4f33-a075-afce3e313e82';
 $local_file = 'document' . $model['project_id'] . 'SITAC_SURVEY'.$model['id'].'_'.$model['vendor_id'] . '.pdf';
 $parameters = array('key' => $key, 'html' => $raw_html);
 $options    = array(

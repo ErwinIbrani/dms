@@ -158,4 +158,20 @@ class Layout extends CI_Controller {
 			'saksi_2_name' => $candidate_bak->saksi_2_name,
 		));
 	}
+
+	public function komcme($document_id)
+	{
+		$document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
+		$attribute = json_decode($document_candidate->attribute);
+
+		return view('vendor.cme.com_cme.layout.komcme', array());
+	}
+
+	public function komcmepernyataan($document_id)
+	{
+		$document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
+		$attribute = json_decode($document_candidate->attribute);
+
+		return view('vendor.cme.com_cme.layout.kompernyataan', array());
+	}
 }

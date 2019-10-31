@@ -11,38 +11,6 @@ class Tsa extends CI_Controller
         authentication($this->ion_auth->logged_in());
     }
 
-    public function candidate($rowno=0)
-    {
-        $this->make_bread->add('Index');
-        $breadcrumb = $this->make_bread->output();
-        $search_text = "";
-        if($this->input->post('submit') != NULL ){
-            $search_text = $this->input->post('search');
-            $this->session->set_userdata(["search" => $search_text]);
-        }else{
-            if($this->session->userdata('search') != NULL){
-                $search_text = $this->session->userdata('search');
-            }
-        }
-        $rowperpage = 20;
-        if($rowno  != 0){
-            $rowno  = ($rowno-1) * $rowperpage;
-        }
-        $allcount             = $this->CandidateDocument_Model->getrecordCountCandidateDone($search_text);
-        $records              = $this->CandidateDocument_Model->getDataCandidateDone($rowno, $rowperpage, $search_text);
-        $config['base_url']   = base_url().'project/tsa/candidate';
-        $config['total_rows'] = $allcount;
-        $config['per_page']   = $rowperpage;
-        $this->pagination->initialize($config);
-        $pagination = $this->pagination->create_links();
-
-        return view('project.tsa.index-candidate-done', array(
-            'pagination' => $pagination,
-            'candidates' => $records,
-            'search'     => $search_text,
-            'breadcrumb' => $breadcrumb,
-        ));
-    }
 
     public function index($rowno=0)
     {
@@ -62,8 +30,8 @@ class Tsa extends CI_Controller
         if($rowno  != 0){
             $rowno  = ($rowno-1) * $rowperpage;
         }
-        $allcount             = $this->CandidateDocument_Model->getrecordCountTSA($search_text);
-        $records              = $this->CandidateDocument_Model->getDataTSA($rowno, $rowperpage, $search_text);
+        $allcount             = $this->DocumentApprovalHistory_Model->getrecordCountAllStatusApproval($search_text, 'SITAC TSA');
+        $records              = $this->DocumentApprovalHistory_Model->getAllStatusApproval($rowno, $rowperpage, $search_text, 'SITAC TSA');
         $config['base_url']   = base_url().'project/tsa/index';
         $config['total_rows'] = $allcount;
         $config['per_page']   = $rowperpage;
@@ -162,26 +130,51 @@ class Tsa extends CI_Controller
             'vendor_id'     => $this->input->post('vendor_id'),
             'name'          => 'TSA',
             'code'          => 'FM-SPA-005',
-            'type'          => 'SITAC',
+            'type'          => 'SITAC TSA',
             'candidate_id'  => $this->input->post('candidate_id'),
-            'status'        => 'submited',
+            'status'        => 'submitted',
             'created_at'    => date('Y-m-d H:i:s'),
             'attribute'     => json_encode($this->attribute),
         ];
         $row  =  $this->CandidateDocument_Model->save($data);
         if(!empty($row)) {
+
             $modelHistory = $this->DocumentApprovalHistory_Model->save([
                                                    'project_id'     => $this->input->post('project_id'),
                                                    'document_id'    => $row,
                                                    'approved_id'    => $this->ion_auth->user()->row()->id,
+                                                   'group_id'       => $this->ion_auth->get_users_groups()->row()->id,
                                                    'approved_at'    => date("Y-m-d H:i:s"),
-                                                   'status_approval'=> 'submit']);
+                                                   'attribute'      => json_encode($this->attribute),
+                                                   'status_approval'=> 'Submitted',
+                                                   'note'           => 'Document Submitted']);
+
               $template     = $this->CandidateDocument_Model->findOne($row)->row_array();
-              $approvals    = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA')->result();
+              $approvals    = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA', $row)->result();
               generateTsa($template, $approvals, $modelHistory);
               $this->session->set_flashdata('success', 'Data Uploded');
               redirect("/project/project/detail/".$data['project_id'], 'refresh');
           }
+    }
+
+    public function edit($document_id)
+    {
+        $document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
+        $attribute          = json_decode($document_candidate->attribute, true);
+        $project            = $this->Project_Model->findOne($document_candidate->project_id)->row();
+        $vendor             = $this->Vendor_Model->findOne($document_candidate->vendor_id)->row();
+        $picProject         = $this->User_Model->findOne($project->pic_project_id)->row();
+        $vendorUser         = $this->UserVendor_Model->getPIC($vendor->id)->row_array();
+
+
+        return view('project/tsa/edit', array(
+            'document'      => $document_candidate,
+            'candidate'     => $attribute,
+            'project'       => $project,
+            'picProject'    => $picProject,
+            'vendor'        => $vendor,
+            'vendorUser'    => $vendorUser,
+        ));
     }
 
     public function view($document_id)
@@ -217,5 +210,37 @@ class Tsa extends CI_Controller
     }
 
 
+    public function candidate($rowno=0)
+    {
+        $this->make_bread->add('Index');
+        $breadcrumb = $this->make_bread->output();
+        $search_text = "";
+        if($this->input->post('submit') != NULL ){
+            $search_text = $this->input->post('search');
+            $this->session->set_userdata(["search" => $search_text]);
+        }else{
+            if($this->session->userdata('search') != NULL){
+                $search_text = $this->session->userdata('search');
+            }
+        }
+        $rowperpage = 20;
+        if($rowno  != 0){
+            $rowno  = ($rowno-1) * $rowperpage;
+        }
+        $allcount             = $this->CandidateDocument_Model->getrecordCountCandidateDone($search_text);
+        $records              = $this->CandidateDocument_Model->getDataCandidateDone($rowno, $rowperpage, $search_text);
+        $config['base_url']   = base_url().'project/tsa/candidate';
+        $config['total_rows'] = $allcount;
+        $config['per_page']   = $rowperpage;
+        $this->pagination->initialize($config);
+        $pagination = $this->pagination->create_links();
+
+        return view('project.tsa.index-candidate-done', array(
+            'pagination' => $pagination,
+            'candidates' => $records,
+            'search'     => $search_text,
+            'breadcrumb' => $breadcrumb,
+        ));
+    }
 
 }

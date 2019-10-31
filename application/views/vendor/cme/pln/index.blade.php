@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('page_title', 'Mechanical Electrical')
 @section('content')
 	<div class="page">
 		<div class="page-inner">
@@ -29,16 +29,22 @@
 					<div class="col-md-8">
 						<div class="card card-fluid">
 							<div class="card-header">
-								@include('vendor.cme.com_cme.nav_menu', array('project_id' => $project->id))
+								<ul class="nav nav-tabs card-header-tabs">
+									<li class="nav-item">
+										<a href="#" class="nav-link active">
+											Document PLN
+										</a>
+									</li>
+								</ul>
+
 							</div>
 							<div class="card-body">
 								<div class="mb-4">
-									<a href="{{ site_url('/vendor/comcme/generatekomcme/'. $project->id) }}" class="btn btn-secondary">Generate KOM CME</a>
-									<a href="{{ site_url('/vendor/comcme/generatekomletter/'. $project->id) }}" class="btn btn-secondary">Generate Surat Pernyataan KOM CME</a>
+									<a href="{{ site_url('/vendor/foundation/sitepreparation/'. $project->id) }}" class="btn btn-secondary">Upload Document PLN</a>
 								</div>
 
 								<div class="">
-									<h5 class="card-title"> DOCUMENT KOM CME </h5>
+									<h5 class="card-title"> Document PLN </h5>
 									<div>
 
 									</div>
