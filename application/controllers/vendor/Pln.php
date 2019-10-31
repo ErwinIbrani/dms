@@ -15,6 +15,8 @@ class Pln extends CI_Controller
 		return view('vendor.cme.pln.index', array('project' => $project));
 	}
 
+
+
 	/**
 	 * Find project by ID of the project.
 	 *

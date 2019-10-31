@@ -40,13 +40,47 @@
 							</div>
 							<div class="card-body">
 								<div class="mb-4">
-									<a href="{{ site_url('/vendor/foundation/sitepreparation/'. $project->id) }}" class="btn btn-secondary">Upload Document PLN</a>
+									<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#uploadDokumenPln">
+										<span class="ml-1">Upload Document PLN</span></button>
+									<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#uploadKartuGaransi">
+										<span class="ml-1">Upload Kartu Garansi</span></button>
 								</div>
 
 								<div class="">
 									<h5 class="card-title"> Document PLN </h5>
 									<div>
-
+										<div class="list-group-item">
+											<div class="list-group-item-figure">
+												<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+											</div>
+											<div class="list-group-item-body">
+												<h4 class="list-group-item-title">
+													<a href="#">Dokumen PLN</a>
+												</h4>
+												<p class="list-group-item-text"> {{ date('M d, Y') }}</p>
+											</div>
+											<div class="list-group-item-figure">
+												<a href="#" target="_blank" class="btn btn-sm btn-icon btn-light">
+													<i class="oi oi-data-transfer-download"></i>
+												</a>
+											</div>
+										</div>
+										<div class="list-group-item">
+											<div class="list-group-item-figure">
+												<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+											</div>
+											<div class="list-group-item-body">
+												<h4 class="list-group-item-title">
+													<a href="#">Kartu Garansi PLN</a>
+												</h4>
+												<p class="list-group-item-text"> {{ date('M d, Y') }}</p>
+											</div>
+											<div class="list-group-item-figure">
+												<a href="#" target="_blank" class="btn btn-sm btn-icon btn-light">
+													<i class="oi oi-data-transfer-download"></i>
+												</a>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -56,4 +90,6 @@
 			</div>
 		</div>
 	</div>
+	@include('vendor.cme.pln.form.dokumen_pln')
+	@include('vendor.cme.pln.form.kartu_garansi')
 @endsection
