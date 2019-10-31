@@ -153,7 +153,7 @@
 										<p class="list-group-item-text"> {{ date('M d, Y', strtotime($iw->created_at)) }}</p>
 									</div>
 									<div class="list-group-item-figure">
-										<a href="{{ site_url('/uploads/iw/'.$iw->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
+										<a href="{{ site_url($iw->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
 											<i class="oi oi-data-transfer-download"></i>
 										</a>
 									</div>
