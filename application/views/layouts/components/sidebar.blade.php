@@ -92,7 +92,7 @@
 					<li class="menu-item has-child active has-open">
 						<a href="{{ site_url('/vendor/project/index') }}" class="menu-link"><span
 								class="menu-icon fas fa-clipboard-check"></span> <span
-								class="menu-text">Projects</span></a>
+								class="menu-text">Project</span></a>
 						<ul class="menu">
 							<li class="menu-item">
 								<a href="{{ site_url('/vendor/project/index') }}" class="menu-link">
@@ -112,6 +112,7 @@
 							</li>
 						</ul>
 					</li><!-- /.menu-item -->
+
 
 
                     <?php endif?>
@@ -180,8 +181,12 @@
 								</li>
 								<li class="menu-item">
 									<a href="{{ site_url("/project/project/done") }}" class="menu-link">
-
-										<span class="menu-text">Project Done</span></a>
+										<span class="menu-text">Project Done</span>
+									</a>
+								</li>
+								<li class="menu-item">
+									<a href="{{ site_url('/project/tsa/index') }}" class="menu-link">
+										<span class="menu-text">TSA Document</span>
 									</a>
 								</li>
 							</ul>

@@ -63,13 +63,15 @@
                                             <label for="tf1">Operator</label>
                                             <select class="form-control" name="operator" required>
                                                 <option value="" selected="selected">.:Choose:.</option>
-                                                <option value="SF">SF</option>
-                                                <option value="TSEL">TSEL</option>
-                                                <option value="ISAT">ISAT</option>
-                                                <option value="HCPT">HCPT</option>
-                                                <option value="HCPT">XL</option>
-                                                <option value="HCPT">FM</option>
-                                                <option value="Other">Other</option>
+                                                <?php
+                                                if ($attribute['operator'] == "benefit")
+                                                    echo "<option value='benefit' selected> Benefit(Keuntungan) </option>";
+                                                else echo "<option value='benefit'> Benefit(Keuntungan) </option>";
+
+                                                if ($attribute['operator'] == "cost")
+                                                    echo "<option value='cost' selected> Cost(Kerugian) </option>";
+                                                else echo "<option value='cost'> Cost(Kerugian) </option>";
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -91,14 +93,14 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Site ID IBS</label>
-                                            <input type="text" class="form-control is-valid" name="site_id_ibs" value="{{ $project['site_id_ibs'] }}" readonly/>
+                                            <input type="text" class="form-control is-valid" name="site_id_ibs" value="{{ $project->site_id_ibs }}" readonly/>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Site Name</label>
-                                            <input type="text" class="form-control is-valid" name="site_name" value="{{ $project['site_name'] }}" readonly/>
+                                            <input type="text" class="form-control is-valid" name="site_name" value="{{ $project->site_name }}" readonly/>
                                         </div>
                                     </div>
 
@@ -119,7 +121,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Region</label>
-                                            <input type="text" class="form-control is-valid" name="region" value="{{ $project['region'] }}" readonly/>
+                                            <input type="text" class="form-control is-valid" name="region" value="{{ $project->region }}" readonly/>
                                         </div>
                                     </div>
 
@@ -127,21 +129,21 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Site Type</label>
-                                            <input type="text" class="form-control is-valid" name="site_type" value="{{ $project['site_type'] }}" readonly/>
+                                            <input type="text" class="form-control is-valid" name="site_type" value="{{ $project->site_type }}" readonly/>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Tower Type</label>
-                                            <input type="text" class="form-control is-valid" name="tower_type" value="{{ $content['tower_type'] }}" readonly/>
+                                            <input type="text" class="form-control is-valid" name="tower_type" value="{{ $content->tower_type }}" readonly/>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Tower/Pole Height</label>
-                                            <input type="text" class="form-control is-valid" name="tower_height" value="{{ $content['tower_height'] }} m" readonly/>
+                                            <input type="text" class="form-control is-valid" name="tower_height" value="{{ $content->tower_height }} m" readonly/>
                                         </div>
                                     </div>
 
@@ -301,14 +303,14 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Vendor PIC</label>
-                                            <input type="text" class="form-control is-valid" name="vendor_pic" value="{{ $vendorUser['name'] }}" readonly/>
+                                            <input type="text" class="form-control is-valid" name="vendor_pic" value="{{ $vendorUser->name }}" readonly/>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Vendor PIC Phone</label>
-                                            <input type="text" class="form-control is-valid" name="vendor_phone" value="{{ $vendorUser['phone'] }}" readonly/>
+                                            <input type="text" class="form-control is-valid" name="vendor_phone" value="{{ $vendorUser->phone }}" readonly/>
                                         </div>
                                     </div>
 
@@ -364,7 +366,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">IBST Sitac PIC</label>
-                                            <input type="text" class="form-control is-valid" name="ibs_pic" value="{{ $picProject['username'] }}" readonly/>
+                                            <input type="text" class="form-control is-valid" name="ibs_pic" value="{{ $picProject->username }}" readonly/>
                                         </div>
                                     </div>
 
