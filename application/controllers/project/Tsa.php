@@ -153,13 +153,14 @@ class Tsa extends CI_Controller
               $approvals    = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA', $row)->result();
               generateTsa($template, $approvals, $modelHistory);
               $this->session->set_flashdata('success', 'Data Uploded');
-              redirect("/project/project/detail/".$data['project_id'], 'refresh');
+              redirect("/project/tsa/index/", 'refresh');
           }
     }
 
     public function edit($document_id)
     {
         $document_candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
+        $candidate          = $this->Candidate_Model->getCandidateById($document_candidate->candidate_id)->row();
         $attribute          = json_decode($document_candidate->attribute, true);
         $project            = $this->Project_Model->findOne($document_candidate->project_id)->row();
         $vendor             = $this->Vendor_Model->findOne($document_candidate->vendor_id)->row();
@@ -169,17 +170,89 @@ class Tsa extends CI_Controller
         $candidate_document = $this->CandidateDocument_Model->findCandidateSurveyDone($document_candidate->candidate_id)->row();
         $content_bap         = json_decode($bap->attribute, true);
         $content             = json_decode($candidate_document->attribute, true);
-        
+
         return view('project/tsa/edit', array(
-            'candidate'     => $document_candidate,
-            'attribute'     => $attribute,
-            'project'       => $project,
-            'picProject'    => $picProject,
-            'vendor'        => $vendor,
-            'vendorUser'    => $vendorUser,
-            'content_bap'   => $content_bap,
-            'content'       => $content
+            'documetn_candidate'   => $document_candidate,
+            'candidate'            => $candidate,
+            'attribute'            => $attribute,
+            'project'              => $project,
+            'picProject'           => $picProject,
+            'vendor'               => $vendor,
+            'vendorUser'           => $vendorUser,
+            'content_bap'          => $content_bap,
+            'content'              => $content
         ));
+    }
+
+    public function update()
+    {
+        $this->attribute = [
+            'project_name'  => $this->input->post('project_name'),
+            'operator'      => $this->input->post('operator'),
+            'tsa_number'    => $this->input->post('tsa_number'),
+            'site_id_ibs'   => $this->input->post('site_id_ibs'),
+            'site_name'     => $this->input->post('site_name'),
+            'long'          => $this->input->post('long'),
+            'lat'           => $this->input->post('lat'),
+            'region'        => $this->input->post('region'),
+            'site_type'     => $this->input->post('site_type'),
+            'tower_type'    => $this->input->post('tower_type'),
+            'tower_height'  => $this->input->post('tower_height'),
+            'initil_price_peryear'  => $this->input->post('initil_price_peryear'),
+            'land_size'             => $this->input->post('land_size'),
+            'access_road'           => $this->input->post('access_road'),
+            'status_site'           => $this->input->post('status_site'),
+            'land_status'           => $this->input->post('land_status'),
+            'owner_name'            => $this->input->post('owner_name'),
+            'phone_number'          => $this->input->post('phone_number'),
+            'topology'              => $this->input->post('topology'),
+            'contact_persons'       => $this->input->post('contact_persons'),
+            'address'               => $this->input->post('address'),
+            'time_access'           => $this->input->post('time_access'),
+            'acquition_status'      => $this->input->post('acquition_status'),
+            'final_per_year'        => $this->input->post('final_per_year'),
+            'total_price'           => $this->input->post('total_price'),
+            'vendor_pic'            => $this->input->post('vendor_pic'),
+            'vendor_phone'          => $this->input->post('vendor_phone'),
+            'start_year'            => $this->input->post('start_year'),
+            'end_year'              => $this->input->post('end_year'),
+            'purchased_option'      => $this->input->post('purchased_option'),
+            'ibs_pic'               => $this->input->post('ibs_pic'),
+            'location_site'         => $this->input->post('location_site'),
+            'note'                  => $this->input->post('note'),
+        ];
+        $this->attribute['other_condition']     =  $this->input->post('other_condition[]');
+        $this->attribute['phase']               = $this->input->post('phase[]');
+        $this->attribute['percen']              = $this->input->post('percen[]');
+        $this->attribute['amount']              = $this->input->post('amount[]');
+        $this->attribute['description']         = $this->input->post('description[]');
+        $this->attribute['jarak_dari_kandidat'] = $this->input->post('jarak_dari_kandidat[]');
+        $this->attribute['tower_existing']      = $this->input->post('tower_existing[]');
+        $this->attribute['potensi_market']      = $this->input->post('potensi_market[]');
+        $this->attribute['kandidates']          = $this->input->post('kandidates[]');
+        $this->attribute['e_longiude']          = $this->input->post('e_longiude[]');
+        $this->attribute['ns_latitude']         = $this->input->post('ns_latitude[]');
+        $this->attribute['masa_sewa']           = $this->input->post('masa_sewa[]');
+        $this->attribute['harga_sewa']          = $this->input->post('harga_sewa[]');
+        $this->attribute['cancelation_remarks'] = $this->input->post('cancelation_remarks[]');
+        $this->attribute['contact_person']      = $this->input->post('contact_person[]');
+
+        $data = [
+            'project_id'       => $this->input->post('project_id'),
+            'vendor_id'        => $this->input->post('vendor_id'),
+            'name'             => 'TSA',
+            'code'             => 'FM-SPA-005',
+            'type'             => 'SITAC TSA',
+            'candidate_id'     => $this->input->post('candidate_id'),
+            'status'           => 'submitted',
+            'created_at'       => date('Y-m-d H:i:s'),
+            'attribute'        => json_encode($this->attribute),
+            'status_revision'  => NULL,
+        ];
+           $this->CandidateDocument_Model->update($this->input->post('id'), $data);
+            $this->DocumentApprovalHistory_Model->continueApprove($this->input->post('id'), 'Reject');
+            $this->session->set_flashdata('success', 'Data Uploded');
+            redirect("/project/tsa/index/", 'refresh');
     }
 
     public function view($document_id)

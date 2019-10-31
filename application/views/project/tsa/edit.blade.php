@@ -37,6 +37,7 @@
                             ];
                             echo form_open('project/tsa/update', $data);
                             ?>
+                            <input type="hidden" class="form-control" name="id" value="<?= $documetn_candidate->id ?>">
                             <input type="hidden" class="form-control" name="candidate_id" value="<?= $candidate->id ?>">
                             <input type="hidden" class="form-control" name="project_id" value="<?= $project->id ?>">
                             <input type="hidden" class="form-control" name="vendor_id" value="<?= $vendor->id ?>">
@@ -63,15 +64,13 @@
                                             <label for="tf1">Operator</label>
                                             <select class="form-control" name="operator" required>
                                                 <option value="" selected="selected">.:Choose:.</option>
-                                                <?php
-                                                if ($attribute['operator'] == "benefit")
-                                                    echo "<option value='benefit' selected> Benefit(Keuntungan) </option>";
-                                                else echo "<option value='benefit'> Benefit(Keuntungan) </option>";
-
-                                                if ($attribute['operator'] == "cost")
-                                                    echo "<option value='cost' selected> Cost(Kerugian) </option>";
-                                                else echo "<option value='cost'> Cost(Kerugian) </option>";
-                                                ?>
+                                                <option value="SF">SF</option>
+                                                <option value="TSEL">TSEL</option>
+                                                <option value="ISAT">ISAT</option>
+                                                <option value="HCPT">HCPT</option>
+                                                <option value="HCPT">XL</option>
+                                                <option value="HCPT">FM</option>
+                                                <option value="Other">Other</option>
                                             </select>
                                         </div>
                                     </div>
@@ -136,14 +135,14 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Tower Type</label>
-                                            <input type="text" class="form-control is-valid" name="tower_type" value="{{ $content->tower_type }}" readonly/>
+                                            <input type="text" class="form-control is-valid" name="tower_type" value="{{ $content['tower_type'] }}" readonly/>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Tower/Pole Height</label>
-                                            <input type="text" class="form-control is-valid" name="tower_height" value="{{ $content->tower_height }} m" readonly/>
+                                            <input type="text" class="form-control is-valid" name="tower_height" value="{{ $content['tower_height'] }} m" readonly/>
                                         </div>
                                     </div>
 
