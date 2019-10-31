@@ -2,6 +2,10 @@
 @section('page_title', 'Mechanical Electrical')
 @section('content')
 	<div class="page">
+		<div class="page-message" role="alert">
+			<span class="mr-5">Sorry, Form ME not ready for NOW. This page just display list of ME document. (dummy)</span>
+		</div>
+
 		<div class="page-inner">
 			<header class="page-title-bar">
 
@@ -40,13 +44,28 @@
 							</div>
 							<div class="card-body">
 								<div class="mb-4">
-									<a href="{{ site_url('/vendor/foundation/sitepreparation/'. $project->id) }}" class="btn btn-secondary">Form ME</a>
+									<a href="#" class="btn btn-secondary disabled">Form ME</a>
 								</div>
 
 								<div class="">
 									<h5 class="card-title"> Document ME </h5>
 									<div>
-
+										<div class="list-group-item">
+											<div class="list-group-item-figure">
+												<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+											</div>
+											<div class="list-group-item-body">
+												<h4 class="list-group-item-title">
+													<a href="#">ME Work Inspection Report</a>
+												</h4>
+												<p class="list-group-item-text"> {{ date('M d, Y') }}</p>
+											</div>
+											<div class="list-group-item-figure">
+												<a href="#" target="_blank" class="btn btn-sm btn-icon btn-light">
+													<i class="oi oi-data-transfer-download"></i>
+												</a>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>

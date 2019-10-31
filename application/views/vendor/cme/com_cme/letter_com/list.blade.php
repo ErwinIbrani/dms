@@ -38,9 +38,41 @@
 								</div>
 
 								<div class="">
-									<h5 class="card-title"> DOCUMENT KOM CME </h5>
+									<small>Download documents below and if document has generated upload documents by click <b>Upload Document</b> tab.</small>
+									<h5 class="card-title"> List generated document </h5>
 									<div>
-
+										<div class="list-group-item">
+											<div class="list-group-item-figure">
+												<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+											</div>
+											<div class="list-group-item-body">
+												<h4 class="list-group-item-title">
+													<a href="#">KOM CME</a>
+												</h4>
+												<p class="list-group-item-text"> {{ date('M d, Y') }}</p>
+											</div>
+											<div class="list-group-item-figure">
+												<a href="#" target="_blank" class="btn btn-sm btn-icon btn-light">
+													<i class="oi oi-data-transfer-download"></i>
+												</a>
+											</div>
+										</div>
+										<div class="list-group-item">
+											<div class="list-group-item-figure">
+												<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+											</div>
+											<div class="list-group-item-body">
+												<h4 class="list-group-item-title">
+													<a href="#">Surat Pernyataan KOM CME</a>
+												</h4>
+												<p class="list-group-item-text"> {{ date('M d, Y') }}</p>
+											</div>
+											<div class="list-group-item-figure">
+												<a href="#" target="_blank" class="btn btn-sm btn-icon btn-light">
+													<i class="oi oi-data-transfer-download"></i>
+												</a>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
