@@ -164,16 +164,21 @@ class Tsa extends CI_Controller
         $project            = $this->Project_Model->findOne($document_candidate->project_id)->row();
         $vendor             = $this->Vendor_Model->findOne($document_candidate->vendor_id)->row();
         $picProject         = $this->User_Model->findOne($project->pic_project_id)->row();
-        $vendorUser         = $this->UserVendor_Model->getPIC($vendor->id)->row_array();
-
-
+        $vendorUser         = $this->UserVendor_Model->getPIC($vendor->id)->row();
+        $bap                = $this->CandidateDocument_Model->findCandidateBapDone($document_candidate->candidate_id)->row();
+        $candidate_document = $this->CandidateDocument_Model->findCandidateSurveyDone($document_candidate->candidate_id)->row();
+        $content_bap         = json_decode($bap->attribute, true);
+        $content             = json_decode($candidate_document->attribute, true);
+        
         return view('project/tsa/edit', array(
-            'document'      => $document_candidate,
-            'candidate'     => $attribute,
+            'candidate'     => $document_candidate,
+            'attribute'     => $attribute,
             'project'       => $project,
             'picProject'    => $picProject,
             'vendor'        => $vendor,
             'vendorUser'    => $vendorUser,
+            'content_bap'   => $content_bap,
+            'content'       => $content
         ));
     }
 
