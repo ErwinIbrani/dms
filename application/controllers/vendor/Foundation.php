@@ -56,12 +56,20 @@ class Foundation extends CI_Controller
 
 	public function concreteproposal($project_id)
 	{
+		$project = $this->findProjectById($project_id);
 
+		return view('vendor.cme.foundation.form.concrete_proposal', array(
+			'project' => $project
+		));
 	}
 
 	public function pouringpreparation($project_id)
 	{
+		$project = $this->findProjectById($project_id);
 
+		return view('vendor.cme.foundation.form.pouring_preparation', array(
+			'project' => $project
+		));
 	}
 
 	public function readymix($project_id)
