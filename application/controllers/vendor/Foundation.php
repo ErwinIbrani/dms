@@ -128,7 +128,11 @@ class Foundation extends CI_Controller
 
 	public function concretecuring($project_id)
 	{
+		$project = $this->findProjectById($project_id);
 
+		return view('vendor.cme.foundation.form.concrete_curing', array(
+			'project' => $project
+		));
 	}
 
 	public function shelterfoundation($project_id)
