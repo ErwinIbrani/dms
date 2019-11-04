@@ -32,7 +32,7 @@
 								<ul class="nav nav-tabs card-header-tabs">
 									<li class="nav-item">
 										<a href="#" class="nav-link active">
-											Driven Pile
+											Bore Pile Activity
 										</a>
 									</li>
 								</ul>
@@ -43,34 +43,65 @@
 									<div>
 										{!! form_open() !!}
 
+										<div class="form-row">
+											<div class="col-md-12">
+												<div><b>1. Bars Reinforcement</b></div>
+											</div>
+
+											<div class="col-md-6">
+												<div>Main</div>
+											</div>
+
+											<div class="col-md-6">
+												<div class="form-group">
+													<input type="text" name="bore_pile_activity_main"
+														   class="form-control" id="bore_pile_activity_main">
+													<div class="text-right">format must: ... mm - ... pcs:</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-row">
+											<div class="col-md-8">
+												<div>Stirrups</div>
+											</div>
+
+											<div class="col-md-4 ">
+												<div class="form-group">
+													<input type="text" name="bore_pile_activity_stirrups"
+														   class="form-control" id="bore_pile_activity_stirrups">
+													<div class="text-right">format must: ... mm - ... mm:</div>
+												</div>
+											</div>
+										</div>
+
 										<div class="row my-4">
 											<div class="col-md-12">
 												<div class="table-responsive">
 													<table class="table table-bordered">
 														<thead>
 														<tr>
-															<th>Pile No</th>
-															<th>Pile Length (m)</th>
-															<th>Pile Driven Length (m)</th>
-															<th>Final Set (m)</th>
-															<th>RAM Stroke (m)</th>
-															<th>Total Blows</th>
-															<th>Weight of RAM (Ton)</th>
-															<th>Piling Date</th>
-															<th>Remarks</th>
-															<th></th>
+															<th rowspan="2">Point</th>
+															<th colspan="2">Depth</th>
+															<th rowspan="2">Length of Rebar (m) </th>
+															<th rowspan="2">Pile Top Elevation (m) </th>
+															<th rowspan="2">Concrete Volume (m<sup>3</sup>)</th>
+															<th rowspan="2">Remarks</th>
+															<th rowspan="2"></th>
+														</tr>
+														<tr>
+															<th>Before (m)</th>
+															<th>After (m)</th>
 														</tr>
 														</thead>
 
 														<tr id="parent-node">
-															<td><input type="text" name="pile_no[]" id="description" class="form-control"/></td>
-															<td><input type="text" name="pile_length[]" id="description" class="form-control"/></td>
-															<td><input type="text" name="pile_driven_length[]" id="description" class="form-control"/></td>
-															<td><input type="text" name="final_set[]" id="description" class="form-control"/></td>
-															<td><input type="text" name="ram_stroke[]" id="description" class="form-control"/></td>
-															<td><input type="text" name="total_blows[]" id="description" class="form-control"/></td>
-															<td><input type="text" name="weight_of_ram[]" id="description" class="form-control"/></td>
-															<td><input type="text" name="piling_date[]" id="description" class="form-control"/></td>
+															<td><input type="text" name="point[]" id="description" class="form-control"/></td>
+															<td><input type="text" name="before[]" id="description" class="form-control"/></td>
+															<td><input type="text" name="after[]" id="description" class="form-control"/></td>
+															<td><input type="text" name="length_rebar[]" id="description" class="form-control"/></td>
+															<td><input type="text" name="pile_elevation[]" id="description" class="form-control"/></td>
+															<td><input type="text" name="concrete_volume[]" id="description" class="form-control"/></td>
 															<td><input type="text" name="remarks[]" id="description" class="form-control"/></td>
 															<td>
 																<div id="dynamic-action"></div>
@@ -87,12 +118,9 @@
 
 										</div>
 
-
-
-
 										<div class="form-group mt-4">
-											<label for="driven_pile_note">Notes</label>
-											<textarea name="driven_pile_note" id="driven_pile_note"
+											<label for="bore_activity_note">Notes</label>
+											<textarea name="bore_activity_note" id="bore_activity_note"
 													  class="form-control"
 													  cols="30" rows="5"></textarea>
 										</div>

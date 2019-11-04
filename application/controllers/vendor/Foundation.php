@@ -101,27 +101,47 @@ class Foundation extends CI_Controller
 
 	public function wooddenpile($project_id)
 	{
+		$project = $this->findProjectById($project_id);
 
+		return view('vendor.cme.foundation.form.woodden_pile', array(
+			'project' => $project
+		));
 	}
 
 	public function borepreparation($project_id)
 	{
+		$project = $this->findProjectById($project_id);
 
+		return view('vendor.cme.foundation.form.bore_preparation', array(
+			'project' => $project
+		));
 	}
 
 	public function borepileactivity($project_id)
 	{
+		$project = $this->findProjectById($project_id);
 
+		return view('vendor.cme.foundation.form.bore_pile_activity', array(
+			'project' => $project
+		));
 	}
 
 	public function concretecuring($project_id)
 	{
+		$project = $this->findProjectById($project_id);
 
+		return view('vendor.cme.foundation.form.concrete_curing', array(
+			'project' => $project
+		));
 	}
 
 	public function shelterfoundation($project_id)
 	{
+		$project = $this->findProjectById($project_id);
 
+		return view('vendor.cme.foundation.form.shelter_foundation', array(
+			'project' => $project
+		));
 	}
 
 	public function permanentshelter($project_id)

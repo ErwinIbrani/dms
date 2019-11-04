@@ -32,7 +32,7 @@
 								<ul class="nav nav-tabs card-header-tabs">
 									<li class="nav-item">
 										<a href="#" class="nav-link active">
-											Driven Pile
+											Woodden Pile
 										</a>
 									</li>
 								</ul>
@@ -51,11 +51,6 @@
 														<tr>
 															<th>Pile No</th>
 															<th>Pile Length (m)</th>
-															<th>Pile Driven Length (m)</th>
-															<th>Final Set (m)</th>
-															<th>RAM Stroke (m)</th>
-															<th>Total Blows</th>
-															<th>Weight of RAM (Ton)</th>
 															<th>Piling Date</th>
 															<th>Remarks</th>
 															<th></th>
@@ -65,11 +60,6 @@
 														<tr id="parent-node">
 															<td><input type="text" name="pile_no[]" id="description" class="form-control"/></td>
 															<td><input type="text" name="pile_length[]" id="description" class="form-control"/></td>
-															<td><input type="text" name="pile_driven_length[]" id="description" class="form-control"/></td>
-															<td><input type="text" name="final_set[]" id="description" class="form-control"/></td>
-															<td><input type="text" name="ram_stroke[]" id="description" class="form-control"/></td>
-															<td><input type="text" name="total_blows[]" id="description" class="form-control"/></td>
-															<td><input type="text" name="weight_of_ram[]" id="description" class="form-control"/></td>
 															<td><input type="text" name="piling_date[]" id="description" class="form-control"/></td>
 															<td><input type="text" name="remarks[]" id="description" class="form-control"/></td>
 															<td>
@@ -91,8 +81,8 @@
 
 
 										<div class="form-group mt-4">
-											<label for="driven_pile_note">Notes</label>
-											<textarea name="driven_pile_note" id="driven_pile_note"
+											<label for="woodden_pile_note">Notes</label>
+											<textarea name="woodden_pile_note" id="woodden_pile_note"
 													  class="form-control"
 													  cols="30" rows="5"></textarea>
 										</div>
