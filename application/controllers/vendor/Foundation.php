@@ -119,7 +119,11 @@ class Foundation extends CI_Controller
 
 	public function borepileactivity($project_id)
 	{
+		$project = $this->findProjectById($project_id);
 
+		return view('vendor.cme.foundation.form.bore_pile_activity', array(
+			'project' => $project
+		));
 	}
 
 	public function concretecuring($project_id)
