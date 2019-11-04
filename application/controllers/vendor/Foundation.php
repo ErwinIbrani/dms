@@ -101,7 +101,11 @@ class Foundation extends CI_Controller
 
 	public function wooddenpile($project_id)
 	{
+		$project = $this->findProjectById($project_id);
 
+		return view('vendor.cme.foundation.form.woodden_pile', array(
+			'project' => $project
+		));
 	}
 
 	public function borepreparation($project_id)
