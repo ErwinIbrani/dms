@@ -32,7 +32,7 @@
 								<ul class="nav nav-tabs card-header-tabs">
 									<li class="nav-item">
 										<a href="#" class="nav-link active">
-											Ready Mix
+											Bore Pile Activity
 										</a>
 									</li>
 								</ul>
