@@ -151,22 +151,38 @@ class Foundation extends CI_Controller
 
 	public function raftfoundation($project_id)
 	{
+		$project = $this->findProjectById($project_id);
 
+		return view('vendor.cme.foundation.form.raft_foundation', array(
+			'project' => $project
+		));
 	}
 
 	public function towererection($project_id)
 	{
+		$project = $this->findProjectById($project_id);
 
+		return view('vendor.cme.foundation.form.tower_erection', array(
+			'project' => $project
+		));
 	}
 
 	public function towerpainting($project_id)
 	{
+		$project = $this->findProjectById($project_id);
 
+		return view('vendor.cme.foundation.form.tower_painting', array(
+			'project' => $project
+		));
 	}
 
 	public function towergrouting($project_id)
 	{
+		$project = $this->findProjectById($project_id);
 
+		return view('vendor.cme.foundation.form.tower_grouting', array(
+			'project' => $project
+		));
 	}
 
 	/**
