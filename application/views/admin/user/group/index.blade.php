@@ -61,12 +61,12 @@
 									<td>{{ $list->name }}</td>
 									<td>{{ $list->description }}</td>
 									<td>
-										<a href="{{ site_url('/admin/usergroup/edit/'. $list->id) }}"
+										<a href="{{ site_url('/admin/userGroup/edit/'. $list->id) }}"
 										   data-toggle="modal" data-target={{"#userGroupFrom-".$list->id }}
 										   class="btn btn-sm btn-icon btn-secondary">
 											<i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span>
 										</a>
-										<a href="{{ site_url('/admin/usergroup/delete/'. $list->id) }}" class="btn btn-sm btn-icon btn-secondary">
+										<a href="{{ site_url('/admin/userGroup/delete/'. $list->id) }}" class="btn btn-sm btn-icon btn-secondary">
 											<i class="fa fa-trash-alt"></i> <span class="sr-only">Delete</span>
 										</a>
 									</td>
@@ -83,7 +83,7 @@
 											</div><!-- /.modal-header -->
 											<!-- .modal-body -->
 											<div class="modal-body">
-												{!! form_open('/admin/usergroup/edit/'.$list->id, array('id'=> 'user-group-form-'.$list->id)) !!}
+												{!! form_open('/admin/userGroup/edit/'.$list->id, array('id'=> 'user-group-form-'.$list->id)) !!}
 
 												<div class="form-group">
 													<label for="tf1">Group Name</label>
@@ -131,7 +131,7 @@
             </div><!-- /.modal-header -->
             <!-- .modal-body -->
             <div class="modal-body">
-				{!! form_open('/admin/usergroup/store', array('id'=> 'user-group-form')) !!}
+				{!! form_open('/admin/userGroup/store', array('id'=> 'user-group-form')) !!}
 
                     <div class="form-group">
                         <label for="tf1">Group Name</label> 
