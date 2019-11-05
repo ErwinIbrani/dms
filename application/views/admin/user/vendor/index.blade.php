@@ -19,7 +19,7 @@
 			<div class="d-md-flex align-items-md-start">
 				<h1 class="page-title mr-sm-auto"> User Vendor </h1><!-- .btn-toolbar -->
 				<div class="btn-toolbar">
-					<a href="{{ site_url('/admin/usermanagement/createuservendor') }}" class="btn btn-outline-primary">
+					<a href="{{ site_url('/admin/userManagement/createUserVendor') }}" class="btn btn-outline-primary">
 						<span class="ml-1">Add New User</span></a>
 				</div>
 			</div><!-- /title and toolbar -->
