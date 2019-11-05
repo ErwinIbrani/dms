@@ -48,7 +48,7 @@ class Layout extends CI_Controller {
 		$candidate_bap = $attribute->bap;
 		$day = $this->getDayName($candidate_bap->offer_date);
 
-
+		
 		return view('vendor.candidate.document.bap.layout', array(
 			'day' => $day,
 			'date' => date('d - m - Y', strtotime($candidate_bap->offer_date)),
