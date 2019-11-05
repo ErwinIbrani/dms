@@ -10,15 +10,15 @@
             <!-- .nav-tabs -->
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a href="<?= site_url("admin/region/index"); ?>" class="nav-link show active">
-                       Region
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="<?= site_url("admin/province/index"); ?>" class="nav-link show">
                         Province
                     </a>
                 </li>
+				<li class="nav-item">
+					<a href="<?= site_url("admin/region/index"); ?>" class="nav-link show active">
+						Region
+					</a>
+				</li>
                 <li class="nav-item">
                     <a href="<?= site_url("admin/city/index"); ?>" class="nav-link show">
                         City
