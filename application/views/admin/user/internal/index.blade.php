@@ -19,8 +19,8 @@
 				<div class="d-md-flex align-items-md-start">
 					<h1 class="page-title mr-sm-auto"> User </h1><!-- .btn-toolbar -->
 					<div class="btn-toolbar">
-						<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#userGroupFrom">
-							<span class="ml-1">Add New User</span></button>
+						<a href="{{ site_url('/admin/userManagement/createUserInternal') }}" class="btn btn-outline-primary">
+							<span class="ml-1">Add New User</span></a>
 					</div>
 				</div><!-- /title and toolbar -->
 			</header>

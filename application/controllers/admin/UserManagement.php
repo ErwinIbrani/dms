@@ -29,7 +29,7 @@ class UserManagement extends CI_Controller {
 		// Column settings
 		$columns = array(
 //			"id"=>array("header"=>"User ID", "type"=>"label"),
-			"username"=>array("header"=>"Username", "type"=>"link", 'href' => site_url('profile')),
+			"username"=>array("header"=>"Username", "type"=>"link", 'href' => site_url('admin/userManagement/editUserInternal/{id}')),
 			"email"=>array("header"=>"Email", "type"=>"label"),
 			"level"=>array("header"=>"Level", "type"=>"label"),
 		);
@@ -48,29 +48,87 @@ class UserManagement extends CI_Controller {
 		));
     }
 
-	public function create()
+	public function createUserInternal()
 	{
-//		$this->title = 'Add New User';
-//		return view('admin.user.internal.create', array(
-//			'title' => $this->title
-//		));
-		
-		$username = 'Faisal Nasirudin';
-		$password = 'password';
-		$email = 'faisal.nas@gmail.com';
-		$additional_data = array(
-			'type' => 'vendor',
-			'level' => 'Supervisor',
-		);
-		$group = array('1', '2'); // Sets user to admin.
 
-		$this->ion_auth->register($username, $password, $email, $additional_data, $group);
+		$groups = $this->UserGroup_Model->getData();
+
+		return view('admin.user.internal.create', array(
+			'groups' => $groups->result()
+		));
     }
 
-	public function storeData()
+	protected function validatorInternal($isNew) {
+		if($isNew) {
+			$this->form_validation->set_rules('email', 'Email', 'required|is_unique[users.email]',
+				array('is_unique' => 'This %s already exists.'));
+			$this->form_validation->set_rules('password', 'Password', 'required');
+		} else {
+			$this->form_validation->set_rules('email', 'Email', 'required');
+		}
+
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('type', 'Type', 'required');
+		$this->form_validation->set_rules('level', 'Level', 'required');
+		$this->form_validation->set_rules('role[]', 'role', 'required');
+	}
+
+	public function storeUserInternal()
 	{
-		
-    }
+		$this->validatorInternal(true);
+
+		if($this->form_validation->run()) {
+			$this->InternalUser_Model->storeData($this->input->post());
+			$this->session->set_flashdata('success', 'Data Inserted');
+			return redirect("admin/userManagement/", 'refresh');
+		} else {
+			return $this->createUserVendor();
+		}
+
+	}
+
+	public function editUserInternal($id)
+	{
+		$user = $this->InternalUser_Model->findById($id);
+
+		$groups = $this->UserGroup_Model->getData();
+
+		$userGroup = $this->ion_auth->get_users_groups($user->id)->result();
+
+		$userGroupArray = [];
+		foreach ($userGroup as $group) {
+			$userGroupArray[$group->id] = $group->id;
+		}
+
+
+		return view('admin.user.internal.edit', array(
+			'user' => $user,
+			'groups' => $groups->result(),
+			'userGroup' => $userGroupArray
+		));
+	}
+
+	public function updateUserInternal($id)
+	{
+		$user = $this->InternalUser_Model->findById($id);
+
+		$this->validatorInternal(false);
+
+		if($this->form_validation->run()) {
+			$this->InternalUser_Model->updateData($this->input->post(), $user->id);
+			$this->session->set_flashdata('success', 'Data Updated');
+			return redirect("admin/userManagement/", 'refresh');
+		} else {
+			return $this->editUserInternal($user->id);
+		}
+	}
+
+	public function deleteUserInternal($id)
+	{
+		$this->InternalUser_Model->deleteData($id);
+		$this->session->set_flashdata('success', 'Data Deleted');
+		return redirect("admin/userManagement", 'refresh');
+	}
 
 	protected function validatorVendor($isNew) {
 		if($isNew) {

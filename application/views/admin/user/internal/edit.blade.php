@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page_title', 'Create User Internal IBS')
+@section('page_title', 'Edit User Vendor')
 
 @section('header')
 	<link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/select2/select2.css">
@@ -21,9 +21,12 @@
 
 				<!-- title and toolbar -->
 				<div class="d-md-flex align-items-md-start">
-					<h1 class="page-title mr-sm-auto"> Create User Vendor </h1><!-- .btn-toolbar -->
+					<h1 class="page-title mr-sm-auto"> Edit User Vendor </h1><!-- .btn-toolbar -->
 					<div class="btn-toolbar">
-						<a href="{{ site_url('/admin/user-management/vendor') }}" class="btn btn-subtle-danger">
+						<a href="{{ site_url('/admin/userManagement/deleteUserInternal/'.$user->id) }}" class="btn btn-subtle-danger mr-2">
+							<span class="ml-1">Delete</span>
+						</a>
+						<a href="{{ site_url('/admin/userManagement') }}" class="btn btn-subtle-secondary">
 							<span class="ml-1">Cancel</span>
 						</a>
 					</div>
@@ -42,7 +45,7 @@
 					</div>
 				@endif
 
-				{!! form_open('/admin/userManagement/storeUserInternal', array('id'=> 'store-user-vendor-form')) !!}
+				{!! form_open('/admin/userManagement/updateUserInternal/'.$user->id, array('id'=> 'store-user-internal-form')) !!}
 				<div class="row">
 					<div class="col-md-4">
 						<div class="card card-fluid">
@@ -55,15 +58,16 @@
 									@foreach($groups as $group)
 										<div class="custom-control custom-control-inline custom-checkbox mt-1">
 											<input type="checkbox" name="role[]" value="{{ $group->id }}"
-												   class="custom-control-input" id="{{ 'ckb' . $group->id }}">
+												   class="custom-control-input" id="{{ 'ckb' . $group->id }}" {{ in_array($group->id, $userGroup) ? 'checked' : '' }}>
 											<label class="custom-control-label" for="{{ 'ckb' . $group->id }}">{{ ucwords($group->name) }}</label>
 										</div>
 									@endforeach
 								</div>
 							</div>
 						</div>
-						<button type="button" onclick="document.getElementById('store-user-vendor-form').submit()" class="btn btn-primary mr-2 btn-block">
-							<span class="ml-1">Submit</span>
+
+						<button type="button" onclick="document.getElementById('store-user-internal-form').submit()" class="btn btn-primary mr-2 btn-block">
+							<span class="ml-1">Update</span>
 						</button>
 					</div>
 					<div class="col-md-8">
@@ -74,15 +78,19 @@
 							<div class="card-body">
 								<div class="form-group">
 									<label for="email">Email</label>
-									<input type="email" class="form-control" name="email" id="email" placeholder="eg. jhon.doe@example.com" required="">
+									<input type="email" class="form-control" name="email" id="email"
+										   value="{{ $user->email }}"
+										   placeholder="eg. jhon.doe@example.com" readonly>
 								</div>
 								<div class="form-group">
 									<label for="name">Name</label>
-									<input type="text" class="form-control"  name="name" id="name" placeholder="e.g Jhone Doe" required="">
+									<input type="text" class="form-control"  name="name"
+										   value="{{ $user->username }}"
+										   id="name" placeholder="e.g Jhone Doe" required="">
 								</div>
 								<div class="form-group">
 									<label for="password">Password</label>
-									<input type="password" class="form-control"  name="password" id="password" placeholder="Password for user" required="">
+									<input type="password" class="form-control"  name="password" id="password" placeholder="New Password" required="">
 								</div>
 
 								<div class="form-row">
@@ -96,7 +104,6 @@
 										<label for="level">Type</label>
 										<select name="level" id="level" class="form-control">
 											<option value="supervisor">Supervisor</option>
-											<option value="supervisor">PIC</option>
 											<option value="manager">Manager</option>
 										</select>
 									</div><!-- /form column -->
