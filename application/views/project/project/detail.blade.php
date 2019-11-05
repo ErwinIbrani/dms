@@ -68,6 +68,7 @@
 											<td>{{ $candidate->name }}
 												@if($project->candidate_selected === $candidate->id)
 													<span class="badge badge-warning mr-2">Candidate Selected</span>
+													<a href="{{site_url('/project/candidate/unselect/'. $project->id .'/'.$candidate->id)}}" class="badge badge-danger mr-2">Unselect Candidate </a>
 												@endif</td>
 											<td>{{ $candidate->long . '/' . $candidate->lat }}</td>
 											<td>{{ $candidate->address }}</td>
