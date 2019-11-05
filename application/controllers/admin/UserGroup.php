@@ -30,7 +30,7 @@ class UserGroup extends CI_Controller
 
 		$data = $this->UserGroup_Model->getAllList($rowPerPage, $page);
 
-		$config['base_url'] = base_url().'admin/usergroup/index';
+		$config['base_url'] = base_url().'admin/userGroup/index';
 		$config['total_rows'] = $this->UserGroup_Model->getCount();
 		$config['per_page'] = $rowPerPage;
 		// Initialize
