@@ -47,7 +47,6 @@ class Layout extends CI_Controller {
 		$project = $this->Project_Model->findOne($candidate->project_id)->row();
 		$candidate_bap = $attribute->bap;
 		$day = $this->getDayName($candidate_bap->offer_date);
-
 		
 		return view('vendor.candidate.document.bap.layout', array(
 			'day' => $day,
