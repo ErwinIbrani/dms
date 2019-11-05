@@ -261,14 +261,14 @@
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Building Height (m)</label>
-												<input type="number" class="form-control" name="building_height" autocomplete="off" required/>
+												<input type="number" class="form-control" name="building_height" autocomplete="off"/>
 											</div>
 										</div>
 
 										<div class="col-lg-6">
 											<div class="form-group">
 												<label for="tf1">Floor No (fl)</label>
-												<input type="number" class="form-control" name="floor_no" autocomplete="off" required/>
+												<input type="number" class="form-control" name="floor_no" autocomplete="off"/>
 											</div>
 										</div>
 
@@ -288,7 +288,7 @@
 
 										<div class="col-lg-6">
 											<div class="form-group">
-												<label for="tf1">Access Road (m x m)</label>
+												<label for="tf1">Access Road</label>
 												<input type="text" class="form-control" name="access_road" autocomplete="off" required/>
 											</div>
 										</div>
