@@ -42,7 +42,7 @@
 					</div>
 				@endif
 
-				{!! form_open('/admin/usermanagement/storeuservendor', array('id'=> 'store-user-vendor-form')) !!}
+				{!! form_open('/admin/userManagement/storeUserVendor', array('id'=> 'store-user-vendor-form')) !!}
 				<div class="row">
 						<div class="col-md-4">
 							<div class="card card-fluid">

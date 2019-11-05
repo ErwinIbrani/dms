@@ -23,10 +23,10 @@
 				<div class="d-md-flex align-items-md-start">
 					<h1 class="page-title mr-sm-auto"> Edit User Vendor </h1><!-- .btn-toolbar -->
 					<div class="btn-toolbar">
-						<a href="{{ site_url('/admin/usermanagement/deleteuservendor/'.$user->id) }}" class="btn btn-subtle-danger mr-2">
+						<a href="{{ site_url('/admin/userManagement/deleteUserVendor/'.$user->id) }}" class="btn btn-subtle-danger mr-2">
 							<span class="ml-1">Delete</span>
 						</a>
-						<a href="{{ site_url('/admin/user-management/vendor') }}" class="btn btn-subtle-secondary">
+						<a href="{{ site_url('/admin/userManagement/vendor') }}" class="btn btn-subtle-secondary">
 							<span class="ml-1">Cancel</span>
 						</a>
 					</div>
@@ -45,7 +45,7 @@
 					</div>
 				@endif
 
-				{!! form_open('/admin/usermanagement/updateuservendor/'.$user->id, array('id'=> 'store-user-vendor-form')) !!}
+				{!! form_open('/admin/userManagement/updateUserVendor/'.$user->id, array('id'=> 'store-user-vendor-form')) !!}
 				<div class="row">
 					<div class="col-md-4">
 						<div class="card card-fluid">
