@@ -18,7 +18,8 @@
 			margin: 51px 0px 46px 0px;
 			padding: 0px;
 			border: none;
-			width: 794px;
+			width: 800px;
+			border:1px solid #000
 		}
 
 		#page_1 #p1dimg1 {
@@ -43,6 +44,7 @@
 			padding: 0px;
 			border: none;
 			width: 794px;
+			border:1px solid #000
 		}
 
 		#page_2 #p2dimg1 {
@@ -67,6 +69,7 @@
 			padding: 0px;
 			border: none;
 			width: 794px;
+			border:1px solid #000
 		}
 
 
@@ -77,6 +80,7 @@
 			padding: 0px;
 			border: none;
 			width: 794px;
+			border:1px solid #000
 		}
 
 		#page_4 #id4_1 {

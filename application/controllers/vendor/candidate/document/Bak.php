@@ -50,7 +50,6 @@ class Bak extends CI_Controller
 		$layout_url = site_url('/public/layout/bak/'. $document_id);
 		$parameters = array('key' => $this->config->item('pdf_key'), 'url' => $layout_url,
 			'web_page_width' => '816',
-			'web_page_height' => '794',
 			'page_numbers' => 'False');
 		$result = @file_get_contents("$api_endpoint?" . http_build_query($parameters));
 		if (!$result) {
