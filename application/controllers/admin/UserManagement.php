@@ -98,7 +98,7 @@ class UserManagement extends CI_Controller {
 		// Column settings
 		$columns = array(
 //			"id"=>array("header"=>"User ID", "type"=>"label"),
-			"username"=>array("header"=>"Username", "type"=>"link", 'href' => site_url('admin/usermanagement/edituservendor/{id}')),
+			"username"=>array("header"=>"Username", "type"=>"link", 'href' => site_url('admin/userManagement/editUserVendor/{id}')),
 			"email"=>array("header"=>"Email", "type"=>"label"),
 			"level"=>array("header"=>"Level", "type"=>"label"),
 		);
