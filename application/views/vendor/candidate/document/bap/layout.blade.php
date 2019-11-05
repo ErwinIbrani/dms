@@ -188,8 +188,12 @@
 				<TD colspan=4 class="tr6 td2"><P class="p3 ft8">Pemilik Properti / Pengelola properti</P></TD>
 				<TD class="tr6 td3"><P class="p3 ft9">PT. Inti Bangun Sejahtera, Tbk</P></TD>
 			</TR>
+			<TR>
+				<TD colspan=4 class=""><P class="p8 ft2" style="padding-left: 0px">{{$owner_name}}</P></TD>
+				<TD class="tr6 td3"><P class="p3 ft9" style="font-weight: normal">{{$pic_ibs}}</P></TD>
+			</TR>
 		</TABLE>
-		<P class="p8 ft2">{{$owner_name}}</P>
+		<P class="p8 ft2"></P>
 	</DIV>
 	<DIV id="id1_2">
 		<P class="p9 ft10">Remark: *) coret yang tidak perlu</P>

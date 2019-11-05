@@ -90,7 +90,7 @@
 
 
 							{!! form_open(site_url('/vendor/candidate/document/bap/store/'.$candidate->id)) !!}
-
+							<input type="hidden" value="{{$pic_ibs->username}}" name="pic_ibs">
 							<p class="mt-5 text-muted">
 								<hr style="border-top: 1px dashed #8c8b8b;background-color: #f0f0f0;width: 100%;">
 								<div class="form-group">
@@ -204,9 +204,9 @@
 
 								<div class="col-md-12">
 									<div class="form-group">
-										<label for="access_road">Access Road (m<sup>2</sup>) <abbr title="Required">*</abbr></label>
+										<label for="access_road">Access Road <abbr title="Required">*</abbr></label>
 										<div class="input-group">
-											<input type="number" class="form-control" id="access_road" name="access_road" required>
+											<input type="text" class="form-control" id="access_road" name="access_road" required>
 										</div>
 										<div class="mt-1">
 											<div class="custom-control custom-control-inline custom-radio">

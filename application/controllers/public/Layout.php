@@ -76,7 +76,8 @@ class Layout extends CI_Controller {
 			'pph' => $candidate_bap->pph,
 			'notary_fee' => $candidate_bap->notary_fee,
 			'electricity_cost' => $candidate_bap->electricity_cost,
-			'note' => $candidate_bap->note
+			'note' => $candidate_bap->note,
+			'pic_ibs' => $candidate_bap->pic_ibs
 		));
 	}
 

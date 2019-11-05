@@ -10,7 +10,7 @@ class Bap extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('Candidate_Model', 'Project_Model', 'CandidateDocument_Model'));
+		$this->load->model(array('Candidate_Model', 'Project_Model', 'CandidateDocument_Model', 'InternalUser_Model'));
 		authentication($this->ion_auth->logged_in());
 	}
 
@@ -18,11 +18,13 @@ class Bap extends CI_Controller
 	{
 		$candidate = $this->Candidate_Model->getCandidateById($candidate_id)->row();
 		$project = $this->Project_Model->findOne($candidate->project_id)->row();
+		$pic = $this->InternalUser_Model->findById($project->pic_project_id);
 
 		//var_dump($project) or die;
 		return view('vendor.candidate.document.bap.add_bap', array(
 			'candidate' => $candidate,
-			'project' => $project
+			'project' => $project,
+			'pic_ibs' => $pic
 		));
 	}
 
