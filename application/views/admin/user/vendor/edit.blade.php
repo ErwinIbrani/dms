@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('page_title', 'Create User Vendor')
+@section('page_title', 'Edit User Vendor')
 
 @section('header')
 	<link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/select2/select2.css">
@@ -95,10 +95,11 @@
 								</div>
 								<div class="form-group">
 									<label for="vendor">Vendor</label>
+
 									<select name="vendor" id="vendor" class="custom-select">
 										<option value="" selected="selected">Select Vendor</option>
 										@foreach($vendors as $vendor)
-											<option value="{{ $vendor->id }}" {{ $user->vendor ===  $vendor->id ? 'selected' : '' }}>{{ $vendor->name }}</option>
+											<option value="{{ $vendor->id }}" {{ ((int) $user->vendor ===  (int) $vendor->id) ? 'selected' : '' }}>{{ $vendor->name }}</option>
 										@endforeach
 									</select>
 								</div>
