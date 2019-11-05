@@ -151,7 +151,7 @@
                                             @php
                                                 $per_year = $content_bap['bap']['rent_price']/$content_bap['bap']['rent_period'];
                                             @endphp
-                                            <input type="text" class="form-control is-valid" name="initil_price_peryear" value="{{ number_format($per_year) }}" readonly/>
+                                            <input type="text" class="form-control is-valid" name="initil_price_peryear" value="{{ number_format($per_year) }}"/>
                                         </div>
                                     </div>
 
@@ -394,8 +394,8 @@
                                                     </td>
                                                     <td>
                                                         <div class="form-group">
-                                                            <label for="tf1">Percen</label>
-                                                            <input type="number" class="form-control" name="percen[]" required/>
+                                                            <label for="tf1">Percent (%)</label>
+                                                            <input type="number" class="form-control" name="percent[]" required/>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -474,44 +474,44 @@
                                                     <td>
                                                         <div class="form-group">
                                                             <label for="tf1">Kandidat</label>
-                                                            <input type="text" class="form-control" name="kandidates[]" required/>
+                                                            <input type="text" class="form-control" name="kandidates[]"/>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div class="form-group">
                                                             <label for="tf1">E(Longitude)</label>
-                                                            <input type="text" class="form-control" name="e_longiude[]" required/>
+                                                            <input type="text" class="form-control" name="e_longiude[]"/>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div class="form-group">
                                                             <label for="tf1">NS(Latitude)</label>
-                                                            <input type="text" class="form-control" name="ns_latitude[]" required/>
+                                                            <input type="text" class="form-control" name="ns_latitude[]"/>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div class="form-group">
                                                             <label for="tf1">Contact Person</label>
-                                                            <input type="text" class="form-control" name="contact_person[]" required/>
+                                                            <input type="text" class="form-control" name="contact_person[]" />
                                                         </div>
                                                     </td>
 
                                                     <td>
                                                         <div class="form-group">
                                                             <label for="tf1">Masa Sewa</label>
-                                                            <input type="text" class="form-control" name="masa_sewa[]" required/>
+                                                            <input type="text" class="form-control" name="masa_sewa[]" />
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div class="form-group">
                                                             <label for="tf1">Harga Sewa</label>
-                                                            <input type="text" class="form-control" name="harga_sewa[]" required/>
+                                                            <input type="text" class="form-control" name="harga_sewa[]" />
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div class="form-group">
                                                             <label for="tf1">Cancelation Remarks</label>
-                                                            <input type="text" class="form-control" name="cancelation_remarks[]" required/>
+                                                            <input type="text" class="form-control" name="cancelation_remarks[]" />
                                                         </div>
                                                     </td>
                                                     <td>
