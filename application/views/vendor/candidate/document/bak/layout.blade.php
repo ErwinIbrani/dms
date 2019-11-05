@@ -15,11 +15,10 @@
 		#page_1 {
 			position: relative;
 			overflow: hidden;
-			margin: 51px 0px 46px 0px;
+			margin: 51px 0px 150px 0px;
 			padding: 0px;
 			border: none;
-			width: 800px;
-			border:1px solid #000
+			width: 794px;
 		}
 
 		#page_1 #p1dimg1 {
@@ -40,11 +39,10 @@
 		#page_2 {
 			position: relative;
 			overflow: hidden;
-			margin: 51px 0px 46px 0px;
+			margin: 51px 0px 150px 0px;
 			padding: 0px;
 			border: none;
 			width: 794px;
-			border:1px solid #000
 		}
 
 		#page_2 #p2dimg1 {
@@ -65,22 +63,20 @@
 		#page_3 {
 			position: relative;
 			overflow: hidden;
-			margin: 51px 0px 46px 0px;
+			margin: 51px 0px 150px 0px;
 			padding: 0px;
 			border: none;
 			width: 794px;
-			border:1px solid #000
 		}
 
 
 		#page_4 {
 			position: relative;
 			overflow: hidden;
-			margin: 51px 0px 46px 0px;
+			margin: 51px 0px 0px 0px;
 			padding: 0px;
 			border: none;
 			width: 794px;
-			border:1px solid #000
 		}
 
 		#page_4 #id4_1 {
