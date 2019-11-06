@@ -32,17 +32,20 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="{{ site_url('/project/tsa/create/'. $project->candidate_selected) }}" class="nav-link">
+								<a href="{{ site_url('/project/tsa/create/'. $project->candidate_selected) }}"
+								   class="nav-link {{ $project->work_status !== 'TSA' ? 'disabled' : ''}}">
 									TSA
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="{{ site_url('/project/apd/addlist/'.$project->id) }}" class="nav-link">
+								<a href="{{ site_url('/project/apd/addlist/'.$project->id) }}"
+								   class="nav-link {{ $project->work_status !== 'APD' ? 'disabled' : ''}}">
 									APD
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="{{ site_url('/project/rfc/imb/'.$project->id) }}" class="nav-link">
+								<a href="{{ site_url('/project/rfc/imb/'.$project->id) }}"
+								   class="nav-link {{ $project->work_status !== 'RFC' ? 'disabled' : ''}}">
 									RFC
 								</a>
 							</li>
