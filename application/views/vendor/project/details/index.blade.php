@@ -56,7 +56,10 @@
 									<tbody>
 									@foreach($candidates as $candidate)
 										<tr>
-											<td>{{ $candidate->name }}</td>
+											<td>{{ $candidate->name }}
+												@if($project->candidate_selected === $candidate->id)
+													<span class="badge badge-warning mr-2">Candidate Selected</span>
+												@endif</td>
 											<td>{{ $candidate->long . '/' . $candidate->lat }}</td>
 											<td>{{ $candidate->address }}</td>
 											<td>{{ $candidate->owner_name }}</td>

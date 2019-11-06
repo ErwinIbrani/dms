@@ -6,7 +6,7 @@ class Comsitac extends CI_Controller
     public function __Construct()
     {
         parent::__construct();
-        $this->load->model(['Project_Model', 'ComSitac_Model']);
+        $this->load->model(['Project_Model', 'ComSitac_Model', 'CandidateDocument_Model']);
         $this->load->helper('custom');
         authentication($this->ion_auth->logged_in());
     }
@@ -66,6 +66,9 @@ class Comsitac extends CI_Controller
         $config['max_size']      = '2000';
         $config['encrypt_name']  = TRUE;
         $this->load->library('upload', $config);
+
+
+
         if (!$this->upload->do_upload('path')) {
                 $error = ['error' => $this->upload->display_errors()];
                 $this->session->set_flashdata('error', $error['error']);
@@ -83,6 +86,14 @@ class Comsitac extends CI_Controller
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ];
+
+				$hasSurveyDoc = $this->CandidateDocument_Model->getSpecificDocument($data['project_id'], 'SURVEY')->row();
+				$hasBapDoc = $this->CandidateDocument_Model->getSpecificDocument($data['project_id'], 'BAP')->row();
+
+				if(!is_null($hasBapDoc) && !is_null($hasSurveyDoc)) {
+					$this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'TSA'));
+				}
+
                $this->ComSitac_Model->save($data);
                $this->session->set_flashdata('success', 'COM SITAC Uploaded');
                redirect("/project/project/onprocess", 'refresh');

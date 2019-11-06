@@ -7,7 +7,8 @@ class Survey extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(['generatepdf', 'custom']);
         $this->lang->load('auth');
-		$this->load->model(['Document_Model','Candidate_Model', 'Project_Model', 'CandidateDocument_Model', 'User_Model', 'UserVendor_Model', 'Vendor_Model']);
+		$this->load->model(['Document_Model','Candidate_Model',
+			'Project_Model', 'CandidateDocument_Model', 'User_Model', 'UserVendor_Model', 'Vendor_Model', 'Document_Model']);
         authentication($this->ion_auth->logged_in());
 	}
 
@@ -146,7 +147,12 @@ class Survey extends CI_Controller {
                     'attribute'     => json_encode($attribute), //nanti didecode
                     'attachment'    => json_encode($attachment)
                 ];
+				$hasKomSitac = $this->Document_Model->getSpecificDocument($data['project_id'], 'COM SITAC')->row();
+				$hasBapDoc = $this->CandidateDocument_Model->getSpecificDocument($data['project_id'], 'BAP')->row();
 
+				if(!is_null($hasBapDoc) && !is_null($hasKomSitac)) {
+					$this->Project_Model->update($data['project_id'], array('work_status' => 'TSA'));
+				}
                 $data  =  $this->CandidateDocument_Model->save($data);
                 if(!empty($data)) {
                     $template = $this->CandidateDocument_Model->findOne($data)->row_array();

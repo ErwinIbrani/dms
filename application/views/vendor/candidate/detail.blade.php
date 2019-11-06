@@ -31,7 +31,7 @@
 							<a class="nav-link show active" data-toggle="tab" href="#card-survey">TSSR (Survey)</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#card-bap">BAP</a>
+							<a class="nav-link " data-toggle="tab" href="#card-bap">BAP</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" data-toggle="tab" href="#card-bak">BAK</a>
@@ -75,7 +75,8 @@
 							@endif
 
                             <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
-							<a href="{{ site_url('/vendor/candidate/document/survey/create/'.$candidate->id) }}" class="btn btn-danger">Generate TSSR Document</a>
+							<a href="{{ site_url('/vendor/candidate/document/survey/create/'.$candidate->id) }}"
+							   class="btn btn-danger {{ $project->work_status !== 'KOM SITAC, BAP, TSSR' ? 'disabled' : ''}}">Generate TSSR Document</a>
 							<?php endif?>
 
 						</div>
@@ -102,11 +103,12 @@
 							@if(count($document_bap) === 0)
 								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
 							@else
-								<p class="card-text mt-3"> The document above is a list of IMB documents, </p>
+								<p class="card-text mt-3"> The document above is a list of BAP documents, </p>
 							@endif
 
                             <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
-							<a href="{{ site_url('/vendor/candidate/document/bap/add/'.$candidate->id) }}" class="btn btn-danger">Generate BAP Document</a>
+							<a href="{{ site_url('/vendor/candidate/document/bap/add/'.$candidate->id) }}"
+							   class="btn btn-danger  {{ $project->work_status !== 'KOM SITAC, BAP, TSSR' ? 'disabled' : ''}}">Generate BAP Document</a>
 							<?php endif?>
 						</div>
 						<div class="tab-pane fade" id="card-bak">
@@ -132,11 +134,12 @@
 							@if(count($document_bak) === 0)
 								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
 							@else
-								<p class="card-text mt-3"> The document above is a list of IW documents, </p>
+								<p class="card-text mt-3"> The document above is a list of BAK documents, </p>
 							@endif
 
                             <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
-							<a href="{{ site_url('/vendor/candidate/document/bak/add/'.$candidate->id) }}" class="btn btn-danger">Generate BAK Document</a>
+							<a href="{{ site_url('/vendor/candidate/document/bak/add/'.$candidate->id) }}"
+							   class="btn btn-danger  {{ $project->work_status !== 'BAK' ? 'disabled' : ''}}">Generate BAK Document</a>
                             <?php endif?>
 						</div>
 						<div class="tab-pane fade" id="card-iw">
@@ -162,11 +165,12 @@
 							@if(count($document_iw) === 0)
 								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
 							@else
-								<p class="card-text mt-3"> The document above is a list of IMB documents, </p>
+								<p class="card-text mt-3"> The document above is a list of IW documents, </p>
 							@endif
 
                             <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
-							<a href="{{ site_url('/vendor/candidate/document/iw/add/'.$candidate->id) }}" class="btn btn-danger">Upload IW Document</a>
+							<a href="{{ site_url('/vendor/candidate/document/iw/add/'.$candidate->id) }}"
+							   class="btn btn-danger {{ $project->work_status !== 'IW' ? 'disabled' : ''}}">Upload IW Document</a>
                             <?php endif?>
 						</div>
 					</div>
