@@ -27,22 +27,25 @@
 					<div class="card-header">
 						<ul class="nav nav-tabs card-header-tabs">
 							<li class="nav-item">
-								<a href="{{ site_url('/vendor/project/index') }}" class="nav-link active">
+								<a href="{{ site_url('/project/project/detail/' . $project->id) }}" class="nav-link active">
 									Candidates
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="{{ site_url('/project/tsa/create/'. $project->candidate_selected) }}" class="nav-link">
+								<a href="{{ site_url('/project/tsa/create/'. $project->candidate_selected) }}"
+								   class="nav-link {{ $project->work_status !== 'TSA' ? 'disabled' : ''}}">
 									TSA
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="{{ site_url('/project/apd/addlist/'.$project->id) }}" class="nav-link">
+								<a href="{{ site_url('/project/apd/addlist/'.$project->id) }}"
+								   class="nav-link {{ $project->work_status !== 'APD' ? 'disabled' : ''}}">
 									APD
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="{{ site_url('/project/rfc/imb/'.$project->id) }}" class="nav-link">
+								<a href="{{ site_url('/project/rfc/imb/'.$project->id) }}"
+								   class="nav-link {{ $project->work_status !== 'RFC' ? 'disabled' : ''}}">
 									RFC
 								</a>
 							</li>
@@ -68,6 +71,7 @@
 											<td>{{ $candidate->name }}
 												@if($project->candidate_selected === $candidate->id)
 													<span class="badge badge-warning mr-2">Candidate Selected</span>
+													<a href="{{site_url('/project/candidate/unselect/'. $project->id .'/'.$candidate->id)}}" class="badge badge-danger mr-2">Unselect Candidate </a>
 												@endif</td>
 											<td>{{ $candidate->long . '/' . $candidate->lat }}</td>
 											<td>{{ $candidate->address }}</td>

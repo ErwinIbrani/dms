@@ -54,6 +54,11 @@ class Iw extends CI_Controller
 				'created_at' => date('Y-m-d H:i:s')
 			);
 
+			$docIw = $this->CandidateDocument_Model->getCountSpecificDocument($candidate_document['project_id'], 'IW')->result_array();
+
+			if(count($docIw) >= 5) {
+				$this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'APD'));
+			}
 			$document = $this->CandidateDocument_Model->save($candidate_document);
 
 			$this->session->set_flashdata('success', 'Success upload document');
@@ -104,6 +109,11 @@ class Iw extends CI_Controller
 				'created_at' => date('Y-m-d H:i:s')
 			);
 
+			$docIw = $this->CandidateDocument_Model->getCountSpecificDocument($candidate_document['project_id'], 'IW')->result_array();
+
+			if(count($docIw) >= 5) {
+				$this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'APD'));
+			}
 			$document = $this->CandidateDocument_Model->save($candidate_document);
 			$this->session->set_flashdata('success', 'Success upload document');
 			redirect("vendor/candidate/document/iw/copyktp/" . $candidate_id, 'refresh');
@@ -153,6 +163,11 @@ class Iw extends CI_Controller
 				'created_at' => date('Y-m-d H:i:s')
 			);
 
+			$docIw = $this->CandidateDocument_Model->getCountSpecificDocument($candidate_document['project_id'], 'IW')->result_array();
+
+			if(count($docIw) >= 5) {
+				$this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'APD'));
+			}
 			$document = $this->CandidateDocument_Model->save($candidate_document);
 			$this->session->set_flashdata('success', 'Success upload document');
 			redirect("vendor/candidate/document/iw/rekdesa/" . $candidate_id, 'refresh');
@@ -202,6 +217,11 @@ class Iw extends CI_Controller
 				'created_at' => date('Y-m-d H:i:s')
 			);
 
+			$docIw = $this->CandidateDocument_Model->getCountSpecificDocument($candidate_document['project_id'], 'IW')->result_array();
+
+			if(count($docIw) >= 5) {
+				$this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'APD'));
+			}
 			$document = $this->CandidateDocument_Model->save($candidate_document);
 			$this->session->set_flashdata('success', 'Success upload document');
 			redirect("vendor/candidate/document/iw/rekkecamatan/" . $candidate_id, 'refresh');
@@ -251,6 +271,11 @@ class Iw extends CI_Controller
 				'created_at' => date('Y-m-d H:i:s')
 			);
 
+			$docIw = $this->CandidateDocument_Model->getCountSpecificDocument($candidate_document['project_id'], 'IW')->result_array();
+
+			if(count($docIw) >= 5) {
+				$this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'APD'));
+			}
 			$document = $this->CandidateDocument_Model->save($candidate_document);
 			$this->session->set_flashdata('success', 'Success upload document');
 			redirect("vendor/candidate/document/iw/rekkecamatan/" . $candidate_id, 'refresh');

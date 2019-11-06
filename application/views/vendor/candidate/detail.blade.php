@@ -31,7 +31,7 @@
 							<a class="nav-link show active" data-toggle="tab" href="#card-survey">TSSR (Survey)</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#card-bap">BAP</a>
+							<a class="nav-link " data-toggle="tab" href="#card-bap">BAP</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" data-toggle="tab" href="#card-bak">BAK</a>
@@ -70,13 +70,13 @@
 
 							@if(count($document_tssr) === 0 || is_null($document_tssr))
 								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
+                                <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
+								<a href="{{ site_url('/vendor/candidate/document/survey/create/'.$candidate->id) }}"
+								   class="btn btn-danger {{ $project->work_status !== 'KOM SITAC, BAP, TSSR' ? 'disabled' : ''}}">Generate TSSR Document</a>
+                                <?php endif?>
 							@else
 								<p class="card-text mt-3"> The document above is a list of TSSR documents, if not found document click the button below to generate new document. </p>
 							@endif
-
-                            <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
-							<a href="{{ site_url('/vendor/candidate/document/survey/create/'.$candidate->id) }}" class="btn btn-danger">Generate TSSR Document</a>
-							<?php endif?>
 
 						</div>
 						<div class="tab-pane fade" id="card-bap">
@@ -88,7 +88,7 @@
 									</div>
 									<div class="list-group-item-body">
 										<h4 class="list-group-item-title">
-											<a href="#">TSSR - {{ $bap->name }}</a>
+											<a href="#">{{ $bap->name }}</a>
 										</h4>
 										<p class="list-group-item-text"> {{ date('M d, Y', strtotime($bap->created_at)) }}</p>
 									</div>
@@ -101,13 +101,15 @@
 							@endforeach
 							@if(count($document_bap) === 0)
 								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
+                                <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
+								<a href="{{ site_url('/vendor/candidate/document/bap/add/'.$candidate->id) }}"
+								   class="btn btn-danger  {{ $project->work_status !== 'KOM SITAC, BAP, TSSR' ? 'disabled' : ''}}">Generate BAP Document</a>
+                                <?php endif?>
 							@else
-								<p class="card-text mt-3"> The document above is a list of IMB documents, </p>
+								<p class="card-text mt-3"> The document above is a list of BAP documents, </p>
 							@endif
 
-                            <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
-							<a href="{{ site_url('/vendor/candidate/document/bap/add/'.$candidate->id) }}" class="btn btn-danger">Generate BAP Document</a>
-							<?php endif?>
+
 						</div>
 						<div class="tab-pane fade" id="card-bak">
 							<h5 class="card-title"> DOCUMENT BAK </h5>
@@ -132,11 +134,12 @@
 							@if(count($document_bak) === 0)
 								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
 							@else
-								<p class="card-text mt-3"> The document above is a list of IW documents, </p>
+								<p class="card-text mt-3"> The document above is a list of BAK documents, </p>
 							@endif
 
                             <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
-							<a href="{{ site_url('/vendor/candidate/document/bak/add/'.$candidate->id) }}" class="btn btn-danger">Generate BAK Document</a>
+							<a href="{{ site_url('/vendor/candidate/document/bak/add/'.$candidate->id) }}"
+							   class="btn btn-danger  {{ $project->work_status !== 'BAK' ? 'disabled' : ''}}">Generate BAK Document</a>
                             <?php endif?>
 						</div>
 						<div class="tab-pane fade" id="card-iw">
@@ -162,11 +165,12 @@
 							@if(count($document_iw) === 0)
 								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
 							@else
-								<p class="card-text mt-3"> The document above is a list of IMB documents, </p>
+								<p class="card-text mt-3"> The document above is a list of IW documents, </p>
 							@endif
 
                             <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
-							<a href="{{ site_url('/vendor/candidate/document/iw/add/'.$candidate->id) }}" class="btn btn-danger">Upload IW Document</a>
+							<a href="{{ site_url('/vendor/candidate/document/iw/add/'.$candidate->id) }}"
+							   class="btn btn-danger {{ $project->work_status !== 'IW' ? 'disabled' : ''}}">Upload IW Document</a>
                             <?php endif?>
 						</div>
 					</div>
