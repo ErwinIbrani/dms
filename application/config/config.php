@@ -24,7 +24,7 @@ date_default_timezone_set('Asia/Jakarta');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://dms.ibstower.test/';   //https://dms.ibstower.test/
+$config['base_url'] = 'https://dms2.gti.co.id/';   //https://dms.ibstower.test/
 
 
 $config['pdf_key'] = 'b53a60b8-7af2-4a9f-bf0c-c03fbde4911a'; // 'd4ca505b-0ca6-4f33-a075-afce3e313e82';
