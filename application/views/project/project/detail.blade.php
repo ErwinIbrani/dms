@@ -27,7 +27,7 @@
 					<div class="card-header">
 						<ul class="nav nav-tabs card-header-tabs">
 							<li class="nav-item">
-								<a href="{{ site_url('/vendor/project/index') }}" class="nav-link active">
+								<a href="{{ site_url('/project/project/detail/' . $project->id) }}" class="nav-link active">
 									Candidates
 								</a>
 							</li>

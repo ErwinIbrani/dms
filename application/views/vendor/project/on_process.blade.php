@@ -74,7 +74,6 @@
 											<td class="text-right">
 												<div class="list-group-item-figure">
 													@if($project->assignment_type === 'SITAC')
-														<a href="{{ site_url('/vendor/candidates/create/' . $project->id . '/' . $vendor_id) }}"  data-toggle="tooltip" data-placement="left" title="Add new candidate" class="btn btn-sm btn-icon btn-secondary stop-propagation mr-1"><i class="fas fa-user-plus"></i></a>
 														<a href="{{ site_url('/vendor/project/details/' . $project->id . '/' . $vendor_id) }}" title="View details" class="btn btn-sm btn-icon btn-secondary stop-propagation"><i class="fas fa-ellipsis-h"></i></a>
 													@endif
 													@if($project->assignment_type === 'IMB')

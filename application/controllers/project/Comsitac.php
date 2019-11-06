@@ -72,7 +72,7 @@ class Comsitac extends CI_Controller
         if (!$this->upload->do_upload('path')) {
                 $error = ['error' => $this->upload->display_errors()];
                 $this->session->set_flashdata('error', $error['error']);
-                redirect("project/comsitac/index", 'refresh');
+                redirect("/project/project/new", 'refresh');
             } else {
                 $upload = $this->upload->data();
                 $data = [
@@ -90,8 +90,10 @@ class Comsitac extends CI_Controller
 				$hasSurveyDoc = $this->CandidateDocument_Model->getSpecificDocument($data['project_id'], 'SURVEY')->row();
 				$hasBapDoc = $this->CandidateDocument_Model->getSpecificDocument($data['project_id'], 'BAP')->row();
 
+				$this->Project_Model->update($data['project_id'], array('sitac_start_date' => date('Y - m -d'),
+					'status' => 'on process'));
 				if(!is_null($hasBapDoc) && !is_null($hasSurveyDoc)) {
-					$this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'TSA'));
+					$this->Project_Model->update($data['project_id'], array('work_status' => 'TSA'));
 				}
 
                $this->ComSitac_Model->save($data);

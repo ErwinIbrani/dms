@@ -157,7 +157,7 @@ class Tsa extends CI_Controller
               $approvals    = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA', $row)->result();
               generateTsa($template, $approvals, $modelHistory);
               $this->session->set_flashdata('success', 'Data Uploded');
-              redirect("/project/tsa/index/", 'refresh');
+              redirect("/project/project/detail/".$data['project_id'], 'refresh');
           }
     }
 

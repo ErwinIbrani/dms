@@ -39,7 +39,10 @@
 						</ul>
 					</div>
 					<div class="card-body">
-						<a href="{{ site_url('/vendor/candidates/create/' . $project->id . '/' . $vendor_id) }}"  class="btn btn-danger">Add new candidate</a>
+
+						@if($project->work_status === 'KOM SITAC, BAP, TSSR')
+							<a href="{{ site_url('/vendor/candidates/create/' . $project->id . '/' . $vendor_id) }}"  class="btn btn-danger">Add new candidate</a>
+						@endif
 						<div class="table-responsive">
 							<div class="table-responsive">
 								<!-- .table -->

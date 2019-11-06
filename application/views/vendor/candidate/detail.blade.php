@@ -70,14 +70,13 @@
 
 							@if(count($document_tssr) === 0 || is_null($document_tssr))
 								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
+                                <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
+								<a href="{{ site_url('/vendor/candidate/document/survey/create/'.$candidate->id) }}"
+								   class="btn btn-danger {{ $project->work_status !== 'KOM SITAC, BAP, TSSR' ? 'disabled' : ''}}">Generate TSSR Document</a>
+                                <?php endif?>
 							@else
 								<p class="card-text mt-3"> The document above is a list of TSSR documents, if not found document click the button below to generate new document. </p>
 							@endif
-
-                            <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
-							<a href="{{ site_url('/vendor/candidate/document/survey/create/'.$candidate->id) }}"
-							   class="btn btn-danger {{ $project->work_status !== 'KOM SITAC, BAP, TSSR' ? 'disabled' : ''}}">Generate TSSR Document</a>
-							<?php endif?>
 
 						</div>
 						<div class="tab-pane fade" id="card-bap">
@@ -89,7 +88,7 @@
 									</div>
 									<div class="list-group-item-body">
 										<h4 class="list-group-item-title">
-											<a href="#">TSSR - {{ $bap->name }}</a>
+											<a href="#">{{ $bap->name }}</a>
 										</h4>
 										<p class="list-group-item-text"> {{ date('M d, Y', strtotime($bap->created_at)) }}</p>
 									</div>
@@ -102,14 +101,15 @@
 							@endforeach
 							@if(count($document_bap) === 0)
 								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
+                                <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
+								<a href="{{ site_url('/vendor/candidate/document/bap/add/'.$candidate->id) }}"
+								   class="btn btn-danger  {{ $project->work_status !== 'KOM SITAC, BAP, TSSR' ? 'disabled' : ''}}">Generate BAP Document</a>
+                                <?php endif?>
 							@else
 								<p class="card-text mt-3"> The document above is a list of BAP documents, </p>
 							@endif
 
-                            <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
-							<a href="{{ site_url('/vendor/candidate/document/bap/add/'.$candidate->id) }}"
-							   class="btn btn-danger  {{ $project->work_status !== 'KOM SITAC, BAP, TSSR' ? 'disabled' : ''}}">Generate BAP Document</a>
-							<?php endif?>
+
 						</div>
 						<div class="tab-pane fade" id="card-bak">
 							<h5 class="card-title"> DOCUMENT BAK </h5>
