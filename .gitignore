@@ -52,3 +52,4 @@ Thumbs.db
 .buildpath
 .project
 .settings
+application/config/config.php
