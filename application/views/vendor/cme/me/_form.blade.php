@@ -2,7 +2,7 @@
 	$CI = &get_instance();
 @endphp
 <div class="card card-fluid">
-	<h6 class="card-header"> Foundation </h6><!-- .nav -->
+	<h6 class="card-header"> ME </h6><!-- .nav -->
 
 	<ul class="nav nav-tabs flex-column">
 		<li class="nav-item">
