@@ -39,7 +39,10 @@
 						</ul>
 					</div>
 					<div class="card-body">
-						<a href="{{ site_url('/vendor/candidates/create/' . $project->id . '/' . $vendor_id) }}"  class="btn btn-danger">Add new candidate</a>
+
+						@if($project->work_status === 'KOM SITAC, BAP, TSSR')
+							<a href="{{ site_url('/vendor/candidates/create/' . $project->id . '/' . $vendor_id) }}"  class="btn btn-danger">Add new candidate</a>
+						@endif
 						<div class="table-responsive">
 							<div class="table-responsive">
 								<!-- .table -->
@@ -56,7 +59,10 @@
 									<tbody>
 									@foreach($candidates as $candidate)
 										<tr>
-											<td>{{ $candidate->name }}</td>
+											<td>{{ $candidate->name }}
+												@if($project->candidate_selected === $candidate->id)
+													<span class="badge badge-warning mr-2">Candidate Selected</span>
+												@endif</td>
 											<td>{{ $candidate->long . '/' . $candidate->lat }}</td>
 											<td>{{ $candidate->address }}</td>
 											<td>{{ $candidate->owner_name }}</td>

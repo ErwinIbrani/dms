@@ -44,6 +44,7 @@ class Bak extends CI_Controller
 
 
 		$document_id = $this->CandidateDocument_Model->save($candidate_document);
+		$this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'IW'));
 
 		$api_endpoint = "https://selectpdf.com/api2/convert/";
 

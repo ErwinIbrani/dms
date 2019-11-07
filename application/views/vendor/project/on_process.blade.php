@@ -55,7 +55,8 @@
 										<th>Assigment Type</th>
 										<th>Site ID</th>
 										<th>Site Name</th>
-										<th>Status</th>
+										<th>Start Date</th>
+										<th>Current Status</th>
 										<th style="width:100px; min-width:100px;"> &nbsp; </th>
 									</tr>
 									</thead>
@@ -67,12 +68,12 @@
 											<td>{{ $project->assignment_type }}</td>
 											<td>{{ $project->site_id_ibs }}</td>
 											<td>{{ $project->site_name }}</td>
-											<td>{{ $project->status }}</td>
+											<td>{{ $project->sitac_start_date }}</td>
+											<td>{{ $project->work_status }}</td>
 
 											<td class="text-right">
 												<div class="list-group-item-figure">
 													@if($project->assignment_type === 'SITAC')
-														<a href="{{ site_url('/vendor/candidates/create/' . $project->id . '/' . $vendor_id) }}"  data-toggle="tooltip" data-placement="left" title="Add new candidate" class="btn btn-sm btn-icon btn-secondary stop-propagation mr-1"><i class="fas fa-user-plus"></i></a>
 														<a href="{{ site_url('/vendor/project/details/' . $project->id . '/' . $vendor_id) }}" title="View details" class="btn btn-sm btn-icon btn-secondary stop-propagation"><i class="fas fa-ellipsis-h"></i></a>
 													@endif
 													@if($project->assignment_type === 'IMB')

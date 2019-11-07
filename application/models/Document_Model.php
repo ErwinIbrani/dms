@@ -18,6 +18,24 @@ class Document_Model extends CI_Model
         return $this->db->update($this->table, $update);
     }
 
+	public function getSpecificDocument($project_id, $doc_name)
+	{
+		$this->db->from($this->table)
+			->where('project_id', $project_id)
+			->where('name', $doc_name);
+
+		return $this->db->get();
+	}
+
+	public function getCountSpecificDocument($project_id, $doc_name)
+	{
+		$this->db->from($this->table)
+			->where('project_id', $project_id)
+			->where('type', $doc_name);
+
+		return $this->db->get();
+	}
+
 
 
 

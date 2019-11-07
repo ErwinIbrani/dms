@@ -96,6 +96,7 @@ class Project extends CI_Controller
                     'longitude'        =>  $getData['td_planning_detail_longitude'],
                     'latitude'         =>  $getData['td_planning_detail_latitude'],
                     'status'           =>  'new',
+					'work_status' => 'KOM SITAC, BAP, TSSR',
                     'created_at'       =>  date('Y-m-d H:i:s'),
                     'updated_at'       =>  date('Y-m-d H:i:s')
                 ];

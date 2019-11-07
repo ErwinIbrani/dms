@@ -10,7 +10,7 @@ class Bap extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('Candidate_Model', 'Project_Model', 'CandidateDocument_Model', 'InternalUser_Model'));
+		$this->load->model(array('Candidate_Model', 'Project_Model', 'CandidateDocument_Model', 'Document_Model', 'InternalUser_Model'));
 		authentication($this->ion_auth->logged_in());
 	}
 
@@ -49,6 +49,12 @@ class Bap extends CI_Controller
 		);
 
 		$document_id = $this->CandidateDocument_Model->save($candidate_document);
+		$hasKomSitac = $this->Document_Model->getSpecificDocument($candidate_document['project_id'], 'COM SITAC')->row();
+		$hasSurveyDoc = $this->CandidateDocument_Model->getSpecificDocument($candidate_document['project_id'], 'SURVEY')->row();
+
+		if(!is_null($hasSurveyDoc) && !is_null($hasKomSitac)) {
+			$this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'TSA'));
+		}
 
 		$api_endpoint = "https://selectpdf.com/api2/convert/";
 		$test_url = site_url('/public/layout/bap/'. $document_id);

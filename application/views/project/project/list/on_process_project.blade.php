@@ -54,7 +54,8 @@
 										<th> IRO Number </th>
 										<th>Site ID</th>
 										<th>Site Name</th>
-										<th>Status</th>
+										<th>Start Date</th>
+										<th>Current Status</th>
 										<th style="width:100px; min-width:100px;"> &nbsp; </th>
 									</tr>
 									</thead>
@@ -65,7 +66,8 @@
 											<td>{{ $project->iro_number }}</td>
 											<td>{{ $project->site_id_ibs }}</td>
 											<td>{{ $project->site_name }}</td>
-											<td>{{ $project->status }}</td>
+											<td>{{ $project->sitac_start_date }}</td>
+											<td>{{ $project->work_status }}</td>
 
 											<td class="text-right">
 												<div class="list-group-item-figure">
