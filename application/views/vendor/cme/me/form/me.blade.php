@@ -32,7 +32,7 @@
 								<ul class="nav nav-tabs card-header-tabs">
 									<li class="nav-item">
 										<a href="#" class="nav-link active">
-											Grounding
+											ME
 										</a>
 									</li>
 								</ul>
@@ -54,7 +54,6 @@
 											<div class="col-md-4">
 												<input type="text" name="approved_manufacture"
 													   class="form-control" id="approved_manufacture">
-												<div class="text-right">mm</div>
 											</div>
 										</div>
 
@@ -66,7 +65,6 @@
 											<div class="col-md-4">
 												<input type="text" name="panel_box_dimension"
 													   class="form-control" id="panel_box_dimension">
-												<div class="text-right">format: ... x ... X ...</div>
 											</div>
 										</div>
 
