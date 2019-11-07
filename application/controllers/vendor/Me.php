@@ -19,28 +19,28 @@ class Me extends CI_Controller
 		return view('vendor.cme.me.index', array('project' => $project));
 	}
 
-	public function addgrounding()
+	public function addgrounding($project_id)
 	{
 		$project = $this->findProjectById($project_id);
 
 		return view('vendor.cme.me.form.grounding', array('project' => $project));
 	}
 
-	public function addme()
+	public function addme($project_id)
 	{
 		$project = $this->findProjectById($project_id);
 
 		return view('vendor.cme.me.form.me', array('project' => $project));
 	}
 
-	public function addpln()
+	public function addpln($project_id)
 	{
 		$project = $this->findProjectById($project_id);
 
 		return view('vendor.cme.me.form.pln', array('project' => $project));
 	}
 
-	public function addextalarm()
+	public function addextalarm($project_id)
 	{
 		$project = $this->findProjectById($project_id);
 

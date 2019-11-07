@@ -44,7 +44,7 @@
 							</div>
 							<div class="card-body">
 								<div class="mb-4">
-									<a href="#" class="btn btn-secondary disabled">Form ME</a>
+									<a href="{{ site_url('/vendor/me/addgrounding/'. $project->id) }}" class="btn btn-secondary">Form ME</a>
 								</div>
 
 								<div class="">
