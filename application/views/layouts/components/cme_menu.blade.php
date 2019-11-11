@@ -22,7 +22,8 @@
 			   href="{{ site_url('/vendor/pln/index/' . $project_id) }}">PLN</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="#">Fence</a>
+			<a class="nav-link {{ ($CI->uri->segment(2)=="fence") ? 'active': 'disabled' }}"
+			   href="{{ site_url('/vendor/fence/index/' . $project_id) }}">Fence</a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link" href="#">CME Implementation Photograph</a>
