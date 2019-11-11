@@ -53,41 +53,38 @@
 
 											<div class="col-md-4">
 												<div class="form-group">
-													<input type="text" name="kwh_dimension"
-														   class="form-control" id="kwh_dimension">
+													<input type="text" name="cable_otc"
+														   class="form-control" id="cable_otc">
 													<div>mm2</div>
 												</div>
 
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_dimension_status"
-														   id="kwh_dimension_status_ok"
+														   name="cable_otc_status"
+														   id="cable_otc_status_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_dimension_status_ok">OK</label>
+																			  for="cable_otc_status_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_dimension_status"
-														   id="kwh_dimension_status_not_ok"
+														   name="cable_otc_status"
+														   id="cable_otc_status_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_dimension_status_not_ok">Not
+																				  for="cable_otc_status_not_ok">Not
 														OK</label>
 												</div>
 											</div>
 										</div>
 
 										<div class="form-row my-4">
-											<div class="col-md-12">
-												<div><b>1. Cable</b></div>
-											</div>
 											<div class="col-md-8">
-												OTC Cable Dia. …… mm2
+												NYA Dia. …………….. mm2 for Grounding
 											</div>
 
 											<div class="col-md-4">
 												<div class="form-group">
-													<input type="text" name="kwh_dimension"
-														   class="form-control" id="kwh_dimension">
+													<input type="text" name="nya_dia_cable"
+														   class="form-control" id="nya_dia_cable">
 													<div>mm2</div>
 												</div>
 											</div>
@@ -106,15 +103,15 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="door_alarm"
+														   id="door_alarm_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="door_alarm_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="door_alarm"
+														   id="door_alarm_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
 																				  for="kwh_depth_not_ok">Not
 														OK</label>
@@ -132,17 +129,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="smoke_detector"
+														   id="smoke_detector_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="smoke_detector_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="smoke_detector"
+														   id="smoke_detector_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="smoke_detector_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -158,17 +155,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="heat_detector"
+														   id="heat_detector_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="heat_detector_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="heat_detector"
+														   id="heat_detector_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="heat_detector_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -183,17 +180,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="cut_fence_break"
+														   id="cut_fence_break_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="cut_fence_break_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="cut_fence_break"
+														   id="cut_fence_break_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="cut_fence_break_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -210,17 +207,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="grounding_loss"
+														   id="grounding_loss_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="grounding_loss_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="grounding_loss"
+														   id="grounding_loss_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="grounding_loss_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -236,17 +233,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="air_cond_cage_break"
+														   id="air_cond_cage_break_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="air_cond_cage_break_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="air_cond_cage_break"
+														   id="air_cond_cage_break_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="air_cond_cage_break_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -262,17 +259,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="arrester_failure"
+														   id="arrester_failure_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="arrester_failure_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="arrester_failure"
+														   id="arrester_failure_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="arrester_failure_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -288,17 +285,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="flood_sensor"
+														   id="flood_sensor_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="flood_sensor_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="flood_sensor"
+														   id="flood_sensor_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="flood_sensor_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -314,17 +311,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="dc_fan_on"
+														   id="dc_fan_on_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="dc_fan_on_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="dc_fan_on"
+														   id="dc_fan_on_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="dc_fan_on_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -340,17 +337,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="fuel_tank_empty"
+														   id="fuel_tank_empty_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="fuel_tank_empty_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="fuel_tank_empty"
+														   id="fuel_tank_empty_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="fuel_tank_empty_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -366,17 +363,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="ats_amf_failure"
+														   id="ats_amf_failure_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="ats_amf_failure_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="ats_amf_failure"
+														   id="ats_amf_failure_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="ats_amf_failure_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -392,17 +389,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="air_cond_operational_control"
+														   id="air_cond_operational_control_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="air_cond_operational_control_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="air_cond_operational_control"
+														   id="air_cond_operational_control_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="air_cond_operational_control_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -425,24 +422,24 @@
 											<div class="col-md-4">
 
 												<div class="form-group">
-													<input type="text" name="kwh_dimension"
-														   class="form-control" id="kwh_dimension">
+													<input type="text" name="panel_dimension"
+														   class="form-control" id="panel_dimension">
 													<div>mm2</div>
 												</div>
 
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="panel_dimension_status"
+														   id="panel_dimension_status_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="panel_dimension_status_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="panel_dimension_status"
+														   id="panel_dimension_status_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="panel_dimension_status_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -459,17 +456,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="zones_input_assigment"
+														   id="zones_input_assigment_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="zones_input_assigment_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="zones_input_assigment"
+														   id="zones_input_assigment_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="zones_input_assigment_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -486,17 +483,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="cable_entrance_hole"
+														   id="cable_entrance_hole_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="cable_entrance_hole_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="cable_entrance_hole"
+														   id="cable_entrance_hole_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="cable_entrance_hole_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -513,17 +510,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="indicator_lamp"
+														   id="indicator_lamp_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="indicator_lamp_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="indicator_lamp"
+														   id="indicator_lamp_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="indicator_lamp_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -540,17 +537,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="wiring_diagram"
+														   id="wiring_diagram_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="wiring_diagram_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="wiring_diagram"
+														   id="wiring_diagram_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="wiring_diagram_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -567,17 +564,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="proper_installed_alarm"
+														   id="proper_installed_alarm_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="proper_installed_alarm_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="proper_installed_alarm"
+														   id="proper_installed_alarm_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="proper_installed_alarm_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -594,17 +591,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="equipped_dc_arrester"
+														   id="equipped_dc_arrester_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="equipped_dc_arrester_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="equipped_dc_arrester"
+														   id="equipped_dc_arrester_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="equipped_dc_arrester_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -623,17 +620,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="ddf_placed_inside"
+														   id="ddf_placed_inside_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="ddf_placed_inside_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="ddf_placed_inside"
+														   id="ddf_placed_inside_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="ddf_placed_inside_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -650,17 +647,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="all_alarm_inputs_cable"
+														   id="all_alarm_inputs_cable_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="all_alarm_inputs_cable_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="all_alarm_inputs_cable"
+														   id="all_alarm_inputs_cable_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="all_alarm_inputs_cable_not_ok">Not
 														OK</label>
 												</div>
 											</div>
@@ -676,17 +673,17 @@
 											<div class="col-md-4">
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_ok"
+														   name="ddf_wiring_diagram"
+														   id="ddf_wiring_diagram_ok"
 														   value="OK"> <label class="custom-control-label"
-																			  for="kwh_depth_ok">OK</label>
+																			  for="ddf_wiring_diagram_ok">OK</label>
 												</div>
 												<div class="custom-control custom-control-inline custom-radio">
 													<input type="radio" class="custom-control-input"
-														   name="kwh_depth"
-														   id="kwh_depth_not_ok"
+														   name="ddf_wiring_diagram"
+														   id="ddf_wiring_diagram_not_ok"
 														   value="Not OK"> <label class="custom-control-label"
-																				  for="kwh_depth_not_ok">Not
+																				  for="ddf_wiring_diagram_not_ok">Not
 														OK</label>
 												</div>
 											</div>
