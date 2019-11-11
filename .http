@@ -1,0 +1,8 @@
+POST dms.ibstower.test/api/admin/project
+Content-Type: application/json
+
+{
+	"name": "name",
+	"project": "project"
+}
+###
