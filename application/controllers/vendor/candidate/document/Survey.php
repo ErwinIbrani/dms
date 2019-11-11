@@ -193,8 +193,9 @@ class Survey extends CI_Controller {
 
     public function testpdf()
     {
-        $model = $this->CandidateDocument_Model->findOne(2291)->row_array();
-        return view('test_template.survey', ['model' => $model]);
+        $model  = $this->CandidateDocument_Model->findOne(5335)->row_array();
+        $wbs_id = $this->Project_Model->findOne($model['project_id'])->row_array();
+        return view('test_template.survey', ['model' => $model,'wbs_id' => $wbs_id]);
     }
 
 
