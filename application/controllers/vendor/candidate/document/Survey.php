@@ -156,7 +156,8 @@ class Survey extends CI_Controller {
                 $data  =  $this->CandidateDocument_Model->save($data);
                 if(!empty($data)) {
                     $template = $this->CandidateDocument_Model->findOne($data)->row_array();
-                    generateSurvey($template);
+                    $wbs_id   = $this->Project_Model->findOne($template['project_id'])->row_array();
+                    generateSurvey($template, $wbs_id);
                     $this->session->set_flashdata('success', 'Data Uploded');
                     redirect("/vendor/candidate/detail/index/".$this->input->post('candidate_id'), 'refresh');
                 }
