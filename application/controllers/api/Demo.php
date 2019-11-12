@@ -8,7 +8,7 @@ class Demo extends REST_Controller
         parent::__construct();
         $this->load->helper(['generatepdf', 'custom']);
         $this->load->model(['ApiSession_Model', 'Region_Model', 'Province_Model','City_Model', 'Document_Model',
-            'UserVendor_Model', 'Vendor_Model', 'Project_Model', 'Candidate_Model', 'CandidateDocument_Model']);
+            'UserVendor_Model', 'Vendor_Model', 'Project_Model', 'Candidate_Model', 'CandidateDocument_Model', 'User_Model']);
         $this->load->library(['ion_auth', 'form_validation']);
     }
 
@@ -64,6 +64,52 @@ class Demo extends REST_Controller
             $result = FALSE;
         }
         return $result;
+    }
+    
+    function get_user_from_session($session_id){
+        try {
+            $session = $this->ApiSession_Model->findOne($session_id);
+            if(empty($session->email)){
+                throw new Exception('email tidak ketemu');
+            }
+            $user = $this->User_Model->findByEmail($session->email);
+            if(empty($user)){
+                throw new Exception('user tidak ketemu');
+            }
+            $user_id = $user[0]->id;
+            
+        } catch (Exception $exc) {
+            $user_id = 0;
+        }
+        return $user_id;
+    }
+    
+    
+    // API PROJECT
+    public function project_get(){
+        try {
+            $session_id = $this->get('session_id');
+            if( ! $this->check_session($session_id)){
+                throw new Exception('session anda telah habis');
+            }
+            
+            $id = $this->get('id');
+            if(!empty($id)){
+                //$user_id = $this->get_user_from_session($session_id);
+                $data =  $this->Project_Model->findOne($id)->result_array();
+                if(empty($data)){
+                    throw new Exception('Data Project tidak valid');
+                }
+            }else{
+                //$user_id = $this->get_user_from_session($session_id);
+                $data = $this->Project_Model->getAllByStatusAndVendor('project.id,project.wbs_id, project.iro_number, project.site_id_ibs, project.site_name, 
+			project.status, project_assigment.assignment_type, project.sitac_start_date, project.work_status', 'on process', 1, false)->result();
+            }
+            $this->response($data, REST_Controller::HTTP_OK);
+        } catch (Exception $exc) {
+            $msg = $exc->getMessage();
+            $this->response(['error' => $msg], REST_Controller::HTTP_BAD_REQUEST);
+        }
     }
     
     
