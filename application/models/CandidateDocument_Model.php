@@ -32,6 +32,25 @@ class CandidateDocument_Model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    
+    public function getDataSurveyApi($rowno, $rowperpage, $search = "") {
+        $this->db->select('document_candidate.*,
+                           candidate.name as candidate_name,
+                           vendor.name as vendor_name,
+                           project.wbs_id');
+        $this->db->from($this->table);
+        $this->db->join('candidate', 'document_candidate.candidate_id = candidate.id', 'inner');
+        $this->db->join('vendor', 'document_candidate.vendor_id = vendor.id', 'inner');
+        $this->db->join('project', 'document_candidate.project_id = project.id', 'inner');
+        $this->db->where(['document_candidate.name' => 'SURVEY']);
+        if ($search != '') {
+            $this->db->like('candidate.name', $search);
+            $this->db->or_like('vendor.name', $search);
+        }
+        $this->db->limit($rowperpage, $rowno);
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     public function getrecordCountSurvey($search = '') {
         $this->db->select('count(*) as allcount');

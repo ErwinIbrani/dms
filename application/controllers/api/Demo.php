@@ -18,9 +18,11 @@ class Demo extends REST_Controller
             $remember = FALSE;
             if ($this->ion_auth->login($this->post('email'), $this->post('password'), $remember)) {
                 $session_id = $this->singleton_session_id($this->post('email'));
+                $user = $this->User_Model->findByEmail($this->post('email'));
                 $status = 'Berhasil';
                 $data = [
                     'session_id' => $session_id,
+                    'user' => $user
                 ];
             } else {
                 $status = 'User Password Tidak Match';
@@ -229,7 +231,7 @@ class Demo extends REST_Controller
                     throw new Exception('Data Document Survey tidak valid');
                 }
             }else{
-                $data =  $this->CandidateDocument_Model->getDataSurvey($rowno, $rowperpage, $search);
+                $data =  $this->CandidateDocument_Model->getDataSurveyApi($rowno, $rowperpage, $search);
             }
             $this->response($data, REST_Controller::HTTP_OK);
         } catch (Exception $exc) {

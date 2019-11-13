@@ -1,11 +1,9 @@
 <?php
 
-
-function generateSurvey($model)
-{
-        $contentImage  = json_decode($model['attachment'], true);
-        $contentText   = json_decode($model['attribute'], true);
-        $raw_html      = '<!DOCTYPE html>
+function generateSurvey($model) {
+    $contentImage = json_decode($model['attachment'], true);
+    $contentText = json_decode($model['attribute'], true);
+    $raw_html = '<!DOCTYPE html>
                          <html>
                          <head>
                             <title>SITAC SURVEY</title>
@@ -19,10 +17,10 @@ function generateSurvey($model)
                         </head>
                         <body>
                         <h2 style="text-align: center">TECHNICAL SITE SURVEY REPORT ( TSSR )</h2>
-                        <p><h4>SITE ID   : '.$contentText['site_id'].'</h4></p>
-                        <p><h4>SITE NAME : '.$contentText['site_name'].'</h4></p>
-                        <p><h4>REGION    : '.$contentText['region'].'</h4></p>
-                        <p><h4>SITE TYPE : '.$contentText['site_type'].'</h4></p>
+                        <p><h4>SITE ID   : ' . $contentText['site_id'] . '</h4></p>
+                        <p><h4>SITE NAME : ' . $contentText['site_name'] . '</h4></p>
+                        <p><h4>REGION    : ' . $contentText['region'] . '</h4></p>
+                        <p><h4>SITE TYPE : ' . $contentText['site_type'] . '</h4></p>
                         <p><h5>We Hereby guarantee that approval proccess for ESSR can be conducted, for there shall be no significant difficulties in applying for the IMB For this site</h5>
                         </p>
                         <table border="1" style="width: 100%" class="tg">
@@ -36,33 +34,33 @@ function generateSurvey($model)
                             <tr>
                                 <td rowspan="2" style="text-align: center"><span style="font-weight:bold">Prepared By</span><br><span style="font-weight:bold">(By Contractor)</span></td>
                                 <td>Contractor</td>
-                                <td>'.$contentText['contractor'].'</td>
+                                <td>' . $contentText['contractor'] . '</td>
                                 <td></td>
-                                <td style="text-align: center">'.date('d-M-Y', strtotime($model['created_at'])).'</td>
+                                <td style="text-align: center">' . date('d-M-Y', strtotime($model['created_at'])) . '</td>
                             </tr>
                             <tr>
                                 <td>Project Manager</td>
-                                <td>'.$contentText['project_manger'].'</td>
+                                <td>' . $contentText['project_manger'] . '</td>
                                 <td></td>
-                               <td style="text-align: center">'.date('d-M-Y', strtotime($model['created_at'])).'</td>
+                               <td style="text-align: center">' . date('d-M-Y', strtotime($model['created_at'])) . '</td>
                             </tr>
                             <tr>
                                 <td style="text-align: center;"><span style="font-weight:bold">Checked By</span><br><span style="font-weight:bold">(IBS Regional)</span></td>
                                 <td>SITAC HO<br>(Initial by Sitac &amp; CME Reg)</td>
-                                <td>'.$contentText['sitac_ho'].'</td>
+                                <td>' . $contentText['sitac_ho'] . '</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td rowspan="2" style="text-align: center"><span style="font-weight:bold">Approved By</span><br><span style="font-weight:bold">(Operator)</span></td>
                                 <td>RF</td>
-                                <td>'.$contentText['rf'].'</td>
+                                <td>' . $contentText['rf'] . '</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td>TX</td>
-                                <td>'.$contentText['tx'].'</td>
+                                <td>' . $contentText['tx'] . '</td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -78,23 +76,23 @@ function generateSurvey($model)
                                 <tr>
                                     <td rowspan="5" style="text-align: center"><span style="font-weight:bold">Operator Request</span></td>
                                     <td><span style="font-weight:normal;font-style:normal">Site ID</span></td>
-                                    <td>'.$contentText['site_id'].'<br></td>
+                                    <td>' . $contentText['site_id'] . '<br></td>
                                 </tr>
                                 <tr>
                                     <td>Site Name<br></td>
-                                    <td>'.$contentText['site_name'].'<br></td>
+                                    <td>' . $contentText['site_name'] . '<br></td>
                                 </tr>
                                 <tr>
                                     <td>Nominal (Long / Lat)<br></td>
-                                    <td>'.$contentText['nominal_long'].'° / '.$contentText['nominal_lat'].'°</td>
+                                    <td>' . $contentText['nominal_long'] . '° / ' . $contentText['nominal_lat'] . '°</td>
                                 </tr>
                                 <tr>
                                     <td>Search Radius<br></td>
-                                    <td>'.$contentText['search_radius'].'<br></td>
+                                    <td>' . $contentText['search_radius'] . '<br></td>
                                 </tr>
                                 <tr>
                                     <td>Antena Height<br></td>
-                                    <td>'.$contentText['antena_height'].' m<br></td>
+                                    <td>' . $contentText['antena_height'] . ' m<br></td>
                                 </tr>
                             </table>
                           </div>
@@ -108,23 +106,23 @@ function generateSurvey($model)
                                 </tr>
                                 <tr>
                                     <td>Candidate<br></td>
-                                    <td><span style="font-weight:bold">'.$contentText['candidate'].'</span></td>
+                                    <td><span style="font-weight:bold">' . $contentText['candidate'] . '</span></td>
                                 </tr>
                                 <tr>
                                     <td>Coordinate (Long / Lat)<br></td>
-                                    <td>'.$contentText['candidate_long'].'° / '.$contentText['candidate_lat'].'°<br></td>
+                                    <td>' . $contentText['candidate_long'] . '° / ' . $contentText['candidate_lat'] . '°<br></td>
                                 </tr>
                                 <tr>
                                     <td>Distance From NOM<br></td>
-                                    <td>'.$contentText['distance_from_nom'].' m<br></td>
+                                    <td>' . $contentText['distance_from_nom'] . ' m<br></td>
                                 </tr>
                                 <tr>
                                     <td>Azimuth<br></td>
-                                    <td>'.$contentText['azimuth'].' Degree<br></td>
+                                    <td>' . $contentText['azimuth'] . ' Degree<br></td>
                                 </tr>
                                 <tr>
                                     <td>Site Address</td>
-                                    <td>'.$contentText['site_address'].'</td>
+                                    <td>' . $contentText['site_address'] . '</td>
                                 </tr>
                                 <tr>
                                     <td>City / Province</td>
@@ -132,54 +130,54 @@ function generateSurvey($model)
                                 </tr>
                                 <tr>
                                     <td>Site Location</td>
-                                    <td>'.$contentText['site_location'].'</td>
+                                    <td>' . $contentText['site_location'] . '</td>
                                 </tr>
                                 <tr>
                                     <td>Tower Type</td>
-                                    <td>'.$contentText['tower_type'].'</td>
+                                    <td>' . $contentText['tower_type'] . '</td>
                                 </tr>
                                 <tr>
                                     <td>Building Height (m)</td>
-                                    <td>'.$contentText['building_height'].' m</td>
+                                    <td>' . $contentText['building_height'] . ' m</td>
                                 </tr>
                                 <tr>
                                     <td>Building Height (m)</td>
-                                    <td>'.$contentText['floor_no'].' fl</td>
+                                    <td>' . $contentText['floor_no'] . ' fl</td>
                                 </tr>
                                 <tr>
                                     <td>Pole / Tower Height (m)</td>
-                                    <td>'.$contentText['tower_height'].' m</td>
+                                    <td>' . $contentText['tower_height'] . ' m</td>
                                 </tr>
                                 <tr>
                                     <td>Space Dimension</td>
-                                    <td>'.$contentText['space_dimension'].' m</td>
+                                    <td>' . $contentText['space_dimension'] . ' m</td>
                                 </tr>
                                 <tr>
                                     <td>Access Road</td>
-                                    <td>'.$contentText['access_road'].'</td>
+                                    <td>' . $contentText['access_road'] . '</td>
                                 </tr>
                                 <tr>
                                     <td>24/7 Access</td>
-                                    <td>'.$contentText['access'].'</td>
+                                    <td>' . $contentText['access'] . '</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="text-align: center"><span style="font-weight:bold">Owner Information</span></td>
                                 </tr>
                                 <tr>
                                     <td>Name (Institution)</td>
-                                    <td>'.$contentText['owner'].'</td>
+                                    <td>' . $contentText['owner'] . '</td>
                                 </tr>
                                 <tr>
                                     <td>Address (Owner)</td>
-                                    <td>'.$contentText['address_owner'].'</td>
+                                    <td>' . $contentText['address_owner'] . '</td>
                                 </tr>
                                 <tr>
                                     <td>PIC (if institution)</td>
-                                    <td>'.$contentText['pic_owner'].'</td>
+                                    <td>' . $contentText['pic_owner'] . '</td>
                                 </tr>
                                 <tr>
                                     <td>Phone Number / HP</td>
-                                    <td>'.$contentText['phone_owner'].'</td>
+                                    <td>' . $contentText['phone_owner'] . '</td>
                                 </tr>
                             </table>
                           </div>
@@ -198,7 +196,7 @@ function generateSurvey($model)
                                     <th><span style="font-weight:bold">SITE LOCATION / MAP</span><br></th>
                                 </tr>
                                 <tr>
-                                    <td style="text-align: center"><img src="'.base_url('uploads/attachment/survey/'.$contentImage['site_location_map'].'').'" width="500" height="400" alt=""/></td>
+                                    <td style="text-align: center"><img src="' . base_url('uploads/attachment/survey/' . $contentImage['site_location_map'] . '') . '" width="500" height="400" alt=""/></td>
                                 </tr>
                             </table>
                           </div>
@@ -209,7 +207,7 @@ function generateSurvey($model)
                                     <th><span style="font-weight:bold">SITE LAYOUT</span><br></th>
                                 </tr>
                                 <tr>
-                                    <td style="text-align: center"><img src="'.base_url('uploads/attachment/survey/'.$contentImage['site_layout'].'').'" width="500" height="400" alt=""/></td>
+                                    <td style="text-align: center"><img src="' . base_url('uploads/attachment/survey/' . $contentImage['site_layout'] . '') . '" width="500" height="400" alt=""/></td>
                                 </tr>
                             </table>
                         </div>
@@ -220,7 +218,7 @@ function generateSurvey($model)
                                     <th><span style="font-weight:bold">Site Countour</span><br></th>
                                 </tr>
                                 <tr>
-                                    <td style="text-align: center"><img src="'.base_url('uploads/attachment/survey/'.$contentImage['site_contour'].'').'"  width="500" height="400" alt=""/></td>
+                                    <td style="text-align: center"><img src="' . base_url('uploads/attachment/survey/' . $contentImage['site_contour'] . '') . '"  width="500" height="400" alt=""/></td>
                                 </tr>
                             </table>
                         </div>
@@ -341,138 +339,135 @@ function generateSurvey($model)
                         </body>
                         </html>';
 
-         $api_endpoint  = "https://selectpdf.com/api2/convert/";
-         $key           = '7aa5b5e4-c3a2-44fb-998d-27820afb49be'; //'d4ca505b-0ca6-4f33-a075-afce3e313e82';
-         $local_file = './uploads/surveysitac/' . $model['project_id'] . 'SITAC_SURVEY'.$model['id'].'_'.$model['vendor_id'] . '.pdf';
-         $parameters = array('key' => $key, 'html' => $raw_html);
-         $options    = array(
-                'http' => array(
-                    'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-                    'method' => 'POST',
-                    'content' => http_build_query($parameters),
-                ),
-            );
-         $context = stream_context_create($options);
-         $result = @file_get_contents($api_endpoint, false, $context);
-         if (!$result) {
-                echo "HTTP Response: " . $http_response_header[0] . "<br/>";
-                $error = error_get_last();
-                echo "Error Message: " . $error['message'];
-            } else {
-                file_put_contents($local_file, $result);
-                $CI = get_instance();
-                $CI->load->model(['CandidateDocument_Model']);
-                $CI->CandidateDocument_Model->update($model['id'], [
-                    'path' => $model['project_id'] . 'SITAC_SURVEY'.$model['id'].'_'.$model['vendor_id'] . '.pdf']);
-                //echo "HTTP Response: " . $http_response_header[0] . "<br/>";
-                //echo($result);
-            }
-       }
+    $api_endpoint = "https://selectpdf.com/api2/convert/";
+    $key = '7aa5b5e4-c3a2-44fb-998d-27820afb49be'; //'d4ca505b-0ca6-4f33-a075-afce3e313e82';
+    $local_file = './uploads/surveysitac/' . $model['project_id'] . 'SITAC_SURVEY' . $model['id'] . '_' . $model['vendor_id'] . '.pdf';
+    $parameters = array('key' => $key, 'html' => $raw_html);
+    $options = array(
+        'http' => array(
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
+            'content' => http_build_query($parameters),
+        ),
+    );
+    $context = stream_context_create($options);
+    $result = @file_get_contents($api_endpoint, false, $context);
+    if (!$result) {
+        echo "HTTP Response: " . $http_response_header[0] . "<br/>";
+        $error = error_get_last();
+        echo "Error Message: " . $error['message'];
+    } else {
+        file_put_contents($local_file, $result);
+        $CI = get_instance();
+        $CI->load->model(['CandidateDocument_Model']);
+        $CI->CandidateDocument_Model->update($model['id'], [
+            'path' => $model['project_id'] . 'SITAC_SURVEY' . $model['id'] . '_' . $model['vendor_id'] . '.pdf']);
+        //echo "HTTP Response: " . $http_response_header[0] . "<br/>";
+        //echo($result);
+    }
+}
+
+function generateTsa($model, $approvals, $modelHistory) {
+    $contentText = json_decode($model['attribute'], true);
+    $other_condition = '';
+    foreach ($contentText['other_condition'] as $index => $key) {
+        $other_condition .= '<br/>' . $key;
+    }
+
+    $phase = '';
+    foreach ($contentText['phase'] as $index => $key) {
+        $phase .= '<br/>' . $key;
+    }
+
+    $percent = '';
+    foreach ($contentText['percen'] as $index => $key) {
+        $percent .= '<br/>' . $key;
+    }
+
+    $amount = '';
+    foreach ($contentText['amount'] as $index => $key) {
+        $amount .= '<br/>' . $key;
+    }
+
+    $description = '';
+    foreach ($contentText['description'] as $index => $key) {
+        $description .= '<br/>' . $key;
+    }
+
+    $jarak_dari_kandidat = '';
+    foreach ($contentText['jarak_dari_kandidat'] as $index => $key) {
+        $jarak_dari_kandidat .= '<br/>' . $key;
+    }
+
+    $tower_existing = '';
+    foreach ($contentText['tower_existing'] as $index => $key) {
+        $tower_existing .= '<br/>' . $key;
+    }
+
+    $potensi_market = '';
+    foreach ($contentText['potensi_market'] as $index => $key) {
+        $potensi_market .= '<br/>' . $key;
+    }
+
+    $kandidates = '';
+    foreach ($contentText['kandidates'] as $index => $key) {
+        $kandidates .= '<br/>' . $key;
+    }
+
+    $e_longiude = '';
+    foreach ($contentText['e_longiude'] as $index => $key) {
+        $e_longiude .= '<br/>' . $key;
+    }
+
+    $ns_latitude = '';
+    foreach ($contentText['ns_latitude'] as $index => $key) {
+        $ns_latitude .= '<br/>' . $key;
+    }
+
+    $contact_person = '';
+    foreach ($contentText['contact_person'] as $index => $key) {
+        $contact_person .= '<br/>' . $key;
+    }
 
 
-
-    function generateTsa($model, $approvals, $modelHistory)
-    {
-        $contentText    = json_decode($model['attribute'], true);
-        $other_condition = '';
-        foreach($contentText['other_condition'] as $index => $key){
-            $other_condition  .= '<br/>'.$key;
-        }
-
-        $phase = '';
-        foreach($contentText['phase'] as $index => $key){
-            $phase  .= '<br/>'.$key;
-        }
-
-        $percent = '';
-        foreach($contentText['percen'] as $index => $key){
-            $percent .= '<br/>'.$key;
-        }
-
-        $amount = '';
-        foreach($contentText['amount'] as $index => $key){
-            $amount  .= '<br/>'.$key;
-        }
-
-        $description = '';
-        foreach($contentText['description'] as $index => $key){
-            $description  .= '<br/>'.$key;
-        }
-
-        $jarak_dari_kandidat = '';
-        foreach($contentText['jarak_dari_kandidat'] as $index => $key){
-            $jarak_dari_kandidat  .= '<br/>'.$key;
-        }
-
-        $tower_existing = '';
-        foreach($contentText['tower_existing'] as $index => $key){
-            $tower_existing  .= '<br/>'.$key;
-        }
-
-        $potensi_market = '';
-        foreach($contentText['potensi_market'] as $index => $key){
-            $potensi_market  .= '<br/>'.$key;
-        }
-
-        $kandidates = '';
-        foreach($contentText['kandidates'] as $index => $key){
-            $kandidates  .= '<br/>'.$key;
-        }
-
-        $e_longiude = '';
-        foreach($contentText['e_longiude'] as $index => $key){
-            $e_longiude  .= '<br/>'.$key;
-        }
-
-        $ns_latitude = '';
-        foreach($contentText['ns_latitude'] as $index => $key){
-            $ns_latitude  .= '<br/>'.$key;
-        }
-
-        $contact_person = '';
-        foreach($contentText['contact_person'] as $index => $key){
-            $contact_person  .= '<br/>'.$key;
-        }
+    $masa_sewa = '';
+    foreach ($contentText['masa_sewa'] as $index => $key) {
+        $masa_sewa .= '<br/>' . $key;
+    }
 
 
-        $masa_sewa = '';
-        foreach($contentText['masa_sewa'] as $index => $key){
-            $masa_sewa  .= '<br/>'.$key;
-        }
+    $harga_sewa = '';
+    foreach ($contentText['harga_sewa'] as $index => $key) {
+        $harga_sewa .= '<br/>' . $key;
+    }
 
 
-        $harga_sewa = '';
-        foreach($contentText['harga_sewa'] as $index => $key){
-            $harga_sewa  .= '<br/>'.$key;
-        }
+    $cancelation_remarks = '';
+    foreach ($contentText['cancelation_remarks'] as $index => $key) {
+        $cancelation_remarks .= '<br/>' . $key;
+    }
 
-
-        $cancelation_remarks = '';
-        foreach($contentText['cancelation_remarks'] as $index => $key){
-            $cancelation_remarks  .= '<br/>'.$key;
-        }
-
-       $approval_document = '';
-        if(empty($approvals)):
-             $approval_document .= '<tr>
+    $approval_document = '';
+    if (empty($approvals)):
+        $approval_document .= '<tr>
                             <td class="tg-on52"><span style="font-weight:700"></span><br></td>
                             <td class="tg-7j3r"></td>
                             <td class="tg-on52"></td>
                             <td class="tg-on52"></td>
                           </tr>';
-        else:
-            foreach ($approvals as $approval):
-               $approval_document .= '<tr>
-                                        <td class="tg-on52"><span style="font-weight:700">'.$approval->document_type.'</span><br></td>
-                                        <td class="tg-7j3r">'.$approval->role_name.'</td>
-                                        <td class="tg-on52">'.$approval->email.'</td>
-                                        <td class="tg-on52">'.date('d-M-Y', strtotime($approval->approved_at)).'</td>
+    else:
+        foreach ($approvals as $approval):
+            $approval_document .= '<tr>
+                                        <td class="tg-on52"><span style="font-weight:700">' . $approval->document_type . '</span><br></td>
+                                        <td class="tg-7j3r">' . $approval->role_name . '</td>
+                                        <td class="tg-on52">' . $approval->email . '</td>
+                                        <td class="tg-on52">' . date('d-M-Y', strtotime($approval->approved_at)) . '</td>
                                       </tr>';
-            endforeach;
-        endif;
+        endforeach;
+    endif;
 
 
-        $raw_html  = '<!DOCTYPE html>
+    $raw_html = '<!DOCTYPE html>
                       <html>
                             <head>
                             <meta charset="UTF-8">
@@ -550,11 +545,11 @@ function generateSurvey($model)
                               </tr>
                               <tr>
                                 <td class="tg-i817">Project Name<br></td>
-                                <td class="tg-i817">'.$contentText['project_name'].'<br></td>
+                                <td class="tg-i817">' . $contentText['project_name'] . '<br></td>
                                 <td class="tg-i817">Operator</td>
-                                <td class="tg-i817">'.$contentText['operator'].'</td>
+                                <td class="tg-i817">' . $contentText['operator'] . '</td>
                                 <td class="tg-i817">TSA Number</td>
-                                <td class="tg-i817">'.$contentText['tsa_number'].'<br></td>
+                                <td class="tg-i817">' . $contentText['tsa_number'] . '<br></td>
                               </tr>
                             </table>
                             </div>
@@ -568,67 +563,67 @@ function generateSurvey($model)
                               </tr>
                               <tr>
                                 <td class="tg-i817">Site ID IBS</td>
-                                <td class="tg-i817">'.$contentText['site_id_ibs'].'</td>
+                                <td class="tg-i817">' . $contentText['site_id_ibs'] . '</td>
                                 <td class="tg-i817">Rental Period (IBS-LO)<br></td>
-                                <td class="tg-i817">Start Year: '.$contentText['start_year'].' / End Year: '.$contentText['end_year'].'</td>
+                                <td class="tg-i817">Start Year: ' . $contentText['start_year'] . ' / End Year: ' . $contentText['end_year'] . '</td>
                               </tr>
                               <tr>
                                 <td class="tg-73oq">Site Name</td>
-                                <td class="tg-73oq">'.$contentText['site_name'].'</td>
+                                <td class="tg-73oq">' . $contentText['site_name'] . '</td>
                                 <td class="tg-73oq">Acquition Status<br></td>
-                                <td class="tg-73oq">'.$contentText['acquition_status'].'</td>
+                                <td class="tg-73oq">' . $contentText['acquition_status'] . '</td>
                               </tr>
                               <tr>
                                 <td class="tg-i817">Topology<br></td>
-                                <td class="tg-i817">'.$contentText['topology'].'</td>
+                                <td class="tg-i817">' . $contentText['topology'] . '</td>
                                 <td class="tg-i817">Purchased Option</td>
-                                <td class="tg-i817">'.$contentText['purchased_option'].'<br></td>
+                                <td class="tg-i817">' . $contentText['purchased_option'] . '<br></td>
                               </tr>
                               <tr>
                                 <td class="tg-73oq">Coordinate<br></td>
-                                <td class="tg-73oq">Degress/Decimal '.$contentText['long'].' E(Longitude) / Degress/Decimal '.$contentText['lat'].' N/S(Latitude)</td>
+                                <td class="tg-73oq">Degress/Decimal ' . $contentText['long'] . ' E(Longitude) / Degress/Decimal ' . $contentText['lat'] . ' N/S(Latitude)</td>
                                 <td class="tg-73oq">Final Price Per Year, Include PPh, Excl, PPN<br></td>
-                                <td class="tg-73oq">'.$contentText['final_per_year'].' -/Year<br></td>
+                                <td class="tg-73oq">' . $contentText['final_per_year'] . ' -/Year<br></td>
                               </tr>
                               <tr>
                                 <td class="tg-i817">Region</td>
-                                <td class="tg-i817">'.$contentText['region'].'</td>
+                                <td class="tg-i817">' . $contentText['region'] . '</td>
                                 <td class="tg-i817">Total Price, Include PPh, Excl, PPN</td>
-                                <td class="tg-i817">'.$contentText['total_price'].'</td>
+                                <td class="tg-i817">' . $contentText['total_price'] . '</td>
                               </tr>
                               <tr>
                                 <td class="tg-73oq">Owner Name</td>
-                                <td class="tg-73oq">'.$contentText['owner_name'].'</td>
+                                <td class="tg-73oq">' . $contentText['owner_name'] . '</td>
                                 <td class="tg-73oq">Other Condition</td>
-                                <td class="tg-73oq">'.$other_condition.'</td>
+                                <td class="tg-73oq">' . $other_condition . '</td>
                               </tr>
                               <tr>
                                 <td class="tg-i817">Contact Person</td>
-                                <td class="tg-i817">'.$contentText['contact_persons'].'</td>
+                                <td class="tg-i817">' . $contentText['contact_persons'] . '</td>
                                 <td class="tg-i817">Location Site</td>
-                                <td class="tg-i817">'.$contentText['location_site'].'</td>
+                                <td class="tg-i817">' . $contentText['location_site'] . '</td>
                               </tr>
                               <tr>
                                 <td class="tg-73oq">Phone/HP</td>
-                                <td class="tg-73oq">'.$contentText['phone_number'].'</td>
+                                <td class="tg-73oq">' . $contentText['phone_number'] . '</td>
                                 <td class="tg-73oq">Vendor PIC</td>
-                                <td class="tg-73oq">'.$contentText['vendor_pic'].'</td>
+                                <td class="tg-73oq">' . $contentText['vendor_pic'] . '</td>
                               </tr>
                               <tr>
                                 <td class="tg-i817">Address</td>
-                                <td class="tg-i817">'.$contentText['address'].'</td>
+                                <td class="tg-i817">' . $contentText['address'] . '</td>
                                 <td class="tg-i817">Vendor Phone</td>
-                                <td class="tg-i817">'.$contentText['vendor_phone'].'</td>
+                                <td class="tg-i817">' . $contentText['vendor_phone'] . '</td>
                               </tr>
                               <tr>
                                 <td class="tg-73oq">Site Type</td>
-                                <td class="tg-73oq">'.$contentText['site_type'].'</td>
+                                <td class="tg-73oq">' . $contentText['site_type'] . '</td>
                                 <td class="tg-73oq">IBST SITAC PIC</td>
-                                <td class="tg-73oq">'.$contentText['ibs_pic'].'</td>
+                                <td class="tg-73oq">' . $contentText['ibs_pic'] . '</td>
                               </tr>
                               <tr>
                                 <td class="tg-i817">Tower Type</td>
-                                <td class="tg-i817">'.$contentText['tower_type'].'</td>
+                                <td class="tg-i817">' . $contentText['tower_type'] . '</td>
 
                                 <td class="tg-i817"><b>Due Date Land Payment</b></td>
                                 <td class="tg-i817"><b>25 hari setelah PKS Signed dan invoice/Doc diterima dengan lengkap dan benar (Untuk proses pembayaran pertama)</b></td>
@@ -636,32 +631,32 @@ function generateSurvey($model)
                               </tr>
                               <tr>
                                 <td class="tg-73oq">Tower/Pole Height</td>
-                                <td class="tg-73oq">'.$contentText['tower_height'].' Meter</td>
+                                <td class="tg-73oq">' . $contentText['tower_height'] . ' Meter</td>
                                 <td class="tg-73oq" colspan="2" rowspan="7"></td>
                               </tr>
                               <tr>
                                 <td class="tg-i817">Status Site</td>
-                                <td class="tg-i817">'.$contentText['status_site'].'</td>
+                                <td class="tg-i817">' . $contentText['status_site'] . '</td>
                               </tr>
                               <tr>
                                 <td class="tg-73oq">Land Status</td>
-                                <td class="tg-73oq">'.$contentText['land_status'].'</td>
+                                <td class="tg-73oq">' . $contentText['land_status'] . '</td>
                               </tr>
                               <tr>
                                 <td class="tg-i817">Initial Price (BAP)(Inc PPh, Excl, PPN)<br></td>
-                                <td class="tg-i817">Rp. '.$contentText['initil_price_peryear'].' -/Year</td>
+                                <td class="tg-i817">Rp. ' . $contentText['initil_price_peryear'] . ' -/Year</td>
                               </tr>
                               <tr>
                                 <td class="tg-73oq">Land Size</td>
-                                <td class="tg-73oq">'.$contentText['land_size'].' Meter2</td>
+                                <td class="tg-73oq">' . $contentText['land_size'] . ' Meter2</td>
                               </tr>
                               <tr>
                                 <td class="tg-i817">Accsess Road<br></td>
-                                <td class="tg-i817">'.$contentText['access_road'].' Meter2</td>
+                                <td class="tg-i817">' . $contentText['access_road'] . ' Meter2</td>
                               </tr>
                               <tr>
                                 <td class="tg-73oq">Time Access</td>
-                                <td class="tg-73oq">'.$contentText['time_access'].'</td>
+                                <td class="tg-73oq">' . $contentText['time_access'] . '</td>
                               </tr>
                             </table>
                             </div>
@@ -679,10 +674,10 @@ function generateSurvey($model)
                                 <td class="tg-aa13">Description</td>
                               </tr>
                               <tr>
-                                <td class="tg-73oq">'.$phase.'</td>
-                                <td class="tg-73oq">'.$percent.'%</td>
-                                <td class="tg-73oq">'.$amount.'</td>
-                                <td class="tg-73oq">'.$description.'</td>
+                                <td class="tg-73oq">' . $phase . '</td>
+                                <td class="tg-73oq">' . $percent . '%</td>
+                                <td class="tg-73oq">' . $amount . '</td>
+                                <td class="tg-73oq">' . $description . '</td>
                               </tr>
                              </table>
                             </div>
@@ -699,10 +694,10 @@ function generateSurvey($model)
                                 <td class="tg-c10m">Potensi Market</td>
                               </tr>
                               <tr>
-                                <td class="tg-73oq">'.$jarak_dari_kandidat.'</td>
-                                <td class="tg-73oq">'.$tower_existing.'</td>
-                                <td class="tg-73oq">'.$jarak_dari_kandidat.'</td>
-                                <td class="tg-73oq">'.$potensi_market.'</td>
+                                <td class="tg-73oq">' . $jarak_dari_kandidat . '</td>
+                                <td class="tg-73oq">' . $tower_existing . '</td>
+                                <td class="tg-73oq">' . $jarak_dari_kandidat . '</td>
+                                <td class="tg-73oq">' . $potensi_market . '</td>
                               </tr>
                             </table>
                             </div>
@@ -722,13 +717,13 @@ function generateSurvey($model)
                                 <td class="tg-c10m">Cancelation Remarks</td>
                               </tr>
                               <tr>
-                                <td class="tg-73oq">'.$kandidates.'</td>
-                                <td class="tg-73oq">'.$e_longiude.'</td>
-                                <td class="tg-73oq">'.$ns_latitude.'</td>
-                                <td class="tg-73oq">'.$contact_person.'</td>
-                                <td class="tg-73oq">'.$masa_sewa.'</td>
-                                <td class="tg-73oq">'.$harga_sewa.'</td>
-                                <td class="tg-73oq">'.$cancelation_remarks.'</td>
+                                <td class="tg-73oq">' . $kandidates . '</td>
+                                <td class="tg-73oq">' . $e_longiude . '</td>
+                                <td class="tg-73oq">' . $ns_latitude . '</td>
+                                <td class="tg-73oq">' . $contact_person . '</td>
+                                <td class="tg-73oq">' . $masa_sewa . '</td>
+                                <td class="tg-73oq">' . $harga_sewa . '</td>
+                                <td class="tg-73oq">' . $cancelation_remarks . '</td>
                               </tr>
                             </table>
                             </div>
@@ -745,7 +740,7 @@ function generateSurvey($model)
                                     <td class="tg-a255">Name</td>
                                     <td class="tg-a255">Date</td>
                                   </tr>
-                              '.$approval_document.'
+                              ' . $approval_document . '
                               </table>
                             <!--end-->
                             </div>
@@ -755,77 +750,68 @@ function generateSurvey($model)
                                 <th colspan="6">Notes</th>
                               </tr>
                               <tr>
-                                <td colspan="6">'.$contentText['note'].'</td>
+                                <td colspan="6">' . $contentText['note'] . '</td>
                               </tr>
                             </table>
                             </html>';
 
-        $api_endpoint  = "https://selectpdf.com/api2/convert/";
-        $key           = '7aa5b5e4-c3a2-44fb-998d-27820afb49be';//    'd4ca505b-0ca6-4f33-a075-afce3e313e82';
-        $helper =& get_instance();
-        $helper->load->helper('string');
-        $file_name  =  $model['project_id'] . 'SITAC_TSA'.$model['id'].'_'.$model['vendor_id'].'_'.random_string('alnum', 16).'.pdf';
-        $local_file = './uploads/tsa/' .$file_name;
-        $parameters = array('key' => $key, 'html' => $raw_html);
-        $options    = array(
-            'http' => array(
-                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method' => 'POST',
-                'content' => http_build_query($parameters),
-            ),
-        );
-        $context = stream_context_create($options);
-        $result = @file_get_contents($api_endpoint, false, $context);
-        if (!$result) {
-            echo "HTTP Response: " . $http_response_header[0] . "<br/>";
-            $error = error_get_last();
-            echo "Error Message: " . $error['message'];
-        } else {
-            file_put_contents($local_file, $result);
-            $database =& get_instance();
-            $database->load->model(['CandidateDocument_Model', 'DocumentApprovalHistory_Model']);
-            $database->CandidateDocument_Model->update($model['id'], ['path' => $file_name]);
-            $database->DocumentApprovalHistory_Model->update($modelHistory, ['path' => $file_name]);
-        }
+    $api_endpoint = "https://selectpdf.com/api2/convert/";
+    $key = '7aa5b5e4-c3a2-44fb-998d-27820afb49be'; //    'd4ca505b-0ca6-4f33-a075-afce3e313e82';
+    $helper = & get_instance();
+    $helper->load->helper('string');
+    $file_name = $model['project_id'] . 'SITAC_TSA' . $model['id'] . '_' . $model['vendor_id'] . '_' . random_string('alnum', 16) . '.pdf';
+    $local_file = './uploads/tsa/' . $file_name;
+    $parameters = array('key' => $key, 'html' => $raw_html);
+    $options = array(
+        'http' => array(
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
+            'content' => http_build_query($parameters),
+        ),
+    );
+    $context = stream_context_create($options);
+    $result = @file_get_contents($api_endpoint, false, $context);
+    if (!$result) {
+        echo "HTTP Response: " . $http_response_header[0] . "<br/>";
+        $error = error_get_last();
+        echo "Error Message: " . $error['message'];
+    } else {
+        file_put_contents($local_file, $result);
+        $database = & get_instance();
+        $database->load->model(['CandidateDocument_Model', 'DocumentApprovalHistory_Model']);
+        $database->CandidateDocument_Model->update($model['id'], ['path' => $file_name]);
+        $database->DocumentApprovalHistory_Model->update($modelHistory, ['path' => $file_name]);
     }
+}
 
-    function generateFoundationErection($template, $approvals, $modelHistory)
-    {
+function generateFoundationErection($template, $approvals, $modelHistory) {
+    
+}
 
-    }
+function generateFence($template, $approvals, $modelHistory) {
+    
+}
 
-    function generateFence($template, $approvals, $modelHistory)
-    {
+function generateRfi($template, $approvals, $modelHistory) {
+    
+}
 
-    }
+function generatePat($template, $approvals, $modelHistory) {
+    
+}
 
-    function generateRfi($template, $approvals, $modelHistory)
-    {
+function generateAddReduce($template, $approvals, $modelHistory) {
+    
+}
 
-    }
+function generateAbd($template, $approvals, $modelHistory) {
+    
+}
 
-    function generatePat($template, $approvals, $modelHistory)
-    {
+function generateHandOver($template, $approvals, $modelHistory) {
+    
+}
 
-    }
-
-    function generateAddReduce($template, $approvals, $modelHistory)
-    {
-
-    }
-
-    function generateAbd($template, $approvals, $modelHistory)
-    {
-
-    }
-
-    function generateHandOver($template, $approvals, $modelHistory)
-    {
-
-    }
-
-    function generateBast($template, $approvals, $modelHistory)
-    {
-
-    }
-
+function generateBast($template, $approvals, $modelHistory) {
+    
+}
