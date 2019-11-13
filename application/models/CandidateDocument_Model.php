@@ -46,6 +46,7 @@ class CandidateDocument_Model extends CI_Model {
         if( !empty($candidate_id)){
             $this->db->where(['document_candidate.candidate_id' => $candidate_id]);
         }
+        
         if ($search != '') {
             $this->db->like('candidate.name', $search);
             $this->db->or_like('vendor.name', $search);

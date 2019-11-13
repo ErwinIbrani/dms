@@ -234,6 +234,7 @@ class Demo extends REST_Controller
             }else{
                 $data =  $this->CandidateDocument_Model->getDataSurveyApi($rowno, $rowperpage, $search, $candidate_id);
             }
+            
             $this->response($data, REST_Controller::HTTP_OK);
         } catch (Exception $exc) {
             $msg = $exc->getMessage();
