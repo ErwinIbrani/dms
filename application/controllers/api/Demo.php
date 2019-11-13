@@ -132,13 +132,16 @@ class Demo extends REST_Controller
                 throw new Exception('session anda telah habis');
             }
             $id = $this->get('id');
+            $order = $this->get('order');
+            $order_type = $this->get('order_type');
+            $project_id = $this->get('project_id');
             if(!empty($id)){
                 $data =  $this->Candidate_Model->getCandidateById($id)->result_array();
                 if(empty($data)){
                     throw new Exception('Data Candidate tidak valid');
                 }
             }else{
-                $data =  $this->Candidate_Model->get_all()->result();
+                $data =  $this->Candidate_Model->get_all($order, $order_type, $project_id)->result();
             }
             $this->response($data, REST_Controller::HTTP_OK);
         } catch (Exception $exc) {
