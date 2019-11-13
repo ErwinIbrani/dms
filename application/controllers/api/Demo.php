@@ -248,6 +248,9 @@ class Demo extends REST_Controller
             if( ! $this->check_session($session_id)){
                 throw new Exception('session anda telah habis');
             }
+            
+            
+            
             $config = [];
             $config['upload_path'] = './uploads/attachment/survey/';
             $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
@@ -332,13 +335,12 @@ class Demo extends REST_Controller
                 }
                 
                 $data = $this->CandidateDocument_Model->save($data);
-                // TODO : entah kenapa generateSurvey($template) membuat jadi error untuk response
-                /*
                 if (!empty($data)) {
                     $template = $this->CandidateDocument_Model->findOne($data)->row_array();
-                    generateSurvey($template);
+                    $wbs_id = $this->Project_Model->findOne($template['project_id'])->row_array();
+                    generateSurvey($template, $wbs_id);
+                    
                 }
-                */
             } else {
                 throw new Exception($this->upload->display_errors());
             }
