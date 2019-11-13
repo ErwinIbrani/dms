@@ -56,13 +56,18 @@ class Apd extends CI_Controller
 				'vendor_id' => $project->vendor_id,
 				'name' => 'APD LIST',
 				'code' => '',
-				'type' => 'SITAC',
+				'type' => 'APD',
 				'path' => $file_name,
 				'status' => 'submitted',
 				'created_at' => date('Y-m-d H:i:s')
 			);
 
 			$document = $this->Document_Model->save($project_document);
+
+			$docApd = $this->Document_Model->getCountSpecificDocument($project_document['project_id'], 'APD')->result_array();
+			if (count($docApd) >= 5) {
+				$this->Project_Model->update($project_document['project_id'], array('work_status' => 'RFC'));
+			}
 			$this->session->set_flashdata('success', 'Success upload document');
 			redirect("/project/apd/addsite/" . $project_id, 'refresh');
 		}
@@ -99,17 +104,22 @@ class Apd extends CI_Controller
 			$project_document = array(
 				'project_id' => $project->project_id,
 				'vendor_id' => $project->vendor_id,
-				'name' => 'APD LIST',
+				'name' => 'APD SITE',
 				'code' => '',
-				'type' => 'SITAC',
+				'type' => 'APD',
 				'path' => $file_name,
 				'status' => 'submitted',
 				'created_at' => date('Y-m-d H:i:s')
 			);
 
+			$docApd = $this->Document_Model->getCountSpecificDocument($project_document['project_id'], 'APD')->result_array();
 			$document = $this->Document_Model->save($project_document);
+			if (count($docApd) >= 5) {
+				$this->Project_Model->update($project_document['project_id'], array('work_status' => 'RFC'));
+			}
+
 			$this->session->set_flashdata('success', 'Success upload document');
-			redirect("/project/apd/addsite/" . $project_id, 'refresh');
+			redirect("/project/project/detail/" . $project_id, 'refresh');
 		}
 	}
 
