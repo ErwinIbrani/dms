@@ -63,7 +63,6 @@ class Apd extends CI_Controller
 			);
 
 			$document = $this->Document_Model->save($project_document);
-
 			$docApd = $this->Document_Model->getCountSpecificDocument($project_document['project_id'], 'APD')->result_array();
 
 			if (count($docApd) >= 2) {
@@ -113,8 +112,9 @@ class Apd extends CI_Controller
 				'created_at' => date('Y-m-d H:i:s')
 			);
 
-			$docApd = $this->Document_Model->getCountSpecificDocument($project_document['project_id'], 'APD')->result_array();
 			$document = $this->Document_Model->save($project_document);
+			$docApd = $this->Document_Model->getCountSpecificDocument($project_document['project_id'], 'APD')->result_array();
+
 			if (count($docApd) >= 2) {
 				$this->Project_Model->update($project_document['project_id'], array('work_status' => 'RFC'));
 			}
