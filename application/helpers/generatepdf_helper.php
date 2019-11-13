@@ -2754,9 +2754,9 @@ body {margin-top: 0px;margin-left: 0px;}
 </DIV>
 </BODY>
 </HTML>';
-
+	$CI = get_instance();
 	$api_endpoint  = "https://selectpdf.com/api2/convert/";
-	$key           = $this->config->item('pdf_key'); //'d4ca505b-0ca6-4f33-a075-afce3e313e82';
+	$key           = $CI->config->item('pdf_key'); //'d4ca505b-0ca6-4f33-a075-afce3e313e82';
 	$local_file = './uploads/surveysitac/' . $model['project_id'] . 'SITAC_SURVEY'.$model['id'].'_'.$model['vendor_id'] . '.pdf';
 	$parameters = array('key' => $key, 'html' => $raw_html);
 	$options    = array(
@@ -4177,8 +4177,9 @@ function generateTsa($model, $approvals, $modelHistory, $wbs_id)
         </BODY>
         </HTML>';
 
+	$CI = get_instance();
 	$api_endpoint  = "https://selectpdf.com/api2/convert/";
-	$key           = $this->config->item('pdf_key');//    'd4ca505b-0ca6-4f33-a075-afce3e313e82';
+	$key           = $CI->config->item('pdf_key');//    'd4ca505b-0ca6-4f33-a075-afce3e313e82';
 	$helper =& get_instance();
 	$helper->load->helper('string');
 	$file_name  =  $model['project_id'] . 'SITAC_TSA'.$model['id'].'_'.$model['vendor_id'].'_'.random_string('alnum', 16).'.pdf';
