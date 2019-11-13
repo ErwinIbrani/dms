@@ -109,7 +109,7 @@
 								<p class="card-text mt-3"> The document above is a list of BAP documents, </p>
 								@foreach($document_bak as $bak)
 									@if(is_null($bak->attachment))
-										<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#uploadKomCme">
+										<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#uploadBap">
 											<span class="ml-1">Upload BAP</span></button>
 										@include('vendor.candidate.document.bak.upload_form')
 									@endif
@@ -148,7 +148,7 @@
 								<p class="card-text mt-3"> The document above is a list of BAK documents, </p>
 								@foreach($document_bak as $bak)
 									@if(is_null($bak->attachment))
-										<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#uploadKomCme">
+										<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#uploadBak">
 											<span class="ml-1">Upload BAK</span></button>
 										@include('vendor.candidate.document.bak.upload_form')
 									@endif

@@ -1,4 +1,4 @@
-<div class="modal modal-alert fade" id="uploadKomCme" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="userGroupFromLabel" aria-hidden="true">
+<div class="modal modal-alert fade" id="uploadBak" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="userGroupFromLabel" aria-hidden="true">
 	<!-- .modal-dialog -->
 	<div class="modal-dialog" role="document">
 		<!-- .modal-content -->
@@ -15,7 +15,7 @@
 				<div class="form-group">
 
 					<div class="form-group">
-						<label for="tf1">Upload KOM CME</label>
+						<label for="tf1">Upload BAK</label>
 						<div class="custom-file">
 							<input type="file" class="custom-file-input" id="tf3">
 							<label class="custom-file-label" for="tf3">Choose file</label>
