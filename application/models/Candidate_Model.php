@@ -40,6 +40,7 @@ class Candidate_Model extends CI_Model {
         if(!empty($project_id)){
             $this->db->where('project_id', $project_id);
         }
+        
         if(!empty($order)){
             if(!empty($order_type)){
                 $this->db->order_by($order, $order_type);

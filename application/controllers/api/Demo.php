@@ -142,6 +142,7 @@ class Demo extends REST_Controller
                 }
             }else{
                 $data =  $this->Candidate_Model->get_all($order, $order_type, $project_id)->result();
+                
             }
             $this->response($data, REST_Controller::HTTP_OK);
         } catch (Exception $exc) {
