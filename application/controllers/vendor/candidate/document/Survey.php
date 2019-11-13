@@ -149,19 +149,96 @@ class Survey extends CI_Controller {
             if (!is_null($hasBapDoc) && !is_null($hasKomSitac)) {
                 $this->Project_Model->update($data['project_id'], array('work_status' => 'TSA'));
             }
-            $data = $this->CandidateDocument_Model->save($data);
-            if (!empty($data)) {
-                $template = $this->CandidateDocument_Model->findOne($data)->row_array();
-                generateSurvey($template);
-                $this->session->set_flashdata('success', 'Data Uploded');
-                redirect("/vendor/candidate/detail/index/" . $this->input->post('candidate_id'), 'refresh');
+
+            if (!empty($site_location_map) && !empty($site_layout) && !empty($site_contour)) {
+                $attribute = [
+                    'contractor' => $this->input->post('contractor'),
+                    'project_manger' => $this->input->post('project_manger'),
+                    'sitac_ho' => $this->input->post('sitac_ho'),
+                    'rf' => $this->input->post('rf'),
+                    'tx' => $this->input->post('tx'),
+                    'site_id' => $this->input->post('site_id'),
+                    'site_name' => $this->input->post('site_name'),
+                    'nominal_long' => $this->input->post('nominal_long'),
+                    'nominal_lat' => $this->input->post('nominal_lat'),
+                    'region' => $this->input->post('region'),
+                    'site_type' => $this->input->post('site_type'),
+                    'search_radius' => $this->input->post('search_radius'),
+                    'antena_height' => $this->input->post('antena_height'),
+                    'candidate' => $this->input->post('candidate'),
+                    'candidate_long' => $this->input->post('candidate_long'),
+                    'candidate_lat' => $this->input->post('candidate_lat'),
+                    'distance_from_nom' => $this->input->post('distance_from_nom'),
+                    'azimuth' => $this->input->post('azimuth'),
+                    'site_address' => $this->input->post('site_address'),
+                    'city' => $this->input->post('city'),
+                    'site_location' => $this->input->post('site_location'),
+                    'tower_type' => $this->input->post('tower_type'),
+                    'building_height' => $this->input->post('building_height'),
+                    'floor_no' => $this->input->post('floor_no'),
+                    'tower_height' => $this->input->post('tower_height'),
+                    'space_dimension' => $this->input->post('space_dimension'),
+                    'access_road' => $this->input->post('access_road'),
+                    'access' => $this->input->post('access'),
+                    'owner' => $this->input->post('owner'),
+                    'address_owner' => $this->input->post('address_owner'),
+                    'pic_owner' => $this->input->post('pic_owner'),
+                    'phone_owner' => $this->input->post('phone_owner'),
+                ];
+                $attachment = [
+                    'site_location_map' => $site_location_map['file_name'],
+                    'site_layout' => $site_layout['file_name'],
+                    'site_contour' => $site_contour['file_name'],
+                ];
+                $data = [
+                    'project_id' => $this->input->post('project_id'),
+                    'vendor_id' => $this->input->post('vendor_id'),
+                    'candidate_id' => $this->input->post('candidate_id'),
+                    'name' => 'SURVEY',
+                    'code' => 'FM-STP-019',
+                    'type' => 'SITAC SURVEY',
+                    'status' => 'submitted',
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'attribute' => json_encode($attribute), //nanti didecode
+                    'attachment' => json_encode($attachment)
+                ];
+                $hasKomSitac = $this->Document_Model->getSpecificDocument($data['project_id'], 'COM SITAC')->row();
+                $hasBapDoc = $this->CandidateDocument_Model->getSpecificDocument($data['project_id'], 'BAP')->row();
+
+                if (!is_null($hasBapDoc) && !is_null($hasKomSitac)) {
+                    $this->Project_Model->update($data['project_id'], array('work_status' => 'TSA'));
+                }
+                $data = $this->CandidateDocument_Model->save($data);
+                if (!empty($data)) {
+                    $template = $this->CandidateDocument_Model->findOne($data)->row_array();
+                    $wbs_id = $this->Project_Model->findOne($template['project_id'])->row_array();
+                    generateSurvey($template, $wbs_id);
+                    $this->session->set_flashdata('success', 'Data Uploded');
+                    redirect("/vendor/candidate/detail/index/" . $this->input->post('candidate_id'), 'refresh');
+                }
+            } else {
+                $error = ['error' => $this->upload->display_errors()];
+                $this->session->set_flashdata('error', $error['error']);
+                redirect("vendor/candidate/document/survey/index/", 'refresh');
+
+                $data = $this->CandidateDocument_Model->save($data);
+                if (!empty($data)) {
+                    $template = $this->CandidateDocument_Model->findOne($data)->row_array();
+                    $wbs_id    = $this->Project_Model->findOne($template['project_id'])->row_array();
+                    generateSurvey($template, $wbs_id);
+                    $this->session->set_flashdata('success', 'Data Uploded');
+                    redirect("/vendor/candidate/detail/index/" . $this->input->post('candidate_id'), 'refresh');
+
+                }
             }
-        } else {
-            $error = ['error' => $this->upload->display_errors()];
-            $this->session->set_flashdata('error', $error['error']);
-            redirect("vendor/candidate/document/survey/index/", 'refresh');
         }
-    }
+        else {
+                $error = ['error' => $this->upload->display_errors()];
+                $this->session->set_flashdata('error', $error['error']);
+                redirect("vendor/candidate/document/survey/index/", 'refresh');
+            }
+        }
+
 
     public function download($file_name) {
         if (!empty($file_name)) {
@@ -185,9 +262,11 @@ class Survey extends CI_Controller {
         ));
     }
 
-    public function testpdf() {
-        $model = $this->CandidateDocument_Model->findOne(2291)->row_array();
-        return view('test_template.survey', ['model' => $model]);
-    }
 
+    public function testpdf()
+    {
+        $model  = $this->CandidateDocument_Model->findOne(5335)->row_array();
+        $wbs_id = $this->Project_Model->findOne($model['project_id'])->row_array();
+        return view('test_template.survey', ['model' => $model,'wbs_id' => $wbs_id]);
+    }
 }

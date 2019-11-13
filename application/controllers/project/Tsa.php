@@ -154,8 +154,9 @@ class Tsa extends CI_Controller
                                                    'note'           => 'Document Submitted']);
 
               $template     = $this->CandidateDocument_Model->findOne($row)->row_array();
+              $wbs_id       = $this->Project_Model->findOne($template['project_id'])->row_array();
               $approvals    = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA', $row)->result();
-              generateTsa($template, $approvals, $modelHistory);
+              generateTsa($template, $approvals, $modelHistory, $wbs_id);
               $this->session->set_flashdata('success', 'Data Uploded');
               redirect("/project/project/detail/".$data['project_id'], 'refresh');
           }
@@ -284,14 +285,6 @@ class Tsa extends CI_Controller
         redirect("project/tsa/index", 'refresh');
     }
 
-    public function testpdf()
-    {
-        $model     = $this->CandidateDocument_Model->findOne(3282)->row_array();
-        $approvals = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA')->result();
-        return view('test_template.tsa', ['model' => $model, 'approvals' => $approvals]);
-    }
-
-
     public function candidate($rowno=0)
     {
         $this->make_bread->add('Index');
@@ -324,5 +317,15 @@ class Tsa extends CI_Controller
             'breadcrumb' => $breadcrumb,
         ));
     }
+
+
+    public function testpdf()
+    {
+        $model     = $this->CandidateDocument_Model->findOne(5337)->row_array();
+        $wbs_id    = $this->Project_Model->findOne($model['project_id'])->row_array();
+        $approvals = 'data';//$this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA')->result();
+        return view('test_template.tsa', ['model' => $model, 'approvals' => $approvals, 'wbs_id' => $wbs_id]);
+    }
+
 
 }
