@@ -45,8 +45,8 @@ class Admin extends REST_Controller
         $this->response($data, REST_Controller::HTTP_OK);
     }
 
-
-
-
+    public function project_post() {
+        $this->response($this->post(), REST_Controller::HTTP_OK);
+    }
 
 }

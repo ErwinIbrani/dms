@@ -2784,7 +2784,7 @@ body {margin-top: 0px;margin-left: 0px;}
        }
 
 
-    function generateTsa($model, $approvals, $modelHistory)
+    function generateTsa($model, $approvals, $modelHistory, $wbs_id)
     {
         $contentText    = json_decode($model['attribute'], true);
         $other_condition = '';

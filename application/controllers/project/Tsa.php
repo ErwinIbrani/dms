@@ -154,8 +154,9 @@ class Tsa extends CI_Controller
                                                    'note'           => 'Document Submitted']);
 
               $template     = $this->CandidateDocument_Model->findOne($row)->row_array();
+              $wbs_id       = $this->Project_Model->findOne($template['project_id'])->row_array();
               $approvals    = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA', $row)->result();
-              generateTsa($template, $approvals, $modelHistory);
+              generateTsa($template, $approvals, $modelHistory, $wbs_id);
               $this->session->set_flashdata('success', 'Data Uploded');
               redirect("/project/project/detail/".$data['project_id'], 'refresh');
           }
