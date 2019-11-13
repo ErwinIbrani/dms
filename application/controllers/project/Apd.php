@@ -65,6 +65,7 @@ class Apd extends CI_Controller
 			$document = $this->Document_Model->save($project_document);
 
 			$docApd = $this->Document_Model->getCountSpecificDocument($project_document['project_id'], 'APD')->result_array();
+
 			if (count($docApd) >= 2) {
 				$this->Project_Model->update($project_document['project_id'], array('work_status' => 'RFC'));
 			}
