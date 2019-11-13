@@ -2783,7 +2783,7 @@ body {margin-top: 0px;margin-left: 0px;}
             }
        }
 
-       
+
     function generateTsa($model, $approvals, $modelHistory)
     {
         $contentText    = json_decode($model['attribute'], true);
