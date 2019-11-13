@@ -6,19 +6,19 @@
 			<!-- .modal-header -->
 			<div class="modal-header">
 				<h5 id="userGroupFromLabel" class="modal-title">
-					KOM CME </h5>
+					Upload Document </h5>
 			</div><!-- /.modal-header -->
 			<!-- .modal-body -->
 			<div class="modal-body">
-				{!! form_open('/admin/usergroup/store', array('id'=> 'user-group-form')) !!}
+				{!! form_open('/vendor/candidate/document/bap/uploadbap/'.$document->id, array('id'=> 'form-bap', 'enctype'=>"multipart/form-data")) !!}
 
 				<div class="form-group">
 
 					<div class="form-group">
-						<label for="tf1">Upload BAP</label>
+						<label for="upload_bap">Upload BAP</label>
 						<div class="custom-file">
-							<input type="file" class="custom-file-input" id="tf3">
-							<label class="custom-file-label" for="tf3">Choose file</label>
+							<input type="file" class="custom-file-input" id="upload_bap" name="upload_bap">
+							<label class="custom-file-label" for="upload_bap">Choose file</label>
 						</div>
 					</div>
 				</div>
@@ -27,7 +27,7 @@
 			<!-- .modal-footer -->
 			<div class="modal-footer">
 				<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-info" onclick="document.getElementById('user-group-form').submit()">Submit</button>
+				<button type="button" class="btn btn-info" onclick="document.getElementById('form-bap').submit()">Submit</button>
 			</div><!-- /.modal-footer -->
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
