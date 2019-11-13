@@ -339,6 +339,7 @@ class Demo extends REST_Controller
                     $template = $this->CandidateDocument_Model->findOne($data)->row_array();
                     $wbs_id = $this->Project_Model->findOne($template['project_id'])->row_array();
                     generateSurvey($template, $wbs_id);
+                    
                 }
             } else {
                 throw new Exception($this->upload->display_errors());
