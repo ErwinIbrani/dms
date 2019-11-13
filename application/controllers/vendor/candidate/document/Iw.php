@@ -55,6 +55,8 @@ class Iw extends CI_Controller {
 
             if (count($docIw) >= 5) {
                 $this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'APD'));
+				$this->session->set_flashdata('success', 'Success upload document');
+				redirect("/vendor/candidate/detail/index/4068" . $candidate_document['project_id'], 'refresh');
             }
             $document = $this->CandidateDocument_Model->save($candidate_document);
 
@@ -107,6 +109,8 @@ class Iw extends CI_Controller {
 
             if (count($docIw) >= 5) {
                 $this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'APD'));
+				$this->session->set_flashdata('success', 'Success upload document');
+				redirect("/vendor/candidate/detail/index/4068" . $candidate_document['project_id'], 'refresh');
             }
             $document = $this->CandidateDocument_Model->save($candidate_document);
             $this->session->set_flashdata('success', 'Success upload document');
@@ -159,6 +163,8 @@ class Iw extends CI_Controller {
 			$document = $this->CandidateDocument_Model->save($candidate_document);
             if (count($docIw) >= 5) {
                 $this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'APD'));
+				$this->session->set_flashdata('success', 'Success upload document');
+				redirect("/vendor/candidate/detail/index/4068" . $candidate_document['project_id'], 'refresh');
             }
 
             $this->session->set_flashdata('success', 'Success upload document');
@@ -211,6 +217,8 @@ class Iw extends CI_Controller {
 			$document = $this->CandidateDocument_Model->save($candidate_document);
             if (count($docIw) >= 5) {
                 $this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'APD'));
+				$this->session->set_flashdata('success', 'Success upload document');
+				redirect("/vendor/candidate/detail/index/4068" . $candidate_document['project_id'], 'refresh');
             }
 
             $this->session->set_flashdata('success', 'Success upload document');
@@ -263,6 +271,8 @@ class Iw extends CI_Controller {
             $document = $this->CandidateDocument_Model->save($candidate_document);
 			if (count($docIw) >= 5) {
 				$this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'APD'));
+				$this->session->set_flashdata('success', 'Success upload document');
+				redirect("/vendor/candidate/detail/index/4068" . $candidate_document['project_id'], 'refresh');
 			}
 
 

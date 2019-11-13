@@ -133,14 +133,15 @@
 							@endforeach
 							@if(count($document_bak) === 0)
 								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
+                                <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
+								<a href="{{ site_url('/vendor/candidate/document/bak/add/'.$candidate->id) }}"
+								   class="btn btn-danger  {{ $project->work_status !== 'BAK' ? 'disabled' : ''}}">Generate BAK Document</a>
+                                <?php endif?>
 							@else
 								<p class="card-text mt-3"> The document above is a list of BAK documents, </p>
 							@endif
 
-                            <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
-							<a href="{{ site_url('/vendor/candidate/document/bak/add/'.$candidate->id) }}"
-							   class="btn btn-danger  {{ $project->work_status !== 'BAK' ? 'disabled' : ''}}">Generate BAK Document</a>
-                            <?php endif?>
+
 						</div>
 						<div class="tab-pane fade" id="card-iw">
 							<h5 class="card-title"> DOCUMENT IW </h5>
@@ -164,14 +165,15 @@
 							@endforeach
 							@if(count($document_iw) === 0)
 								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
+                                <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
+								<a href="{{ site_url('/vendor/candidate/document/iw/add/'.$candidate->id) }}"
+								   class="btn btn-danger {{ $project->work_status !== 'IW' ? 'disabled' : ''}}">Upload IW Document</a>
+                                <?php endif?>
 							@else
 								<p class="card-text mt-3"> The document above is a list of IW documents, </p>
 							@endif
 
-                            <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
-							<a href="{{ site_url('/vendor/candidate/document/iw/add/'.$candidate->id) }}"
-							   class="btn btn-danger {{ $project->work_status !== 'IW' ? 'disabled' : ''}}">Upload IW Document</a>
-                            <?php endif?>
+
 						</div>
 					</div>
 				</div>
