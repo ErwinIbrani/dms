@@ -1,6 +1,10 @@
 <?php
 $contentText    = json_decode($model['attribute'], true);
-var_dump($contentText);
+
+$other_condition = '';
+foreach($contentText['other_condition'] as $index => $key){
+    $other_condition  .= '<br/>'.$key;
+}
 
 echo $raw_html  ='<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML>
@@ -414,33 +418,33 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr9 td29"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr0 td41"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr0 td38"><P class="p0 ft0">&nbsp;</P></TD>
-	<TD colspan=6 class="tr0 td42"><P class="p0 ft9">Regional <NOBR>Period(IBS-LO) :</NOBR> Start 2019</P></TD>
+	<TD colspan=6 class="tr0 td42"><P class="p0 ft9">Regional <NOBR>Period(IBS-LO) :</NOBR> Start '.$contentText['start_year'].'</P></TD>
 	<TD class="tr0 td43"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr0 td44"><P class="p0 ft0">&nbsp;</P></TD>
 </TR>
 <TR>
 	<TD class="tr8 td48"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr7 td49"><P class="p4 ft9">Site ID IBS</P></TD>
-	<TD class="tr7 td50"><P class="p4 ft9">dasdsad</P></TD>
+	<TD class="tr7 td50"><P class="p4 ft9">'.$contentText['site_id_ibs'].'</P></TD>
 	<TD class="tr8 td41"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr8 td38"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr8 td25"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr8 td51"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr8 td52"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr8 td53"><P class="p0 ft0">&nbsp;</P></TD>
-	<TD colspan=2 class="tr8 td54"><P class="p11 ft9">End 30230</P></TD>
+	<TD colspan=2 class="tr8 td54"><P class="p11 ft9">End '.$contentText['end_year'].'</P></TD>
 	<TD class="tr8 td43"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr8 td44"><P class="p0 ft0">&nbsp;</P></TD>
 </TR>
 <TR>
 	<TD class="tr9 td48"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr9 td55"><P class="p4 ft9">Site Name</P></TD>
-	<TD class="tr9 td56"><P class="p4 ft9">hahahad</P></TD>
+	<TD class="tr9 td56"><P class="p4 ft9">'.$contentText['site_name'].'</P></TD>
 	<TD class="tr9 td41"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr9 td38"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD colspan=3 class="tr9 td57"><P class="p0 ft9">Acquition Status</P></TD>
 	<TD class="tr9 td53"><P class="p0 ft0">&nbsp;</P></TD>
-	<TD colspan=2 class="tr9 td54"><P class="p10 ft9">: Rent 11 Year</P></TD>
+	<TD colspan=2 class="tr9 td54"><P class="p10 ft9">: '.$contentText['acquition_status'].'</P></TD>
 	<TD class="tr9 td43"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr9 td44"><P class="p0 ft0">&nbsp;</P></TD>
 </TR>
@@ -461,22 +465,22 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD class="tr0 td48"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr9 td49"><P class="p4 ft9">Topology</P></TD>
-	<TD class="tr9 td50"><P class="p4 ft9">damn</P></TD>
+	<TD class="tr9 td50"><P class="p4 ft9">'.$contentText['topology'].'</P></TD>
 	<TD class="tr0 td41"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr0 td38"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD colspan=4 class="tr0 td60"><P class="p0 ft9">Purchased Option</P></TD>
-	<TD colspan=2 class="tr0 td54"><P class="p2 ft9">: Buy 1 get 10</P></TD>
+	<TD colspan=2 class="tr0 td54"><P class="p2 ft9">: '.$contentText['purchased_option'].'</P></TD>
 	<TD class="tr0 td43"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr0 td44"><P class="p0 ft0">&nbsp;</P></TD>
 </TR>
 <TR>
 	<TD class="tr0 td48"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr0 td55"><P class="p4 ft9">Candidate Degress</P></TD>
-	<TD class="tr0 td56"><P class="p4 ft9">adwewfewfregergregerg</P></TD>
+	<TD class="tr0 td56"><P class="p4 ft9">'.$contentText['long'].' E(Longitude)</P></TD>
 	<TD class="tr0 td41"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr0 td38"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD colspan=4 class="tr0 td60"><P class="p0 ft9">Final Price Per Year</P></TD>
-	<TD colspan=4 class="tr0 td3"><P class="p12 ft9">: Rp. 300001000021212</P></TD>
+	<TD colspan=4 class="tr0 td3"><P class="p12 ft9">: '.$contentText['final_per_year'].' -/Year</P></TD>
 </TR>
 <TR>
 	<TD class="tr0 td48"><P class="p0 ft0">&nbsp;</P></TD>
@@ -493,7 +497,7 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD class="tr11 td48"><P class="p0 ft11">&nbsp;</P></TD>
 	<TD rowspan=2 class="tr5 td55"><P class="p4 ft12">Candidate Degress</P></TD>
-	<TD rowspan=2 class="tr5 td56"><P class="p4 ft12">adwewfewfregergregerg</P></TD>
+	<TD rowspan=2 class="tr5 td56"><P class="p4 ft12">'.$contentText['lat'].' N/S(Latitude)</P></TD>
 	<TD class="tr11 td41"><P class="p0 ft11">&nbsp;</P></TD>
 	<TD class="tr11 td38"><P class="p0 ft11">&nbsp;</P></TD>
 	<TD class="tr11 td59"><P class="p0 ft11">&nbsp;</P></TD>
@@ -507,7 +511,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr12 td38"><P class="p0 ft13">&nbsp;</P></TD>
 	<TD colspan=3 rowspan=2 class="tr8 td57"><P class="p0 ft9">Total Price</P></TD>
 	<TD class="tr12 td53"><P class="p0 ft13">&nbsp;</P></TD>
-	<TD colspan=4 rowspan=2 class="tr8 td3"><P class="p12 ft9">: Rp. 9503945445345</P></TD>
+	<TD colspan=4 rowspan=2 class="tr8 td3"><P class="p12 ft9">: '.$contentText['total_price'].'</P></TD>
 </TR>
 <TR>
 	<TD class="tr3 td48"><P class="p0 ft3">&nbsp;</P></TD>
@@ -531,7 +535,7 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD class="tr6 td48"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD rowspan=2 class="tr5 td55"><P class="p4 ft12">Region</P></TD>
-	<TD rowspan=2 class="tr5 td56"><P class="p4 ft12">Sadfdsfgtrgtrgtrgtr</P></TD>
+	<TD rowspan=2 class="tr5 td56"><P class="p4 ft12">'.$contentText['region'].'</P></TD>
 	<TD class="tr6 td41"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD class="tr6 td38"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD class="tr6 td59"><P class="p0 ft6">&nbsp;</P></TD>
@@ -564,7 +568,7 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD class="tr6 td48"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD rowspan=2 class="tr5 td55"><P class="p4 ft12">Owner Name</P></TD>
-	<TD rowspan=2 class="tr5 td56"><P class="p4 ft12">ewfergergtrgtrgtrgtrgtrg</P></TD>
+	<TD rowspan=2 class="tr5 td56"><P class="p4 ft12">'.$contentText['owner_name'].'</P></TD>
 	<TD class="tr6 td41"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD class="tr6 td38"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD class="tr6 td53"><P class="p0 ft6">&nbsp;</P></TD>
@@ -575,7 +579,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr6 td48"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD class="tr6 td41"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD class="tr6 td38"><P class="p0 ft6">&nbsp;</P></TD>
-	<TD colspan=6 rowspan=3 class="tr8 td42"><P class="p0 ft9"><NOBR>-Mkelnvkferfergergergreg</NOBR></P></TD>
+	<TD colspan=6 rowspan=3 class="tr8 td42"><P class="p0 ft9"><NOBR>-'.$other_condition.'</NOBR></P></TD>
 	<TD class="tr6 td43"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD class="tr6 td44"><P class="p0 ft6">&nbsp;</P></TD>
 </TR>
@@ -591,7 +595,7 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD class="tr6 td48"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD rowspan=2 class="tr0 td49"><P class="p4 ft9">Contact Person</P></TD>
-	<TD rowspan=2 class="tr0 td50"><P class="p4 ft9">Jfh5465gfbg34t54y5v7j</P></TD>
+	<TD rowspan=2 class="tr0 td50"><P class="p4 ft9">'.$contentText['contact_persons'].'</P></TD>
 	<TD class="tr6 td41"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD class="tr6 td38"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD class="tr6 td43"><P class="p0 ft6">&nbsp;</P></TD>
@@ -601,14 +605,14 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr14 td48"><P class="p0 ft15">&nbsp;</P></TD>
 	<TD class="tr14 td41"><P class="p0 ft15">&nbsp;</P></TD>
 	<TD class="tr14 td38"><P class="p0 ft15">&nbsp;</P></TD>
-	<TD colspan=6 rowspan=2 class="tr7 td42"><P class="p0 ft9"><NOBR>-dfewfefefgergergrgrgtrgtrgtrg</NOBR></P></TD>
+	<TD colspan=6 rowspan=2 class="tr7 td42"><P class="p0 ft9"><NOBR>&nbsp;&nbsp;</NOBR></P></TD>
 	<TD class="tr14 td43"><P class="p0 ft15">&nbsp;</P></TD>
 	<TD class="tr14 td44"><P class="p0 ft15">&nbsp;</P></TD>
 </TR>
 <TR>
 	<TD class="tr6 td48"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD rowspan=2 class="tr5 td55"><P class="p4 ft12">Phone/HP</P></TD>
-	<TD rowspan=2 class="tr5 td56"><P class="p4 ft12">Ty46h5674gvdfverg3rvr</P></TD>
+	<TD rowspan=2 class="tr5 td56"><P class="p4 ft12">'.$contentText['phone_number'].'</P></TD>
 	<TD class="tr6 td41"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD class="tr6 td38"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD class="tr6 td43"><P class="p0 ft6">&nbsp;</P></TD>
@@ -618,7 +622,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr6 td48"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD class="tr6 td41"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD class="tr6 td38"><P class="p0 ft6">&nbsp;</P></TD>
-	<TD colspan=6 rowspan=3 class="tr8 td42"><P class="p0 ft9"><NOBR>-fkldrngjnfnjonnkmlmkm</NOBR></P></TD>
+	<TD colspan=6 rowspan=3 class="tr8 td42"><P class="p0 ft9"><NOBR>&nbsp;&nbsp;</NOBR></P></TD>
 	<TD class="tr6 td43"><P class="p0 ft6">&nbsp;</P></TD>
 	<TD class="tr6 td44"><P class="p0 ft6">&nbsp;</P></TD>
 </TR>
@@ -634,7 +638,7 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD class="tr15 td48"><P class="p0 ft16">&nbsp;</P></TD>
 	<TD rowspan=2 class="tr9 td49"><P class="p4 ft9">Address</P></TD>
-	<TD rowspan=2 class="tr9 td50"><P class="p4 ft9">Vdfgfegergerg534534twd</P></TD>
+	<TD rowspan=2 class="tr9 td50"><P class="p4 ft9">'.$contentText['address'].'</P></TD>
 	<TD class="tr15 td41"><P class="p0 ft16">&nbsp;</P></TD>
 	<TD class="tr15 td38"><P class="p0 ft16">&nbsp;</P></TD>
 	<TD class="tr15 td43"><P class="p0 ft16">&nbsp;</P></TD>
@@ -644,14 +648,14 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr15 td48"><P class="p0 ft16">&nbsp;</P></TD>
 	<TD class="tr15 td41"><P class="p0 ft16">&nbsp;</P></TD>
 	<TD class="tr15 td38"><P class="p0 ft16">&nbsp;</P></TD>
-	<TD colspan=6 rowspan=2 class="tr8 td42"><P class="p0 ft9"><NOBR>-kddiojifoiodsjfijdijfidjgidfjg</NOBR></P></TD>
+	<TD colspan=6 rowspan=2 class="tr8 td42"><P class="p0 ft9"><NOBR>&nbsp;&nbsp;</NOBR></P></TD>
 	<TD class="tr15 td43"><P class="p0 ft16">&nbsp;</P></TD>
 	<TD class="tr15 td44"><P class="p0 ft16">&nbsp;</P></TD>
 </TR>
 <TR>
 	<TD class="tr14 td48"><P class="p0 ft15">&nbsp;</P></TD>
 	<TD rowspan=2 class="tr9 td55"><P class="p4 ft9">Site Type</P></TD>
-	<TD rowspan=2 class="tr9 td56"><P class="p4 ft9">Efgergergery3fvi67fwefew</P></TD>
+	<TD rowspan=2 class="tr9 td56"><P class="p4 ft9">'.$contentText['site_type'].'</P></TD>
 	<TD class="tr14 td41"><P class="p0 ft15">&nbsp;</P></TD>
 	<TD class="tr14 td38"><P class="p0 ft15">&nbsp;</P></TD>
 	<TD class="tr14 td43"><P class="p0 ft15">&nbsp;</P></TD>
@@ -663,7 +667,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr16 td38"><P class="p0 ft17">&nbsp;</P></TD>
 	<TD colspan=3 rowspan=3 class="tr8 td57"><P class="p0 ft9">Location Site</P></TD>
 	<TD class="tr16 td53"><P class="p0 ft17">&nbsp;</P></TD>
-	<TD colspan=2 rowspan=3 class="tr8 td54"><P class="p15 ft9">: Jakarta Barat</P></TD>
+	<TD colspan=2 rowspan=3 class="tr8 td54"><P class="p15 ft9">: '.$contentText['location_site'].'</P></TD>
 	<TD class="tr16 td43"><P class="p0 ft17">&nbsp;</P></TD>
 	<TD class="tr16 td44"><P class="p0 ft17">&nbsp;</P></TD>
 </TR>
@@ -680,7 +684,7 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD class="tr14 td48"><P class="p0 ft15">&nbsp;</P></TD>
 	<TD rowspan=2 class="tr5 td55"><P class="p4 ft12">Tower Type</P></TD>
-	<TD rowspan=2 class="tr5 td56"><P class="p4 ft12">Dferefbgt5hfvege64563</P></TD>
+	<TD rowspan=2 class="tr5 td56"><P class="p4 ft12">'.$contentText['tower_type'].'</P></TD>
 	<TD class="tr14 td41"><P class="p0 ft15">&nbsp;</P></TD>
 	<TD class="tr14 td38"><P class="p0 ft15">&nbsp;</P></TD>
 	<TD class="tr14 td53"><P class="p0 ft15">&nbsp;</P></TD>
@@ -693,7 +697,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr4 td38"><P class="p0 ft4">&nbsp;</P></TD>
 	<TD colspan=3 rowspan=3 class="tr7 td57"><P class="p0 ft9">Vendor PIC</P></TD>
 	<TD class="tr4 td53"><P class="p0 ft4">&nbsp;</P></TD>
-	<TD colspan=2 rowspan=3 class="tr7 td54"><P class="p16 ft9">: fegnkdfmbkp</P></TD>
+	<TD colspan=2 rowspan=3 class="tr7 td54"><P class="p16 ft9">: '.$contentText['vendor_pic'].'</P></TD>
 	<TD class="tr4 td43"><P class="p0 ft4">&nbsp;</P></TD>
 	<TD class="tr4 td44"><P class="p0 ft4">&nbsp;</P></TD>
 </TR>
@@ -710,7 +714,7 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD class="tr14 td48"><P class="p0 ft15">&nbsp;</P></TD>
 	<TD rowspan=2 class="tr5 td55"><P class="p4 ft12">Tower/Pole Height</P></TD>
-	<TD rowspan=2 class="tr5 td56"><P class="p4 ft12">edgregvergqqwgergrgwe</P></TD>
+	<TD rowspan=2 class="tr5 td56"><P class="p4 ft12">'.$contentText['tower_height'].' Meter</P></TD>
 	<TD class="tr14 td41"><P class="p0 ft15">&nbsp;</P></TD>
 	<TD class="tr14 td38"><P class="p0 ft15">&nbsp;</P></TD>
 	<TD class="tr14 td53"><P class="p0 ft15">&nbsp;</P></TD>
@@ -725,7 +729,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr4 td51"><P class="p0 ft4">&nbsp;</P></TD>
 	<TD class="tr4 td52"><P class="p0 ft4">&nbsp;</P></TD>
 	<TD class="tr4 td53"><P class="p0 ft4">&nbsp;</P></TD>
-	<TD colspan=2 rowspan=3 class="tr8 td54"><P class="p17 ft9">: fjeijfiejfeferg</P></TD>
+	<TD colspan=2 rowspan=3 class="tr8 td54"><P class="p17 ft9">: '.$contentText['vendor_phone'].'</P></TD>
 	<TD class="tr4 td43"><P class="p0 ft4">&nbsp;</P></TD>
 	<TD class="tr4 td44"><P class="p0 ft4">&nbsp;</P></TD>
 </TR>
@@ -744,7 +748,7 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD class="tr14 td48"><P class="p0 ft15">&nbsp;</P></TD>
 	<TD rowspan=2 class="tr9 td49"><P class="p4 ft9">Status Site</P></TD>
-	<TD rowspan=2 class="tr9 td50"><P class="p4 ft9">Fwg erg rety54ty33r2r 23</P></TD>
+	<TD rowspan=2 class="tr9 td50"><P class="p4 ft9">'.$contentText['status_site'].' Meter</P></TD>
 	<TD class="tr14 td41"><P class="p0 ft15">&nbsp;</P></TD>
 	<TD class="tr14 td38"><P class="p0 ft15">&nbsp;</P></TD>
 	<TD class="tr14 td51"><P class="p0 ft15">&nbsp;</P></TD>
@@ -759,14 +763,14 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr3 td38"><P class="p0 ft3">&nbsp;</P></TD>
 	<TD colspan=3 rowspan=2 class="tr17 td57"><P class="p0 ft9">IBS SITAC PIC</P></TD>
 	<TD class="tr3 td53"><P class="p0 ft3">&nbsp;</P></TD>
-	<TD colspan=2 rowspan=2 class="tr17 td54"><P class="p18 ft9">: regergregr</P></TD>
+	<TD colspan=2 rowspan=2 class="tr17 td54"><P class="p18 ft9">: '.$contentText['ibs_pic'].'</P></TD>
 	<TD class="tr3 td43"><P class="p0 ft3">&nbsp;</P></TD>
 	<TD class="tr3 td44"><P class="p0 ft3">&nbsp;</P></TD>
 </TR>
 <TR>
 	<TD class="tr0 td48"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr9 td49"><P class="p4 ft9">Land Status</P></TD>
-	<TD class="tr9 td50"><P class="p4 ft9">evergtrhtrjyhtrgehrtheth</P></TD>
+	<TD class="tr9 td50"><P class="p4 ft9">'.$contentText['land_status'].'</P></TD>
 	<TD class="tr0 td41"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr0 td38"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr0 td53"><P class="p0 ft0">&nbsp;</P></TD>
@@ -776,7 +780,7 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD class="tr9 td48"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr9 td55"><P class="p4 ft9">Initial Price (BAP)(Inch</P></TD>
-	<TD class="tr9 td56"><P class="p4 ft9">Gergergtrhtrvg4tgergtrh</P></TD>
+	<TD class="tr9 td56"><P class="p4 ft9">Rp. '.$contentText['initil_price_peryear'].' -/Year</P></TD>
 	<TD class="tr9 td41"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr9 td38"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD colspan=6 class="tr9 td42"><P class="p0 ft9">Due Date Land Payment : 25 Hari Setelah</P></TD>
@@ -797,7 +801,7 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD class="tr0 td48"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr9 td49"><P class="p4 ft9">Land Size</P></TD>
-	<TD class="tr9 td50"><P class="p4 ft9">Frhtrhtyjtyhtrhrth64eh</P></TD>
+	<TD class="tr9 td50"><P class="p4 ft9">'.$contentText['land_size'].' Meter2</P></TD>
 	<TD class="tr0 td41"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr0 td38"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr0 td25"><P class="p0 ft0">&nbsp;</P></TD>
@@ -809,7 +813,7 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD class="tr7 td48"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr0 td49"><P class="p4 ft9">Access Road</P></TD>
-	<TD class="tr0 td50"><P class="p4 ft9">Gergtrg4hwh45gtr</P></TD>
+	<TD class="tr0 td50"><P class="p4 ft9">'.$contentText['access_road'].' Meter2</P></TD>
 	<TD class="tr7 td41"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr7 td38"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD colspan=4 class="tr7 td60"><P class="p13 ft9">Term Of Payment</P></TD>
@@ -821,7 +825,7 @@ body {margin-top: 0px;margin-left: 0px;}
 <TR>
 	<TD class="tr5 td48"><P class="p0 ft18">&nbsp;</P></TD>
 	<TD class="tr5 td55"><P class="p4 ft12">Time Access</P></TD>
-	<TD class="tr5 td56"><P class="p4 ft12">Gh56yh5y6yh56hyhyt</P></TD>
+	<TD class="tr5 td56"><P class="p4 ft12">'.$contentText['time_access'].'</P></TD>
 	<TD class="tr5 td41"><P class="p0 ft18">&nbsp;</P></TD>
 	<TD class="tr5 td38"><P class="p0 ft18">&nbsp;</P></TD>
 	<TD class="tr5 td25"><P class="p0 ft18">&nbsp;</P></TD>
@@ -900,7 +904,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr5 td52"><P class="p0 ft18">&nbsp;</P></TD>
 	<TD colspan=2 class="tr5 td76"><P class="p0 ft12">Rp.090909.232</P></TD>
 	<TD class="tr5 td52"><P class="p0 ft18">&nbsp;</P></TD>
-	<TD class="tr5 td77"><P class="p0 ft12">Tai anjing garing</P></TD>
+	<TD class="tr5 td77"><P class="p0 ft12">Tapi ini ada</P></TD>
 	<TD class="tr5 td44"><P class="p0 ft18">&nbsp;</P></TD>
 </TR>
 <TR>
@@ -968,9 +972,8 @@ body {margin-top: 0px;margin-left: 0px;}
 	<BR/>
 	<BR/>
 <DIV id="p2dimg1">
-<IMG src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCACwAtcDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+kZlRGd2CqoySTgAUteLeK767+IXji88L2l5dW2m6dG/mCCHzPNkQjcWXcvAb5RyeQCPvcaU4c78gPTR4z8LmUx/8JFpW4DOftaY/POK3K+Yta+HeqafY2V/pyzanZ3FrBO00UBUK0pwqKCSznOOgz8wyBmu4+Ht74k8F63Y+GvEdu8NhqQc2YkdX8uQc4UqTgHoV9WB4yc7Tw8VG8JXFc9loqut9bNMYRJmQS+URg/f278f9881GmqWcmpvpyyk3SJ5jJsbAH+9jGfbOevpXKMuUVRTWdPfTxf/AGpFtSFPmuCoAZQy5z04YfnRc6xY2cLy3ExijRtrM0bAAldw7dxx9fl68UAXqKprqlk8sUSzjzJZXhRdpyXXdkdOPuPyeDjjNRR67psqXLpdLttTKsxKkBDFjfnI7bh+fFAGjRWe+uaZG8ivexgxNtfrhf3ZlyT6bATnpwe9OXWLBri1txcqJ7oBoYmBDsMM3KkZHCN1xgjHWgC9RWbP4g0q2i82a9jVeBgAkglDIAQBkEqpI9eg54qzZ6ha3/n/AGaTf5EzQSfKRh16jkc/UcUAWaKzF8RaQbX7T9viWLajkvlcK4QqxB5A/eJz0Gecc1p0AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAV4HfiPwR8TfEd9qMnly3Fpc3OmS7CwaWU/L0z0y6nPp9K98rH8ReF9I8U2ItdVtRKEz5UgO14iR1Vu3bjocDINa0qig3fZiZ5neeOPD1vqt22leJpIhfx28EMwsHaPTY4ASBsb/Wb2JAAHy7ic9jX02LTPGHxb0+/wBDt91tZRi41G8ihMMcswydwRiSNzY6nJ+brjJ1x8CdD+2FjquofZdvEfyb8+u/bjHttr0LQ9A0zw3py2Ol2qwQg5bHLO3qxPJP/wCocVtKpTivcvcLFae6uZLgK2iz/Z45XMUwm2sXAPzbV5CEFueT/snIqKz+1y3TXkvhwW96yF2aS6Vl3rlUCkA4JDuCcDHuDXQ0VyDOWgd00JoF8O3kPl+UFtkuGDEBBja4P8IUA5I6ep5ZDpNjEt/ZQeGwtvKkZYh3USgkk9QCGXexGOeAMrgAdZRQBy32Qy3N4v8AYV0GjMk8MgvnVWc5OEOQUZmLA4AGCTkgjM8dsItQMkOiyok0ciyTrcusihpmbp7li/ByBkYHAPRUUAcnDp0cupG1fQJRbpKrCZ7yQxOoQxlip6naNpBHzA5OQc1vW+jafaiBbe1WJbeRpIlQkBGO/OB0x+8fjoM+wxeooAz5dD0+aMRyRSMg+6vnPhf3ZjyOeDtYjI+vUA0WeiWOn3Xn2cZgLJtkVG4lI6M/dm5PzHk55zgY0KKAMg+GNIMBgNs5hMaR+X58m3CbNvG7GR5ac9eOtakUSwx7FLkZJ+dyx5OepJPfp26Din0UAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAEcEjTW8UrwyQO6BmikKlkJH3TtJGR04JHoTUlFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQBHJIyPCqwySB32sylcRjaTubJBxkAcZOWHGMkSUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAVHJIyPCqwySB32sylcRjaTubJBxkAcZOWHGMkSUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAVGZGFwkQhkKMjMZQV2qQRhTznJySMAj5TkjjMlFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAFe+uJbSzknhsp72RcYggKB3yQOC7KvHXkjp68UVYooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoqOCeG6t4ri3ljmglQPHJGwZXUjIII4II5zUlABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFRieFrh7dZYzOiK7xhhuVWJCkjqASrAHvtPpRQB//9k=" id="p2img1"></DIV>
-
-
+<img src="'.base_url('uploads/surveysitac/logo_ibs.png').'" width="100px" height="40px" alt="">
+</DIV>
 <DIV class="dclr"></DIV>
 <TABLE cellpadding=0 cellspacing=0 class="t2">
 <TR>
@@ -1097,9 +1100,9 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr2 td104"><P class="p2 ft2">Address</P></TD>
 	<TD class="tr2 td82"><P class="p0 ft19">&nbsp;</P></TD>
 	<TD class="tr2 td41"><P class="p0 ft19">&nbsp;</P></TD>
-	<TD colspan=4 class="tr2 td111"><P class="p3 ft2">Jl.Raya dskmdskfj fsdmfdsjofpj fpsdjfodsjof</P></TD>
-	<TD colspan=5 class="tr2 td112"><P class="p0 ft2">fpojsdofjdf fodsjfojdsf fdsjfpojdsof</P></TD>
-	<TD colspan=4 class="tr2 td113"><P class="p0 ft2">fkdsnfipods</P></TD>
+	<TD colspan=4 class="tr2 td111"><P class="p3 ft2">'.$contentText['address'].'</P></TD>
+	<TD colspan=5 class="tr2 td112"><P class="p0 ft2">&nbsp;&nbsp;</P></TD>
+	<TD colspan=4 class="tr2 td113"><P class="p0 ft2">&nbsp;&nbsp;</P></TD>
 </TR>
 <TR>
 	<TD class="tr6 td102"><P class="p0 ft6">&nbsp;</P></TD>
@@ -1359,7 +1362,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr7 td154"><P class="p2 ft21">Prepared</P></TD>
 	<TD class="tr7 td52"><P class="p0 ft22">&nbsp;</P></TD>
 	<TD colspan=2 class="tr7 td155"><P class="p0 ft21">Regional Project Manager</P></TD>
-	<TD class="tr7 td156"><P class="p4 ft21">Erwin Siregar</P></TD>
+	<TD class="tr7 td156"><P class="p4 ft21">Didin Kuntul</P></TD>
 	<TD class="tr7 td157"><P class="p4 ft21"><NOBR>2010-09-92</NOBR></P></TD>
 </TR>
 <TR>
