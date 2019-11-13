@@ -7,7 +7,7 @@ class Demo extends REST_Controller
     {
         parent::__construct();
         $this->load->helper(['generatepdf', 'custom']);
-        $this->load->model(['ApiSession_Model', 'Region_Model', 'Province_Model','City_Model', 'Document_Model',
+        $this->load->model(['ApiSession_Model', 'Region_Model', 'Province_Model','City_Model', 'Document_Model', 'UserVendor_Model',
             'UserVendor_Model', 'Vendor_Model', 'Project_Model', 'Candidate_Model', 'CandidateDocument_Model', 'User_Model']);
         $this->load->library(['ion_auth', 'form_validation']);
     }
@@ -19,10 +19,19 @@ class Demo extends REST_Controller
             if ($this->ion_auth->login($this->post('email'), $this->post('password'), $remember)) {
                 $session_id = $this->singleton_session_id($this->post('email'));
                 $user = $this->User_Model->findByEmail($this->post('email'));
+                //throw new Exception($user->vendor);
+                $vendor = array();
+                $user_vendor = array();
+                if(!empty($user[0]->vendor)){
+                    $vendor = $this->Vendor_Model->findOne($user[0]->vendor)->row();
+                    $user_vendor = $this->UserVendor_Model->findByVendor($user[0]->vendor)->result();
+                }
                 $status = 'Berhasil';
                 $data = [
                     'session_id' => $session_id,
-                    'user' => $user
+                    'user' => $user,
+                    'user_vendor' => $user_vendor,
+                    'vendor' => $vendor
                 ];
             } else {
                 $status = 'User Password Tidak Match';
