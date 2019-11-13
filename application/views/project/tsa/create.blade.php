@@ -151,7 +151,7 @@
                                             @php
                                                 $per_year = $content_bap['bap']['rent_price']/$content_bap['bap']['rent_period'];
                                             @endphp
-                                            <input type="text" class="form-control is-valid" name="initil_price_peryear" value="{{ number_format($per_year) }}"/>
+                                            <input type="text" class="form-control" name="initil_price_peryear" value="{{ number_format($per_year) }}"/>
                                         </div>
                                     </div>
 
