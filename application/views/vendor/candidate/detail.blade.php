@@ -107,6 +107,13 @@
                                 <?php endif?>
 							@else
 								<p class="card-text mt-3"> The document above is a list of BAP documents, </p>
+								@foreach($document_bak as $bak)
+									@if(is_null($bak->attachment))
+										<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#uploadKomCme">
+											<span class="ml-1">Upload BAP</span></button>
+										@include('vendor.candidate.document.bak.upload_form')
+									@endif
+								@endforeach
 							@endif
 
 
@@ -139,6 +146,14 @@
                                 <?php endif?>
 							@else
 								<p class="card-text mt-3"> The document above is a list of BAK documents, </p>
+								@foreach($document_bak as $bak)
+									@if(is_null($bak->attachment))
+										<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#uploadKomCme">
+											<span class="ml-1">Upload BAK</span></button>
+										@include('vendor.candidate.document.bak.upload_form')
+									@endif
+								@endforeach
+
 							@endif
 
 
@@ -163,8 +178,8 @@
 									</div>
 								</div>
 							@endforeach
-							@if(count($document_iw) === 0)
-								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
+							@if(count($document_iw) !== 5)
+								<p class="text-muted p-2">Document not complete.</p>
                                 <?php if($CI->ion_auth->in_group('PIC Vendor')): ?>
 								<a href="{{ site_url('/vendor/candidate/document/iw/add/'.$candidate->id) }}"
 								   class="btn btn-danger {{ $project->work_status !== 'IW' ? 'disabled' : ''}}">Upload IW Document</a>
