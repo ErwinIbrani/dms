@@ -220,7 +220,6 @@ class Demo extends REST_Controller
             $session_id = $this->get('session_id');
             if( ! $this->check_session($session_id)){
                 throw new Exception('session anda telah habis');
-                
             }
             $id = $this->get('id');
             $candidate_id = $this->get('candidate_id');
