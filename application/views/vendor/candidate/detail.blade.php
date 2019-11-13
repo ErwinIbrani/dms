@@ -111,7 +111,7 @@
 									@if(is_null($bak->attachment))
 										<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#uploadBap">
 											<span class="ml-1">Upload BAP</span></button>
-										@include('vendor.candidate.document.bak.upload_form')
+										@include('vendor.candidate.document.bap.upload_form')
 									@endif
 								@endforeach
 							@endif
