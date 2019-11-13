@@ -26,7 +26,6 @@ class Demo extends REST_Controller
                     $vendor = $this->Vendor_Model->findOne($user[0]->vendor)->row();
                     $user_vendor = $this->UserVendor_Model->findByVendor($user[0]->vendor)->result();
                 }
-                
                 $status = 'Berhasil';
                 $data = [
                     'session_id' => $session_id,
