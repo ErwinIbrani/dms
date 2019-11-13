@@ -3,9 +3,9 @@
 
 function generateSurvey($model, $wbs_id)
 {
-        $contentImage  = json_decode($model['attachment'], true);
-        $contentText   = json_decode($model['attribute'], true);
-        $raw_html      = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+    $contentImage  = json_decode($model['attachment'], true);
+    $contentText   = json_decode($model['attribute'], true);
+    $raw_html      = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML>
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -2755,51 +2755,45 @@ body {margin-top: 0px;margin-left: 0px;}
 </BODY>
 </HTML>';
 
-         $api_endpoint  = "https://selectpdf.com/api2/convert/";
-         $key           = 'b53a60b8-7af2-4a9f-bf0c-c03fbde4911a';;
-         $local_file = './uploads/surveysitac/' . $model['project_id'] . 'SITAC_SURVEY'.$model['id'].'_'.$model['vendor_id'] . '.pdf';
-         $parameters = array('key' => $key, 'html' => $raw_html);
-         $options    = array(
-                'http' => array(
-                    'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-                    'method' => 'POST',
-                    'content' => http_build_query($parameters),
-                ),
-            );
-         $context = stream_context_create($options);
-         $result = @file_get_contents($api_endpoint, false, $context);
-         if (!$result) {
-                echo "HTTP Response: " . $http_response_header[0] . "<br/>";
-                $error = error_get_last();
-                echo "Error Message: " . $error['message'];
-            } else {
-                file_put_contents($local_file, $result);
-                $CI = get_instance();
-                $CI->load->model(['CandidateDocument_Model']);
-                $CI->CandidateDocument_Model->update($model['id'], [
-                    'path' => $model['project_id'] . 'SITAC_SURVEY'.$model['id'].'_'.$model['vendor_id'] . '.pdf']);
-                //echo "HTTP Response: " . $http_response_header[0] . "<br/>";
-                //echo($result);
-            }
-       }
+    $api_endpoint  = "https://selectpdf.com/api2/convert/";
+    $key           = 'b53a60b8-7af2-4a9f-bf0c-c03fbde4911a';;
+    $local_file = './uploads/surveysitac/' . $model['project_id'] . 'SITAC_SURVEY'.$model['id'].'_'.$model['vendor_id'] . '.pdf';
+    $parameters = array('key' => $key, 'html' => $raw_html);
+    $options    = array(
+        'http' => array(
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
+            'content' => http_build_query($parameters),
+        ),
+    );
+    $context = stream_context_create($options);
+    $result = @file_get_contents($api_endpoint, false, $context);
+    if (!$result) {
+        echo "HTTP Response: " . $http_response_header[0] . "<br/>";
+        $error = error_get_last();
+        echo "Error Message: " . $error['message'];
+    } else {
+        file_put_contents($local_file, $result);
+        $CI = get_instance();
+        $CI->load->model(['CandidateDocument_Model']);
+        $CI->CandidateDocument_Model->update($model['id'], [
+            'path' => $model['project_id'] . 'SITAC_SURVEY'.$model['id'].'_'.$model['vendor_id'] . '.pdf']);
+        //echo "HTTP Response: " . $http_response_header[0] . "<br/>";
+        //echo($result);
+    }
+}
 
 
-    function generateTsa($model, $approvals, $modelHistory, $wbs_id)
-    {
-        $contentText    = json_decode($model['attribute'], true);
-        $other_condition = '';
-        foreach($contentText['other_condition'] as $index => $key){
-            $other_condition  .= '<br/>'.$key;
-        }
+function generateTsa($model, $approvals, $modelHistory, $wbs_id)
+{
+    $contentText    = json_decode($model['attribute'], true);
 
-        $contentText    = json_decode($model['attribute'], true);
+    $other_condition = '';
+    foreach($contentText['other_condition'] as $index => $key){
+        $other_condition  .= '<br/>'.$key;
+    }
 
-        $other_condition = '';
-        foreach($contentText['other_condition'] as $index => $key){
-            $other_condition  .= '<br/>'.$key;
-        }
-
-        $raw_html  ='<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+    $raw_html  ='<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
         <HTML>
         <HEAD>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -4177,72 +4171,71 @@ body {margin-top: 0px;margin-left: 0px;}
         </BODY>
         </HTML>';
 
-        $api_endpoint  = "https://selectpdf.com/api2/convert/";
-        $key           = 'b53a60b8-7af2-4a9f-bf0c-c03fbde4911a';//    'd4ca505b-0ca6-4f33-a075-afce3e313e82';
-        $helper =& get_instance();
-        $helper->load->helper('string');
-        $file_name  =  $model['project_id'] . 'SITAC_TSA'.$model['id'].'_'.$model['vendor_id'].'_'.random_string('alnum', 16).'.pdf';
-        $local_file = './uploads/tsa/' .$file_name;
-        $parameters = array('key' => $key, 'html' => $raw_html);
-        $options    = array(
-            'http' => array(
-                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method' => 'POST',
-                'content' => http_build_query($parameters),
-            ),
-        );
-        $context = stream_context_create($options);
-        $result = @file_get_contents($api_endpoint, false, $context);
-        if (!$result) {
-            echo "HTTP Response: " . $http_response_header[0] . "<br/>";
-            $error = error_get_last();
-            echo "Error Message: " . $error['message'];
-        } else {
-            file_put_contents($local_file, $result);
-            $database =& get_instance();
-            $database->load->model(['CandidateDocument_Model', 'DocumentApprovalHistory_Model']);
-            $database->CandidateDocument_Model->update($model['id'], ['path' => $file_name]);
-            $database->DocumentApprovalHistory_Model->update($modelHistory, ['path' => $file_name]);
-        }
+    $api_endpoint  = "https://selectpdf.com/api2/convert/";
+    $key           = 'b53a60b8-7af2-4a9f-bf0c-c03fbde4911a';//    'd4ca505b-0ca6-4f33-a075-afce3e313e82';
+    $helper =& get_instance();
+    $helper->load->helper('string');
+    $file_name  =  $model['project_id'] . 'SITAC_TSA'.$model['id'].'_'.$model['vendor_id'].'_'.random_string('alnum', 16).'.pdf';
+    $local_file = './uploads/tsa/' .$file_name;
+    $parameters = array('key' => $key, 'html' => $raw_html);
+    $options    = array(
+        'http' => array(
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
+            'content' => http_build_query($parameters),
+        ),
+    );
+    $context = stream_context_create($options);
+    $result = @file_get_contents($api_endpoint, false, $context);
+    if (!$result) {
+        echo "HTTP Response: " . $http_response_header[0] . "<br/>";
+        $error = error_get_last();
+        echo "Error Message: " . $error['message'];
+    } else {
+        file_put_contents($local_file, $result);
+        $database =& get_instance();
+        $database->load->model(['CandidateDocument_Model', 'DocumentApprovalHistory_Model']);
+        $database->CandidateDocument_Model->update($model['id'], ['path' => $file_name]);
+        $database->DocumentApprovalHistory_Model->update($modelHistory, ['path' => $file_name]);
     }
+}
 
-    function generateFoundationErection($template, $approvals, $modelHistory)
-    {
+function generateFoundationErection($template, $approvals, $modelHistory)
+{
 
-    }
+}
 
-    function generateFence($template, $approvals, $modelHistory)
-    {
+function generateFence($template, $approvals, $modelHistory)
+{
 
-    }
+}
 
-    function generateRfi($template, $approvals, $modelHistory)
-    {
+function generateRfi($template, $approvals, $modelHistory)
+{
 
-    }
+}
 
-    function generatePat($template, $approvals, $modelHistory)
-    {
+function generatePat($template, $approvals, $modelHistory)
+{
 
-    }
+}
 
-    function generateAddReduce($template, $approvals, $modelHistory)
-    {
+function generateAddReduce($template, $approvals, $modelHistory)
+{
 
-    }
+}
 
-    function generateAbd($template, $approvals, $modelHistory)
-    {
+function generateAbd($template, $approvals, $modelHistory)
+{
 
-    }
+}
 
-    function generateHandOver($template, $approvals, $modelHistory)
-    {
+function generateHandOver($template, $approvals, $modelHistory)
+{
 
-    }
+}
 
-    function generateBast($template, $approvals, $modelHistory)
-    {
+function generateBast($template, $approvals, $modelHistory)
+{
 
-    }
-
+}
