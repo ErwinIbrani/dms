@@ -294,7 +294,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Total Price, Include PPh, Excl, PPN</label>
-                                            <input type="text" class="form-control is-valid" name="total_price" value="{{ number_format($content_bap['bap']['rent_price']) }}" readonly/>
+                                            <input type="text" class="form-control" name="total_price" value="{{ number_format($content_bap['bap']['rent_price']) }}"/>
                                         </div>
                                     </div>
 
