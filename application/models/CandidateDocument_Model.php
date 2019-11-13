@@ -33,7 +33,7 @@ class CandidateDocument_Model extends CI_Model {
         return $query->result();
     }
     
-    public function getDataSurveyApi($rowno, $rowperpage, $search = "") {
+    public function getDataSurveyApi($rowno, $rowperpage, $search = "", $candidate_id = "") {
         $this->db->select('document_candidate.*,
                            candidate.name as candidate_name,
                            vendor.name as vendor_name,
@@ -43,6 +43,10 @@ class CandidateDocument_Model extends CI_Model {
         $this->db->join('vendor', 'document_candidate.vendor_id = vendor.id', 'inner');
         $this->db->join('project', 'document_candidate.project_id = project.id', 'inner');
         $this->db->where(['document_candidate.name' => 'SURVEY']);
+        if( !empty($candidate_id)){
+            $this->db->where(['document_candidate.candidate_id' => $candidate_id]);
+        }
+        
         if ($search != '') {
             $this->db->like('candidate.name', $search);
             $this->db->or_like('vendor.name', $search);

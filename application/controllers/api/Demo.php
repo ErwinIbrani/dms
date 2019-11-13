@@ -222,6 +222,7 @@ class Demo extends REST_Controller
                 throw new Exception('session anda telah habis');
             }
             $id = $this->get('id');
+            $candidate_id = $this->get('candidate_id');
             $rowno = empty($this->get('rowno')) ? 1 : $this->get('rowno');
             $rowperpage = empty($this->get('rowperpage')) ? 100 : $this->get('rowperpage');
             $search = empty($this->get('search')) ? "" : $this->get('search');
@@ -231,8 +232,9 @@ class Demo extends REST_Controller
                     throw new Exception('Data Document Survey tidak valid');
                 }
             }else{
-                $data =  $this->CandidateDocument_Model->getDataSurveyApi($rowno, $rowperpage, $search);
+                $data =  $this->CandidateDocument_Model->getDataSurveyApi($rowno, $rowperpage, $search, $candidate_id);
             }
+            
             $this->response($data, REST_Controller::HTTP_OK);
         } catch (Exception $exc) {
             $msg = $exc->getMessage();
