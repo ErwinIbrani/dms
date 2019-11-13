@@ -82,22 +82,44 @@
 						<div class="tab-pane fade" id="card-bap">
 							<h5 class="card-title"> DOCUMENT BAP </h5>
 							@foreach($document_bap as $bap)
-								<div class="list-group-item">
-									<div class="list-group-item-figure">
-										<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+								@if(!is_null($bap->attachment))
+									<div class="list-group-item">
+										<div class="list-group-item-figure">
+											<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+										</div>
+										<div class="list-group-item-body">
+											<h4 class="list-group-item-title">
+												<a href="#">{{ $bap->name }}</a>
+											</h4>
+											<p class="list-group-item-text"> {{ date('M d, Y', strtotime($bap->created_at)) }}</p>
+										</div>
+										<div class="list-group-item-figure">
+											<a href="{{ site_url('uploads/bap/'.$bap->attachment) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
+												<i class="oi oi-data-transfer-download"></i>
+											</a>
+											<a href="{{ site_url('/vendor/candidate/document/bap/preview/'.$bap->id) }}" class="btn btn-sm btn-icon btn-light">
+												<i class="fa fa-eye"></i>
+											</a>
+										</div>
 									</div>
-									<div class="list-group-item-body">
-										<h4 class="list-group-item-title">
-											<a href="#">{{ $bap->name }}</a>
-										</h4>
-										<p class="list-group-item-text"> {{ date('M d, Y', strtotime($bap->created_at)) }}</p>
+								@else
+									<div class="list-group-item">
+										<div class="list-group-item-figure">
+											<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+										</div>
+										<div class="list-group-item-body">
+											<h4 class="list-group-item-title">
+												<a href="#">{{ $bap->name }}</a>
+											</h4>
+											<p class="list-group-item-text"> {{ date('M d, Y', strtotime($bap->created_at)) }}</p>
+										</div>
+										<div class="list-group-item-figure">
+											<a href="{{ site_url('uploads/bap/'.$bap->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
+												<i class="oi oi-data-transfer-download"></i>
+											</a>
+										</div>
 									</div>
-									<div class="list-group-item-figure">
-										<a href="{{ site_url('uploads/bap/'.$bap->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
-											<i class="oi oi-data-transfer-download"></i>
-										</a>
-									</div>
-								</div>
+								@endif
 							@endforeach
 							@if(count($document_bap) === 0)
 								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
@@ -107,11 +129,11 @@
                                 <?php endif?>
 							@else
 								<p class="card-text mt-3"> The document above is a list of BAP documents, </p>
-								@foreach($document_bak as $bak)
-									@if(is_null($bak->attachment))
+								@foreach($document_bap as $bap)
+									@if(is_null($bap->attachment))
 										<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#uploadBap">
 											<span class="ml-1">Upload BAP</span></button>
-										@include('vendor.candidate.document.bap.upload_form')
+										@include('vendor.candidate.document.bap.upload_form', array('document' => $document_bap[0]))
 									@endif
 								@endforeach
 							@endif
@@ -121,22 +143,41 @@
 						<div class="tab-pane fade" id="card-bak">
 							<h5 class="card-title"> DOCUMENT BAK </h5>
 							@foreach($document_bak as $bak)
-								<div class="list-group-item">
-									<div class="list-group-item-figure">
-										<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+								@if(!is_null($bak->attachment))
+									<div class="list-group-item">
+										<div class="list-group-item-figure">
+											<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+										</div>
+										<div class="list-group-item-body">
+											<h4 class="list-group-item-title">
+												<a href="#">{{ $bak->name }}</a>
+											</h4>
+											<p class="list-group-item-text"> {{ date('M d, Y', strtotime($bak->created_at)) }}</p>
+										</div>
+										<div class="list-group-item-figure">
+											<a href="{{ site_url('uploads/bak/'.$bak->attachment) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
+												<i class="oi oi-data-transfer-download"></i>
+											</a>
+										</div>
 									</div>
-									<div class="list-group-item-body">
-										<h4 class="list-group-item-title">
-											<a href="#">{{ $bak->name }}</a>
-										</h4>
-										<p class="list-group-item-text"> {{ date('M d, Y', strtotime($bak->created_at)) }}</p>
+								@else
+									<div class="list-group-item">
+										<div class="list-group-item-figure">
+											<a href="#" class="tile tile-circle bg-success"><span class="fa fa-file-archive"></span></a>
+										</div>
+										<div class="list-group-item-body">
+											<h4 class="list-group-item-title">
+												<a href="#">{{ $bak->name }}</a>
+											</h4>
+											<p class="list-group-item-text"> {{ date('M d, Y', strtotime($bak->created_at)) }}</p>
+										</div>
+										<div class="list-group-item-figure">
+											<a href="{{ site_url('uploads/bak/'.$bak->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
+												<i class="oi oi-data-transfer-download"></i>
+											</a>
+										</div>
 									</div>
-									<div class="list-group-item-figure">
-										<a href="{{ site_url('uploads/bak/'.$bak->path) }}" target="_blank" class="btn btn-sm btn-icon btn-light">
-											<i class="oi oi-data-transfer-download"></i>
-										</a>
-									</div>
-								</div>
+								@endif
 							@endforeach
 							@if(count($document_bak) === 0)
 								<p class="text-muted p-2">Document not found or not uploaded yet.</p>
@@ -150,7 +191,7 @@
 									@if(is_null($bak->attachment))
 										<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#uploadBak">
 											<span class="ml-1">Upload BAK</span></button>
-										@include('vendor.candidate.document.bak.upload_form')
+										@include('vendor.candidate.document.bak.upload_form', array('document' => $document_bak[0]))
 									@endif
 								@endforeach
 

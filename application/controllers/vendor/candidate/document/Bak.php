@@ -2,6 +2,8 @@
 
 class Bak extends CI_Controller {
 
+	const UPLOAD_PATH = 'uploads/bak/';
+
     public $attribute = [];
 
     public function __construct() {
@@ -41,8 +43,6 @@ class Bak extends CI_Controller {
 
 
         $document_id = $this->CandidateDocument_Model->save($candidate_document);
-        $this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'IW'));
-
         $api_endpoint = "https://selectpdf.com/api2/convert/";
 
         $layout_url = site_url('/public/layout/bak/' . $document_id);
@@ -78,6 +78,33 @@ class Bak extends CI_Controller {
             'document' => $document_candidate,
             'path_document' => $path_document
         ));
+    }
+
+	public function uploadbak($document_id)
+	{
+		$config = [];
+		$config['upload_path'] = self::UPLOAD_PATH;
+		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp|pdf';
+		$config['max_size'] = '2000';
+		$config['encrypt_name'] = TRUE;
+
+		$this->load->library('upload', $config);
+		$candidate = $this->CandidateDocument_Model->findOne($document_id)->row();
+
+		if (!$this->upload->do_upload('upload_bak')) {
+			$error = array('error' => $this->upload->display_errors());
+			$this->session->set_flashdata('error', $error['error']);
+			redirect("/vendor/candidate/detail/index/" . $candidate->candidate_id, 'refresh');
+		} else {
+
+			$data = $this->upload->data();
+			$file_name = $data['raw_name'] . $data['file_ext'];
+			$this->CandidateDocument_Model->update($document_id, array('attachment' => $file_name));
+			$this->Project_Model->update($candidate_document['project_id'], array('work_status' => 'IW'));
+
+			$this->session->set_flashdata('success', 'Success upload document');
+			redirect("/vendor/candidate/detail/index/" . $candidate->candidate_id, 'refresh');
+		}
     }
 
 }
