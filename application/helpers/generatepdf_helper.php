@@ -4,7 +4,6 @@
 function generateSurvey($model, $wbs_id)
 {
     $contentImage  = json_decode($model['attachment'], true);
-    $contentText   = json_decode($model['attribute'], true);
     $raw_html      = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML>
 <HEAD>
@@ -2787,7 +2786,6 @@ body {margin-top: 0px;margin-left: 0px;}
 function generateTsa($model, $approvals, $modelHistory, $wbs_id)
 {
     $contentText    = json_decode($model['attribute'], true);
-
     $other_condition = '';
     foreach($contentText['other_condition'] as $index => $key){
         $other_condition  .= '<br/>'.$key;
