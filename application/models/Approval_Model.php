@@ -48,6 +48,7 @@ class Approval_Model extends CI_Model
             $this->db->where(['document_candidate.status_revision' => NULL]);
             $this->db->where(['document_setting.group_id' => $group_id]);
             $this->db->where(['document_approval_setting.approval_id' => $user_id]);
+            $this->db->group_by('document_candidate.id');
             $query  = $this->db->get();
             $result = $query->result_array();
             return $result[0]['allcount'];

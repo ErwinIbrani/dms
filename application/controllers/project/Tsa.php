@@ -323,7 +323,7 @@ class Tsa extends CI_Controller
     {
         $model     = $this->CandidateDocument_Model->findOne(5337)->row_array();
         $wbs_id    = $this->Project_Model->findOne($model['project_id'])->row_array();
-        $approvals = 'data';//$this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA')->result();
+        $approvals = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA', $model['id'])->result();
         return view('test_template.tsa', ['model' => $model, 'approvals' => $approvals, 'wbs_id' => $wbs_id]);
     }
 

@@ -53,18 +53,18 @@
                                         @php
                                         $ci =& get_instance();
                                         $ci->load->Model('DocumentApprovalHistory_Model');
-                                        $note =  $ci->DocumentApprovalHistory_Model->getLastApprove($candidate->document_candidate_id)->row();
+                                        $note =  $ci->DocumentApprovalHistory_Model->getLastApprove($candidate->document_candidate_id)->row_array();
                                         @endphp
-                                        {{ $note->status_approval }}
+                                        {{ $note['status_approval'] }}
                                     </td>
                                     <td class="align-middle">
                                         @php
                                             $ci =& get_instance();
                                             $ci->load->Model('User_Model');
-                                            $note =  $ci->DocumentApprovalHistory_Model->getLastApprove($candidate->document_candidate_id)->row();
-                                            $user =  $ci->User_Model->findOne($note->approved_id)->row();
+                                            $note =  $ci->DocumentApprovalHistory_Model->getLastApprove($candidate->document_candidate_id)->row_array();
+                                            $user =  $ci->User_Model->findOne($note['approved_id'])->row_array();
                                         @endphp
-                                        {{ $user->email }}
+                                        {{ $user['email'] }}
                                     </td>
                                     <td class="align-middle text-center">
                                           <a href="<?= site_url("approval/document/view/".$candidate->document_candidate_id.""); ?>" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-eye" title="Preview"></i> <span class="sr-only">View</span></a>

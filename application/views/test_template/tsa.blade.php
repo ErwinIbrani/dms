@@ -6,6 +6,169 @@ foreach($contentText['other_condition'] as $index => $key){
     $other_condition  .= '<br/>'.$key;
 }
 
+
+$phase = '';
+if(!empty($contentText['phase'])){
+    foreach($contentText['phase'] as $index => $key){
+        $phase  .= '<br/>'.$key;
+    }
+  }
+ else{
+     $phase = ' ';
+ }
+
+$percent = '';
+if(!empty($contentText['percen'])){
+    foreach($contentText['percen'] as $index => $key){
+        $percent .= '<br/>'.$key;
+    }
+}
+else{
+    $percent = ' ';
+}
+
+$amount = '';
+if(!empty($contentText['amount'])){
+    foreach($contentText['amount'] as $index => $key){
+        $amount  .= '<br/>'.$key;
+    }
+  }
+  else{
+      $amount = ' ';
+  }
+
+$description = ' ';
+if(!empty($contentText['description'])){
+    foreach($contentText['description'] as $index => $key){
+        $description  .= '<br/>'.$key;
+    }
+ }
+ else{
+     $description = ' ';
+ }
+
+$jarak_dari_kandidat = '';
+if(!empty($contentText['jarak_dari_kandidat'])){
+    foreach($contentText['jarak_dari_kandidat'] as $index => $key){
+        $jarak_dari_kandidat  .= '<br/>'.$key;
+    }
+}else{
+    $jarak_dari_kandidat = ' ';
+}
+
+
+$tower_existing = '';
+if(!empty($contentText['tower_existing'])){
+    foreach($contentText['tower_existing'] as $index => $key){
+        $tower_existing  .= '<br/>'.$key;
+    }
+}else{
+    $tower_existing = ' ';
+}
+
+$potensi_market = '';
+if(!empty($contentText['potensi_market'])){
+    foreach($contentText['potensi_market'] as $index => $key){
+        $potensi_market  .= '<br/>'.$key;
+    }
+}else{
+    $potensi_market = ' ';
+}
+
+$kandidates = '';
+if(!empty($contentText['kandidates'])){
+    foreach($contentText['kandidates'] as $index => $key){
+        $kandidates  .= '<br/>'.$key;
+    }
+ }else{
+    $kandidates = ' ';
+}
+
+
+$e_longiude = '';
+if(!empty($contentText['e_longiude'])){
+    foreach($contentText['e_longiude'] as $index => $key){
+        $e_longiude  .= '<br/>'.$key;
+    }
+}else{
+    $e_longiude = ' ';
+}
+
+$ns_latitude = '';
+if(!empty($contentText['ns_latitude'])){
+    foreach($contentText['ns_latitude'] as $index => $key){
+        $ns_latitude  .= '<br/>'.$key;
+    }
+}else{
+    $ns_latitude = ' ';
+}
+
+
+$contact_person = '';
+if(!empty($contentText['contact_person'])){
+    foreach($contentText['contact_person'] as $index => $key){
+        $contact_person  .= '<br/>'.$key;
+    }
+}else{
+    $contact_person = ' ';
+}
+
+
+$masa_sewa = '';
+if(!empty($contentText['masa_sewa'])){
+    foreach($contentText['masa_sewa'] as $index => $key){
+        $masa_sewa  .= '<br/>'.$key;
+    }
+}else{
+    $masa_sewa = ' ';
+}
+
+
+$harga_sewa = '';
+if(!empty($contentText['harga_sewa'])){
+    foreach($contentText['harga_sewa'] as $index => $key){
+        $harga_sewa  .= '<br/>'.$key;
+    }
+}else{
+    $harga_sewa = ' ';
+}
+
+
+$cancelation_remarks = '';
+if(!empty($contentText['cancelation_remarks'])){
+    foreach($contentText['cancelation_remarks'] as $index => $key){
+        $cancelation_remarks  .= '<br/>'.$key;
+    }
+}else{
+    $cancelation_remarks = ' ';
+}
+
+
+$approval_document = '';
+if(empty($approvals)):
+    $approval_document .= '<TR>
+                           <TD class="tr7 td154"><P class="p2 ft21">&nbsp;</P></TD>
+                           <TD class="tr7 td52"><P class="p0 ft22">&nbsp;</P></TD>
+                           <TD colspan=2 class="tr7 td155"><P class="p0 ft21">&nbsp;</P></TD>
+                           <TD class="tr7 td156"><P class="p4 ft21">&nbsp;</P></TD>
+                           <TD class="tr7 td157"><P class="p4 ft21"><NOBR>&nbsp;</NOBR></P></TD>
+                           </TR>';
+
+
+else:
+    foreach ($approvals as $index => $approval):
+        $approval_document .=
+                           '<TR>
+                            <TD class="tr7 td154"><P class="p2 ft21">'.$approval->document_type.'</P></TD>
+                            <TD class="tr7 td52"><P class="p0 ft22">&nbsp;</P></TD>
+                            <TD colspan=2 class="tr7 td155"><P class="p0 ft21">'.$approval->role_name.'</P></TD>
+                            <TD class="tr7 td156"><P class="p4 ft21">'.$approval->email.'</P></TD>
+                            <TD class="tr7 td157"><P class="p4 ft21"><NOBR>'.date('d-M-Y', strtotime                   ($approval->approved_at)).'</NOBR></P></TD>
+                         </TR>';
+
+    endforeach;
+endif;
+
 echo $raw_html  ='<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML>
 <HEAD>
@@ -899,12 +1062,12 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr5 td40"><P class="p0 ft18">&nbsp;</P></TD>
 	<TD class="tr5 td41"><P class="p0 ft18">&nbsp;</P></TD>
 	<TD class="tr5 td63"><P class="p0 ft18">&nbsp;</P></TD>
-	<TD class="tr5 td74"><P class="p4 ft12">I</P></TD>
-	<TD class="tr5 td75"><P class="p4 ft12">90</P></TD>
+	<TD class="tr5 td74"><P class="p4 ft12">'.$phase.'</P></TD>
+	<TD class="tr5 td75"><P class="p4 ft12">'.$percent.'%</P></TD>
 	<TD class="tr5 td52"><P class="p0 ft18">&nbsp;</P></TD>
-	<TD colspan=2 class="tr5 td76"><P class="p0 ft12">Rp.090909.232</P></TD>
+	<TD colspan=2 class="tr5 td76"><P class="p0 ft12">'.$amount.'</P></TD>
 	<TD class="tr5 td52"><P class="p0 ft18">&nbsp;</P></TD>
-	<TD class="tr5 td77"><P class="p0 ft12">Tapi ini ada</P></TD>
+	<TD class="tr5 td77"><P class="p0 ft12">'.$description.'</P></TD>
 	<TD class="tr5 td44"><P class="p0 ft18">&nbsp;</P></TD>
 </TR>
 <TR>
@@ -913,12 +1076,12 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr9 td40"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr9 td41"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr9 td63"><P class="p0 ft0">&nbsp;</P></TD>
-	<TD class="tr9 td74"><P class="p4 ft9">II</P></TD>
-	<TD class="tr9 td75"><P class="p4 ft9">912</P></TD>
+	<TD class="tr9 td74"><P class="p4 ft9">&nbsp;</P></TD>
+	<TD class="tr9 td75"><P class="p4 ft9">&nbsp;</P></TD>
 	<TD class="tr9 td52"><P class="p0 ft0">&nbsp;</P></TD>
-	<TD colspan=2 class="tr9 td76"><P class="p0 ft9">Rp. 5398453409</P></TD>
+	<TD colspan=2 class="tr9 td76"><P class="p0 ft9">&nbsp;</P></TD>
 	<TD class="tr9 td52"><P class="p0 ft0">&nbsp;</P></TD>
-	<TD class="tr9 td77"><P class="p0 ft9">sanfdsnvkldnvkv</P></TD>
+	<TD class="tr9 td77"><P class="p0 ft9">&nbsp;</P></TD>
 	<TD class="tr9 td44"><P class="p0 ft0">&nbsp;</P></TD>
 </TR>
 <TR>
@@ -1198,19 +1361,19 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr15 td21"><P class="p0 ft16">&nbsp;</P></TD>
 </TR>
 <TR>
-	<TD class="tr5 td121"><P class="p2 ft12">12</P></TD>
-	<TD class="tr5 td82"><P class="p4 ft12">fdsfdsf</P></TD>
+	<TD class="tr5 td121"><P class="p2 ft12">&nbsp;</P></TD>
+	<TD class="tr5 td82"><P class="p4 ft12">'.$jarak_dari_kandidat.'</P></TD>
 	<TD class="tr5 td83"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr5 td130"><P class="p0 ft0">&nbsp;</P></TD>
-	<TD class="tr5 td85"><P class="p4 ft12">Dsfdsfds</P></TD>
+	<TD class="tr5 td85"><P class="p4 ft12">'.$tower_existing.'</P></TD>
 	<TD class="tr5 td51"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr5 td86"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr5 td124"><P class="p0 ft0">&nbsp;</P></TD>
-	<TD colspan=2 class="tr5 td131"><P class="p4 ft12">fsdfsdfdsf</P></TD>
+	<TD colspan=2 class="tr5 td131"><P class="p4 ft12">'.$jarak_dari_kandidat.'</P></TD>
 	<TD class="tr5 td87"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr5 td90"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr5 td19"><P class="p0 ft0">&nbsp;</P></TD>
-	<TD class="tr5 td90"><P class="p4 ft12">Sa</P></TD>
+	<TD class="tr5 td90"><P class="p4 ft12">'.$potensi_market.'</P></TD>
 	<TD class="tr5 td117"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr5 td21"><P class="p0 ft0">&nbsp;</P></TD>
 </TR>
@@ -1292,17 +1455,17 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr7 td21"><P class="p0 ft0">&nbsp;</P></TD>
 </TR>
 <TR>
-	<TD class="tr9 td121"><P class="p2 ft9">dasdsa</P></TD>
-	<TD class="tr9 td134"><P class="p4 ft9">dsfdsgdsg</P></TD>
-	<TD colspan=2 class="tr9 td135"><P class="p4 ft9">gdsgdfgq</P></TD>
-	<TD class="tr9 td136"><P class="p4 ft9">fdsfdsgd</P></TD>
-	<TD colspan=2 class="tr9 td110"><P class="p4 ft9">Dsfdsg</P></TD>
+	<TD class="tr9 td121"><P class="p2 ft9">&nbsp;</P></TD>
+	<TD class="tr9 td134"><P class="p4 ft9">'.$kandidates.'</P></TD>
+	<TD colspan=2 class="tr9 td135"><P class="p4 ft9">'.$e_longiude.'</P></TD>
+	<TD class="tr9 td136"><P class="p4 ft9">'.$ns_latitude.'</P></TD>
+	<TD colspan=2 class="tr9 td110"><P class="p4 ft9">'.$contact_person.'</P></TD>
 	<TD class="tr9 td87"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr9 td143"><P class="p0 ft0">&nbsp;</P></TD>
-	<TD class="tr9 td89"><P class="p4 ft9">ddfgdfgdfg</P></TD>
+	<TD class="tr9 td89"><P class="p4 ft9">'.$masa_sewa.'</P></TD>
 	<TD class="tr9 td124"><P class="p0 ft0">&nbsp;</P></TD>
-	<TD colspan=3 class="tr9 td138"><P class="p4 ft9">Dlsak;ljsdk;fjd</P></TD>
-	<TD class="tr9 td117"><P class="p4 ft9">dasdsafojpsf</P></TD>
+	<TD colspan=3 class="tr9 td138"><P class="p4 ft9">'.$harga_sewa.'</P></TD>
+	<TD class="tr9 td117"><P class="p4 ft9">'.$cancelation_remarks.'</P></TD>
 	<TD class="tr9 td21"><P class="p0 ft0">&nbsp;</P></TD>
 </TR>
 <TR>
@@ -1317,7 +1480,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr9 td143"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr9 td89"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr9 td124"><P class="p0 ft0">&nbsp;</P></TD>
-	<TD class="tr9 td90"><P class="p4 ft9">s</P></TD>
+	<TD class="tr9 td90"><P class="p4 ft9">&nbsp;</P></TD>
 	<TD class="tr9 td21"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr9 td144"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr9 td117"><P class="p0 ft0">&nbsp;</P></TD>
@@ -1358,13 +1521,7 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr10 td152"><P class="p0 ft10">&nbsp;</P></TD>
 	<TD class="tr10 td153"><P class="p0 ft10">&nbsp;</P></TD>
 </TR>
-<TR>
-	<TD class="tr7 td154"><P class="p2 ft21">Prepared</P></TD>
-	<TD class="tr7 td52"><P class="p0 ft22">&nbsp;</P></TD>
-	<TD colspan=2 class="tr7 td155"><P class="p0 ft21">Regional Project Manager</P></TD>
-	<TD class="tr7 td156"><P class="p4 ft21">Didin Kuntul</P></TD>
-	<TD class="tr7 td157"><P class="p4 ft21"><NOBR>2010-09-92</NOBR></P></TD>
-</TR>
+'.$approval_document.'
 <TR>
 	<TD class="tr28 td150"><P class="p0 ft0">&nbsp;</P></TD>
 	<TD class="tr28 td71"><P class="p0 ft0">&nbsp;</P></TD>
@@ -1374,9 +1531,9 @@ body {margin-top: 0px;margin-left: 0px;}
 	<TD class="tr28 td153"><P class="p0 ft0">&nbsp;</P></TD>
 </TR>
 <TR>
-	<TD colspan=2 class="tr29 td159"><P class="p2 ft20">Note : ljdsfhkldsfkldhfkdfnd</P></TD>
-	<TD class="tr29 td23"><P class="p10 ft20">fdsifhdsjfidsfijdspofu</P></TD>
-	<TD colspan=2 class="tr29 td160"><P class="p0 ft20">fdsohfndsfihdsiofjdsifj</P></TD>
+	<TD colspan=2 class="tr29 td159"><P class="p2 ft20">Note : '.$contentText['note'].'</P></TD>
+	<TD class="tr29 td23"><P class="p10 ft20"></P>&nbsp;</TD>
+	<TD colspan=2 class="tr29 td160"><P class="p0 ft20">&nbsp;</P></TD>
 	<TD class="tr29 td161"><P class="p0 ft0">&nbsp;</P></TD>
 </TR>
 </TABLE>
@@ -1384,7 +1541,7 @@ body {margin-top: 0px;margin-left: 0px;}
 </BODY>
 </HTML>';
 
-exit();
+
 
 $api_endpoint  = "https://selectpdf.com/api2/convert/";
 $key           =  'b53a60b8-7af2-4a9f-bf0c-c03fbde4911a';
