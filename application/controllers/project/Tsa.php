@@ -176,6 +176,7 @@ class Tsa extends CI_Controller
         $content_bap         = json_decode($bap->attribute, true);
         $content             = json_decode($candidate_document->attribute, true);
 
+
         return view('project/tsa/edit', array(
             'documetn_candidate'   => $document_candidate,
             'candidate'            => $candidate,
@@ -254,8 +255,9 @@ class Tsa extends CI_Controller
             'attribute'        => json_encode($this->attribute),
             'status_revision'  => NULL,
         ];
-           $this->CandidateDocument_Model->update($this->input->post('id'), $data);
+            $this->CandidateDocument_Model->update($this->input->post('id'), $data);
             $this->DocumentApprovalHistory_Model->continueApprove($this->input->post('id'), 'Reject');
+            
             $this->session->set_flashdata('success', 'Data Uploded');
             redirect("/project/tsa/index/", 'refresh');
     }

@@ -55,7 +55,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Project Name</label>
-                                            <input type="text" class="form-control" name="project_name" autocomplete="off" required/>
+                                            <input type="text" class="form-control" name="project_name" autocomplete="off" value="<?= $attribute['project_name']; ?>"/>
                                         </div>
                                     </div>
 
@@ -64,13 +64,37 @@
                                             <label for="tf1">Operator</label>
                                             <select class="form-control" name="operator" required>
                                                 <option value="" selected="selected">.:Choose:.</option>
-                                                <option value="SF">SF</option>
-                                                <option value="TSEL">TSEL</option>
-                                                <option value="ISAT">ISAT</option>
-                                                <option value="HCPT">HCPT</option>
-                                                <option value="HCPT">XL</option>
-                                                <option value="HCPT">FM</option>
-                                                <option value="Other">Other</option>
+                                                <?php
+                                                if ($attribute['operator'] == "SF")
+                                                    echo "<option value='SF' selected> SF</option>";
+                                                else echo "<option value='SF'> SF </option>";
+
+                                                if ($attribute['operator'] == "TSEL")
+                                                    echo "<option value='TSEL' selected>TSEL</option>";
+                                                else echo "<option value='TSEL'> TSEL </option>";
+
+                                                if ($attribute['operator'] == "ISAT")
+                                                    echo "<option value='ISAT' selected> ISAT</option>";
+                                                else echo "<option value='ISAT'> ISAT </option>";
+
+                                                if ($attribute['operator'] == "HCPT")
+                                                    echo "<option value='SF' selected> HCPT</option>";
+                                                else echo "<option value='SF'> HCPT </option>";
+
+                                                if ($attribute['operator'] == "XL")
+                                                    echo "<option value='XL' selected> XL</option>";
+                                                else echo "<option value='XL'> XL </option>";
+
+                                                if ($attribute['operator'] == "FM")
+                                                    echo "<option value='FM' selected>FM</option>";
+                                                else echo "<option value='FM'> FM </option>";
+
+                                                if ($attribute['operator'] == "Other")
+                                                    echo "<option value='Other' selected> Other</option>";
+                                                else echo "<option value='Other'> Other </option>";
+
+                                                ?>
+
                                             </select>
                                         </div>
                                     </div>
@@ -78,7 +102,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">TSA Number</label>
-                                            <input type="text" class="form-control" name="tsa_number" autocomplete="off" required/>
+                                            <input type="text" class="form-control" name="tsa_number" autocomplete="off" value="<?= $attribute['tsa_number']; ?>"/>
                                         </div>
                                     </div>
 
@@ -216,10 +240,24 @@
                                             <label for="tf1">Topology</label>
                                             <select class="form-control" name="topology" required>
                                                 <option value="" selected="selected">.:Choose:.</option>
-                                                <option value="Hub">Hub</option>
-                                                <option value="Sub Hub">Sub Hub</option>
-                                                <option value="End Site">End Site</option>
-                                                <option value="Others">Others</option>
+                                                <?php
+                                                if ($attribute['topology'] == "Hub")
+                                                    echo "<option value='Hub' selected> Hub</option>";
+                                                else echo "<option value='Hub'> Hub </option>";
+
+                                                if ($attribute['topology'] == "Sub Hub")
+                                                    echo "<option value='Sub Hub' selected>Sub Hub</option>";
+                                                else echo "<option value='Sub Hub'> Sub Hub </option>";
+
+                                                if ($attribute['topology'] == "End Site")
+                                                    echo "<option value='End Site' selected> End Site</option>";
+                                                else echo "<option value='End Site'> End Site </option>";
+
+                                                if ($attribute['topology'] == "Others")
+                                                    echo "<option value='Others' selected> Others</option>";
+                                                else echo "<option value='Others'> Others </option>";
+
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -227,7 +265,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Contact Person</label>
-                                            <input type="text" class="form-control" name="contact_persons" required/>
+                                            <input type="text" class="form-control" name="contact_persons" value="<?= $attribute['contact_persons']  ?>"/>
                                         </div>
                                     </div>
 
@@ -236,8 +274,17 @@
                                             <label for="tf1">Status Site</label>
                                             <select class="form-control" name="status_site" required>
                                                 <option value="" selected="selected">.:Choose:.</option>
-                                                <option value="Rent">Rent</option>
-                                                <option value="Others">Others</option>
+                                                <?php
+                                                if ($attribute['status_site'] == "Rent")
+                                                    echo "<option value='Rent' selected> Rent</option>";
+                                                else echo "<option value='Rent'> Rent </option>";
+
+                                                if ($attribute['Others'] == "Others")
+                                                    echo "<option value='Others' selected> Others</option>";
+                                                else echo "<option value='Others'> Others </option>";
+
+                                                ?>
+
                                             </select>
                                         </div>
                                     </div>
@@ -247,11 +294,29 @@
                                             <label for="tf1">Land Status</label>
                                             <select class="form-control" name="land_status" required>
                                                 <option value="" selected="selected">.:Choose:.</option>
-                                                <option value="SHM">SHM</option>
-                                                <option value="SHGB">SHGB</option>
-                                                <option value="SKT">SKT</option>
-                                                <option value="AJB">AJB</option>
-                                                <option value="Others">Others</option>
+                                                <?php
+                                                if ($attribute['land_status'] == "SHM")
+                                                    echo "<option value='SHM' selected> SHM</option>";
+                                                else echo "<option value='SHM'> SHM </option>";
+
+                                                if ($attribute['land_status'] == "SHGB")
+                                                    echo "<option value='SHGB' selected> SHGB</option>";
+                                                else echo "<option value='SHGB'> SHGB </option>";
+
+                                                if ($attribute['land_status'] == "SKT")
+                                                    echo "<option value='SKT' selected> SKT</option>";
+                                                else echo "<option value='SKT'> SKT </option>";
+
+                                                if ($attribute['land_status'] == "AJB")
+                                                    echo "<option value='AJB' selected> AJB</option>";
+                                                else echo "<option value='AJB'> AJB </option>";
+
+                                                if ($attribute['land_status'] == "Others")
+                                                    echo "<option value='Others' selected> Others</option>";
+                                                else echo "<option value='Others'> Others </option>";
+
+                                                ?>
+
                                             </select>
                                         </div>
                                     </div>
@@ -261,8 +326,15 @@
                                             <label for="tf1">Time Access</label>
                                             <select class="form-control" name="time_access" required>
                                                 <option value="" selected="selected">.:Choose:.</option>
-                                                <option value="24">24 Jam</option>
-                                                <option value="Others">Others</option>
+                                                <?php
+                                                    if ($attribute['time_access'] == "24")
+                                                    echo "<option value='24' selected> 24 Jam</option>";
+                                                else echo "<option value='24'> 24 Jam </option>";
+
+                                                if ($attribute['time_access'] == "Others")
+                                                    echo "<option value='Others' selected> Others</option>";
+                                                else echo "<option value='Others'> Others </option>";
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -316,14 +388,14 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Rental Period (IBS LO) Start Year</label>
-                                            <input type="number" class="form-control" name="start_year" autocomplete="off" required/>
+                                            <input type="number" class="form-control" name="start_year" autocomplete="off" value="<?= $attribute['start_year'] ?>"/>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Rental Period (IBS LO) End Year</label>
-                                            <input type="number" class="form-control" name="end_year" autocomplete="off" required/>
+                                            <input type="number" class="form-control" name="end_year" autocomplete="off" value="<?= $attribute['end_year'] ?>"/>
                                         </div>
                                     </div>
 
@@ -331,9 +403,16 @@
                                         <div class="form-group">
                                             <label for="tf1">Purchased Option</label>
                                             <select class="form-control" name="purchased_option" required>
-                                                <option value="" selected="selected">.:Choose:.</option>
-                                                <option value="Yes">Yes</option>
-                                                <option value="No">No</option>
+                                                <option value="" selected="selected">.:Choose:.
+                                                <?php
+                                                 if ($attribute['purchased_option'] == "Yes")
+                                                    echo "<option value='Yes' selected> Yes</option>";
+                                                else echo "<option value='Yes'> Yes </option>";
+
+                                                 if ($attribute['purchased_option'] == "No")
+                                                    echo "<option value='No' selected> No</option>";
+                                                else echo "<option value='No'> No </option>";
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -353,10 +432,24 @@
                                                 <label for="tf1">Location Site</label>
                                                 <select class="form-control" name="location_site" required>
                                                     <option value="" selected="selected">.:Choose:.</option>
-                                                    <option value="DKI Jakarta">DKI Jakarta</option>
-                                                    <option value="Ibu Kota Provinsi">Ibu Kota Provinsi</option>
-                                                    <option value="Kota Madya/Kabupaten">Kota Madya/Kabupaten</option>
-                                                    <option value="Pedesaan/Rural">Pedesaan/Rural</option>
+                                                    <?php
+                                                    if ($attribute['location_site'] == "DKI Jakarta")
+                                                        echo "<option value='DKI Jakarta' selected> DKI Jakarta</option>";
+                                                    else echo "<option value='DKI Jakarta'> DKI Jakarta </option>";
+
+                                                    if ($attribute['location_site'] == "Ibu Kota Provinsi")
+                                                        echo "<option value='Ibu Kota Provinsi' selected> Ibu Kota Provinsi</option>";
+                                                    else echo "<option value='Ibu Kota Provinsi'> Ibu Kota Provinsi </option>";
+
+                                                    if ($attribute['location_site'] == "Kota Madya/Kabupaten")
+                                                        echo "<option value='Kota Madya/Kabupaten' selected> Kota Madya/Kabupaten</option>";
+                                                    else echo "<option value='Kota Madya/Kabupaten'> Kota Madya/Kabupaten </option>";
+
+                                                    if ($attribute['location_site'] == "Pedesaan/Rural")
+                                                        echo "<option value='Pedesaan/Rural' selected> Pedesaan/Rural</option>";
+                                                    else echo "<option value='Pedesaan/Rural'> Pedesaan/Rural </option>";
+                                                    ?>
+
                                                 </select>
                                             </div>
                                         </div>
@@ -372,7 +465,7 @@
                                   <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="note">Note</label>
-                                        <textarea name="note" id="note" cols="30" rows="5" class="form-control"></textarea>
+                                        <textarea name="note" id="note" cols="30" rows="5" class="form-control"><?= $attribute['note']; ?></textarea>
                                     </div>
                                   </div>
 
