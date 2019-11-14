@@ -7,7 +7,7 @@ class Approval extends CI_Controller
         parent::__construct();
         $this->load->helper(['generatepdf', 'custom']);
         $this->lang->load('auth');
-        $this->load->model(['Approval_Model', 'CandidateDocument_Model', 'DocumentApprovalHistory_Model']);
+        $this->load->model(['Approval_Model', 'CandidateDocument_Model', 'DocumentApprovalHistory_Model', 'Project_Model']);
         authentication($this->ion_auth->logged_in());
     }
 
@@ -36,7 +36,8 @@ class Approval extends CI_Controller
               if(!empty($modelHistory)) {
                    if($template['type'] == 'SITAC TSA') {
                        $approvals = $this->DocumentApprovalHistory_Model->findStatusApproval('SITAC TSA', $this->input->post('document_id'))->result();
-                       generateTsa($template, $approvals, $modelHistory);
+                       $wbs_id    = $this->Project_Model->findOne($template['project_id'])->row_array();
+                       generateTsa($template, $approvals, $modelHistory, $wbs_id);
                    }
                    elseif ($template['type'] == 'FOUNDATION and ERECTION'){
                        $approvals = $this->DocumentApprovalHistory_Model->findStatusApproval('FOUNDATION and ERECTION', $this->input->post('document_id'))->result();
