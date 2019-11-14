@@ -24,21 +24,6 @@
 				<div class="card-header">
 					<ul class="nav nav-tabs card-header-tabs">
 						<li class="nav-item">
-							<a class="nav-link"
-							   href="{{ site_url('/vendor/candidate/document/survey/create/'.$candidate->id) }}">Document
-								Survey</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link"
-							   href="{{ site_url('/vendor/candidate/document/bap/add/'. $candidate->id) }}">BAP
-								Document</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link"
-							   href="{{ site_url('/vendor/candidate/document/bak/add/'. $candidate->id) }}">BAK
-								Document</a>
-						</li>
-						<li class="nav-item">
 							<a class="nav-link  show active"
 							   href="{{ site_url('/vendor/candidate/document/iw/add/'. $candidate->id) }}">IW
 								Document</a>

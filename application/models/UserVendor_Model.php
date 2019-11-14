@@ -81,6 +81,10 @@ class UserVendor_Model extends CI_Model
     {
         return $this->db->get_where($this->table, [$this->primaryKey => $id]);
     }
+    
+    public function findByVendor($vendor_id) {
+        return $this->db->get_where($this->table, ['vendor_id' => $vendor_id, 'level'=> 'PIC']);
+    }
 
     public function getPIC($id)
     {

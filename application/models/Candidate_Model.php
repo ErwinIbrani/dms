@@ -34,9 +34,20 @@ class Candidate_Model extends CI_Model {
         return $this->db->update($this->table, $update);
     }
     
-    public function get_all(){
+    public function get_all($order='', $order_type='', $project_id = ''){
         $this->db->select('*');
         $this->db->from($this->table);
+        if(!empty($project_id)){
+            $this->db->where('project_id', $project_id);
+        }
+        
+        if(!empty($order)){
+            if(!empty($order_type)){
+                $this->db->order_by($order, $order_type);
+            }else{
+                $this->db->order_by($order, 'DESC');
+            }
+        }
         return $this->db->get();
     }
     

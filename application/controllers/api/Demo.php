@@ -7,7 +7,7 @@ class Demo extends REST_Controller
     {
         parent::__construct();
         $this->load->helper(['generatepdf', 'custom']);
-        $this->load->model(['ApiSession_Model', 'Region_Model', 'Province_Model','City_Model', 'Document_Model',
+        $this->load->model(['ApiSession_Model', 'Region_Model', 'Province_Model','City_Model', 'Document_Model', 'UserVendor_Model',
             'UserVendor_Model', 'Vendor_Model', 'Project_Model', 'Candidate_Model', 'CandidateDocument_Model', 'User_Model']);
         $this->load->library(['ion_auth', 'form_validation']);
     }
@@ -19,10 +19,19 @@ class Demo extends REST_Controller
             if ($this->ion_auth->login($this->post('email'), $this->post('password'), $remember)) {
                 $session_id = $this->singleton_session_id($this->post('email'));
                 $user = $this->User_Model->findByEmail($this->post('email'));
+                //throw new Exception($user->vendor);
+                $vendor = array();
+                $user_vendor = array();
+                if(!empty($user[0]->vendor)){
+                    $vendor = $this->Vendor_Model->findOne($user[0]->vendor)->row();
+                    $user_vendor = $this->UserVendor_Model->findByVendor($user[0]->vendor)->result();
+                }
                 $status = 'Berhasil';
                 $data = [
                     'session_id' => $session_id,
-                    'user' => $user
+                    'user' => $user,
+                    'user_vendor' => $user_vendor,
+                    'vendor' => $vendor
                 ];
             } else {
                 $status = 'User Password Tidak Match';
@@ -123,13 +132,17 @@ class Demo extends REST_Controller
                 throw new Exception('session anda telah habis');
             }
             $id = $this->get('id');
+            $order = $this->get('order');
+            $order_type = $this->get('order_type');
+            $project_id = $this->get('project_id');
             if(!empty($id)){
                 $data =  $this->Candidate_Model->getCandidateById($id)->result_array();
                 if(empty($data)){
                     throw new Exception('Data Candidate tidak valid');
                 }
             }else{
-                $data =  $this->Candidate_Model->get_all()->result();
+                $data =  $this->Candidate_Model->get_all($order, $order_type, $project_id)->result();
+                
             }
             $this->response($data, REST_Controller::HTTP_OK);
         } catch (Exception $exc) {
@@ -222,6 +235,7 @@ class Demo extends REST_Controller
                 throw new Exception('session anda telah habis');
             }
             $id = $this->get('id');
+            $candidate_id = $this->get('candidate_id');
             $rowno = empty($this->get('rowno')) ? 1 : $this->get('rowno');
             $rowperpage = empty($this->get('rowperpage')) ? 100 : $this->get('rowperpage');
             $search = empty($this->get('search')) ? "" : $this->get('search');
@@ -231,8 +245,9 @@ class Demo extends REST_Controller
                     throw new Exception('Data Document Survey tidak valid');
                 }
             }else{
-                $data =  $this->CandidateDocument_Model->getDataSurveyApi($rowno, $rowperpage, $search);
+                $data =  $this->CandidateDocument_Model->getDataSurveyApi($rowno, $rowperpage, $search, $candidate_id);
             }
+            
             $this->response($data, REST_Controller::HTTP_OK);
         } catch (Exception $exc) {
             $msg = $exc->getMessage();
@@ -246,6 +261,9 @@ class Demo extends REST_Controller
             if( ! $this->check_session($session_id)){
                 throw new Exception('session anda telah habis');
             }
+            
+            
+            
             $config = [];
             $config['upload_path'] = './uploads/attachment/survey/';
             $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
@@ -330,13 +348,12 @@ class Demo extends REST_Controller
                 }
                 
                 $data = $this->CandidateDocument_Model->save($data);
-                // TODO : entah kenapa generateSurvey($template) membuat jadi error untuk response
-                /*
                 if (!empty($data)) {
                     $template = $this->CandidateDocument_Model->findOne($data)->row_array();
-                    generateSurvey($template);
+                    $wbs_id = $this->Project_Model->findOne($template['project_id'])->row_array();
+                    generateSurvey($template, $wbs_id);
+                    
                 }
-                */
             } else {
                 throw new Exception($this->upload->display_errors());
             }

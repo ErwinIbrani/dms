@@ -217,7 +217,7 @@
 
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="be_regarded">be regarded <abbr title="Required">*</abbr></label>
+								<label for="be_regarded">Terbilang <abbr title="Required">*</abbr></label>
 								<input type="text" class="form-control" id="be_regarded"
 									   name="be_regarded" required>
 							</div>

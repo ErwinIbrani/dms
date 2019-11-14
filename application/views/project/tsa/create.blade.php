@@ -151,7 +151,7 @@
                                             @php
                                                 $per_year = $content_bap['bap']['rent_price']/$content_bap['bap']['rent_period'];
                                             @endphp
-                                            <input type="text" class="form-control is-valid" name="initil_price_peryear" value="{{ number_format($per_year) }}"/>
+                                            <input type="text" class="form-control" name="initil_price_peryear" value="{{ number_format($per_year) }}"/>
                                         </div>
                                     </div>
 
@@ -176,7 +176,7 @@
                                         <div class="form-group">
                                             <label for="tf1">Access Road (Meter2)</label>
                                             @php
-                                                $land_road = $content_bap['bap']['access_road']/2;
+                                                $land_road = $content_bap['bap']['access_road'];
                                             @endphp
                                             <input type="text" class="form-control is-valid" name="access_road" value="{{ $content_bap['bap']['access_road'] }}" readonly/><br/>
                                         </div>
@@ -287,14 +287,14 @@
                                             @php
                                                 $per_year = $content_bap['bap']['rent_price']/$content_bap['bap']['rent_period'];
                                             @endphp
-                                            <input type="text" class="form-control is-valid" name="final_per_year" value="{{ number_format($per_year) }}" readonly/>
+                                            <input type="text" class="form-control" name="final_per_year" value="{{ number_format($per_year) }}"/>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tf1">Total Price, Include PPh, Excl, PPN</label>
-                                            <input type="text" class="form-control is-valid" name="total_price" value="{{ number_format($content_bap['bap']['rent_price']) }}" readonly/>
+                                            <input type="text" class="form-control" name="total_price" value="{{ number_format($content_bap['bap']['rent_price']) }}"/>
                                         </div>
                                     </div>
 

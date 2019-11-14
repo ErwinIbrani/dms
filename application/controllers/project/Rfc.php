@@ -31,6 +31,15 @@ class Rfc extends CI_Controller
 		));
 	}
 
+	public function setrfcdone($project_id)
+	{
+
+		$project = $this->findProject($project_id);
+		$this->Project_Model->update($project_id, array('work_status' => 'KOM CME'));
+		$this->session->set_flashdata('success', 'Success RFC Done.');
+		redirect("/project/project/detail/" . $project_id, 'refresh');
+	}
+
 	private function findProject($project_id)
 	{
 		$project = $this->Project_Model->findOne($project_id)->row();
