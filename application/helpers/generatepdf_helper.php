@@ -1,8 +1,10 @@
 <?php
 function generateSurvey($model, $wbs_id)
 {
-    $contentImage  = json_decode($model['attachment'], true);
-    $raw_html      = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+    $contentImage  = json_decode($model["attachment"], true);
+    $contentText   = json_decode($model["attribute"], true);
+
+    $raw_html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <HTML>
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,41 +12,99 @@ function generateSurvey($model, $wbs_id)
 <TITLE>TSSR</TITLE>
 <META name="generator" content="BCL easyConverter SDK 5.0.140">
 <STYLE type="text/css">
+
 body {margin-top: 0px;margin-left: 0px;}
+
 #page_1 {position:relative; overflow: hidden;margin: 23px 0px 99px 49px;padding: 0px;border: none;width: 745px;}
+
 #page_1 #p1dimg1 {position:absolute;top:0px;left:0px;z-index:-1;width:662px;height:698px;}
 #page_1 #p1dimg1 #p1img1 {width:662px;height:698px;}
+
+
+
+
 #page_2 {position:relative; overflow: hidden;margin: 23px 0px 209px 49px;padding: 0px;border: none;width: 664px;}
+
 #page_2 #p2dimg1 {position:absolute;top:0px;left:0px;z-index:-1;width:662px;height:890px;}
 #page_2 #p2dimg1 #p2img1 {width:662px;height:890px;}
+
+
+
+
 #page_3 {position:relative; overflow: hidden;margin: 23px 0px 210px 49px;padding: 0px;border: none;width: 745px;}
+
 #page_3 #p3dimg1 {position:absolute;top:0px;left:0px;z-index:-1;width:662px;height:873px;}
 #page_3 #p3dimg1 #p3img1 {width:662px;height:873px;}
+
+
+
+
 #page_4 {position:relative; overflow: hidden;margin: 23px 0px 210px 49px;padding: 0px;border: none;width: 745px;}
+
 #page_4 #p4dimg1 {position:absolute;top:0px;left:0px;z-index:-1;width:662px;height:873px;}
 #page_4 #p4dimg1 #p4img1 {width:662px;height:873px;}
+
+
+
+
 #page_5 {position:relative; overflow: hidden;margin: 23px 0px 190px 49px;padding: 0px;border: none;width: 745px;}
+
 #page_5 #p5dimg1 {position:absolute;top:0px;left:0px;z-index:-1;width:662px;height:893px;}
 #page_5 #p5dimg1 #p5img1 {width:662px;height:893px;}
+
+
+
+
 #page_6 {position:relative; overflow: hidden;margin: 23px 0px 188px 49px;padding: 0px;border: none;width: 745px;}
+
 #page_6 #p6dimg1 {position:absolute;top:0px;left:0px;z-index:-1;width:662px;height:911px;}
 #page_6 #p6dimg1 #p6img1 {width:662px;height:911px;}
+
+
+
+
 #page_7 {position:relative; overflow: hidden;margin: 23px 0px 188px 49px;padding: 0px;border: none;width: 745px;}
+
 #page_7 #p7dimg1 {position:absolute;top:0px;left:0px;z-index:-1;width:662px;height:911px;}
 #page_7 #p7dimg1 #p7img1 {width:662px;height:911px;}
+
+
+
+
 #page_8 {position:relative; overflow: hidden;margin: 23px 0px 188px 49px;padding: 0px;border: none;width: 745px;}
+
 #page_8 #p8dimg1 {position:absolute;top:0px;left:0px;z-index:-1;width:662px;height:911px;}
 #page_8 #p8dimg1 #p8img1 {width:662px;height:911px;}
+
+
+
+
 #page_9 {position:relative; overflow: hidden;margin: 23px 0px 188px 49px;padding: 0px;border: none;width: 745px;}
+
 #page_9 #p9dimg1 {position:absolute;top:0px;left:0px;z-index:-1;width:662px;height:911px;}
 #page_9 #p9dimg1 #p9img1 {width:662px;height:911px;}
+
+
+
+
 #page_10 {position:relative; overflow: hidden;margin: 23px 0px 188px 49px;padding: 0px;border: none;width: 745px;}
+
 #page_10 #p10dimg1 {position:absolute;top:0px;left:0px;z-index:-1;width:662px;height:911px;}
 #page_10 #p10dimg1 #p10img1 {width:662px;height:911px;}
+
+
+
+
 #page_11 {position:relative; overflow: hidden;margin: 23px 0px 215px 49px;padding: 0px;border: none;width: 745px;height: 884px;}
+
 #page_11 #p11dimg1 {position:absolute;top:0px;left:0px;z-index:-1;width:669px;height:884px;}
 #page_11 #p11dimg1 #p11img1 {width:669px;height:884px;}
+
+
+
+
 .dclr {clear:both;float:none;height:1px;margin:0px;padding:0px;overflow:hidden;}
+
 .ft0{font: 1px "Times New Roman";line-height: 1px;}
 .ft1{font: bold 11px "Times New Roman";line-height: 13px;}
 .ft2{font: 12px "Times New Roman";line-height: 14px;}
@@ -80,6 +140,7 @@ body {margin-top: 0px;margin-left: 0px;}
 .ft32{font: 14px "Arial";line-height: 16px;}
 .ft33{font: bold 17px "Arial";line-height: 19px;}
 .ft34{font: 7px "Arial";line-height: 7px;position: relative; bottom: 5px;}
+
 .p0{text-align: left;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
 .p1{text-align: left;padding-left: 64px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
 .p2{text-align: left;padding-left: 8px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
@@ -141,6 +202,7 @@ body {margin-top: 0px;margin-left: 0px;}
 .p57{text-align: left;padding-left: 189px;margin-top: 34px;margin-bottom: 0px;}
 .p58{text-align: left;padding-left: 88px;margin-top: 227px;margin-bottom: 0px;}
 .p59{text-align: left;padding-left: 81px;margin-top: 241px;margin-bottom: 0px;}
+
 .td0{padding: 0px;margin: 0px;width: 133px;vertical-align: bottom;}
 .td1{padding: 0px;margin: 0px;width: 148px;vertical-align: bottom;}
 .td2{padding: 0px;margin: 0px;width: 137px;vertical-align: bottom;}
@@ -286,6 +348,7 @@ body {margin-top: 0px;margin-left: 0px;}
 .td142{border-left: #3e3e3e 1px solid;border-right: #3e3e3e 1px solid;padding: 0px;margin: 0px;width: 318px;vertical-align: bottom;}
 .td143{border-left: #3e3e3e 1px solid;border-right: #3e3e3e 1px solid;border-top: #3e3e3e 1px solid;padding: 0px;margin: 0px;width: 319px;vertical-align: bottom;}
 .td144{border-right: #3e3e3e 1px solid;border-top: #3e3e3e 1px solid;padding: 0px;margin: 0px;width: 332px;vertical-align: bottom;}
+
 .tr0{height: 16px;}
 .tr1{height: 14px;}
 .tr2{height: 13px;}
@@ -325,6 +388,7 @@ body {margin-top: 0px;margin-left: 0px;}
 .tr36{height: 2px;}
 .tr37{height: 202px;}
 .tr38{height: 203px;}
+
 .t0{width: 664px;margin-top: 21px;font: 12px "Times New Roman";}
 .t1{width: 227px;margin-left: 26px;margin-top: 41px;font: bold 16px "Times New Roman";}
 .t2{width: 670px;margin-left: 19px;margin-top: 32px;font: 13px "Times New Roman";}
@@ -334,13 +398,17 @@ body {margin-top: 0px;margin-left: 0px;}
 .t6{width: 653px;margin-left: 7px;margin-top: 16px;font: 11px "Arial";}
 .t7{width: 652px;margin-left: 8px;margin-top: 1px;font: 11px "Arial";}
 .t8{width: 653px;margin-left: 7px;margin-top: 1px;font: 11px "Arial";}
+
 </STYLE>
 </HEAD>
+
 <BODY>
 <DIV id="page_1">
 <DIV id="p1dimg1">
 <img src="'.base_url('uploads/surveysitac/logo_ibs.png').'" width="100px" height="40px" alt="">
 </DIV>
+
+
 <DIV class="dclr"></DIV>
 <TABLE cellpadding=0 cellspacing=0 class="t0">
 <TR>
@@ -630,6 +698,8 @@ body {margin-top: 0px;margin-left: 0px;}
 <DIV id="p2dimg1">
 <img src="'.base_url('uploads/surveysitac/logo_ibs.png').'" width="100px" height="40px" alt="">
 </DIV>
+
+
 <DIV class="dclr"></DIV>
 <TABLE cellpadding=0 cellspacing=0 class="t0">
 <TR>
@@ -1556,6 +1626,8 @@ body {margin-top: 0px;margin-left: 0px;}
 <DIV id="p3dimg1">
 <img src="'.base_url('uploads/surveysitac/logo_ibs.png').'" width="100px" height="40px" alt="">
 </DIV>
+
+
 <DIV class="dclr"></DIV>
 <TABLE cellpadding=0 cellspacing=0 class="t0">
 <TR>
@@ -1663,6 +1735,8 @@ body {margin-top: 0px;margin-left: 0px;}
 <DIV id="p4dimg1">
 <img src="'.base_url('uploads/surveysitac/logo_ibs.png').'" width="100px" height="40px" alt="">
 </DIV>
+
+
 <DIV class="dclr"></DIV>
 <TABLE cellpadding=0 cellspacing=0 class="t0">
 <TR>
@@ -1757,6 +1831,8 @@ body {margin-top: 0px;margin-left: 0px;}
 <DIV id="p5dimg1">
 <img src="'.base_url('uploads/surveysitac/logo_ibs.png').'" width="100px" height="40px" alt="">
 </DIV>
+
+
 <DIV class="dclr"></DIV>
 <TABLE cellpadding=0 cellspacing=0 class="t0">
 <TR>
@@ -1865,6 +1941,8 @@ body {margin-top: 0px;margin-left: 0px;}
 <DIV id="p6dimg1">
 <img src="'.base_url('uploads/surveysitac/logo_ibs.png').'" width="100px" height="40px" alt="">
 </DIV>
+
+
 <DIV class="dclr"></DIV>
 <TABLE cellpadding=0 cellspacing=0 class="t0">
 <TR>
@@ -2008,6 +2086,8 @@ body {margin-top: 0px;margin-left: 0px;}
 <DIV id="p7dimg1">
 <img src="'.base_url('uploads/surveysitac/logo_ibs.png').'" width="100px" height="40px" alt="">
 </DIV>
+
+
 <DIV class="dclr"></DIV>
 <TABLE cellpadding=0 cellspacing=0 class="t0">
 <TR>
@@ -2137,6 +2217,8 @@ body {margin-top: 0px;margin-left: 0px;}
 <DIV id="p8dimg1">
 <img src="'.base_url('uploads/surveysitac/logo_ibs.png').'" width="100px" height="40px" alt="">
 </DIV>
+
+
 <DIV class="dclr"></DIV>
 <TABLE cellpadding=0 cellspacing=0 class="t0">
 <TR>
@@ -2288,6 +2370,8 @@ body {margin-top: 0px;margin-left: 0px;}
 <DIV id="p9dimg1">
 <img src="'.base_url('uploads/surveysitac/logo_ibs.png').'" width="100px" height="40px" alt="">
 </DIV>
+
+
 <DIV class="dclr"></DIV>
 <TABLE cellpadding=0 cellspacing=0 class="t0">
 <TR>
@@ -2440,6 +2524,8 @@ body {margin-top: 0px;margin-left: 0px;}
 <DIV id="p10dimg1">
 <img src="'.base_url('uploads/surveysitac/logo_ibs.png').'" width="100px" height="40px" alt="">
 </DIV>
+
+
 <DIV class="dclr"></DIV>
 <TABLE cellpadding=0 cellspacing=0 class="t0">
 <TR>
@@ -2581,6 +2667,8 @@ body {margin-top: 0px;margin-left: 0px;}
 <DIV id="p11dimg1">
 <img src="'.base_url('uploads/surveysitac/logo_ibs.png').'" width="100px" height="40px" alt="">
 </DIV>
+
+
 <DIV class="dclr"></DIV>
 <TABLE cellpadding=0 cellspacing=0 class="t0">
 <TR>
@@ -2664,7 +2752,9 @@ body {margin-top: 0px;margin-left: 0px;}
 <P class="p59 ft28">Existing Tower Telkomsel : 106.799740°; <NOBR>-6.461110° /</NOBR> Distance 1090 meter 332˚ from Candidate</P>
 </DIV>
 </BODY>
-</HTML>';
+</HTML>
+';
+
     $api_endpoint  = "https://selectpdf.com/api2/convert/";
     $key           = 'b53a60b8-7af2-4a9f-bf0c-c03fbde4911a';;
     $local_file = './uploads/surveysitac/' . $model['project_id'] . 'SITAC_SURVEY'.$model['id'].'_'.$model['vendor_id'] . '.pdf';

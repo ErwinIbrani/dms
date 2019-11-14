@@ -257,7 +257,7 @@ class Tsa extends CI_Controller
         ];
             $this->CandidateDocument_Model->update($this->input->post('id'), $data);
             $this->DocumentApprovalHistory_Model->continueApprove($this->input->post('id'), 'Reject');
-            
+
             $this->session->set_flashdata('success', 'Data Uploded');
             redirect("/project/tsa/index/", 'refresh');
     }
