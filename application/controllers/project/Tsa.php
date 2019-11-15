@@ -256,9 +256,20 @@ class Tsa extends CI_Controller
             'status_revision'  => NULL,
         ];
             $this->CandidateDocument_Model->update($this->input->post('id'), $data);
-            $this->DocumentApprovalHistory_Model->continueApprove($this->input->post('id'), 'Reject');
-
-            $this->session->set_flashdata('success', 'Data Uploded');
+            $model         = $this->CandidateDocument_Model->findOne($this->input->post('id'))->row_array();
+            $wbs_id        = $this->Project_Model->findOne($model['project_id'])->row_array();
+            $approvals     = $this->DocumentApprovalHistory_Model->currentApprove()->result();
+            $modelHistory  = $this->DocumentApprovalHistory_Model->save([
+                            'project_id'     => $this->input->post('project_id'),
+                            'document_id'    => $this->input->post('id'),
+                            'approved_id'    => $this->ion_auth->user()->row()->id,
+                            'group_id'       => $this->ion_auth->get_users_groups()->row()->id,
+                            'approved_at'    => date("Y-m-d H:i:s"),
+                            'attribute'      => json_encode($this->attribute),
+                            'status_approval'=> 'Submitted',
+                            'note'           => 'Document Updated']);
+            generateTsa($model, $approvals, $modelHistory, $wbs_id);
+            $this->session->set_flashdata('success', 'Data Reupload');
             redirect("/project/tsa/index/", 'refresh');
     }
 

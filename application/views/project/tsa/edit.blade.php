@@ -465,7 +465,7 @@
                                   <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="note">Note</label>
-                                        <textarea name="note" id="note" cols="30" rows="5" class="form-control"><?= $attribute['note']; ?></textarea>
+                                        <textarea name="note" id="note" cols="30" rows="3" class="form-control"><?= $attribute['note']; ?></textarea>
                                     </div>
                                   </div>
 
